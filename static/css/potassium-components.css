@@ -1,0 +1,60 @@
+
+.mode-switcher {
+	text-align: center;
+}
+
+.mode-switcher .selected {
+	background-color: #EFEFEF;
+}
+
+.portal-root .mode-switcher {
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+
+.portal-root .text-input-component {
+	width: 15em;
+	padding: 10px;
+	font-size: 2em;
+}
+
+.flat-root .mode-switcher {
+	margin-top: 30px;
+}
+
+
+.button {
+	cursor: pointer;
+	background-color: white;
+	padding: 5px;
+	border: solid 1px #DDD;
+	border-radius: 0;
+}
+.button:hover {
+	background-color: #DDD;
+}
+.button:active {
+	background-color: #EFEFEF;
+}
+
+.small-button {
+	padding: 2px;
+	font-size: 12px;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.button-group .button {
+	border-left: none;
+	outline: 0;
+}
+.button-group .button:active {
+	outline: 0;
+}
+.button-group .button.selected {
+	background-color: #EFEFEF;
+}
+.button-group .button:first-child {
+	border-left: solid 1px #DDD;
+}
