@@ -28,13 +28,13 @@ const ButtonComponent = class extends Component {
 		this.immersiveGraph.name = 'Button'
 
 		if(!options.portalGraph){
-			this._portalButtonObj = graph.obj('./js/components/models/Button.obj')
+			this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 			this.portalGraph.add(this._portalButtonObj)
 			this.portalGraph.add(this._portalText)
 		}
 
 		if(!options.immersiveGraph){
-			this._immersiveButtonObj = graph.obj('./js/components/models/Button.obj')
+			this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 			this.immersiveGraph.add(this._immersiveButtonObj)
 			this.immersiveGraph.add(this._immersiveText)
 		}

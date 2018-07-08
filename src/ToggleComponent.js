@@ -13,11 +13,11 @@ const ToggleComponent = class extends Component {
 
 		this._checked = false
 
-		this._portalObj = graph.obj('./js/components/models/Chevron.obj')
+		this._portalObj = graph.obj('/static/potassium-components/models/Chevron.obj')
 		this.portalGraph.add(this._portalObj)
 		this.portalGraph.name = 'chevron'
 
-		this._immersiveObj = graph.obj('./js/components/models/Chevron.obj')
+		this._immersiveObj = graph.obj('/static/potassium-components/models/Chevron.obj')
 		this.immersiveGraph.add(this._immersiveObj)
 		this.immersiveGraph.name = 'chevron'
 

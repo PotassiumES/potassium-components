@@ -14,14 +14,14 @@ const CheckboxComponent = class extends Component {
 		this._portalCheckGraph = null
 		this._immersiveCheckGraph = null
 
-		this._portalObj = graph.obj('./js/components/models/Checkbox.obj', (group, obj) => {
+		this._portalObj = graph.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
 			this._portalCheckGraph = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})
 		this.portalGraph.add(this._portalObj)
 		this.portalGraph.name = 'checkbox'
 
-		this._immersiveObj = graph.obj('./js/components/models/Checkbox.obj', (group, obj) => {
+		this._immersiveObj = graph.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
 			this._immersiveCheckGraph = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})

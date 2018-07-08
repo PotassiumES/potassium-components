@@ -32,9 +32,9 @@ const TextInputComponent = class extends Component {
 		let placeholderMaterial = graph.meshLambertMaterial({ color: 0xdddddd })
 		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
 
-		this._portalBracket = graph.obj('./js/components/models/TextInputBracket.obj')
+		this._portalBracket = graph.obj('/static/potassium-components/models/TextInputBracket.obj')
 		this.portalGraph.add(this._portalBracket)
-		this._portalCursor = graph.obj('./js/components/models/TextInputCursor.obj')
+		this._portalCursor = graph.obj('/static/potassium-components/models/TextInputCursor.obj')
 		this._portalCursor.position.set(0.04, 0.04, 0)
 		this.portalGraph.add(this._portalCursor)
 		this._portalText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
@@ -45,9 +45,9 @@ const TextInputComponent = class extends Component {
 		this.portalGraph.add(this._portalText)
 		this.portalGraph.name = 'text-input'
 
-		this._immersiveBracket = graph.obj('./js/components/models/TextInputBracket.obj')
+		this._immersiveBracket = graph.obj('/static/potassium-components/models/TextInputBracket.obj')
 		this.immersiveGraph.add(this._immersiveBracket)
-		this._immersiveCursor = graph.obj('./js/components/models/TextInputCursor.obj')
+		this._immersiveCursor = graph.obj('/static/potassium-components/models/TextInputCursor.obj')
 		this._immersiveCursor.position.set(0.04, 0.04, 0)
 		this.immersiveGraph.add(this._immersiveCursor)
 		this._immersiveText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
