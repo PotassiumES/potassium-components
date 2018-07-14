@@ -4,7 +4,7 @@ import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
 
 /*
-* LabelComponent displays text in a label
+* LabelComponent displays a single line of text
 */
 export default class LabelComponent extends Component {
 	constructor(dataObject=null, options={}){

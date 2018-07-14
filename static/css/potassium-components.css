@@ -1,16 +1,142 @@
+/* Potassium component styles */
 
-.mode-switcher {
+/*** App ***/
+
+:root {
+	/* layout */
+	--app-content-padding: 20px;
+
+	/* text */
+	--base-font: sans-serif;
+
+	--base-font-size: 20px;
+	--font-size-5: calc(var(--base-font-size) + 1.6em);
+	--font-size-4: calc(var(--base-font-size) + 1.2em);
+	--font-size-3: calc(var(--base-font-size) + 0.8em);
+	--font-size-2: calc(var(--base-font-size) + 0.4em);
+
+	--base-font-weight: 300;
+	--font-weight-2: calc(var(--base-font-weight) + 200);
+
+	/* named colors */
+	--light-teal:	#00FFCC;
+	--teal:			#00C4A8;
+	--dark-teal:	#006666;
+
+	--light-mustard:	#FFFF00;
+	--mustard:			#F3B000;
+	--dark-mustard:		#CC9900;
+
+	--light-ketchup:	#FF0000;
+	--ketchup:			#B30000;
+	--dark-ketchup:		#990000;
+
+	--light-kelp:	#005F00;
+	--kelp:			#04322e;
+
+	/* color scheme */
+	--background-color: white;
+
+	--light-primary-color:	var(--light-teal);
+	--primary-color:		var(--teal);
+	--dark-primary-color:	var(--dark-teal);
+
+	--light-secondary-color:	var(--light-mustard);
+	--secondary-color:			var(--mustard);
+	--dark-secondary-color:		var(--dark-mustard);
+
+	--light-alert-color:	var(--light-ketchup);
+	--alert-color:			var(--ketchup);
+	--dark-alert-color:		var(--dark-ketchup);
+
+	--light-base-color:	var(--light-kelp);
+	--base-color:		var(--kelp);
+
+	/* break points (sadly, not usable in media queries) */
+	--xs-breakpoint: 0px;		/*  xs is 000  -  575  */
+	--sm-breakpoint: 576px;	/*  sm is 576  -  767  */
+	--md-breakpoint: 768px;	/*  md is 768  -  991  */
+	--lg-breakpoint: 992px;	/*  lg is 992  -  1199 */
+	--xl-breakpoint: 1200px;	/*  xl is 1200 -  inf. */
 }
 
-.mode-switcher .selected {
+body {
+	font-family: var(--base-font);
+	font-weight: var(--base-font-weight);
+	color: var(--base-color);
+	font-size: var(--base-font-size);
+}
+
+li {
+	list-style: none;
+	margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+	line-height: 1em;
+	padding: 0;
+	margin: 0;
+}
+
+/** Set the font sizes relative to the base size */
+h1 { font-size: var(--font-size-5); }
+h2 { font-size: var(--font-size-4); }
+h3 { font-size: var(--font-size-3); }
+h4 { font-size: var(--font-size-2); }
+h5 { font-size: var(--font-size-1); }
+
+h1, h2 { font-weight: var(--font-weight-2); }
+
+button {
+	cursor: pointer;
+	background-color: var(--primary-color);
+	padding: 5px;
+	border: solid 10px var(--primary-color-light);
+	border-radius: 0;
+}
+
+button:hover {
+	background-color: #DDD;
+}
+
+button:active {
 	background-color: #EFEFEF;
 }
 
-.portal-root .mode-switcher {
-	position: absolute;
-	bottom: 30px;
-	left: 30px;
+button.small {
+	padding: 2px;
+	font-size: 12px;
+	line-height: 1em;
+	text-transform: uppercase;
 }
+
+button.selected {
+	background-color: #EFEFEF;
+}
+
+/*** Component ***/
+
+.component {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.component.anchored {
+	cursor: pointer;
+}
+
+.component.hidden {
+	display: none;
+}
+
+/*********************
+	Atoms
+**********************/
+
+/*** ButtonComponent ***/
+
+/*** TextInputComponent ***/
 
 .portal-root .text-input-component {
 	width: 15em;
@@ -18,31 +144,14 @@
 	font-size: 2em;
 }
 
-.flat-root .mode-switcher {
-	margin-top: 30px;
-}
 
+/*********************
+	Molecules
+**********************/
 
-.button {
-	cursor: pointer;
-	background-color: white;
-	padding: 5px;
-	border: solid 1px #DDD;
-	border-radius: 0;
-}
-.button:hover {
-	background-color: #DDD;
-}
-.button:active {
-	background-color: #EFEFEF;
-}
+/*** ModeSwitcherComponent ***/
 
-.small-button {
-	padding: 2px;
-	font-size: 12px;
-	line-height: 1em;
-	text-transform: uppercase;
-}
+/*** ButtonGroupComponent ***/
 
 .button-group .button {
 	border-left: none;
@@ -57,3 +166,50 @@
 .button-group .button:first-child {
 	border-left: solid 1px #DDD;
 }
+
+/*********************
+	Organisms
+**********************/
+
+/*** MastheadComponent ***/
+
+.masthead-component {
+	display: block;
+	position: relative;
+}
+
+.masthead-component .heading-component {
+	display: block;
+	padding: var(--app-content-padding);
+	color: var(--light-secondary-color);
+	background-color: var(--primary-color);
+}
+
+.masthead-component .menu-component {
+	display: block;
+	padding: var(--app-content-padding) 0;
+}
+
+.masthead-component .menu-component > .component {
+	padding-left: var(--app-content-padding);
+}
+
+.masthead-component .mode-switcher-component {
+	display: block;
+}
+
+@media (min-width: 576px){
+	.masthead-component .menu-component {
+		display: inline-block;
+		vertical-align: top;
+		position: absolute;
+		top: 45px;
+		right: var(--app-content-padding);
+		transform: translate(0, -50%);
+	}
+
+	.masthead-component .mode-switcher-component {
+		margin-bottom: var(--app-content-padding);
+	}
+}
+

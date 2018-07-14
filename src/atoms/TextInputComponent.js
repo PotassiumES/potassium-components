@@ -3,15 +3,19 @@ import graph from 'potassium-es/src/Graph'
 
 import Component from 'potassium-es/src/Component'
 
+/**
+TextInputComponent shows the user a field or area in which to enter text.
+*/
 const TextInputComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			flatEl: el.input({ type: 'text' }),
 			portalEl: el.input({ type: 'text' })
 		}, options))
-		this._handleTextInput = this._handleTextInput.bind(this)
 		this.addClass('text-input-component')
 		this.acceptsTextInputFocus = true
+
+		this._handleTextInput = this._handleTextInput.bind(this)
 		this._placeholderText = options.placeholder || ''
 		this.flatEl.setAttribute('placeholder', this._placeholderText)
 		this.portalEl.setAttribute('placeholder', this._placeholderText)

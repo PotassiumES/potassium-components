@@ -2,14 +2,19 @@ import el from 'potassium-es/src/El'
 import graph from 'potassium-es/src/Graph'
 import App from 'potassium-es/src/App'
 
-import ButtonComponent from './ButtonComponent'
+import ButtonComponent from '../atoms/ButtonComponent.js'
 
 import Component from 'potassium-es/src/Component'
 
-let ModeSwitcherComponent = class extends Component {
+/**
+ModeSwitcherComponent allows the user to switch between flat, portal, and immersive display modes.
+
+@todo Extend ButtonGroupComponent
+*/
+const ModeSwitcherComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
-		this.addClass('mode-switcher')
+		this.addClass('mode-switcher-component')
 		this._mode = null
 
 		// Exit button appears in portalEl and immersiveGraph

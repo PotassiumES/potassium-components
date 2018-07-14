@@ -9,6 +9,7 @@ const ButtonComponent = class extends Component {
 			flatEl: el.button({ class: 'button' }),
 			portalEl: el.button({ class: 'button' })
 		}, options))
+		this.addClass('button-component')
 		this._text = ''
 
 		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
