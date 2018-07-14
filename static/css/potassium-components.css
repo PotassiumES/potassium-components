@@ -196,6 +196,7 @@ button.selected {
 
 .masthead-component .mode-switcher-component {
 	display: block;
+	margin: 0 0 0 var(--app-content-padding);
 }
 
 @media (min-width: 576px){
@@ -209,7 +210,7 @@ button.selected {
 	}
 
 	.masthead-component .mode-switcher-component {
-		margin-bottom: var(--app-content-padding);
+		margin: 0 0 var(--app-content-padding) var(--app-content-padding);
 	}
 }
 
