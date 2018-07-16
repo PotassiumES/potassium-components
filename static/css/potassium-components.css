@@ -273,8 +273,6 @@ button.small {
 /*** MediaGridComponent ***/
 
 .media-grid-component {
-	margin-left: calc(-0.5 * var(--app-content-padding));
-	width: calc(100% + var(--app-content-padding)); /** account for item margin */
 }
 
 .media-grid-component > .collection-component {
@@ -284,8 +282,8 @@ button.small {
 }
 
 .media-grid-component > .collection-component > .collection-item {
-	width: 19%;
-	margin: calc(var(--inner-element-padding) / 2);
+	width: 100%;
+	margin: 0 0 var(--app-content-padding) 0;
 }
 
 .media-grid-component > .collection-component > .collection-item .main {
@@ -294,5 +292,28 @@ button.small {
 
 .media-grid-component > .collection-component > .image-card-component img {
 	max-height: 180px;
+}
+
+@media (min-width: 576px){
+	.media-grid-component {
+		margin-left: calc(-0.5 * var(--app-content-padding));
+		width: calc(100% + var(--app-content-padding)); /** account for item margin */
+	}
+	.media-grid-component > .collection-component > .collection-item {
+		width: calc(50% - var(--inner-element-padding));
+		margin: calc(var(--inner-element-padding) / 2);
+	}
+}
+
+@media (min-width: 768px){
+	.media-grid-component > .collection-component > .collection-item {
+		width: calc(33% - var(--inner-element-padding));
+	}
+}
+
+@media (min-width: 992px){
+	.media-grid-component > .collection-component > .collection-item {
+		width: calc(25% - var(--inner-element-padding));
+	}
 }
 
