@@ -22,16 +22,12 @@ In immersive mode, it will be a nifty utility object that floats near the user.
 const MastheadComponent = class extends Component {
 	/**
 	@param {DataObject} dataObject
-	@param {Object} like { brand{string|Component}, menuItems{Array[...]} }
+	@param {Object} like { brand{string|Component}, menuItems{Array[{ name, anchor }]} }
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			brand: null,
-			menuItems: [
-				{ name: 'Front', anchor: './#' },
-				{ name: 'About', anchor: './#about' },
-				{ name: 'Account', anchor: './#account' }
-			]
+			menuItems: []
 		}, options))
 		this.addClass('masthead-component')
 

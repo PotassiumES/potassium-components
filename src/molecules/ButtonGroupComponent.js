@@ -10,8 +10,6 @@ const ButtonGroupComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('button-group-component')
-
-		console.error('Unimplemented')
 	}
 }
 

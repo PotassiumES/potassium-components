@@ -1,17 +1,16 @@
 import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
 import App from 'potassium-es/src/App'
+import graph from 'potassium-es/src/Graph'
+import Component from 'potassium-es/src/Component'
 
 import ButtonComponent from '../atoms/ButtonComponent.js'
 
-import Component from 'potassium-es/src/Component'
+import ButtonGroupComponent from '../molecules/ButtonGroupComponent.js'
 
 /**
 ModeSwitcherComponent allows the user to switch between flat, portal, and immersive display modes.
-
-@todo Extend ButtonGroupComponent
 */
-const ModeSwitcherComponent = class extends Component {
+const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('mode-switcher-component')

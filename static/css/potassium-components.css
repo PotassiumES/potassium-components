@@ -5,6 +5,7 @@
 :root {
 	/* layout */
 	--app-content-padding: 20px;
+	--inner-element-padding: calc(var(--app-content-padding) / 2);
 
 	/* text */
 	--base-font: sans-serif;
@@ -14,6 +15,7 @@
 	--font-size-4: calc(var(--base-font-size) + 1.2em);
 	--font-size-3: calc(var(--base-font-size) + 0.8em);
 	--font-size-2: calc(var(--base-font-size) + 0.4em);
+	--font-size-0: calc(var(--base-font-size) - 0.4em);
 
 	--base-font-weight: 300;
 	--font-weight-2: calc(var(--base-font-weight) + 200);
@@ -67,6 +69,8 @@ body {
 	font-size: var(--base-font-size);
 }
 
+ul { padding-left: 0; }
+
 li {
 	list-style: none;
 	margin-bottom: 0.5em;
@@ -92,28 +96,29 @@ button {
 	cursor: pointer;
 	background-color: var(--primary-color);
 	padding: 5px;
-	border: solid 10px var(--primary-color-light);
+	border: solid 1px var(--dark-primary-color);
 	border-radius: 0;
 }
 
 button:hover {
-	background-color: #DDD;
+	background-color: var(--secondary-color);
 }
 
 button:active {
-	background-color: #EFEFEF;
+	background-color: var(--light-secondary-color);
+}
+
+button.selected {
+	background-color: var(--light-secondary-color);
 }
 
 button.small {
 	padding: 2px;
-	font-size: 12px;
+	font-size: var(--font-size-0);
 	line-height: 1em;
 	text-transform: uppercase;
 }
 
-button.selected {
-	background-color: #EFEFEF;
-}
 
 /*** Component ***/
 
@@ -153,18 +158,63 @@ button.selected {
 
 /*** ButtonGroupComponent ***/
 
-.button-group .button {
-	border-left: none;
+.button-group-component button {
+	outline: 0;
+	margin: 0 2px;
+}
+.button-group-component button:active {
 	outline: 0;
 }
-.button-group .button:active {
-	outline: 0;
-}
-.button-group .button.selected {
+.button-group-component button.selected {
 	background-color: #EFEFEF;
 }
-.button-group .button:first-child {
+.button-group-component button:first-child {
 	border-left: solid 1px #DDD;
+}
+
+/*** CardComponent ***/
+
+.card-component {
+	background-color: var(--background-color);
+}
+
+.card-component .main,
+.card-component .heading-component,
+.card-component .label-component {
+	padding-top: var(--inner-element-padding);
+	padding-left: var(--inner-element-padding);
+	padding-right: var(--inner-element-padding);
+}
+
+.card-component .main {
+	text-align: center;
+	width: calc(100% - (var(--inner-element-padding) * 2));
+	padding-bottom: var(--inner-element-padding);
+	background-color: var(--light-secondary-color);
+	max-height: 75vw;
+}
+
+.card-component .heading-component,
+.card-component .label-component {
+	display: block;
+	background-color: var(--secondary-color);
+}
+
+.card-component .heading-component {
+	font-weight: var(--font-size-2);
+}
+
+.card-component .label-component {
+	font-weight: var(--base-font-size);
+	padding-bottom: var(--inner-element-padding);
+	min-height: 2em;
+}
+
+/*** ImageCardComponent ***/
+
+.image-card-component img {
+	max-width: 100%;
+	background-color: var(--background-color);
 }
 
 /*********************
@@ -191,12 +241,18 @@ button.selected {
 }
 
 .masthead-component .menu-component > .component {
-	padding-left: var(--app-content-padding);
+	margin-left: var(--app-content-padding);
+	padding-bottom: 5px;
+}
+
+.masthead-component .menu-component > .component.selected {
+	border-bottom: solid 5px var(--light-secondary-color);
 }
 
 .masthead-component .mode-switcher-component {
-	display: block;
-	margin: 0 0 0 var(--app-content-padding);
+	display: none;
+	text-align: right;
+	margin: 3px var(--app-content-padding) var(--app-content-padding) 0;
 }
 
 @media (min-width: 576px){
@@ -210,7 +266,33 @@ button.selected {
 	}
 
 	.masthead-component .mode-switcher-component {
-		margin: 0 0 var(--app-content-padding) var(--app-content-padding);
+		display: inherit;
 	}
+}
+
+/*** MediaGridComponent ***/
+
+.media-grid-component {
+	margin-left: calc(-0.5 * var(--app-content-padding));
+	width: calc(100% + var(--app-content-padding)); /** account for item margin */
+}
+
+.media-grid-component > .collection-component {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.media-grid-component > .collection-component > .collection-item {
+	width: 19%;
+	margin: calc(var(--inner-element-padding) / 2);
+}
+
+.media-grid-component > .collection-component > .collection-item .main {
+	min-height: 180px;
+}
+
+.media-grid-component > .collection-component > .image-card-component img {
+	max-height: 180px;
 }
 
