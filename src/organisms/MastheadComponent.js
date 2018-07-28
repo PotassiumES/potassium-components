@@ -12,12 +12,14 @@ import ModeSwitcherComponent from '../molecules/ModeSwitcherComponent.js'
 /**
 MastheadComponent contains:
 - a brand Component
-- a ModeSwitcherComponent
 - a navigation MenuComponent
+- a ModeSwitcherComponent
 
 In flat mode, this will be a bar at the top of the page.
 In portal mode, it will be a UI element in the top left of the window.
 In immersive mode, it will be a nifty utility object that floats near the user.
+
+@todo use WebXR to test whether there are devices for portal and immersive modes and show or hide buttons accordingly
 */
 const MastheadComponent = class extends Component {
 	/**

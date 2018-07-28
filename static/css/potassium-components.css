@@ -21,35 +21,37 @@
 	--font-weight-2: calc(var(--base-font-weight) + 200);
 
 	/* named colors */
-	--light-teal:	#00FFCC;
-	--teal:			#00C4A8;
-	--dark-teal:	#006666;
+	--dark-yellow:	rgb(252, 228, 101);
+	--yellow:		rgb(255, 236, 148);
+	--light-yellow:	rgb(255, 240, 170);
 
-	--light-mustard:	#FFFF00;
-	--mustard:			#F3B000;
-	--dark-mustard:		#CC9900;
+	--dark-pink:	rgb(205, 124, 124);
+	--pink:			rgb(255, 174, 174);
+	--light-pink:	rgb(255, 220, 220);
 
-	--light-ketchup:	#FF0000;
-	--ketchup:			#B30000;
-	--dark-ketchup:		#990000;
+	--dark-blue:	rgb(36, 136, 186);
+	--blue:			rgb(86, 186, 236);
+	--light-blue:	rgb(180, 216, 231);
+
+	--green:		rgb(176, 229, 124);
 
 	--light-kelp:	#005F00;
 	--kelp:			#04322e;
 
 	/* color scheme */
-	--background-color: white;
+	--background-color: var(--light-blue);
 
-	--light-primary-color:	var(--light-teal);
-	--primary-color:		var(--teal);
-	--dark-primary-color:	var(--dark-teal);
+	--light-primary-color:	var(--light-pink);
+	--primary-color:		var(--pink);
+	--dark-primary-color:	var(--dark-pink);
 
-	--light-secondary-color:	var(--light-mustard);
-	--secondary-color:			var(--mustard);
-	--dark-secondary-color:		var(--dark-mustard);
+	--light-secondary-color:	var(--light-yellow);
+	--secondary-color:			var(--yellow);
+	--dark-secondary-color:		var(--dark-yellow);
 
-	--light-alert-color:	var(--light-ketchup);
-	--alert-color:			var(--ketchup);
-	--dark-alert-color:		var(--dark-ketchup);
+	--light-alert-color:	var(--light-blue);
+	--alert-color:			var(--blue);
+	--dark-alert-color:		var(--dark-blue);
 
 	--light-base-color:	var(--light-kelp);
 	--base-color:		var(--kelp);
@@ -67,6 +69,7 @@ body {
 	font-weight: var(--base-font-weight);
 	color: var(--base-color);
 	font-size: var(--base-font-size);
+	background-color: var(--background-color);
 }
 
 ul { padding-left: 0; }
@@ -197,7 +200,7 @@ button.small {
 .card-component .heading-component,
 .card-component .label-component {
 	display: block;
-	background-color: var(--secondary-color);
+	background-color: var(--dark-secondary-color);
 }
 
 .card-component .heading-component {
@@ -231,8 +234,8 @@ button.small {
 .masthead-component .heading-component {
 	display: block;
 	padding: var(--app-content-padding);
-	color: var(--light-secondary-color);
-	background-color: var(--primary-color);
+	color: var(--dark-primary-color);
+	background-color: var(--light-secondary-color);
 }
 
 .masthead-component .menu-component {
