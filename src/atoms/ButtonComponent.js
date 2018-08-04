@@ -51,6 +51,14 @@ const ButtonComponent = class extends Component {
 		this.text = this.options.text || ''
 	}
 
+	showAlert(){
+		this.addClass('primary-alert')
+		Component.AudioManager.playSound('primary-alert')
+		setTimeout(() => {
+			this.removeClass('primary-alert')
+		}, 1100)
+	}
+
 	get text(){ return this._text }
 
 	set text(value){
@@ -62,5 +70,7 @@ const ButtonComponent = class extends Component {
 	}
 }
 ButtonComponent.ChangedEvent = 'button-changed'
+
+Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.wav')
 
 export default ButtonComponent

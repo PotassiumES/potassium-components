@@ -48,6 +48,20 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._immersiveButton)
 	}
+
+	handleSwitchFailed(mode){
+		switch(mode){
+			case App.FLAT:
+				this._exitButton.showAlert()
+				return
+			case App.PORTAL:
+				this._portalButton.showAlert()
+				return
+			case App.IMMERSIVE:
+				this._immersiveButton.showAlert()
+				return
+		}
+	}
 }
 
 ModeSwitcherComponent.ModeChangedEvent = 'mode-changed'

@@ -33,6 +33,10 @@
 	--blue:			rgb(86, 186, 236);
 	--light-blue:	rgb(180, 216, 231);
 
+	--dark-red:		rgb(64, 0, 0);
+	--red:			rgb(255, 0, 0);
+	--light-red:	rgb(255, 200, 200);
+
 	--green:		rgb(176, 229, 124);
 
 	--light-kelp:	#005F00;
@@ -49,9 +53,9 @@
 	--secondary-color:			var(--yellow);
 	--dark-secondary-color:		var(--dark-yellow);
 
-	--light-alert-color:	var(--light-blue);
-	--alert-color:			var(--blue);
-	--dark-alert-color:		var(--dark-blue);
+	--light-alert-color:	var(--light-red);
+	--alert-color:			var(--red);
+	--dark-alert-color:		var(--dark-red);
 
 	--light-base-color:	var(--light-kelp);
 	--base-color:		var(--kelp);
@@ -62,6 +66,16 @@
 	--md-breakpoint: 768px;	/*  md is 768  -  991  */
 	--lg-breakpoint: 992px;	/*  lg is 992  -  1199 */
 	--xl-breakpoint: 1200px;	/*  xl is 1200 -  inf. */
+}
+
+@keyframes primary-alert-keyframes {
+  0% { background: var(--primary-color); }
+  50% { background: var(--alert-color); }
+  100% { background: var(--primary-color); }
+}
+
+.primary-alert {
+  animation: primary-alert-keyframes 1s;
 }
 
 body {
@@ -121,7 +135,6 @@ button.small {
 	line-height: 1em;
 	text-transform: uppercase;
 }
-
 
 /*** Component ***/
 
