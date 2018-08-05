@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/PotassiumES/potassium-components.git"
   },
-  "author": "Trevor F. Smith <trevor@trevors.smith.name>",
+  "author": "Trevor F. Smith <trevor@transmutable.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/PotassiumES/potassium-components/issues"
