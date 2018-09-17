@@ -21,10 +21,18 @@ const TextComponent = class extends Component {
 
 		this._text = ''
 
-		this._portalText = graph.text(this._text)
+		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
+
+		this._portalText = graph.text(this._text, textMaterial, null, {
+			size: 0.12,
+			height: 0.01
+		})
 		this.portalGraph.add(this._portalText)
 
-		this._immersiveText = graph.text(this._text)
+		this._immersiveText = graph.text(this._text, textMaterial, null, {
+			size: 0.12,
+			height: 0.01
+		})
 		this.immersiveGraph.add(this._immersiveText)
 
 		if(typeof this.options.text === 'string'){
@@ -56,8 +64,8 @@ const TextComponent = class extends Component {
 	_updateDisplayFromText(){
 		this.flatEl.innerText = this._text
 		this.portalEl.innerText = this._text
-		this._portalText.text = this._text
-		this._immersiveText.text = this._text
+		this._portalText.setText(this._text)
+		this._immersiveText.setText(this._text)
 	}}
 
 export default TextComponent

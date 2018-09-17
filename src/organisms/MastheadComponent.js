@@ -47,12 +47,11 @@ const MastheadComponent = class extends Component {
 
 		this._modeSwitcherComponent = new ModeSwitcherComponent()
 		this.appendComponent(this._modeSwitcherComponent)
-		this._modeSwitcherComponent.immersiveGraph.position.set(-1, 0, -2)
+		this._modeSwitcherComponent.immersiveGraph.position.set(-1, 0, 0)
 		this._modeSwitcherComponent.immersiveGraph.scale.set(0.5, 0.5, 0.5)
 		this.appendComponent(this._modeSwitcherComponent)
 		this._modeSwitcherComponent.addListener((eventName, mode) => {
-			console.error("NEED TO SEND AN EVENT TO THE APP")
-			//this.setDisplayMode(mode)
+			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
 		}, ModeSwitcherComponent.ModeChangedEvent)
 
 
@@ -71,5 +70,7 @@ const MastheadComponent = class extends Component {
 
 	get navigationMenu(){ return this._navigationMenu }
 }
+
+MastheadComponent.MODE_REQUEST_EVENT = 'mode-request'
 
 export default MastheadComponent
