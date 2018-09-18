@@ -48,7 +48,6 @@ const MastheadComponent = class extends Component {
 		this._modeSwitcherComponent = new ModeSwitcherComponent()
 		this.appendComponent(this._modeSwitcherComponent)
 		this._modeSwitcherComponent.immersiveGraph.position.set(-1, 0, 0)
-		this._modeSwitcherComponent.immersiveGraph.scale.set(0.5, 0.5, 0.5)
 		this.appendComponent(this._modeSwitcherComponent)
 		this._modeSwitcherComponent.addListener((eventName, mode) => {
 			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
@@ -56,8 +55,9 @@ const MastheadComponent = class extends Component {
 
 
 		this._navigationMenu = new MenuComponent()
+		this._navigationMenu.portalGraph.position.set(2, 0, 0)
+		this._navigationMenu.immersiveGraph.position.set(2, 0, 0)
 		this.appendComponent(this._navigationMenu)
-
 		if(this.options.menuItems){
 			for(let item of this.options.menuItems){
 				this._navigationMenu.appendMenuItem(new LabelComponent(null, {
@@ -66,6 +66,10 @@ const MastheadComponent = class extends Component {
 				}))
 			}
 		}
+		this._navigationMenu.layout()
+		this._navigationMenu.addListener((eventName, anchor) => {
+			console.log('Navigated', anchor)
+		}, MenuComponent.NAVIGATED_EVENT)
 	}
 
 	get navigationMenu(){ return this._navigationMenu }

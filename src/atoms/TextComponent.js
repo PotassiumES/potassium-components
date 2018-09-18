@@ -15,23 +15,29 @@ const TextComponent = class extends Component {
 		textField {string}: a field in the dataObject to bind to as the text
 	*/
 	constructor(dataObject=null, options={}){
-		super(dataObject, options)
+		super(dataObject, Object.assign({
+			'textSize': 0.08,
+			'textHeight': 0.01,
+			'textColor': 0x444444
+		}, options))
 		this.addClass('text-component')
 		this._updateTextFromData = this._updateTextFromData.bind(this)
 
 		this._text = ''
 
-		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
+		this._textMaterial = graph.meshLambertMaterial({
+			color: this.options.textColor
+		})
 
-		this._portalText = graph.text(this._text, textMaterial, null, {
-			size: 0.12,
-			height: 0.01
+		this._portalText = graph.text(this._text, this._textMaterial, null, {
+			size: this.options.textSize,
+			height: this.options.textHeight
 		})
 		this.portalGraph.add(this._portalText)
 
-		this._immersiveText = graph.text(this._text, textMaterial, null, {
-			size: 0.12,
-			height: 0.01
+		this._immersiveText = graph.text(this._text, this._textMaterial, null, {
+			size: this.options.textSize,
+			height: this.options.textHeight
 		})
 		this.immersiveGraph.add(this._immersiveText)
 

@@ -7,25 +7,32 @@ const ButtonComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			flatEl: el.button({ class: 'button' }),
-			portalEl: el.button({ class: 'button' })
+			portalEl: el.button({ class: 'button' }),
+			textSize: 0.08,
+			textHeight: 0.01,
+			textColor: 0x444444,
+			portalOverlay: true,
+			portalSpatial: false
 		}, options))
 		this.addClass('button-component')
 		this._text = ''
 
-		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
+		let textMaterial = graph.meshLambertMaterial({
+			color: this.options.textColor
+		})
 
 		this._portalText = graph.text('', textMaterial, null, {
-			size: 0.12,
-			height: 0.01
+			size: this.options.textSize,
+			height: this.options.textHeight
 		})
-		this._portalText.position.set(0.04, -0.06, 0)
+		this._portalText.position.set(0.04, -0.04, 0)
 		this.portalGraph.name = 'Button'
 
 		this._immersiveText = graph.text('', textMaterial, null, {
-			size: 0.12,
-			height: 0.01
+			size: this.options.textSize,
+			height: this.options.textHeight
 		})
-		this._immersiveText.position.set(0.04, -0.06, 0)
+		this._immersiveText.position.set(0.04, -0.04, 0)
 		this.immersiveGraph.name = 'Button'
 
 		if(!options.portalGraph){

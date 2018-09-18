@@ -28,8 +28,12 @@ const CardComponent = class extends Component {
 		}).appendTo(this)
 
 		this._captionComponent = new LabelComponent(dataObject, {
-			textField: this.options.captionField
+			textField: this.options.captionField,
+			textColor: 0x999999
 		}).appendTo(this)
+		const captionVerticalOffset = -0.1
+		this._captionComponent.immersiveGraph.position.set(0, captionVerticalOffset, 0)
+		this._captionComponent.portalGraph.position.set(0, captionVerticalOffset, 0)
 	}
 
 	/** the {@link Component} in which we display the main content, like an image or video */
