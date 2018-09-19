@@ -18,13 +18,15 @@ MastheadComponent contains:
 In flat mode, this will be a bar at the top of the page.
 In portal mode, it will be a UI element in the top left of the window.
 In immersive mode, it will be a nifty utility object that floats near the user.
-
-@todo use WebXR to test whether there are devices for portal and immersive modes and show or hide buttons accordingly
 */
 const MastheadComponent = class extends Component {
 	/**
 	@param {DataObject} dataObject
-	@param {Object} like { brand{string|Component}, menuItems{Array[{ name, anchor }]} }
+	@param {Object} options
+	@param {string or Component} options.brand
+	@param {Object[]} options.menuItems
+	@param {string} options.menuItems.name
+	@param {string} options.menuItems.anchor
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

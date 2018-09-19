@@ -1,2 +1,4 @@
 art/*.blend1
+node_modules/
+docs/
 

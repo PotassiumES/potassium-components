@@ -4,7 +4,7 @@
   "description": "UI elements for use in PotassiumES",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "./node_modules/.bin/esdoc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/PotassiumES/potassium-components/issues"
   },
-  "homepage": "https://github.com/PotassiumES/potassium-components#readme"
+  "homepage": "https://github.com/PotassiumES/potassium-components#readme",
+  "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.13.7"
+  }
 }

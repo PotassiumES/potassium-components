@@ -1,0 +1,16 @@
+{
+	"brand": {
+		"title": "PotassiumES Components",
+		"description": "Components for PotassiumES",
+		"repository": "https://github.com/PotassiumES/potassium-components",
+		"author": "https://trevor.smith.name/"
+	},
+	"source": "./src",
+	"destination": "./docs",
+	"plugins": [{
+		"name": "esdoc-standard-plugin",
+		"option": {
+			"accessor": { "access": ["public", "protected"] }
+		}
+	}]
+}
