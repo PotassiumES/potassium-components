@@ -8,3 +8,5 @@ Each UI element in PotassiumES (represented by a [Component](https://github.com/
 
 This repository contains a handy library of UI components that represent many of the UI elements that you're used to from HTML elements, like buttons, images, and text input fields.
 
+- [API Documentation](https://doc.esdoc.org/github.com/PotassiumES/potassium-components/)
+

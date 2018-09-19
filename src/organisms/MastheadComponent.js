@@ -74,6 +74,7 @@ const MastheadComponent = class extends Component {
 		}, MenuComponent.NAVIGATED_EVENT)
 	}
 
+	/** @type {NavigationMenu} */
 	get navigationMenu(){ return this._navigationMenu }
 }
 

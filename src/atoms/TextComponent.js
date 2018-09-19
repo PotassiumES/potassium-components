@@ -4,15 +4,13 @@ import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
 
 /**
-TextComponent holds a block of text which may include paragraphs but not other media.
-
-@todo Can it be hypertext and embed images and other media?
+TextComponent holds a string which may include paragraphs but not other media.
 */
 const TextComponent = class extends Component {
 	/**
-	options:
-		text {string}: the initial text shown in the heading
-		textField {string}: a field in the dataObject to bind to as the text
+	@param {Object} options see the {@link Component} options
+	@param {string} options.text the initial text shown in the heading
+	@param {string} options.textField a field in the dataObject to bind to as the text
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
@@ -52,10 +50,12 @@ const TextComponent = class extends Component {
 
 	cleanup(){
 		super.cleanup()
-		this.dataObject.removeListener(this._updateTextFromData)
+		if(this.dataObject) this.dataObject.removeListener(this._updateTextFromData)
 	}
 
+	/** @type {string} */
 	get text(){ return this._text }
+	/** @type {string} */
 	set text(value){
 		if(this._text === value) return
 		this._text = value || ''
@@ -72,6 +72,7 @@ const TextComponent = class extends Component {
 		this.portalEl.innerText = this._text
 		this._portalText.setText(this._text)
 		this._immersiveText.setText(this._text)
-	}}
+	}
+}
 
 export default TextComponent

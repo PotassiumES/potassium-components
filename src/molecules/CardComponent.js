@@ -11,9 +11,9 @@ CardComponent contains a list of Audio-, Video-, or Image- Components and a capt
 */
 const CardComponent = class extends Component {
 	/**
-	options:
-		titleField: 'title',
-		captionField: 'caption'
+	@param {Object} [options]
+	@param {string} [options.titleField]
+	@param {string} [options.captionField]
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)

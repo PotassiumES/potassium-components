@@ -4,7 +4,7 @@ import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
 
 /**
-AudioPlayerComponent shows an AudioComponent along with play/pause and shuttle controls.
+AudioPlayerComponent shows an {@link AudioComponent} along with play/pause and shuttle controls.
 */
 const AudioPlayerComponent = class extends Component {
 	constructor(dataObject=null, options={}){

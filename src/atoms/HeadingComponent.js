@@ -9,9 +9,7 @@ HeadingComponent represents a title or heading made up only of text.
 const HeadingComponent = class extends TextComponent {
 	/**
 	@param {DataObject} dataObject
-	@param {Object} options
-	@param {string} options.text the initial text shown in the heading
-	@param {string} options.textField a field in the dataObject to bind to as the text
+	@param {Object} options see the {@link TextComponent} options
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

@@ -11,11 +11,9 @@ MediaGridComponent shows a CSS grid of {@link CardComponent}s like images, video
 */
 const MediaGridComponent = class extends Component {
 	/**
-	options:
-		itemComponent: the {@link Component} class used for each item in the dataCollection
-
 	@param {DataCollection} dataObject
-	@param {Object} options
+	@param {Object} [options={}]
+	@param {Component} [itemComponent=CardComponent] the Component **class** used for each item in the DataCollection
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

@@ -3,6 +3,11 @@ import graph from 'potassium-es/src/Graph'
 
 import Component from 'potassium-es/src/Component'
 
+/**
+AudioComponent contains a sound source
+
+If you want to display controls, use {@link AudioPlayerComponent}.
+*/
 const AudioComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

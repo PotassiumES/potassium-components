@@ -3,6 +3,9 @@ import graph from 'potassium-es/src/Graph'
 
 import Component from 'potassium-es/src/Component'
 
+/**
+CheckboxComponent provides a UI for toggling a value on and off using activation
+*/
 const CheckboxComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

@@ -3,8 +3,8 @@ import graph from 'potassium-es/src/Graph'
 
 import TextComponent from 'potassium-components/src/atoms/TextComponent'
 
-/*
-* LabelComponent displays a single line of text
+/**
+LabelComponent displays a single line of text
 */
 const LabelComponent = class extends TextComponent {
 	constructor(dataObject=null, options={}){

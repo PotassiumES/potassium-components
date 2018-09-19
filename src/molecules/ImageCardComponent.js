@@ -8,10 +8,10 @@ It shows the image, an optional title, and an optional caption.
 */
 const ImageCardComponent = class extends CardComponent {
 	/**
-	options:
-		imageField ('image'): the field name in the DataObject that holds the URL to an image
-		titleField ('title'): the field name in the DataObject that holds the title of the image
-		captionField ('caption'): the field name in the dataObject that holds the caption
+	@param {Object} [options]
+	@param {string} [options.imageField] the field name in the DataObject that holds the URL to an image
+	@param {string} [options.titleField] the field name in the DataObject that holds the title of the image
+	@param {string} [options.captionField] the field name in the dataObject that holds the caption
 	*/
 	constructor(dataObject, options={}){
 		super(dataObject, Object.assign({

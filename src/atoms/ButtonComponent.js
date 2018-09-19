@@ -3,7 +3,17 @@ import graph from 'potassium-es/src/Graph'
 
 import Component from 'potassium-es/src/Component'
 
+/**
+ButtonComponent displays a button, natch.
+*/
 const ButtonComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject]
+	@param {Object} [options]
+	@param {number} [options.textSize]
+	@param {number} [options.textHeight]
+	@param {number} [options.textColor]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			flatEl: el.button({ class: 'button' }),
@@ -58,6 +68,9 @@ const ButtonComponent = class extends Component {
 		this.text = this.options.text || ''
 	}
 
+	/**
+	Shows a visible alert for a short time and plays an audio alert
+	*/
 	showAlert(){
 		this.addClass('primary-alert')
 		Component.AudioManager.playSound('primary-alert')
@@ -66,8 +79,10 @@ const ButtonComponent = class extends Component {
 		}, 1100)
 	}
 
+	/* @type {string} */
 	get text(){ return this._text }
 
+	/* @type {string} */
 	set text(value){
 		this._text = value
 		this.flatEl.innerHTML = this._text
