@@ -33,7 +33,7 @@
 	--blue:			rgb(86, 186, 236);
 	--light-blue:	rgb(180, 216, 231);
 
-	--dark-red:		rgb(64, 0, 0);
+	--dark-red:		rgb(200, 0, 0);
 	--red:			rgb(255, 0, 0);
 	--light-red:	rgb(255, 200, 200);
 
@@ -156,7 +156,7 @@ button.small {
 }
 
 .component.hidden {
-	display: none;
+	display: none !important;
 }
 
 /*********************
@@ -167,18 +167,98 @@ button.small {
 
 /*** TextInputComponent ***/
 
-.portal-root .text-input-component {
-	width: 15em;
-	padding: 10px;
-	font-size: 2em;
+.text-input-component {
+	padding: 4px;
+	font-size: 1em;
 }
 
+/*** SelectionComponent ***/
+
+.selection-component {
+	padding: 6px;
+	font-size: 1em;
+}
+
+/*** HeadingComponent ***/
+.heading-component {
+	display: block;
+}
 
 /*********************
 	Molecules
 **********************/
 
-/*** ModeSwitcherComponent ***/
+/*** FormComponent ***/
+
+.form-field-component {
+	margin-top: var(--app-content-padding);
+	display: block;
+}
+
+.form-field-component.text-input-field-component .label-component,
+.form-field-component.text-input-field-component .text-input-component,
+.form-field-component.date-field-component .label-component:first-child {
+	display: block;
+}
+
+.form-field-component.text-input-field-component .label-component,
+.form-field-component.date-field-component > .label-component:first-child {
+	margin: var(--app-content-padding) 0 0 0;
+}
+
+.date-field-component {
+	padding-bottom: 1.2em;
+}
+
+.date-field-component .date-time-picker-component {
+	display: block;
+}
+
+.form-field-component.date-field-component .start-edit-component {
+	cursor: pointer;
+	font-size: 0.9em;
+	margin-left: 1em;
+}
+
+.date-field-component .save-edit-component {
+	float: right;
+	cursor: pointer;
+	margin-left: 1em;
+	font-size: 1.2em;
+	color: var(--light-base-color);
+}
+
+.date-field-component .cancel-edit-component {
+	float: right;
+	cursor: pointer;
+	font-size: 1.2em;
+	color: var(--dark-alert-color);
+}
+
+/*** DateTimePickerComponent ***/
+
+.date-time-picker-component .text-input-component {
+	max-width: 4em;
+	margin-left: 0.6em;
+	text-align: center;
+}
+
+/*** ToolTipComponent ***/
+
+.tool-tip-component {
+	min-width: 10em;
+	min-height: 2em;
+	padding: 30px 1em 1em 1em;
+	border: solid 1px var(--dark-primary-color);
+	background-color: var(--light-primary-color);
+}
+
+.tool-tip-component .label-component.close-component {
+	position: absolute;
+	top: 9px;
+	right: 9px;
+	margin: 0;
+}
 
 /*** ButtonGroupComponent ***/
 

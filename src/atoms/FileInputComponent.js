@@ -4,15 +4,14 @@ import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
 
 /**
-ToolTipComponent shows a bit of info next to another Component
+FileInputComponent gives the user the ability to choose a local file.
 */
-const ToolTipComponent = class extends Component {
+const FileInputComponent = class extends Component {
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
-		this.addClass('tool-tip-component')
-
+		this.addClass('file-input-component')
 		console.error('Unimplemented')
 	}
 }
 
-export default ToolTipComponent
+export default FileInputComponent

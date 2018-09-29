@@ -20,6 +20,8 @@ const TextInputComponent = class extends Component {
 		this.acceptsTextInputFocus = true
 
 		this._handleTextInput = this._handleTextInput.bind(this)
+		this._handleModelChange = this._handleModelChange.bind(this)
+
 		this._placeholderText = options.placeholder || ''
 		this.flatEl.setAttribute('placeholder', this._placeholderText)
 		this.portalEl.setAttribute('placeholder', this._placeholderText)
@@ -66,7 +68,19 @@ const TextInputComponent = class extends Component {
 		this.immersiveGraph.add(this._immersiveText)
 		this.immersiveGraph.name = 'text-input'
 
-		this.text = options.text || ''
+		if(this.dataObject && this.options.dataField){
+			this.text = this.dataObject.get(this.options.dataField) || this.options.text || ''
+			this.dataObject.addListener((eventName, model, field, value) => {
+				this._handleModelChange()
+			}, `changed:${this.options.dataField}`)
+		} else {
+			this.text = options.text || ''
+		}
+	}
+	_handleModelChange(){
+		const value = this.dataObject.get(this.options.dataField, '')
+		if(this.text === value) return
+		this.text = value
 	}
 	_handleTextInput(eventName, actionParameters){
 		if(!actionParameters || typeof actionParameters.value === 'undefined') return
@@ -113,6 +127,11 @@ const TextInputComponent = class extends Component {
 		this._text = value
 		this.flatEl.value = value
 		this.portalEl.value = value
+		if(this.dataObject && this.options.dataField){
+			if(this.dataObject.get(this.options.dataField) !== this._text){
+				this.dataObject.set(this.options.dataField, this._text)
+			}
+		}
 		this.trigger(TextInputComponent.TextChangeEvent, this._text)
 	}
 }

@@ -2,6 +2,7 @@ import el from 'potassium-es/src/El'
 import App from 'potassium-es/src/App'
 import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
+import {lt, ld, ldt} from 'potassium-es/src/Localizer'
 import DisplayModeTracker from 'potassium-es/src/DisplayModeTracker'
 
 import ButtonComponent from '../atoms/ButtonComponent.js'
@@ -23,7 +24,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._attemptingMode = null
 
 		// Exit button appears in portalEl and immersiveGraph
-		this._exitButton = new ButtonComponent(null, { text: 'Exit' })
+		this._exitButton = new ButtonComponent(null, { text: lt('Exit') })
 		this._exitButton.flatEl.style.display = 'none'
 		this._exitButton.portalGraph.visible = false
 		this._exitButton.addListener((eventName, value) => {
@@ -33,7 +34,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._exitButton)
 
 		// Portal button appears only in flatEl
-		this._portalButton = new ButtonComponent(null, { text: 'Portal' })
+		this._portalButton = new ButtonComponent(null, { text: lt('Portal') })
 		this._portalButton.portalEl.style.display = 'none'
 		this._portalButton.portalGraph.visible = false
 		this._portalButton.immersiveGraph.visible = false
@@ -45,7 +46,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._portalButton)
 
 		// Immersive button appears only in flatEl
-		this._immersiveButton = new ButtonComponent(null, { text: 'Immersive' })
+		this._immersiveButton = new ButtonComponent(null, { text: lt('Immersive') })
 		this._immersiveButton.portalEl.style.display = 'none'
 		this._immersiveButton.portalGraph.visible = false
 		this._immersiveButton.immersiveGraph.visible = false
