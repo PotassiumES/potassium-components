@@ -1,0 +1,15 @@
+/*** ButtonGroupComponent ***/
+
+.button-group-component button {
+	outline: 0;
+	margin: 0 2px;
+}
+.button-group-component button:active {
+	outline: 0;
+}
+.button-group-component button.selected {
+	background-color: #EFEFEF;
+}
+.button-group-component button:first-child {
+	border-left: solid 1px #DDD;
+}

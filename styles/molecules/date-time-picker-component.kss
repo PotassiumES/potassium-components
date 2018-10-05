@@ -1,0 +1,8 @@
+/*** DateTimePickerComponent ***/
+
+.date-time-picker-component .text-input-component {
+	max-width: 4em;
+	margin-left: 0.6em;
+	text-align: center;
+}
+

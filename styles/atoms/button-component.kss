@@ -1,0 +1,5 @@
+/* ButtonComponent styles */
+
+.button-component[foo=23][bar~="oieur"]::foo:active {
+	background-color: red;
+}

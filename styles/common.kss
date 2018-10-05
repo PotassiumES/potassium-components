@@ -1,0 +1,158 @@
+/* These are the common styles for every PotassiumES Component */ 
+
+:root {
+	/* layout */
+	--app-content-padding: 20px;
+	--inner-element-padding: calc(var(--app-content-padding) / 2);
+
+	/* text */
+	--base-font: sans-serif;
+
+	--base-font-size: 20px;
+	--font-size-5: calc(var(--base-font-size) + 1.6em);
+	--font-size-4: calc(var(--base-font-size) + 1.2em);
+	--font-size-3: calc(var(--base-font-size) + 0.8em);
+	--font-size-2: calc(var(--base-font-size) + 0.4em);
+	--font-size-0: calc(var(--base-font-size) - 0.4em);
+
+	--base-font-weight: 300;
+	--font-weight-2: calc(var(--base-font-weight) + 200);
+
+	/* named colors */
+	--dark-yellow:	rgb(252, 228, 101);
+	--yellow:		rgb(255, 236, 148);
+	--light-yellow:	rgb(255, 240, 170);
+
+	--dark-pink:	rgb(205, 124, 124);
+	--pink:			rgb(255, 174, 174);
+	--light-pink:	rgb(255, 220, 220);
+
+	--dark-blue:	rgb(36, 136, 186);
+	--blue:			rgb(86, 186, 236);
+	--light-blue:	rgb(180, 216, 231);
+
+	--dark-red:		rgb(200, 0, 0);
+	--red:			rgb(255, 0, 0);
+	--light-red:	rgb(255, 200, 200);
+
+	--green:		rgb(176, 229, 124);
+
+	--light-kelp:	#005F00;
+	--kelp:			#04322e;
+
+	/* color scheme */
+	--background-color: var(--light-blue);
+
+	--light-primary-color:	var(--light-pink);
+	--primary-color:		var(--pink);
+	--dark-primary-color:	var(--dark-pink);
+
+	--light-secondary-color:	var(--light-yellow);
+	--secondary-color:			var(--yellow);
+	--dark-secondary-color:		var(--dark-yellow);
+
+	--light-alert-color:	var(--light-red);
+	--alert-color:			var(--red);
+	--dark-alert-color:		var(--dark-red);
+
+	--light-base-color:	var(--light-kelp);
+	--base-color:		var(--kelp);
+
+	/* break points (sadly, not usable in media queries) */
+	--xs-breakpoint: 0px;		/*  xs is 000  -  575  */
+	--sm-breakpoint: 576px;		/*  sm is 576  -  767  */
+	--md-breakpoint: 768px;		/*  md is 768  -  991  */
+	--lg-breakpoint: 992px;		/*  lg is 992  -  1199 */
+	--xl-breakpoint: 1200px;	/*  xl is 1200 -  inf. */
+}
+
+@keyframes primary-alert-keyframes {
+  0% { background: var(--primary-color); }
+  50% { background: var(--alert-color); }
+  100% { background: var(--primary-color); }
+}
+
+.primary-alert {
+  animation: primary-alert-keyframes 1s;
+}
+
+body {
+	font-family: var(--base-font);
+	font-weight: var(--base-font-weight);
+	color: var(--base-color);
+	font-size: var(--base-font-size);
+	background-color: var(--background-color);
+}
+
+ul { padding-left: 0; }
+
+li {
+	list-style: none;
+	margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+	line-height: 1em;
+	padding: 0;
+	margin: 0;
+}
+
+/** Set the font sizes relative to the base size */
+h1 { font-size: var(--font-size-5); }
+h2 { font-size: var(--font-size-4); }
+h3 { font-size: var(--font-size-3); }
+h4 { font-size: var(--font-size-2); }
+h5 { font-size: var(--font-size-1); }
+
+h1, h2 { font-weight: var(--font-weight-2); }
+
+button {
+	cursor: pointer;
+	background-color: var(--primary-color);
+	padding: 5px;
+	border: solid 1px var(--dark-primary-color);
+	border-radius: 0;
+}
+
+button:hover {
+	background-color: var(--secondary-color);
+}
+
+button:active {
+	background-color: var(--light-secondary-color);
+}
+
+button.selected {
+	background-color: var(--light-secondary-color);
+}
+
+button.small {
+	padding: 2px;
+	font-size: var(--font-size-0);
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+}
+
+/*** Component ***/
+
+.component {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.component.anchored {
+	cursor: pointer;
+}
+
+.component.hidden {
+	display: none !important;
+}
