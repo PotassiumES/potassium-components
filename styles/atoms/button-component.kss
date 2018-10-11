@@ -1,5 +1,39 @@
 /* ButtonComponent styles */
 
-.button-component[foo=23][bar~="oieur"]::foo:active {
-	background-color: red;
+button.button-component {
+	cursor: pointer;
+	background-color: var(--primary-color);
+	padding: 5px;
+	border: solid 1px var(--dark-primary-color);
+	border-radius: 0;
 }
+
+button.button-component:hover {
+	background-color: var(--secondary-color);
+}
+
+button.button-component:active {
+	background-color: var(--light-secondary-color);
+}
+
+button.button-component.selected {
+	background-color: var(--light-secondary-color);
+}
+
+button.button-component.small {
+	padding: 2px;
+	font-size: var(--font-size-0);
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+node.button-component > text {
+	color: var(--base-color);
+	font-size: 8cm;
+	centroid: 4cm -4.2cm 0;
+}
+
+node.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
+	material-color: var(--light-kelp);
+}
+

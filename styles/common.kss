@@ -107,33 +107,6 @@ h5 { font-size: var(--font-size-1); }
 
 h1, h2 { font-weight: var(--font-weight-2); }
 
-button {
-	cursor: pointer;
-	background-color: var(--primary-color);
-	padding: 5px;
-	border: solid 1px var(--dark-primary-color);
-	border-radius: 0;
-}
-
-button:hover {
-	background-color: var(--secondary-color);
-}
-
-button:active {
-	background-color: var(--light-secondary-color);
-}
-
-button.selected {
-	background-color: var(--light-secondary-color);
-}
-
-button.small {
-	padding: 2px;
-	font-size: var(--font-size-0);
-	line-height: 1em;
-	text-transform: uppercase;
-}
-
 .modal {
 	position: absolute;
 	top: 50%;

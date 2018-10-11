@@ -25,6 +25,8 @@ const ButtonComponent = class extends Component {
 			portalSpatial: false
 		}, options))
 		this.addClass('button-component')
+		this.portalGraph.name = this.immersiveGraph.name = 'ButtonComponent'
+
 		this._text = ''
 
 		let textMaterial = graph.meshLambertMaterial({
@@ -35,24 +37,22 @@ const ButtonComponent = class extends Component {
 			size: this.options.textSize,
 			height: this.options.textHeight
 		})
-		this._portalText.position.set(0.04, -0.04, 0)
-		this.portalGraph.name = 'Button'
 
 		this._immersiveText = graph.text('', textMaterial, null, {
 			size: this.options.textSize,
 			height: this.options.textHeight
 		})
-		this._immersiveText.position.set(0.04, -0.04, 0)
-		this.immersiveGraph.name = 'Button'
 
 		if(!options.portalGraph){
 			this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+			this._portalButtonObj.name = 'Bracket'
 			this.portalGraph.add(this._portalButtonObj)
 			this.portalGraph.add(this._portalText)
 		}
 
 		if(!options.immersiveGraph){
 			this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+			this._immersiveButtonObj.name = 'Bracket'
 			this.immersiveGraph.add(this._immersiveButtonObj)
 			this.immersiveGraph.add(this._immersiveText)
 		}
@@ -79,10 +79,10 @@ const ButtonComponent = class extends Component {
 		}, 1100)
 	}
 
-	/* @type {string} */
+	/** @type {string} */
 	get text(){ return this._text }
 
-	/* @type {string} */
+	/** @param {string} */
 	set text(value){
 		this._text = value
 		this.flatEl.innerHTML = this._text
@@ -93,7 +93,7 @@ const ButtonComponent = class extends Component {
 }
 ButtonComponent.ChangedEvent = 'button-changed'
 
-// TODO Give component librarys a nice way to load a set of sounds instead of loading them in Component modules
+/** @todo Give component librarys a nice way to load a set of sounds instead of loading them in Component modules */
 Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.wav')
 
 export default ButtonComponent

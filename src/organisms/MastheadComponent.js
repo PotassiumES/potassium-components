@@ -70,7 +70,6 @@ const MastheadComponent = class extends Component {
 		}
 		this._navigationMenu.layout()
 		this._navigationMenu.addListener((eventName, anchor) => {
-			console.log('Navigated', anchor)
 		}, MenuComponent.NAVIGATED_EVENT)
 	}
 

@@ -20,6 +20,7 @@ const HeadingComponent = class extends TextComponent {
 			'textColor': 0x444444
 		}, options))
 		this.addClass('heading-component')
+		this.portalGraph.name = this.immersiveGraph.name = 'HeadingComponent'
 	}
 }
 

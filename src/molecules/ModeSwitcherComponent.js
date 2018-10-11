@@ -16,6 +16,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('mode-switcher-component')
+		this._portalGraph.name = this._immersiveGraph.name = 'ModeSwitcherComponent'
 		this._handleDisplayUpdate = this._handleDisplayUpdate.bind(this)
 
 		this._displayModeTracker = DisplayModeTracker.Singleton
