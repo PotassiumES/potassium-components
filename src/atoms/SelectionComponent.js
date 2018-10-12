@@ -11,17 +11,23 @@ const SelectionComponent = class extends Component {
 	@param {Object} [options]
 	@param {string[] | Array<{name {string}, value {string}}>} [options.items]
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			items: [],
-			flatEl: el.select(),
-			portalEl: el.select()
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					items: [],
+					flatEl: el.select(),
+					portalEl: el.select()
+				},
+				options
+			)
+		)
 		this.addClass('selection-component')
 
 		// Normalize the items to all be [name, value]
 		this.options.items = this.options.items.map(item => {
-			if(typeof item === 'string') return [item, item]
+			if (typeof item === 'string') return [item, item]
 			return item
 		})
 
@@ -32,12 +38,12 @@ const SelectionComponent = class extends Component {
 		})
 	}
 
-	get selectedIndex(){
+	get selectedIndex() {
 		return this.flatEl.selectedIndex
 	}
 
-	set selectedIndex(index){
-		if(index >= this.flatEl.children.length){
+	set selectedIndex(index) {
+		if (index >= this.flatEl.children.length) {
 			console.error('No such index', index)
 			return
 		}

@@ -15,10 +15,16 @@ const MediaGridComponent = class extends Component {
 	@param {Object} [options={}]
 	@param {Component} [itemComponent=CardComponent] the Component **class** used for each item in the DataCollection
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			itemComponent: CardComponent
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					itemComponent: CardComponent
+				},
+				options
+			)
+		)
 		this.addClass('media-grid-component')
 
 		this._collectionComponent = new CollectionComponent(dataObject, {

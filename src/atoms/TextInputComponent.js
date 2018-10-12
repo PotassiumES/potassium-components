@@ -11,11 +11,17 @@ const TextInputComponent = class extends Component {
 	@param {string} [options.text=''] initial text
 	@param {string} [options.placeholder=''] text to show when the input is empty
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			flatEl: el.input({ type: 'text' }),
-			portalEl: el.input({ type: 'text' })
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					flatEl: el.input({ type: 'text' }),
+					portalEl: el.input({ type: 'text' })
+				},
+				options
+			)
+		)
 		this.addClass('text-input-component')
 		this.acceptsTextInputFocus = true
 
@@ -68,7 +74,7 @@ const TextInputComponent = class extends Component {
 		this.immersiveGraph.add(this._immersiveText)
 		this.immersiveGraph.name = 'text-input'
 
-		if(this.dataObject && this.options.dataField){
+		if (this.dataObject && this.options.dataField) {
 			this.text = this.dataObject.get(this.options.dataField) || this.options.text || ''
 			this.dataObject.addListener((eventName, model, field, value) => {
 				this._handleModelChange()
@@ -77,27 +83,27 @@ const TextInputComponent = class extends Component {
 			this.text = options.text || ''
 		}
 	}
-	_handleModelChange(){
+	_handleModelChange() {
 		const value = this.dataObject.get(this.options.dataField, '')
-		if(this.text === value) return
+		if (this.text === value) return
 		this.text = value
 	}
-	_handleTextInput(eventName, actionParameters){
-		if(!actionParameters || typeof actionParameters.value === 'undefined') return
+	_handleTextInput(eventName, actionParameters) {
+		if (!actionParameters || typeof actionParameters.value === 'undefined') return
 		let value = actionParameters.value
 		// Handle control input
-		switch(value){
+		switch (value) {
 			case 'delete':
-				if(!this._text || this._text.length == 0) return
+				if (!this._text || this._text.length == 0) return
 				this.text = this._text.substring(0, this._text.length - 1)
 				return
-			case "shift":
+			case 'shift':
 				this._shifted = !this._shifted
 				return
-			case "space":
+			case 'space':
 				value = ' '
 				break
-			case "tab":
+			case 'tab':
 				value = '\t'
 				break
 			case 'return':
@@ -105,30 +111,32 @@ const TextInputComponent = class extends Component {
 				this.text = ''
 				return
 			case 'tray':
-			case "left":
-			case "up":
-			case "right":
-			case "down":
-			case "control":
-			case "alt":
-			case "meta":
+			case 'left':
+			case 'up':
+			case 'right':
+			case 'down':
+			case 'control':
+			case 'alt':
+			case 'meta':
 				return
 		}
 		// Ok, it's text
 		this.text = this._text + (this._shifted ? value.toUpperCase() : value)
 		this._shifted = false
 	}
-	get text(){ return this._text }
-	set text(value){
-		if(this._text !== value){
+	get text() {
+		return this._text
+	}
+	set text(value) {
+		if (this._text !== value) {
 			this._portalText.setText(value || this._placeholderText)
 			this._immersiveText.setText(value || this._placeholderText)
 		}
 		this._text = value
 		this.flatEl.value = value
 		this.portalEl.value = value
-		if(this.dataObject && this.options.dataField){
-			if(this.dataObject.get(this.options.dataField) !== this._text){
+		if (this.dataObject && this.options.dataField) {
+			if (this.dataObject.get(this.options.dataField) !== this._text) {
 				this.dataObject.set(this.options.dataField, this._text)
 			}
 		}

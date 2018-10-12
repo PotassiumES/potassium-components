@@ -15,7 +15,7 @@ const CardComponent = class extends Component {
 	@param {string} [options.titleField]
 	@param {string} [options.captionField]
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('card-component')
 
@@ -37,7 +37,9 @@ const CardComponent = class extends Component {
 	}
 
 	/** the {@link Component} in which we display the main content, like an image or video */
-	get mainComponent(){ return this._mainComponent }
+	get mainComponent() {
+		return this._mainComponent
+	}
 }
 
 export default CardComponent

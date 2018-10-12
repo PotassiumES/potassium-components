@@ -12,11 +12,17 @@ const ImageComponent = class extends Component {
 	@param {string} [options.image] the URL of an image
 	@param {string} [options.imageField] the name of the field in dataObject that holds the URL to the image
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			image: null,
-			imageField: null
-		},options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					image: null,
+					imageField: null
+				},
+				options
+			)
+		)
 		this.addClass('image-component')
 		this._updateFromData = this._updateFromData.bind(this)
 
@@ -27,36 +33,38 @@ const ImageComponent = class extends Component {
 
 		/** @todo add image to portal and immersive graph */
 
-		if(this.options.image){
+		if (this.options.image) {
 			this.imageURL = this.options.image
 		}
-		if(this.dataObject && this.options.imageField){
+		if (this.dataObject && this.options.imageField) {
 			this.dataObject.addListener(this._updateFromData, `changed:${this.options.imageField}`)
 			this._updateFromData()
 		}
 	}
 
-	cleanup(){
+	cleanup() {
 		super.cleanup()
-		if(this.dataObject && this.options.imageField){
+		if (this.dataObject && this.options.imageField) {
 			this.dataObject.removeListener(this._updateFromData)
 		}
 	}
 
 	/** @type {string} */
-	get imageURL(){ return this._imageURL }
+	get imageURL() {
+		return this._imageURL
+	}
 
 	/** @param {string} value */
-	set imageURL(value){
-		if(value === this._imageURL) return
+	set imageURL(value) {
+		if (value === this._imageURL) return
 		this._imageURL = value
 		this._flatImg.src = this._imageURL
 		this._portalImg.src = this._imageURL
 		/** @todo update portal and immersive graph */
 	}
 
-	_updateFromData(){
-		if(!this.dataObject || !this.options.imageField) return
+	_updateFromData() {
+		if (!this.dataObject || !this.options.imageField) return
 		this.imageURL = this.dataObject.get(this.options.imageField) || ''
 	}
 }

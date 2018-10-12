@@ -12,28 +12,32 @@ const MenuComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('menu-component')
 		this._selectedIndex = -1
 		this._menuItems = []
 	}
 
-	get menuItems(){ return this._menuItems }
-	get selectedIndex(){ return this._selectedIndex }
-	set selectedIndex(index){
-		if(!this._menuItems[index]) {
+	get menuItems() {
+		return this._menuItems
+	}
+	get selectedIndex() {
+		return this._selectedIndex
+	}
+	set selectedIndex(index) {
+		if (!this._menuItems[index]) {
 			console.error('no such menu index', index)
 			return
 		}
-		if(this._selectedIndex === index) return
+		if (this._selectedIndex === index) return
 		this._selectedIndex = index
 		this._updateSelectionDisplay()
 	}
 
-	_updateSelectionDisplay(){
-		for(let i=0; i < this._menuItems.length; i++){
-			if(i === this._selectedIndex){
+	_updateSelectionDisplay() {
+		for (let i = 0; i < this._menuItems.length; i++) {
+			if (i === this._selectedIndex) {
 				this._menuItems[i].addClass('selected')
 			} else {
 				this._menuItems[i].removeClass('selected')
@@ -41,18 +45,18 @@ const MenuComponent = class extends Component {
 		}
 	}
 
-	layout(){
+	layout() {
 		const itemHeight = 0.12
-		for(let i=0; i < this._menuItems.length; i++){
+		for (let i = 0; i < this._menuItems.length; i++) {
 			this._menuItems[i].portalGraph.position.set(0, i * itemHeight * -1, 0)
 			this._menuItems[i].immersiveGraph.position.set(0, i * itemHeight * -1, 0)
 		}
 	}
 
-	appendMenuItem(component){
+	appendMenuItem(component) {
 		this._menuItems.push(component)
 		this.appendComponent(component)
-		if(this._menuItems.length === 1){
+		if (this._menuItems.length === 1) {
 			this.selectedIndex = 0
 		}
 	}

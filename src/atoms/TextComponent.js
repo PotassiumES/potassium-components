@@ -12,12 +12,18 @@ const TextComponent = class extends Component {
 	@param {string} [options.text=''] the initial text shown in the heading
 	@param {string} [options.textField=null] a field in the dataObject to bind to as the text
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			'textSize': 0.08,
-			'textHeight': 0.01,
-			'textColor': 0x444444
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					textSize: 0.08,
+					textHeight: 0.01,
+					textColor: 0x444444
+				},
+				options
+			)
+		)
 		this.addClass('text-component')
 		this._updateTextFromData = this._updateTextFromData.bind(this)
 
@@ -39,35 +45,37 @@ const TextComponent = class extends Component {
 		})
 		this.immersiveGraph.add(this._immersiveText)
 
-		if(typeof this.options.text === 'string'){
+		if (typeof this.options.text === 'string') {
 			this.text = this.options.text
 		}
-		if(this.dataObject && typeof this.options.textField === 'string'){
+		if (this.dataObject && typeof this.options.textField === 'string') {
 			this.dataObject.addListener(this._updateTextFromData, `changed:${this.options.textField}`)
 			this._updateTextFromData()
 		}
 	}
 
-	cleanup(){
+	cleanup() {
 		super.cleanup()
-		if(this.dataObject) this.dataObject.removeListener(this._updateTextFromData)
+		if (this.dataObject) this.dataObject.removeListener(this._updateTextFromData)
 	}
 
 	/** @type {string} */
-	get text(){ return this._text }
+	get text() {
+		return this._text
+	}
 	/** @type {string} */
-	set text(value){
-		if(this._text === value) return
+	set text(value) {
+		if (this._text === value) return
 		this._text = value || ''
 		this._updateDisplayFromText()
 	}
 
-	_updateTextFromData(){
-		if(!this.dataObject || !this.options.textField) return
+	_updateTextFromData() {
+		if (!this.dataObject || !this.options.textField) return
 		this.text = this.dataObject.get(this.options.textField) || ''
 	}
 
-	_updateDisplayFromText(){
+	_updateDisplayFromText() {
 		this.flatEl.innerText = this._text
 		this.portalEl.innerText = this._text
 		this._portalText.setText(this._text)

@@ -13,14 +13,14 @@ const ToolTipComponent = class extends Component {
 	@param {Object} options
 	@param {Component} options.component
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('tool-tip-component')
 
 		this._closeComponent = new LabelComponent(null, { text: 'X' }).appendTo(this)
 		this._closeComponent.addClass('close-component')
 		this._closeComponent.addListener((eventName, action, active, options) => {
-			if(action === '/action/activate' && active){
+			if (action === '/action/activate' && active) {
 				this.hide()
 			}
 		}, Component.ActionEvent)
@@ -28,9 +28,9 @@ const ToolTipComponent = class extends Component {
 		this.options.component.appendTo(this)
 	}
 
-	show(target=null){
+	show(target = null) {
 		super.show()
-		if(target === null) return
+		if (target === null) return
 		this.flatEl.style.position = 'relative'
 		this.flatEl.style.left = 0
 		this.flatEl.style.top = 0

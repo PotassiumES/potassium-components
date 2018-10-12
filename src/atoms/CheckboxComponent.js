@@ -11,11 +11,17 @@ const CheckboxComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			flatEl: el.input({ type: 'checkbox' }),
-			portalEl: el.input({ type: 'checkbox' })
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					flatEl: el.input({ type: 'checkbox' }),
+					portalEl: el.input({ type: 'checkbox' })
+				},
+				options
+			)
+		)
 		this.addClass('checkbox-component')
 		this._checked = options.checked === true
 		this._portalCheckGraph = null
@@ -45,9 +51,9 @@ const CheckboxComponent = class extends Component {
 
 		// Toggle on activate events from Action-input
 		this.addListener((eventName, actionName, value, actionParameters) => {
-			switch(actionName){
+			switch (actionName) {
 				case '/action/activate':
-					if(value){
+					if (value) {
 						this.checked = !this.checked
 					}
 					break
@@ -57,21 +63,23 @@ const CheckboxComponent = class extends Component {
 		this._updateCheckedDisplay(this._checked)
 	}
 
-	set checked(value){
-		if(value === this._checked) return
+	set checked(value) {
+		if (value === this._checked) return
 		this._checked = value
 		this._updateCheckedDisplay(value)
 		this.trigger(CheckboxComponent.CheckChangedEvent, this._checked)
 	}
-	get checked() { return this._checked }
+	get checked() {
+		return this._checked
+	}
 
-	_updateCheckedDisplay(checked){
+	_updateCheckedDisplay(checked) {
 		this.flatEl.checked = checked
 		this.portalEl.checked = checked
-		if(this._portalCheckGraph){
+		if (this._portalCheckGraph) {
 			this._portalCheckGraph.visible = checked
 		}
-		if(this._immersiveCheckGraph){
+		if (this._immersiveCheckGraph) {
 			this._immersiveCheckGraph.visible = checked
 		}
 	}

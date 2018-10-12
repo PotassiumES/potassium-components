@@ -11,11 +11,17 @@ const LabelComponent = class extends TextComponent {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			flatEl: el.label(),
-			portalEl: el.label()
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					flatEl: el.label(),
+					portalEl: el.label()
+				},
+				options
+			)
+		)
 		this.addClass('label-component')
 	}
 }

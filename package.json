@@ -4,7 +4,10 @@
   "description": "UI elements for use in PotassiumES",
   "main": "index.js",
   "scripts": {
-    "docs": "./node_modules/.bin/esdoc"
+    "docs": "./node_modules/.bin/esdoc",
+    "precommit": "pretty-quick --staged",
+    "lint": "eslint src",
+    "prettier": "prettier --write src/*.js src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +19,29 @@
     "url": "https://github.com/PotassiumES/potassium-components/issues"
   },
   "homepage": "https://github.com/PotassiumES/potassium-components#readme",
+  "prettier": {
+    "semi": false,
+    "useTabs": true,
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+  },
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",

@@ -11,7 +11,7 @@ const PaginationComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('pagination-component')
 

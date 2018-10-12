@@ -2,7 +2,7 @@ import el from 'potassium-es/src/El'
 import App from 'potassium-es/src/App'
 import graph from 'potassium-es/src/Graph'
 import Component from 'potassium-es/src/Component'
-import {lt, ld, ldt} from 'potassium-es/src/Localizer'
+import { lt, ld, ldt } from 'potassium-es/src/Localizer'
 import DisplayModeTracker from 'potassium-es/src/DisplayModeTracker'
 
 import ButtonComponent from '../atoms/ButtonComponent.js'
@@ -17,7 +17,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('mode-switcher-component')
 		this._portalGraph.name = this._immersiveGraph.name = 'ModeSwitcherComponent'
@@ -33,7 +33,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._exitButton.flatEl.style.display = 'none'
 		this._exitButton.portalGraph.visible = false
 		this._exitButton.addListener((eventName, value) => {
-			if(!value)return
+			if (!value) return
 			this.trigger(ModeSwitcherComponent.ModeChangedEvent, App.FLAT)
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._exitButton)
@@ -44,7 +44,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._portalButton.portalGraph.visible = false
 		this._portalButton.immersiveGraph.visible = false
 		this._portalButton.addListener((eventName, value) => {
-			if(!value)return
+			if (!value) return
 			this._attemptingMode = App.PORTAL
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
@@ -56,47 +56,52 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._immersiveButton.portalGraph.visible = false
 		this._immersiveButton.immersiveGraph.visible = false
 		this._immersiveButton.addListener((eventName, value) => {
-			if(!value)return
+			if (!value) return
 			this._attemptingMode = App.IMMERSIVE
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._immersiveButton)
 
-		this._switchModal = el.div(
-			{ class: 'switch-modal modal'},
-		)
-		el.button('go').appendTo(this._switchModal).addEventListener('click', ev => {
-			this._hideModal()
-			this.trigger(ModeSwitcherComponent.ModeChangedEvent, this._attemptingMode)
-			this._attemptingMode = null
-		})
-		el.button('cancel').appendTo(this._switchModal).addEventListener('click', ev => {
-			this._hideModal()
-			this._attemptingMode = null
-		})
+		this._switchModal = el.div({ class: 'switch-modal modal' })
+		el.button('go')
+			.appendTo(this._switchModal)
+			.addEventListener('click', ev => {
+				this._hideModal()
+				this.trigger(ModeSwitcherComponent.ModeChangedEvent, this._attemptingMode)
+				this._attemptingMode = null
+			})
+		el.button('cancel')
+			.appendTo(this._switchModal)
+			.addEventListener('click', ev => {
+				this._hideModal()
+				this._attemptingMode = null
+			})
 
-		this._updateDisplayedModes(this._displayModeTracker.portalCapable === true, this._displayModeTracker.immersiveCapable === true)
+		this._updateDisplayedModes(
+			this._displayModeTracker.portalCapable === true,
+			this._displayModeTracker.immersiveCapable === true
+		)
 	}
 
-	_showModal(){
+	_showModal() {
 		document.body.appendChild(this._switchModal)
 	}
 
-	_hideModal(){
+	_hideModal() {
 		document.body.removeChild(this._switchModal)
 	}
 
-	_handleDisplayUpdate(eventName, flatCapable, portalCapable, immersiveCapable){
+	_handleDisplayUpdate(eventName, flatCapable, portalCapable, immersiveCapable) {
 		this._updateDisplayedModes(portalCapable, immersiveCapable)
 	}
 
-	_updateDisplayedModes(portalCapable, immersiveCapable){
+	_updateDisplayedModes(portalCapable, immersiveCapable) {
 		this._portalButton.flatEl.style.display = portalCapable ? '' : 'none'
 		this._immersiveButton.flatEl.style.display = immersiveCapable ? '' : 'none'
 	}
 
-	handleSwitchFailed(mode){
-		switch(mode){
+	handleSwitchFailed(mode) {
+		switch (mode) {
 			case App.FLAT:
 				this._exitButton.showAlert()
 				return

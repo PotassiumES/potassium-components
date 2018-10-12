@@ -14,16 +14,22 @@ const ButtonComponent = class extends Component {
 	@param {number} [options.textHeight]
 	@param {number} [options.textColor]
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			flatEl: el.button({ class: 'button' }),
-			portalEl: el.button({ class: 'button' }),
-			textSize: 0.08,
-			textHeight: 0.01,
-			textColor: 0x444444,
-			portalOverlay: true,
-			portalSpatial: false
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					flatEl: el.button({ class: 'button' }),
+					portalEl: el.button({ class: 'button' }),
+					textSize: 0.08,
+					textHeight: 0.01,
+					textColor: 0x444444,
+					portalOverlay: true,
+					portalSpatial: false
+				},
+				options
+			)
+		)
 		this.addClass('button-component')
 		this.portalGraph.name = this.immersiveGraph.name = 'ButtonComponent'
 
@@ -43,14 +49,14 @@ const ButtonComponent = class extends Component {
 			height: this.options.textHeight
 		})
 
-		if(!options.portalGraph){
+		if (!options.portalGraph) {
 			this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 			this._portalButtonObj.name = 'Bracket'
 			this.portalGraph.add(this._portalButtonObj)
 			this.portalGraph.add(this._portalText)
 		}
 
-		if(!options.immersiveGraph){
+		if (!options.immersiveGraph) {
 			this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 			this._immersiveButtonObj.name = 'Bracket'
 			this.immersiveGraph.add(this._immersiveButtonObj)
@@ -58,7 +64,7 @@ const ButtonComponent = class extends Component {
 		}
 
 		this.addListener((eventName, actionName, value, actionParameters) => {
-			switch(actionName){
+			switch (actionName) {
 				case '/action/activate':
 					this.trigger(ButtonComponent.ChangedEvent, value)
 					break
@@ -71,7 +77,7 @@ const ButtonComponent = class extends Component {
 	/**
 	Shows a visible alert for a short time and plays an audio alert
 	*/
-	showAlert(){
+	showAlert() {
 		this.addClass('primary-alert')
 		Component.AudioManager.playSound('primary-alert')
 		setTimeout(() => {
@@ -80,10 +86,12 @@ const ButtonComponent = class extends Component {
 	}
 
 	/** @type {string} */
-	get text(){ return this._text }
+	get text() {
+		return this._text
+	}
 
 	/** @param {string} value */
-	set text(value){
+	set text(value) {
 		this._text = value
 		this.flatEl.innerHTML = this._text
 		this.portalEl.innerHTML = this._text

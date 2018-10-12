@@ -1,6 +1,6 @@
 import el from 'potassium-es/src/El'
 import graph from 'potassium-es/src/Graph'
-import {lt, ld} from 'potassium-es/src/Localizer'
+import { lt, ld } from 'potassium-es/src/Localizer'
 import Component from 'potassium-es/src/Component'
 
 import ButtonComponent from 'potassium-components/src/atoms/ButtonComponent'
@@ -26,7 +26,7 @@ const FormComponent = class extends Component {
 	@param {Object} [options] see the {@Component} for inherited options
 	@param {string} [options.heading] the heading text for this form
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('form-component')
 
@@ -35,7 +35,7 @@ const FormComponent = class extends Component {
 			portalEl: el.h2(),
 			text: options.heading || ''
 		}).appendTo(this)
-		if(!options.heading){
+		if (!options.heading) {
 			this._headingComponent.hide()
 		}
 
@@ -45,7 +45,9 @@ const FormComponent = class extends Component {
 	}
 
 	/** @type {Component} in which you should place your field Components */
-	get fieldsComponent(){ return this._fieldsComponent }
+	get fieldsComponent() {
+		return this._fieldsComponent
+	}
 }
 
 /**
@@ -56,17 +58,23 @@ const FormFieldComponent = class extends Component {
 	@param {string}   [options.label] the display text for this input field
 	@param {string}   [options.dataField] the field name for the {@link DataModel} in this.dataObject
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			label: null,
-			dataField: null
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					label: null,
+					dataField: null
+				},
+				options
+			)
+		)
 		this.addClass('form-field-component')
 
 		this._label = new LabelComponent(null, {
 			text: this.options.label || ''
 		}).appendTo(this)
-		if(!this.options.label) this._label.hide()
+		if (!this.options.label) this._label.hide()
 	}
 }
 
@@ -78,21 +86,21 @@ const DateFieldComponent = class extends FormFieldComponent {
 	@param {DataModel} [dataObject]
 	@param {Object}    [options] see {@link FormFieldComponent} for more options
 	*/
-	constructor(dataObject=null, options={}){
+	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('date-field-component')
 
 		this._labelComponent = new LabelComponent().appendTo(this)
-		if(this.dataObject && this.options.dataField){
+		if (this.dataObject && this.options.dataField) {
 			this.dataObject.addListener((eventName, model, fieldName, value) => {
-				if(!value){
+				if (!value) {
 					this._labelComponent.text = ''
 					return
 				}
 				this._labelComponent.text = ld(value)
 			}, `changed:${this.options.dataField}`)
 			const date = this.dataObject.get(this.options.dataField)
-			if(date){
+			if (date) {
 				this._labelComponent.text = ld(date)
 			}
 		}
@@ -100,7 +108,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._startEditComponent = new LabelComponent(null, { text: EditIcon }).appendTo(this)
 		this._startEditComponent.addClass('start-edit-component')
 		this._startEditComponent.addListener((eventName, action, active, options) => {
-			if(action === '/action/activate' && active){
+			if (action === '/action/activate' && active) {
 				this.startEdit()
 			}
 		}, Component.ActionEvent)
@@ -113,7 +121,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._saveEditComponent = new LabelComponent(null, { text: SaveIcon }).appendTo(this)
 		this._saveEditComponent.addClass('save-edit-component')
 		this._saveEditComponent.addListener((eventName, action, active, options) => {
-			if(action === '/action/activate' && active){
+			if (action === '/action/activate' && active) {
 				this.saveEdit()
 			}
 		}, Component.ActionEvent)
@@ -121,7 +129,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._cancelEditComponent = new LabelComponent(null, { text: CancelIcon }).appendTo(this)
 		this._cancelEditComponent.addClass('cancel-edit-component')
 		this._cancelEditComponent.addListener((eventName, action, active, options) => {
-			if(action === '/action/activate' && active){
+			if (action === '/action/activate' && active) {
 				this.cancelEdit()
 			}
 		}, Component.ActionEvent)
@@ -129,7 +137,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this.stopEdit()
 	}
 
-	startEdit(){
+	startEdit() {
 		this._labelComponent.hide()
 		this._startEditComponent.hide()
 		this._datePickerComponent.show()
@@ -137,7 +145,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._cancelEditComponent.show()
 	}
 
-	stopEdit(){
+	stopEdit() {
 		this._labelComponent.show()
 		this._startEditComponent.show()
 		this._datePickerComponent.hide()
@@ -145,13 +153,13 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._cancelEditComponent.hide()
 	}
 
-	cancelEdit(){
+	cancelEdit() {
 		this.stopEdit()
 		this._datePickerComponent.updateFromModel()
 	}
 
-	saveEdit(){
-		if(this._datePickerComponent.saveInputToModel() === null){
+	saveEdit() {
+		if (this._datePickerComponent.saveInputToModel() === null) {
 			console.error('Could not save date')
 			return
 		}
@@ -168,10 +176,16 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 	@param {Object}    [options] see {@link FormFieldComponent} for more options
 	@param {string}    [options.placeholder] the text displayed in the field when there is no value text
 	*/
-	constructor(dataObject=null, options={}){
-		super(dataObject, Object.assign({
-			placeholder: null
-		}, options))
+	constructor(dataObject = null, options = {}) {
+		super(
+			dataObject,
+			Object.assign(
+				{
+					placeholder: null
+				},
+				options
+			)
+		)
 		this.addClass('text-input-field-component')
 
 		this._textInputComponent = new TextInputComponent(dataObject, {
@@ -182,21 +196,21 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 			this._handleInputChange(value)
 		}, TextInputComponent.TextChangeEvent)
 
-		if(this.dataObject && this.options.dataField){
+		if (this.dataObject && this.options.dataField) {
 			this.dataObject.addListener((eventName, model, fieldName, value) => {
 				this._handleModelChange(value)
 			}, `changed:${this.options.dataField}`)
 		}
 	}
 
-	_handleInputChange(value){
-		if(!this.dataObject || !this.options.dataField) return
-		if(this.dataObject.get(this.options.dataField) === value) return
+	_handleInputChange(value) {
+		if (!this.dataObject || !this.options.dataField) return
+		if (this.dataObject.get(this.options.dataField) === value) return
 		this.dataObject.set(this.options.dataField, value)
 	}
 
-	_handleModelChange(value){
-		if(this._textInputComponent.text === value) return
+	_handleModelChange(value) {
+		if (this._textInputComponent.text === value) return
 		this._textInputComponent.text = value
 	}
 }
