@@ -45,8 +45,8 @@ const TextInputComponent = class extends Component {
 		// Make changes to this.text based on Component.TextInputEvents
 		this.addListener(this._handleTextInput, Component.TextInputEvent)
 
-		let placeholderMaterial = graph.meshLambertMaterial({ color: 0xdddddd })
-		let textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
+		const placeholderMaterial = graph.meshLambertMaterial({ color: 0xdddddd })
+		const textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
 
 		this._portalBracket = graph.obj('/static/potassium-components/models/TextInputBracket.obj')
 		this.portalGraph.add(this._portalBracket)

@@ -35,7 +35,7 @@ const ButtonComponent = class extends Component {
 
 		this._text = ''
 
-		let textMaterial = graph.meshLambertMaterial({
+		const textMaterial = graph.meshLambertMaterial({
 			color: this.options.textColor
 		})
 

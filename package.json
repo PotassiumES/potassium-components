@@ -37,9 +37,12 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
-      "prefer-const": "error",
-      "no-var": "error"
+      "no-var": "warn",
+      "no-undef": "off",
+      "no-console": "off",
+      "prefer-const": "warn",
+      "no-unused-vars": "off",
+      "prettier/prettier": "warn"
     }
   },
   "devDependencies": {

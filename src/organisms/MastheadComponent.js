@@ -65,7 +65,7 @@ const MastheadComponent = class extends Component {
 		this._navigationMenu.immersiveGraph.position.set(2, 0, 0)
 		this.appendComponent(this._navigationMenu)
 		if (this.options.menuItems) {
-			for (let item of this.options.menuItems) {
+			for (const item of this.options.menuItems) {
 				this._navigationMenu.appendMenuItem(
 					new LabelComponent(null, {
 						text: item.name,
