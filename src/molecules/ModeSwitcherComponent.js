@@ -13,6 +13,10 @@ import ButtonGroupComponent from '../molecules/ButtonGroupComponent.js'
 ModeSwitcherComponent allows the user to switch between flat, portal, and immersive display modes.
 */
 const ModeSwitcherComponent = class extends ButtonGroupComponent {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('mode-switcher-component')

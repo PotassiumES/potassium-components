@@ -9,7 +9,7 @@ SelectionComponent offers the user a set of choices for single or multiple selec
 const SelectionComponent = class extends Component {
 	/**
 	@param {Object} [options]
-	@param {[]string or [][{string} name, {string} value]} options.items
+	@param {string[] | Array<{name {string}, value {string}}>} [options.items]
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

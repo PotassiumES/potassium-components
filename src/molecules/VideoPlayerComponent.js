@@ -7,6 +7,10 @@ import Component from 'potassium-es/src/Component'
 VideoPlayerComponent shows a {@link VideoComponent} as well as play/pause and shuttle controls.
 */
 const VideoPlayerComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('video-player-component')

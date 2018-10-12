@@ -8,6 +8,10 @@ MenuComponent holds a set of menu item Components.
 Users are given the opportunity to choose items from the menu.
 */
 const MenuComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('menu-component')

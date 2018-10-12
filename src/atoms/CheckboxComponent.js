@@ -7,6 +7,10 @@ import Component from 'potassium-es/src/Component'
 CheckboxComponent provides a UI for toggling a value on and off using activation
 */
 const CheckboxComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			flatEl: el.input({ type: 'checkbox' }),

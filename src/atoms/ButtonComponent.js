@@ -82,7 +82,7 @@ const ButtonComponent = class extends Component {
 	/** @type {string} */
 	get text(){ return this._text }
 
-	/** @param {string} */
+	/** @param {string} value */
 	set text(value){
 		this._text = value
 		this.flatEl.innerHTML = this._text

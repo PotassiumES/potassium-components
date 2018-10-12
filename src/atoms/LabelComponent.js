@@ -7,6 +7,10 @@ import TextComponent from 'potassium-components/src/atoms/TextComponent'
 LabelComponent displays a single line of text
 */
 const LabelComponent = class extends TextComponent {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
 			flatEl: el.label(),

@@ -7,6 +7,10 @@ import Component from 'potassium-es/src/Component'
 TableComponent shows tabular data.
 */
 const TableComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('table-component')

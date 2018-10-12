@@ -9,6 +9,10 @@ VideoComponent displays a single video.
 If you want to display controls, use {@link VideoPlayerComponent}.
 */
 const VideoComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('video-component')

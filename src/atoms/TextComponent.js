@@ -8,9 +8,9 @@ TextComponent holds a string which may include paragraphs but not other media.
 */
 const TextComponent = class extends Component {
 	/**
-	@param {Object} options see the {@link Component} options
-	@param {string} options.text the initial text shown in the heading
-	@param {string} options.textField a field in the dataObject to bind to as the text
+	@param {Object} [options={}] see the {@link Component} options
+	@param {string} [options.text=''] the initial text shown in the heading
+	@param {string} [options.textField=null] a field in the dataObject to bind to as the text
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

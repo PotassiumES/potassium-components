@@ -9,6 +9,8 @@ ToolTipComponent shows a Component next to another Component
 */
 const ToolTipComponent = class extends Component {
 	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} options
 	@param {Component} options.component
 	*/
 	constructor(dataObject=null, options={}){

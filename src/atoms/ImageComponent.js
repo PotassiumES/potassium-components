@@ -9,8 +9,8 @@ ImageComponent handles the display of a single image.
 const ImageComponent = class extends Component {
 	/**
 	@param {Object} options see the {@link Component} options
-	@param {string?} options.image the URL of an image
-	@param {string?} options.imageField the name of the field in dataObject that holds the URL to the image
+	@param {string} [options.image] the URL of an image
+	@param {string} [options.imageField] the name of the field in dataObject that holds the URL to the image
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({
@@ -45,7 +45,8 @@ const ImageComponent = class extends Component {
 
 	/** @type {string} */
 	get imageURL(){ return this._imageURL }
-	/** @type {string} */
+
+	/** @param {string} value */
 	set imageURL(value){
 		if(value === this._imageURL) return
 		this._imageURL = value

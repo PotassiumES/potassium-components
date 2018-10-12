@@ -7,6 +7,10 @@ import Component from 'potassium-es/src/Component'
 AudioPlayerComponent shows an {@link AudioComponent} along with play/pause and shuttle controls.
 */
 const AudioPlayerComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject=null]
+	@param {Object} [options=null]
+	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, options)
 		this.addClass('audio-player-component')

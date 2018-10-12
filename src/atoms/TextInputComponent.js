@@ -8,8 +8,8 @@ TextInputComponent shows the user a field or area in which to enter text.
 */
 const TextInputComponent = class extends Component {
 	/**
-	@param {string} [options.text] initial text
-	@param {string} [options.placeholder] text to show when the input is empty
+	@param {string} [options.text=''] initial text
+	@param {string} [options.placeholder=''] text to show when the input is empty
 	*/
 	constructor(dataObject=null, options={}){
 		super(dataObject, Object.assign({

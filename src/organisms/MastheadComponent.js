@@ -21,7 +21,7 @@ In immersive mode, it will be a nifty utility object that floats near the user.
 */
 const MastheadComponent = class extends Component {
 	/**
-	@param {DataObject} dataObject
+	@param {DataObject} [dataObject]
 	@param {Object} options
 	@param {string or Component} options.brand
 	@param {Object[]} options.menuItems
