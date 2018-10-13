@@ -1,7 +1,7 @@
 /*** FormComponent ***/
 
 .form-field-component {
-	margin-top: var(--app-content-padding);
+	margin-top: var(--page-app-content-padding);
 	display: block;
 }
 
@@ -13,7 +13,7 @@
 
 .form-field-component.text-input-field-component .label-component,
 .form-field-component.date-field-component > .label-component:first-child {
-	margin: var(--app-content-padding) 0 0 0;
+	margin: var(--page-app-content-padding) 0 0 0;
 }
 
 .date-field-component {

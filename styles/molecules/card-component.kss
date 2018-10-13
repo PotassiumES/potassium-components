@@ -28,11 +28,11 @@
 }
 
 .card-component .heading-component {
-	font-weight: var(--font-size-2);
+	font-weight: var(--page-font-size-2);
 }
 
 .card-component .label-component {
-	font-weight: var(--base-font-size);
+	font-weight: var(--base-page-font-size);
 	padding-bottom: var(--inner-element-padding);
 	min-height: 2em;
 }

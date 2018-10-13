@@ -1,15 +1,29 @@
 /*** ButtonGroupComponent ***/
 
-.button-group-component button {
+.flat-el.button-group-component button,
+.portal-el.button-group-component button {
 	outline: 0;
 	margin: 0 2px;
 }
-.button-group-component button:active {
+
+.flat-el.button-group-component button:active,
+.portal-el.button-group-component button:active {
 	outline: 0;
 }
-.button-group-component button.selected {
+
+.flat-el.button-group-component button.selected,
+.portal-el.button-group-component button.selected {
 	background-color: #EFEFEF;
 }
-.button-group-component button:first-child {
+
+.flat-el.button-group-component button:first-child {
 	border-left: solid 1px #DDD;
 }
+/*
+node.button-group-component {
+	display: grid;
+	grid-template: 12cm / 40cm;
+	grid-auto-flow: rows;
+	gap: 1cm;
+}
+*/

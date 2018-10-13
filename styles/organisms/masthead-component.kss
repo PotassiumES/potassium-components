@@ -7,18 +7,18 @@
 
 .masthead-component .heading-component {
 	display: block;
-	padding: var(--app-content-padding);
+	padding: var(--page-app-content-padding);
 	color: var(--dark-primary-color);
 	background-color: var(--light-secondary-color);
 }
 
 .masthead-component .menu-component {
 	display: block;
-	padding: var(--app-content-padding) 0;
+	padding: var(--page-app-content-padding) 0;
 }
 
 .masthead-component .menu-component > .component {
-	margin-left: var(--app-content-padding);
+	margin-left: var(--page-app-content-padding);
 	padding-bottom: 5px;
 }
 
@@ -29,7 +29,7 @@
 .masthead-component .mode-switcher-component {
 	display: none;
 	text-align: right;
-	margin: 3px var(--app-content-padding) var(--app-content-padding) 0;
+	margin: 3px var(--page-app-content-padding) var(--page-app-content-padding) 0;
 }
 
 @media (min-width: 576px){
@@ -38,7 +38,7 @@
 		vertical-align: top;
 		position: absolute;
 		top: 45px;
-		right: var(--app-content-padding);
+		right: var(--page-app-content-padding);
 		transform: translate(0, -50%);
 	}
 

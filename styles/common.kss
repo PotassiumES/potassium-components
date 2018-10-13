@@ -2,21 +2,28 @@
 
 :root {
 	/* layout */
-	--app-content-padding: 20px;
-	--inner-element-padding: calc(var(--app-content-padding) / 2);
+	--page-app-content-padding: 20px;
+	--inner-element-padding: calc(var(--page-app-content-padding) / 2);
 
 	/* text */
 	--base-font: sans-serif;
 
-	--base-font-size: 20px;
-	--font-size-5: calc(var(--base-font-size) + 1.6em);
-	--font-size-4: calc(var(--base-font-size) + 1.2em);
-	--font-size-3: calc(var(--base-font-size) + 0.8em);
-	--font-size-2: calc(var(--base-font-size) + 0.4em);
-	--font-size-0: calc(var(--base-font-size) - 0.4em);
+	--base-page-font-size: 20px;
+	--page-font-size-5: calc(var(--base-page-font-size) + 1.6em);
+	--page-font-size-4: calc(var(--base-page-font-size) + 1.2em);
+	--page-font-size-3: calc(var(--base-page-font-size) + 0.8em);
+	--page-font-size-2: calc(var(--base-page-font-size) + 0.4em);
+	--page-font-size-0: calc(var(--base-page-font-size) - 0.4em);
 
-	--base-font-weight: 300;
-	--font-weight-2: calc(var(--base-font-weight) + 200);
+	--base-page-font-weight: 300;
+	--font-weight-2: calc(var(--base-page-font-weight) + 200);
+
+	--base-spatial-font-size: 8cm;
+	--spatial-font-size-5: 16cm;
+	--spatial-font-size-4: 14cm;
+	--spatial-font-size-3: 12cm;
+	--spatial-font-size-2: 10cm;
+	--spatial-font-size-0: 6cm;
 
 	/* named colors */
 	--dark-yellow:	rgb(252, 228, 101);
@@ -78,9 +85,15 @@
 
 body {
 	font-family: var(--base-font);
-	font-weight: var(--base-font-weight);
+	font-weight: var(--base-page-font-weight);
 	color: var(--base-color);
-	font-size: var(--base-font-size);
+	font-size: var(--base-page-font-size);
+	background-color: var(--background-color);
+}
+
+scene {
+	color: var(--base-color);
+	font-size: var(--base-spatial-font-size);
 	background-color: var(--background-color);
 }
 
@@ -99,15 +112,16 @@ h1, h2, h3, h4, h5 {
 }
 
 /** Set the font sizes relative to the base size */
-h1 { font-size: var(--font-size-5); }
-h2 { font-size: var(--font-size-4); }
-h3 { font-size: var(--font-size-3); }
-h4 { font-size: var(--font-size-2); }
-h5 { font-size: var(--font-size-1); }
+h1 { font-size: var(--page-font-size-5); }
+h2 { font-size: var(--page-font-size-4); }
+h3 { font-size: var(--page-font-size-3); }
+h4 { font-size: var(--page-font-size-2); }
+h5 { font-size: var(--page-font-size-1); }
 
 h1, h2 { font-weight: var(--font-weight-2); }
 
-.modal {
+.flat-root .modal,
+.portal-root .modal {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -117,15 +131,18 @@ h1, h2 { font-weight: var(--font-weight-2); }
 
 /*** Component ***/
 
-.component {
+.flat-root .component,
+.portal-root .component {
 	display: inline-block;
 	vertical-align: top;
 }
 
-.component.anchored {
+.flat-root .component.anchored,
+.portal-root .component.anchored {
 	cursor: pointer;
 }
 
-.component.hidden {
+.flat-root .component.hidden,
+.portal-root .component.hidden {
 	display: none !important;
 }

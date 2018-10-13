@@ -1,5 +1,6 @@
 /* HeadingComponent */
 
-.heading-component {
+.flat-el.heading-component,
+.portal-el.heading-component {
 	display: block;
 }

@@ -22,18 +22,16 @@ button.button-component.selected {
 
 button.button-component.small {
 	padding: 2px;
-	font-size: var(--font-size-0);
+	font-size: var(--page-font-size-0);
 	line-height: 1em;
 	text-transform: uppercase;
 }
 
 node.button-component > text {
-	color: var(--base-color);
-	font-size: 8cm;
 	centroid: 4cm -4.2cm 0;
 }
 
 node.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
-	material-color: var(--light-kelp);
+	material-emissive: var(--light-kelp);
 }
 
