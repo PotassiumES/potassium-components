@@ -1,0 +1,6 @@
+
+/* VideoComponent */
+
+node.video-component > node[name=Cube] {
+	material-emissive: #000;
+}

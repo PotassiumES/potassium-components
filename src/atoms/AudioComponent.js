@@ -9,6 +9,10 @@ AudioComponent contains a sound source
 If you want to display controls, use {AudioPlayerComponent}.
 */
 const AudioComponent = class extends Component {
+	/**
+	@param {DataObject} [dataObject]
+	@param {Object} [options]
+	*/
 	constructor(dataObject = null, options = {}) {
 		super(
 			dataObject,
@@ -21,6 +25,7 @@ const AudioComponent = class extends Component {
 			)
 		)
 		this.addClass('audio-component')
+		this.setName('AudioComponent')
 		console.error('Unimplemented')
 	}
 }

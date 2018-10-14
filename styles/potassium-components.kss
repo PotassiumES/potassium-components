@@ -8,9 +8,12 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 /* Atoms */
 
 @import './atoms/button-component.kss';
+@import './atoms/cube-component.kss';
 @import './atoms/heading-component.kss';
 @import './atoms/selection-component.kss';
+@import './atoms/slider-component.kss';
 @import './atoms/text-input-component.kss';
+@import './atoms/video-component.kss';
 
 /* Molecules */
 
@@ -20,6 +23,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './molecules/form-component.kss';
 @import './molecules/image-card-component.kss';
 @import './molecules/tool-tip-component.kss';
+@import './molecules/video-player-component.kss';
 
 /* Organisms */
 

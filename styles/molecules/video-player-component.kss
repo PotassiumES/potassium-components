@@ -1,0 +1,37 @@
+
+node.video-player-component {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template: 0.5625m 0.05m / 1m;
+	gap: 0.8cm;
+}
+
+node.video-player-component > .video-player-controls {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 0.12m;
+	grid-template: 0.5m / 0.12m 0.12m 0.60m 0.12m;
+	gap: 1.2cm;
+}
+
+node.video-player-component > .video-player-controls > .video-start,
+node.video-player-component > .video-player-controls > .video-stop,
+node.video-player-component > .video-player-controls > .video-pause {
+	scale: 0.125 0.05 0.01;
+}
+
+node.video-player-component > .video-player-controls > .video-start > node[name=Cube] {
+	material-emissive: #00FF00;
+}
+
+node.video-player-component > .video-player-controls > .video-stop > node[name=Cube] {
+	material-emissive: #FF0000;
+}
+
+node.video-player-component > .video-player-controls > .video-pause > node[name=Cube] {
+	material-emissive: #0000FF;
+}
+
+node.video-player-component > .video-player-controls > .slider-component {
+	scale: 0.61 0.61 1;
+}
