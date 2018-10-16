@@ -2,15 +2,21 @@
 node.video-player-component {
 	display: grid;
 	grid-auto-flow: row;
-	grid-template: 0.5625m 0.05m / 1m;
+	grid-template: 1.05m 0.05m / 1.06m;
 	gap: 0.8cm;
+}
+
+node.video-player-component > .video-component > .backdrop-component > node[name=Cube] {
+	centroid-z: -0.03;
+	scale: 1.8377, 1.05, 0.01;
+	material-emissive: #111;
 }
 
 node.video-player-component > .video-player-controls {
 	display: grid;
 	grid-auto-flow: column;
 	grid-auto-columns: 0.12m;
-	grid-template: 0.5m / 0.12m 0.12m 0.60m 0.12m;
+	grid-template: 0.5m / 0.12m 0.12m 1.42m 0.12m;
 	gap: 1.2cm;
 }
 
@@ -33,5 +39,9 @@ node.video-player-component > .video-player-controls > .video-pause > node[name=
 }
 
 node.video-player-component > .video-player-controls > .slider-component {
-	scale: 0.61 0.61 1;
+	scale: 1.42 0.65 1;
+}
+
+node.video-player-component > .video-player-controls > .slider-component > .slider-handle {
+	scale: 0.01 0.05 0.01;
 }

@@ -12,38 +12,48 @@ const VideoComponent = class extends CubeComponent {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options={}]
-	@param {number} [options.width=1] the intial width of the video cube
-	@param {ratio}
+	@param {number} [options.height=1] the intial height of the video cube
 	*/
 	constructor(dataObject = null, options = {}) {
+		if(typeof options.material === 'undefined'){
+			options.material = VideoComponent.GenerateVideoMaterial()
+		}
 		super(dataObject, Object.assign({
-			width: 1, // meter
-			ratio: VideoComponent.RATIO_16x9
+			height: 1 // meter
 		}, options))
 		this.addClass('video-component')
-		this.immersiveGraph.name = this.portalGraph.name = 'VideoComponent'
+		this.setName('VideoComponent')
+		this._handleVideoCanPlay = this._handleVideoCanPlay.bind(this)
+		this.video.addEventListener('canplay', this._handleVideoCanPlay, false);
 
+		this._height = this.options.height
 		this._width = null
-		this._height = null
 		this._depth = null
 		this._ratio = null
-		this.resize(this.options.width, this.options.ratio)
+		this.resize(this.options.height, VideoComponent.RATIO_16x9)
 	}
 
-	resize(width, ratio=VideoComponent.RATIO_16x9){
-		switch(ratio){
-			case VideoComponent.RATIO_16x9:
-				this._height = _16x9Height(width)
-				break
-			case VideoComponent.RATIO_1x1:
-				this._height = width
-				break
-			default:
-				console.error('Unknown ratio', ratio)
-				return
+	cleanup(){
+		const video = this.video
+		video.removeEventListener('canplay', this._handleVideoCanPlay, false);
+	}
+
+	get video(){ return this.options.material.map.image }
+
+	_handleVideoCanPlay(ev){
+		const videoWidth = this.video.videoWidth
+		const videoHeight = this.video.videoHeight
+		if(videoWidth <= 0 || videoHeight <= 0){
+			console.error('Could not read the video dimensions', ev)
+			return
 		}
+		this.resize(this._height, videoWidth / videoHeight)
+	}
+
+	resize(height, ratio){
+		this._height = height
+		this._width = height * ratio
 		this._ratio = ratio
-		this._width = width
 		this._depth = 0.001
 		this.setCubeSize(this._width, this._height , this._depth)
 	}
@@ -52,18 +62,24 @@ const VideoComponent = class extends CubeComponent {
 		this.portalCube.scale.set(width, height, depth)
 		this.immersiveCube.scale.set(width, height, depth)
 	}
+
+	static GenerateVideoMaterial(url=null, mimeType=null){
+		const video = el.video(el.source({
+			src: url,
+			type: mimeType
+		}))
+		const videoTexture = new THREE.VideoTexture(video)
+		videoTexture.minFilter = THREE.NearestFilter
+		videoTexture.magFilter = THREE.LinearFilter
+		videoTexture.format = THREE.RGBFormat
+		return new THREE.MeshLambertMaterial({
+			color: 0xAAAAAA,
+			map: videoTexture
+		})
+	}
 }
 
-VideoComponent.RATIO_16x9 = Symbol('video-16x9')
-VideoComponent.RATIO_1x1 = Symbol('video-1x1')
-VideoComponent.RATIOS = [
-	VideoComponent.RATIO_16x9,
-	VideoComponent.RATIO_1x1
-]
-
-/** @return the height that corresponds to a given width at a 16/9 ratio */
-const _16x9Height = function(width){
-	return (9 * width) / 16
-}
+VideoComponent.RATIO_16x9 = 16 / 9
+VideoComponent.RATIO_1x1 = 1
 
 export default VideoComponent

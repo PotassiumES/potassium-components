@@ -34,7 +34,7 @@ const SliderComponent = class extends Component {
 
 		this._barComponent = new CubeComponent().appendTo(this)
 		this._barComponent.addClass('slider-bar')
-		this._handleComponent.setName('SliderBar')
+		this._barComponent.setName('SliderBar')
 
 		this._calculatePositions()
 		this.value = this._value

@@ -14,13 +14,39 @@ const VideoPlayerComponent = class extends Component {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
+	@param {string} [options.url=null] - a URL to a video
+	@param {string} [options.mimeType=null] - the MIME type for the video, like 'video/mp4'
 	*/
 	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+		super(dataObject, Object.assign({
+			url: null,
+			mimeType: null
+		}, options))
 		this.addClass('video-player-component')
 		this.setName('VideoPlayerComponent')
+		this._handleVideoLoadStart = this._handleVideoLoadStart.bind(this)
+		this._handleVideoAbort = this._handleVideoAbort.bind(this)
+		this._handleVideoError = this._handleVideoError.bind(this)
+		this._handleVideoStalled = this._handleVideoStalled.bind(this)
+		this._handleVideoLoadedMetadata = this._handleVideoLoadedMetadata.bind(this)
+		this._handleVideoLoadedData = this._handleVideoLoadedData.bind(this)
+		this._handleVideoCanPlay = this._handleVideoCanPlay.bind(this)
+		this._handleVideoCanPlayThrough = this._handleVideoCanPlayThrough.bind(this)
+		this._handleVideoPlaying = this._handleVideoPlaying.bind(this)
+		this._handleVideoWaiting = this._handleVideoWaiting.bind(this)
+		this._handleVideoPlay = this._handleVideoPlay.bind(this)
+		this._handleVideoTimeUpdate = this._handleVideoTimeUpdate.bind(this)
+		this._handleVideoPause = this._handleVideoPause.bind(this)
+		this._handleVideoEnded = this._handleVideoEnded.bind(this)
 
-		this._videoComponent = new VideoComponent().appendTo(this)
+		this._videoMaterial = VideoComponent.GenerateVideoMaterial(this.options.url, this.options.mimeType)
+		this._videoComponent = new VideoComponent(null, {
+			material: this._videoMaterial
+		}).appendTo(this)
+
+		this._backdropComponent = new CubeComponent().appendTo(this._videoComponent)
+		this._backdropComponent.addClass('backdrop-component')
+		this._backdropComponent.setName('BackdropComponent')
 
 		this._controlsComponent = new Component().appendTo(this)
 		this._controlsComponent.addClass('video-player-controls')
@@ -39,8 +65,88 @@ const VideoPlayerComponent = class extends Component {
 		this._pauseCube = new CubeComponent().appendTo(this._controlsComponent)
 		this._pauseCube.addClass('video-pause')
 		this._pauseCube.setName('VideoPause')
-
+		this._addEventListeners()
+		this._updateSlider()
 	}
+
+	get video(){ return this._videoComponent.video }
+
+	_updateSlider(){
+		if(this.video.currentTime === 0){
+			this._sliderComponent.valueFraction = 0
+			return
+		}
+		this._sliderComponent.valueFraction = Math.max(0, this.video.currentTime) / Math.max(1, this.video.duration, this.video.currentTime)
+	}
+
+	_addEventListeners(){
+		const video = this.video
+		video.crossOrigin = 'anonymous';
+		video.addEventListener('loadstart', this._handleVideoLoadStart, false);
+		video.addEventListener('abort', this._handleVideoAbort, false);
+		video.addEventListener('error', this._handleVideoError, false);
+		video.addEventListener('stalled', this._handleVideoStalled, false);
+		video.addEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false);
+		video.addEventListener('loadeddata', this._handleVideoLoadedData, false);
+		video.addEventListener('canplay', this._handleVideoCanPlay, false);
+		video.addEventListener('canplaythrough', this._handleVideoCanPlayThrough, false);
+		video.addEventListener('playing', this._handleVideoPlaying, false);
+		video.addEventListener('waiting', this._handleVideoWaiting, false);
+		video.addEventListener('play', this._handleVideoPlay, false);
+		video.addEventListener('timeupdate', this._handleVideoTimeUpdate, false);
+		video.addEventListener('pause', this._handleVideoPause, false);
+		video.addEventListener('ended', this._handleVideoEnded, false);
+	}
+
+	cleanup(){
+		const video = this.video
+		video.removeEventListener('loadstart', this._handleVideoLoadStart, false);
+		video.removeEventListener('abort', this._handleVideoAbort, false);
+		video.removeEventListener('error', this._handleVideoError, false);
+		video.removeEventListener('stalled', this._handleVideoStalled, false);
+		video.removeEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false);
+		video.removeEventListener('loadeddata', this._handleVideoLoadedData, false);
+		video.removeEventListener('canplay', this._handleVideoCanPlay, false);
+		video.removeEventListener('canplaythrough', this._handleVideoCanPlayThrough, false);
+		video.removeEventListener('playing', this._handleVideoPlaying, false);
+		video.removeEventListener('waiting', this._handleVideoWaiting, false);
+		video.removeEventListener('play', this._handleVideoPlay, false);
+		video.removeEventListener('timeupdate', this._handleVideoTimeUpdate, false);
+		video.removeEventListener('pause', this._handleVideoPause, false);
+		video.removeEventListener('ended', this._handleVideoEnded, false);
+	}
+
+	_handleVideoLoadStart(ev){}
+
+	_handleVideoAbort(ev){}
+
+	_handleVideoError(ev){
+		console.error('Error loading video', ev)
+	}
+
+	_handleVideoStalled(ev){}
+
+	_handleVideoLoadedMetadata(ev){}
+
+	_handleVideoLoadedData(ev){}
+
+	_handleVideoCanPlay(ev){}
+
+	_handleVideoCanPlayThrough(ev){}
+
+	_handleVideoPlaying(ev){}
+
+	_handleVideoWaiting(ev){}
+
+	_handleVideoPlay(ev){}
+
+	_handleVideoTimeUpdate(ev){
+		this._updateSlider()
+	}
+
+	_handleVideoPause(ev){}
+
+	_handleVideoEnded(ev){}
 }
 
 export default VideoPlayerComponent

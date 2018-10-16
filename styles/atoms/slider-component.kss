@@ -7,6 +7,6 @@ node.slider-component > .slider-handle {
 }
 
 node.slider-component > .slider-bar {
-	centroid: 0 -0.028 0;
+	centroid: 0 -0.03 0;
 	scale: 1 0.02 0.01;
 }
