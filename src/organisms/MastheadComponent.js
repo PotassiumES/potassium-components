@@ -23,7 +23,8 @@ const MastheadComponent = class extends Component {
 	/**
 	@param {DataObject} [dataObject]
 	@param {Object} options
-	@param {string or Component} options.brand
+	@param {string or Component} options.brand - the main title
+	@param {string} options.brandAnchor - an activation URL for the brand 
 	@param {Object[]} options.menuItems
 	@param {string} options.menuItems.name
 	@param {string} options.menuItems.anchor
@@ -34,6 +35,7 @@ const MastheadComponent = class extends Component {
 			Object.assign(
 				{
 					brand: null,
+					brandAnchor: null,
 					menuItems: []
 				},
 				options
@@ -47,6 +49,9 @@ const MastheadComponent = class extends Component {
 			const brandOptions = {}
 			if (typeof this.options.brand === 'string') {
 				brandOptions.text = this.options.brand
+			}
+			if(typeof this.options.brandAnchor === 'string'){
+				brandOptions.activationAnchor = this.options.brandAnchor
 			}
 			this._brand = new HeadingComponent(null, brandOptions)
 		}

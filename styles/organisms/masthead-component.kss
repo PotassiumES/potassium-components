@@ -1,39 +1,40 @@
 /*** MastheadComponent ***/
 
-.masthead-component {
+.dom.masthead-component {
 	display: block;
 	position: relative;
 }
 
-.masthead-component .heading-component {
+.dom.masthead-component .heading-component {
 	display: block;
+	margin-top: 0;
 	padding: var(--page-app-content-padding);
 	color: var(--dark-primary-color);
 	background-color: var(--light-secondary-color);
 }
 
-.masthead-component .menu-component {
+.dom.masthead-component .menu-component {
 	display: block;
 	padding: var(--page-app-content-padding) 0;
 }
 
-.masthead-component .menu-component > .component {
+.dom.masthead-component .menu-component > .component {
 	margin-left: var(--page-app-content-padding);
 	padding-bottom: 5px;
 }
 
-.masthead-component .menu-component > .component.selected {
+.dom.masthead-component .menu-component > .component.selected {
 	border-bottom: solid 5px var(--light-secondary-color);
 }
 
-.masthead-component .mode-switcher-component {
+.dom.masthead-component .mode-switcher-component {
 	display: none;
 	text-align: right;
 	margin: 3px var(--page-app-content-padding) var(--page-app-content-padding) 0;
 }
 
 @media (min-width: 576px){
-	.masthead-component .menu-component {
+	.dom.masthead-component .menu-component {
 		display: inline-block;
 		vertical-align: top;
 		position: absolute;
@@ -42,7 +43,7 @@
 		transform: translate(0, -50%);
 	}
 
-	.masthead-component .mode-switcher-component {
+	.dom.masthead-component .mode-switcher-component {
 		display: inherit;
 	}
 }

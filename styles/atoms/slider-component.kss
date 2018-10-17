@@ -1,6 +1,21 @@
 
 /* SliderComponent */
 
+.dom.slider-component > .slider-handle {
+	display: block;
+	width: 30px;
+	height: 45px;
+	background-color: #444;
+	position: relative; /* will change as the video position changes */
+}
+
+.dom.slider-component > .slider-bar {
+	margin-top: 5px;
+	display: block;
+	width: 100%;
+	height: 10px;
+	background-color: #444;
+}
 
 node.slider-component > .slider-handle {
 	scale: 0.05 0.05 0.01;

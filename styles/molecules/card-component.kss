@@ -1,19 +1,19 @@
 
 /*** CardComponent ***/
 
-.card-component {
+.dom.card-component {
 	background-color: var(--background-color);
 }
 
-.card-component .main,
-.card-component .heading-component,
-.card-component .label-component {
+.dom.card-component .main,
+.dom.card-component .heading-component,
+.dom.card-component .label-component {
 	padding-top: var(--inner-element-padding);
 	padding-left: var(--inner-element-padding);
 	padding-right: var(--inner-element-padding);
 }
 
-.card-component .main {
+.dom.card-component .main {
 	text-align: center;
 	width: calc(100% - (var(--inner-element-padding) * 2));
 	padding-bottom: var(--inner-element-padding);
@@ -21,17 +21,17 @@
 	max-height: 75vw;
 }
 
-.card-component .heading-component,
-.card-component .label-component {
+.dom.card-component .heading-component,
+.dom.card-component .label-component {
 	display: block;
 	background-color: var(--dark-secondary-color);
 }
 
-.card-component .heading-component {
+.dom.card-component .heading-component {
 	font-weight: var(--page-font-size-2);
 }
 
-.card-component .label-component {
+.dom.card-component .label-component {
 	font-weight: var(--base-page-font-size);
 	padding-bottom: var(--inner-element-padding);
 	min-height: 2em;

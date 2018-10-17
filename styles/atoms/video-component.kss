@@ -1,6 +1,10 @@
 
 /* VideoComponent */
 
+.dom.video-component > video {
+	max-width: 100%;
+}
+
 node.video-component > node[name=Cube] {
 	material-emissive: #000;
 }

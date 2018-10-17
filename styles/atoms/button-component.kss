@@ -2,10 +2,10 @@
 
 button.button-component {
 	cursor: pointer;
-	background-color: var(--primary-color);
-	padding: 5px;
-	border: solid 1px var(--dark-primary-color);
-	border-radius: 0;
+	background-color: #FFFFFF;
+	padding: 3px 15px;
+	border: solid 2px var(--dark-primary-color);
+	border-radius: 15px;
 }
 
 button.button-component:hover {

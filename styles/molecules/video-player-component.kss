@@ -1,4 +1,44 @@
 
+
+.dom.video-player-component > .backdrop-component {
+	width: 100%;
+	display: block;
+	background-color: #444;
+	text-align: center;
+}
+
+.dom.video-player-component > .backdrop-component > .video-component {
+	display: block;
+	max-width: 100%;
+}
+
+.dom.video-player-component > .video-player-controls {
+	margin-top: 10px;
+	display: grid;
+	gap: 10px;
+	grid-template: 60px / 1fr 1fr 5fr 1fr;
+
+}
+
+.dom.video-player-component > .video-player-controls > .video-start,
+.dom.video-player-component > .video-player-controls > .video-stop,
+.dom.video-player-component > .video-player-controls > .video-pause {
+	height: 100%;
+	width: 100%;
+}
+
+.dom.video-player-component > .video-player-controls > .video-start {
+	background-color: green;
+}
+
+.dom.video-player-component > .video-player-controls > .video-stop {
+	background-color: red;
+}
+
+.dom.video-player-component > .video-player-controls > .video-pause {
+	background-color: blue;
+}
+
 node.video-player-component {
 	display: grid;
 	grid-auto-flow: row;
@@ -6,7 +46,7 @@ node.video-player-component {
 	gap: 0.8cm;
 }
 
-node.video-player-component > .video-component > .backdrop-component > node[name=Cube] {
+node.video-player-component > .backdrop-component > .video-component > node[name=Cube] {
 	centroid-z: -0.03;
 	scale: 1.8377, 1.05, 0.01;
 	material-emissive: #111;

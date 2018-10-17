@@ -48,7 +48,7 @@
 	--kelp:			#04322e;
 
 	/* color scheme */
-	--background-color: var(--light-blue);
+	--background-color: #FFFFFF;
 
 	--light-primary-color:	var(--light-pink);
 	--primary-color:		var(--pink);

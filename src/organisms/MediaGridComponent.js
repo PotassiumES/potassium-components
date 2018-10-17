@@ -1,10 +1,9 @@
 import el from 'potassium-es/src/El'
 import graph from 'potassium-es/src/Graph'
-
 import Component from 'potassium-es/src/Component'
-import CollectionComponent from 'potassium-es/src/CollectionComponent'
 
 import CardComponent from 'potassium-components/src/molecules/CardComponent'
+import CollectionComponent from './CollectionComponent.js'
 
 /**
 MediaGridComponent shows a CSS grid of {@link CardComponent}s like images, videos, audio tracks, etc.

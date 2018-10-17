@@ -12,11 +12,15 @@ const VideoComponent = class extends CubeComponent {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options={}]
-	@param {number} [options.height=1] the intial height of the video cube
+	@param {number} [options.height=1] the initial height of the video cube
+	@param {HTMLElemen} [options.videoEl] - an HTML `video` element to use as a source
 	*/
 	constructor(dataObject = null, options = {}) {
 		if(typeof options.material === 'undefined'){
-			options.material = VideoComponent.GenerateVideoMaterial()
+			if(typeof options.videoEl === 'undefined'){
+				options.videoEl = el.video(el.source())
+			}
+			options.material = VideoComponent.GenerateVideoMaterial(options.videoEl)
 		}
 		super(dataObject, Object.assign({
 			height: 1 // meter
@@ -24,7 +28,10 @@ const VideoComponent = class extends CubeComponent {
 		this.addClass('video-component')
 		this.setName('VideoComponent')
 		this._handleVideoCanPlay = this._handleVideoCanPlay.bind(this)
+
 		this.video.addEventListener('canplay', this._handleVideoCanPlay, false);
+
+		this.flatEl.appendChild(this.video)
 
 		this._height = this.options.height
 		this._width = null
@@ -39,6 +46,17 @@ const VideoComponent = class extends CubeComponent {
 	}
 
 	get video(){ return this.options.material.map.image }
+
+	/**
+	@param {string} url - the relative or full URL to the video
+	@param {string} mimeType - a mime type like 'video/mp4'
+	*/
+	setSourceAttributes(url, mimeType){
+		const source = this.video.children[0]
+		source.setAttribute('type', mimeType)
+		source.setAttribute('src', url)
+		this.video.load()
+	}
 
 	_handleVideoCanPlay(ev){
 		const videoWidth = this.video.videoWidth
@@ -63,12 +81,8 @@ const VideoComponent = class extends CubeComponent {
 		this.immersiveCube.scale.set(width, height, depth)
 	}
 
-	static GenerateVideoMaterial(url=null, mimeType=null){
-		const video = el.video(el.source({
-			src: url,
-			type: mimeType
-		}))
-		const videoTexture = new THREE.VideoTexture(video)
+	static GenerateVideoMaterial(videoEl){
+		const videoTexture = new THREE.VideoTexture(videoEl)
 		videoTexture.minFilter = THREE.NearestFilter
 		videoTexture.magFilter = THREE.LinearFilter
 		videoTexture.format = THREE.RGBFormat

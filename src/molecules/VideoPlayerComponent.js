@@ -14,13 +14,13 @@ const VideoPlayerComponent = class extends Component {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
-	@param {string} [options.url=null] - a URL to a video
-	@param {string} [options.mimeType=null] - the MIME type for the video, like 'video/mp4'
+	@param {string} [options.url=''] - a URL to a video
+	@param {string} [options.mimeType=''] - the MIME type for the video, like 'video/mp4'
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, Object.assign({
-			url: null,
-			mimeType: null
+			url: '',
+			mimeType: ''
 		}, options))
 		this.addClass('video-player-component')
 		this.setName('VideoPlayerComponent')
@@ -39,14 +39,19 @@ const VideoPlayerComponent = class extends Component {
 		this._handleVideoPause = this._handleVideoPause.bind(this)
 		this._handleVideoEnded = this._handleVideoEnded.bind(this)
 
-		this._videoMaterial = VideoComponent.GenerateVideoMaterial(this.options.url, this.options.mimeType)
-		this._videoComponent = new VideoComponent(null, {
-			material: this._videoMaterial
-		}).appendTo(this)
-
-		this._backdropComponent = new CubeComponent().appendTo(this._videoComponent)
+		this._backdropComponent = new CubeComponent().appendTo(this)
 		this._backdropComponent.addClass('backdrop-component')
 		this._backdropComponent.setName('BackdropComponent')
+
+		this._sourceEl = el.source({
+			src: this.options.url,
+			type: this.options.mimeType
+		})
+		this._videoEl = el.video(this._sourceEl)
+
+		this._videoComponent = new VideoComponent(null, {
+			videoEl: this._videoEl
+		}).appendTo(this._backdropComponent)
 
 		this._controlsComponent = new Component().appendTo(this)
 		this._controlsComponent.addClass('video-player-controls')
@@ -55,10 +60,20 @@ const VideoPlayerComponent = class extends Component {
 		this._startCube = new CubeComponent().appendTo(this._controlsComponent)
 		this._startCube.addClass('video-start')
 		this._startCube.setName('VideoStart')
+		this._startCube.addListener((eventName, actionName, value, actionParameters) => {
+			if(actionName === '/action/activate'){
+				this.video.play()
+			}
+		}, Component.ActionEvent)
 
 		this._stopCube = new CubeComponent().appendTo(this._controlsComponent)
 		this._stopCube.addClass('video-stop')
 		this._stopCube.setName('VideoStop')
+		this._stopCube.addListener((eventName, actionName, value, actionParameters) => {
+			if(actionName === '/action/activate'){
+				this.video.pause()
+			}
+		}, Component.ActionEvent)
 
 		this._sliderComponent = new SliderComponent().appendTo(this._controlsComponent)
 
@@ -69,7 +84,15 @@ const VideoPlayerComponent = class extends Component {
 		this._updateSlider()
 	}
 
-	get video(){ return this._videoComponent.video }
+	get video(){ return this._videoEl }
+
+	/**
+	@param {string} url - the relative or full URL to the video
+	@param {string} mimeType - a mime type like 'video/mp4'
+	*/
+	setVideoSource(url, mimeType){
+		this._videoComponent.setSourceAttributes(url, mimeType)
+	}
 
 	_updateSlider(){
 		if(this.video.currentTime === 0){
@@ -120,9 +143,7 @@ const VideoPlayerComponent = class extends Component {
 
 	_handleVideoAbort(ev){}
 
-	_handleVideoError(ev){
-		console.error('Error loading video', ev)
-	}
+	_handleVideoError(ev){}
 
 	_handleVideoStalled(ev){}
 
