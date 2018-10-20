@@ -15,6 +15,8 @@ const MenuComponent = class extends Component {
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('menu-component')
+		this.setName('MenuComponent')
+
 		this._selectedIndex = -1
 		this._menuItems = []
 	}

@@ -42,6 +42,12 @@ const MastheadComponent = class extends Component {
 			)
 		)
 		this.addClass('masthead-component')
+		this.setName('MastheadComponent')
+
+		this._modeSwitcherComponent = new ModeSwitcherComponent().appendTo(this)
+		this._modeSwitcherComponent.addListener((eventName, mode) => {
+			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
+		}, ModeSwitcherComponent.ModeChangedEvent)
 
 		if (this.options.brand instanceof Component) {
 			this._brand = this.options.brand
@@ -50,25 +56,16 @@ const MastheadComponent = class extends Component {
 			if (typeof this.options.brand === 'string') {
 				brandOptions.text = this.options.brand
 			}
-			if(typeof this.options.brandAnchor === 'string'){
+			if (typeof this.options.brandAnchor === 'string') {
 				brandOptions.activationAnchor = this.options.brandAnchor
 			}
 			this._brand = new HeadingComponent(null, brandOptions)
 		}
+		this._brand.addClass('brand-component')
+		this._brand.setName('BrandComponent')
 		this.appendComponent(this._brand)
 
-		this._modeSwitcherComponent = new ModeSwitcherComponent()
-		this.appendComponent(this._modeSwitcherComponent)
-		this._modeSwitcherComponent.immersiveGraph.position.set(-1, 0, 0)
-		this.appendComponent(this._modeSwitcherComponent)
-		this._modeSwitcherComponent.addListener((eventName, mode) => {
-			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
-		}, ModeSwitcherComponent.ModeChangedEvent)
-
-		this._navigationMenu = new MenuComponent()
-		this._navigationMenu.portalGraph.position.set(2, 0, 0)
-		this._navigationMenu.immersiveGraph.position.set(2, 0, 0)
-		this.appendComponent(this._navigationMenu)
+		this._navigationMenu = new MenuComponent().appendTo(this)
 		if (this.options.menuItems) {
 			for (const item of this.options.menuItems) {
 				this._navigationMenu.appendMenuItem(

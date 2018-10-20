@@ -28,25 +28,28 @@ const ButtonComponent = class extends Component {
 			)
 		)
 		this.addClass('button-component')
-		this.portalGraph.name = this.immersiveGraph.name = 'ButtonComponent'
+		this.setName('ButtonComponent')
 
 		this._text = ''
 
-		const textMaterial = graph.meshLambertMaterial({
+		const textMaterial = this.usesSpatial ? graph.meshLambertMaterial({
 			color: this.options.textColor
-		})
-
-
-		this._portalText = this.options.usesPortalSpatial ? graph.text('', textMaterial, null, {
-			size: this.options.textSize
 		}) : null
 
-		this._immersiveText = this.options.usesImmersive ? graph.text('', textMaterial, null, {
-			size: this.options.textSize
-		}) : null
+		this._portalText = this.options.usesPortalSpatial
+			? graph.text('', textMaterial, null, {
+					size: this.options.textSize
+			  })
+			: null
+
+		this._immersiveText = this.options.usesImmersive
+			? graph.text('', textMaterial, null, {
+					size: this.options.textSize
+			  })
+			: null
 
 		if (!this.options.portalGraph) {
-			if(this.options.usesPortalSpatial){
+			if (this.options.usesPortalSpatial) {
 				this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 				this._portalButtonObj.name = 'Bracket'
 				this.portalGraph.add(this._portalButtonObj)
@@ -57,7 +60,7 @@ const ButtonComponent = class extends Component {
 		}
 
 		if (!this.options.immersiveGraph) {
-			if(this.options.usesImmersive){
+			if (this.options.usesImmersive) {
 				this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
 				this._immersiveButtonObj.name = 'Bracket'
 				this.immersiveGraph.add(this._immersiveButtonObj)
@@ -99,8 +102,8 @@ const ButtonComponent = class extends Component {
 		this._text = value
 		this.flatEl.innerHTML = this._text
 		this.portalEl.innerHTML = this._text
-		if(this._portalText) this._portalText.setText(this._text)
-		if(this._immersiveText) this._immersiveText.setText(this._text)
+		if (this._portalText) this._portalText.setText(this._text)
+		if (this._immersiveText) this._immersiveText.setText(this._text)
 	}
 }
 ButtonComponent.ChangedEvent = 'button-changed'

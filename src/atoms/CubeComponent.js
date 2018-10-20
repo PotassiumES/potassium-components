@@ -3,7 +3,6 @@ import graph from 'potassium-es/src/Graph'
 
 import Component from 'potassium-es/src/Component'
 
-
 /**
 CubeComponent is mostly used as a base class for Components that are some sort of cube.
 
@@ -20,22 +19,22 @@ const CubeComponent = class extends Component {
 	constructor(dataObject = null, options = {}) {
 		super(
 			dataObject,
-			Object.assign({
-				size: [1, 1, 1], // in meters
-				material: null
-			}, options)
+			Object.assign(
+				{
+					size: [1, 1, 1], // in meters
+					material: null
+				},
+				options
+			)
 		)
 		this.addClass('cube-component')
 		this.setName('CubeComponent')
-		if(
-			(this.options.usesPortalSpatial || this.options.usesImmersive)
-			&& !this.options.material
-		) {
-			this.options.material = new THREE.MeshLambertMaterial({ color: 0xAAAAAA })
+		if (this.usesSpatial && this.options.material === null) {
+			this.options.material = new THREE.MeshLambertMaterial({ color: 0xaaaaaa })
 		}
 
-		if(this.options.usesPortalSpatial){
-			this._portalCube =  new THREE.Mesh(_sharedGeometry, this.options.material)
+		if (this.options.usesPortalSpatial) {
+			this._portalCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._portalCube.addClass('cube')
 			this._portalCube.name = 'Cube'
 			this._portalCube.appendTo(this.portalGraph)
@@ -43,8 +42,8 @@ const CubeComponent = class extends Component {
 			this._portalCube = null
 		}
 
-		if(this.options.usesImmersive){
-			this._immersiveCube =  new THREE.Mesh(_sharedGeometry, this.options.material)
+		if (this.options.usesImmersive) {
+			this._immersiveCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._immersiveCube.addClass('cube')
 			this._immersiveCube.name = 'Cube'
 			this._immersiveCube.appendTo(this.immersiveGraph)
@@ -53,9 +52,20 @@ const CubeComponent = class extends Component {
 		}
 	}
 
-	/** @type {BoxBufferedGeometry?} */
-	get portalCube(){ return this._portalCube }
-	get immersiveCube(){ return this._immersiveCube }
+	/** @type {THREE.BoxBufferedGeometry?} */
+	get portalCube() {
+		return this._portalCube
+	}
+
+	/** @type {THREE.BoxBufferedGeometry?} */
+	get immersiveCube() {
+		return this._immersiveCube
+	}
+
+	/** @type {THREE.Material?} */
+	get material(){
+		return this.options.material
+	}
 }
 
 // All CubeComponents share a BoxBufferGeometry and are scaled using KSS

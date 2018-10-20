@@ -5,6 +5,8 @@ import CubeComponent from './CubeComponent.js'
 
 const _textureLoader = new THREE.TextureLoader()
 
+const _blankTexture = _textureLoader.load('/static/potassium-components/images/blank2x2.png')
+
 /**
 ImageComponent handles the display of a single image.
 */
@@ -65,8 +67,9 @@ const ImageComponent = class extends CubeComponent {
 		this._imageURL = value
 		this._flatImg.src = this._imageURL
 		this._portalImg.src = this._imageURL
-		if(this.usesSpatial){
-			console.log('need to set the spatial material to a new image')
+		if (this.usesSpatial) {
+			this.material.map = _textureLoader.load(this._imageURL)
+			this.material.needsUpdate = true
 		}
 	}
 
@@ -75,13 +78,9 @@ const ImageComponent = class extends CubeComponent {
 		this.imageURL = this.dataObject.get(this.options.imageField) || ''
 	}
 
-	static GenerateCubeMaterial(url){
-		const texture = _textureLoader.load(
-			url ? url : '/static/potassium-components/images/blank2x2.png'
-		)
+	static GenerateCubeMaterial(url) {
 		return new graph.meshLambertMaterial({
-			color: 0xF99,
-			map: texture
+			map: url ? _textureLoader.load(url) : _blankTexture
 		})
 	}
 }

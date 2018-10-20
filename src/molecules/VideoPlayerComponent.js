@@ -18,10 +18,16 @@ const VideoPlayerComponent = class extends Component {
 	@param {string} [options.mimeType=''] - the MIME type for the video, like 'video/mp4'
 	*/
 	constructor(dataObject = null, options = {}) {
-		super(dataObject, Object.assign({
-			url: '',
-			mimeType: ''
-		}, options))
+		super(
+			dataObject,
+			Object.assign(
+				{
+					url: '',
+					mimeType: ''
+				},
+				options
+			)
+		)
 		this.addClass('video-player-component')
 		this.setName('VideoPlayerComponent')
 		this._handleVideoLoadStart = this._handleVideoLoadStart.bind(this)
@@ -61,7 +67,7 @@ const VideoPlayerComponent = class extends Component {
 		this._startCube.addClass('video-start')
 		this._startCube.setName('VideoStart')
 		this._startCube.addListener((eventName, actionName, value, actionParameters) => {
-			if(actionName === '/action/activate'){
+			if (actionName === '/action/activate') {
 				this.video.play()
 			}
 		}, Component.ActionEvent)
@@ -70,7 +76,7 @@ const VideoPlayerComponent = class extends Component {
 		this._stopCube.addClass('video-stop')
 		this._stopCube.setName('VideoStop')
 		this._stopCube.addListener((eventName, actionName, value, actionParameters) => {
-			if(actionName === '/action/activate'){
+			if (actionName === '/action/activate') {
 				this.video.pause()
 			}
 		}, Component.ActionEvent)
@@ -84,90 +90,93 @@ const VideoPlayerComponent = class extends Component {
 		this._updateSlider()
 	}
 
-	get video(){ return this._videoEl }
+	get video() {
+		return this._videoEl
+	}
 
 	/**
 	@param {string} url - the relative or full URL to the video
 	@param {string} mimeType - a mime type like 'video/mp4'
 	*/
-	setVideoSource(url, mimeType){
+	setVideoSource(url, mimeType) {
 		this._videoComponent.setSourceAttributes(url, mimeType)
 	}
 
-	_updateSlider(){
-		if(this.video.currentTime === 0){
+	_updateSlider() {
+		if (this.video.currentTime === 0) {
 			this._sliderComponent.valueFraction = 0
 			return
 		}
-		this._sliderComponent.valueFraction = Math.max(0, this.video.currentTime) / Math.max(1, this.video.duration, this.video.currentTime)
+		this._sliderComponent.valueFraction =
+			Math.max(0, this.video.currentTime) / Math.max(1, this.video.duration, this.video.currentTime)
 	}
 
-	_addEventListeners(){
+	_addEventListeners() {
 		const video = this.video
-		video.crossOrigin = 'anonymous';
-		video.addEventListener('loadstart', this._handleVideoLoadStart, false);
-		video.addEventListener('abort', this._handleVideoAbort, false);
-		video.addEventListener('error', this._handleVideoError, false);
-		video.addEventListener('stalled', this._handleVideoStalled, false);
-		video.addEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false);
-		video.addEventListener('loadeddata', this._handleVideoLoadedData, false);
-		video.addEventListener('canplay', this._handleVideoCanPlay, false);
-		video.addEventListener('canplaythrough', this._handleVideoCanPlayThrough, false);
-		video.addEventListener('playing', this._handleVideoPlaying, false);
-		video.addEventListener('waiting', this._handleVideoWaiting, false);
-		video.addEventListener('play', this._handleVideoPlay, false);
-		video.addEventListener('timeupdate', this._handleVideoTimeUpdate, false);
-		video.addEventListener('pause', this._handleVideoPause, false);
-		video.addEventListener('ended', this._handleVideoEnded, false);
+		video.crossOrigin = 'anonymous'
+		video.addEventListener('loadstart', this._handleVideoLoadStart, false)
+		video.addEventListener('abort', this._handleVideoAbort, false)
+		video.addEventListener('error', this._handleVideoError, false)
+		video.addEventListener('stalled', this._handleVideoStalled, false)
+		video.addEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false)
+		video.addEventListener('loadeddata', this._handleVideoLoadedData, false)
+		video.addEventListener('canplay', this._handleVideoCanPlay, false)
+		video.addEventListener('canplaythrough', this._handleVideoCanPlayThrough, false)
+		video.addEventListener('playing', this._handleVideoPlaying, false)
+		video.addEventListener('waiting', this._handleVideoWaiting, false)
+		video.addEventListener('play', this._handleVideoPlay, false)
+		video.addEventListener('timeupdate', this._handleVideoTimeUpdate, false)
+		video.addEventListener('pause', this._handleVideoPause, false)
+		video.addEventListener('ended', this._handleVideoEnded, false)
 	}
 
-	cleanup(){
+	cleanup() {
 		const video = this.video
-		video.removeEventListener('loadstart', this._handleVideoLoadStart, false);
-		video.removeEventListener('abort', this._handleVideoAbort, false);
-		video.removeEventListener('error', this._handleVideoError, false);
-		video.removeEventListener('stalled', this._handleVideoStalled, false);
-		video.removeEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false);
-		video.removeEventListener('loadeddata', this._handleVideoLoadedData, false);
-		video.removeEventListener('canplay', this._handleVideoCanPlay, false);
-		video.removeEventListener('canplaythrough', this._handleVideoCanPlayThrough, false);
-		video.removeEventListener('playing', this._handleVideoPlaying, false);
-		video.removeEventListener('waiting', this._handleVideoWaiting, false);
-		video.removeEventListener('play', this._handleVideoPlay, false);
-		video.removeEventListener('timeupdate', this._handleVideoTimeUpdate, false);
-		video.removeEventListener('pause', this._handleVideoPause, false);
-		video.removeEventListener('ended', this._handleVideoEnded, false);
+		video.removeEventListener('loadstart', this._handleVideoLoadStart, false)
+		video.removeEventListener('abort', this._handleVideoAbort, false)
+		video.removeEventListener('error', this._handleVideoError, false)
+		video.removeEventListener('stalled', this._handleVideoStalled, false)
+		video.removeEventListener('loadedmetadata', this._handleVideoLoadedMetadata, false)
+		video.removeEventListener('loadeddata', this._handleVideoLoadedData, false)
+		video.removeEventListener('canplay', this._handleVideoCanPlay, false)
+		video.removeEventListener('canplaythrough', this._handleVideoCanPlayThrough, false)
+		video.removeEventListener('playing', this._handleVideoPlaying, false)
+		video.removeEventListener('waiting', this._handleVideoWaiting, false)
+		video.removeEventListener('play', this._handleVideoPlay, false)
+		video.removeEventListener('timeupdate', this._handleVideoTimeUpdate, false)
+		video.removeEventListener('pause', this._handleVideoPause, false)
+		video.removeEventListener('ended', this._handleVideoEnded, false)
 	}
 
-	_handleVideoLoadStart(ev){}
+	_handleVideoLoadStart(ev) {}
 
-	_handleVideoAbort(ev){}
+	_handleVideoAbort(ev) {}
 
-	_handleVideoError(ev){}
+	_handleVideoError(ev) {}
 
-	_handleVideoStalled(ev){}
+	_handleVideoStalled(ev) {}
 
-	_handleVideoLoadedMetadata(ev){}
+	_handleVideoLoadedMetadata(ev) {}
 
-	_handleVideoLoadedData(ev){}
+	_handleVideoLoadedData(ev) {}
 
-	_handleVideoCanPlay(ev){}
+	_handleVideoCanPlay(ev) {}
 
-	_handleVideoCanPlayThrough(ev){}
+	_handleVideoCanPlayThrough(ev) {}
 
-	_handleVideoPlaying(ev){}
+	_handleVideoPlaying(ev) {}
 
-	_handleVideoWaiting(ev){}
+	_handleVideoWaiting(ev) {}
 
-	_handleVideoPlay(ev){}
+	_handleVideoPlay(ev) {}
 
-	_handleVideoTimeUpdate(ev){
+	_handleVideoTimeUpdate(ev) {
 		this._updateSlider()
 	}
 
-	_handleVideoPause(ev){}
+	_handleVideoPause(ev) {}
 
-	_handleVideoEnded(ev){}
+	_handleVideoEnded(ev) {}
 }
 
 export default VideoPlayerComponent

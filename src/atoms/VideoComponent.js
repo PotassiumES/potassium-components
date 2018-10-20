@@ -16,20 +16,26 @@ const VideoComponent = class extends CubeComponent {
 	@param {HTMLElemen} [options.videoEl] - an HTML `video` element to use as a source
 	*/
 	constructor(dataObject = null, options = {}) {
-		if(typeof options.material === 'undefined'){
-			if(typeof options.videoEl === 'undefined'){
+		if (typeof options.material === 'undefined') {
+			if (typeof options.videoEl === 'undefined') {
 				options.videoEl = el.video(el.source())
 			}
 			options.material = VideoComponent.GenerateVideoMaterial(options.videoEl)
 		}
-		super(dataObject, Object.assign({
-			height: 1 // meter
-		}, options))
+		super(
+			dataObject,
+			Object.assign(
+				{
+					height: 1 // meter
+				},
+				options
+			)
+		)
 		this.addClass('video-component')
 		this.setName('VideoComponent')
 		this._handleVideoCanPlay = this._handleVideoCanPlay.bind(this)
 
-		this.video.addEventListener('canplay', this._handleVideoCanPlay, false);
+		this.video.addEventListener('canplay', this._handleVideoCanPlay, false)
 
 		this.flatEl.appendChild(this.video)
 
@@ -40,54 +46,56 @@ const VideoComponent = class extends CubeComponent {
 		this.resize(this.options.height, VideoComponent.RATIO_16x9)
 	}
 
-	cleanup(){
+	cleanup() {
 		const video = this.video
-		video.removeEventListener('canplay', this._handleVideoCanPlay, false);
+		video.removeEventListener('canplay', this._handleVideoCanPlay, false)
 	}
 
-	get video(){ return this.options.material.map.image }
+	get video() {
+		return this.options.material.map.image
+	}
 
 	/**
 	@param {string} url - the relative or full URL to the video
 	@param {string} mimeType - a mime type like 'video/mp4'
 	*/
-	setSourceAttributes(url, mimeType){
+	setSourceAttributes(url, mimeType) {
 		const source = this.video.children[0]
 		source.setAttribute('type', mimeType)
 		source.setAttribute('src', url)
 		this.video.load()
 	}
 
-	_handleVideoCanPlay(ev){
+	_handleVideoCanPlay(ev) {
 		const videoWidth = this.video.videoWidth
 		const videoHeight = this.video.videoHeight
-		if(videoWidth <= 0 || videoHeight <= 0){
+		if (videoWidth <= 0 || videoHeight <= 0) {
 			console.error('Could not read the video dimensions', ev)
 			return
 		}
 		this.resize(this._height, videoWidth / videoHeight)
 	}
 
-	resize(height, ratio){
+	resize(height, ratio) {
 		this._height = height
 		this._width = height * ratio
 		this._ratio = ratio
 		this._depth = 0.001
-		this.setCubeSize(this._width, this._height , this._depth)
+		this.setCubeSize(this._width, this._height, this._depth)
 	}
 
-	setCubeSize(width, height, depth){
-		if(this.portalCube) this.portalCube.scale.set(width, height, depth)
-		if(this.immersiveCube) this.immersiveCube.scale.set(width, height, depth)
+	setCubeSize(width, height, depth) {
+		if (this.portalCube) this.portalCube.scale.set(width, height, depth)
+		if (this.immersiveCube) this.immersiveCube.scale.set(width, height, depth)
 	}
 
-	static GenerateVideoMaterial(videoEl){
+	static GenerateVideoMaterial(videoEl) {
 		const videoTexture = new THREE.VideoTexture(videoEl)
 		videoTexture.minFilter = THREE.NearestFilter
 		videoTexture.magFilter = THREE.LinearFilter
 		videoTexture.format = THREE.RGBFormat
 		return new THREE.MeshLambertMaterial({
-			color: 0xAAAAAA,
+			color: 0xaaaaaa,
 			map: videoTexture
 		})
 	}

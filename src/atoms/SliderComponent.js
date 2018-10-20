@@ -41,12 +41,14 @@ const SliderComponent = class extends Component {
 	}
 
 	/** @type {number} the current value */
-	get value(){ return this._value }
+	get value() {
+		return this._value
+	}
 
 	/**
 	@param {number} val - a number to set the slider value which will be clamped in the minValue and maxValue inclusive range
 	*/
-	set value(val){
+	set value(val) {
 		this._value = Math.min(this._maxValue, Math.max(this._minValue, val))
 		this._updateHandlePosition()
 	}
@@ -54,41 +56,47 @@ const SliderComponent = class extends Component {
 	/**
 	@return {number} The fraction between 0 and 1 inclusive that the current value is between the minValue and maxValue
 	*/
-	get valueFraction(){ return this._value / (this._maxValue - this._minValue) }
+	get valueFraction() {
+		return this._value / (this._maxValue - this._minValue)
+	}
 
 	/**
 	@param {number} fraction - a number between 0 and 1
 	*/
-	set valueFraction(fraction){
+	set valueFraction(fraction) {
 		fraction = Math.min(1, Math.max(0, fraction))
-		this.value = this._minValue + ((this._maxValue - this._minValue) * fraction)
+		this.value = this._minValue + (this._maxValue - this._minValue) * fraction
 	}
 
-	get minValue(){ return this._minValue }
-	get maxValue(){ return this._maxValue }
+	get minValue() {
+		return this._minValue
+	}
+	get maxValue() {
+		return this._maxValue
+	}
 
-	_calculatePositions(){
-		this._handleXStart = (this._barWidth / -2) + (this._handleWidth / 2)
+	_calculatePositions() {
+		this._handleXStart = this._barWidth / -2 + this._handleWidth / 2
 		this._handleXEnd = this._handleXStart * -1
 	}
 
-	_updateFlatHandlePosition(barEl, handleEl){
+	_updateFlatHandlePosition(barEl, handleEl) {
 		const barWidth = barEl.clientWidth
 		const handleWidth = handleEl.clientWidth
-		if(barWidth === 0 || handleWidth === 0) return // Not on the page yet
+		if (barWidth === 0 || handleWidth === 0) return // Not on the page yet
 		const startX = 0
 		const endX = barWidth - handleWidth
-		const x = startX + ((endX - startX) * this.valueFraction)
+		const x = startX + (endX - startX) * this.valueFraction
 		handleEl.style['left'] = `${x}px`
 	}
 
-	_updateHandlePosition(){
+	_updateHandlePosition() {
 		this._updateFlatHandlePosition(this._barComponent.flatEl, this._handleComponent.flatEl)
 		this._updateFlatHandlePosition(this._barComponent.portalEl, this._handleComponent.portalEl)
 
 		// set graph positions
 		const newPosition = [
-			this._handleXStart + ((this._handleXEnd - this._handleXStart) * this.valueFraction),
+			this._handleXStart + (this._handleXEnd - this._handleXStart) * this.valueFraction,
 			this._handleY,
 			0
 		]
