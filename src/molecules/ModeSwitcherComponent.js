@@ -20,7 +20,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('mode-switcher-component')
-		this._portalGraph.name = this._immersiveGraph.name = 'ModeSwitcherComponent'
+		this.setName('ModeSwitcherComponent')
 		this._handleDisplayUpdate = this._handleDisplayUpdate.bind(this)
 
 		this._displayModeTracker = DisplayModeTracker.Singleton
@@ -29,9 +29,11 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._attemptingMode = null
 
 		// Exit button appears in portalEl and immersiveGraph
-		this._exitButton = new ButtonComponent(null, { text: lt('Exit') })
-		this._exitButton.flatEl.style.display = 'none'
-		this._exitButton.portalGraph.visible = false
+		this._exitButton = new ButtonComponent(null, {
+			text: lt('Exit'),
+			usesFlat: false,
+			usesPortalSpatial: false
+		})
 		this._exitButton.addListener((eventName, value) => {
 			if (!value) return
 			this.trigger(ModeSwitcherComponent.ModeChangedEvent, App.FLAT)
@@ -39,10 +41,12 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._exitButton)
 
 		// Portal button appears only in flatEl
-		this._portalButton = new ButtonComponent(null, { text: lt('Portal') })
-		this._portalButton.portalEl.style.display = 'none'
-		this._portalButton.portalGraph.visible = false
-		this._portalButton.immersiveGraph.visible = false
+		this._portalButton = new ButtonComponent(null, {
+			text: lt('Portal'),
+			usesPortalOverlay: false,
+			usesPortalSpatial: false,
+			usesImmersive: false
+		})
 		this._portalButton.addListener((eventName, value) => {
 			if (!value) return
 			this._attemptingMode = App.PORTAL
@@ -51,10 +55,12 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._portalButton)
 
 		// Immersive button appears only in flatEl
-		this._immersiveButton = new ButtonComponent(null, { text: lt('Immersive') })
-		this._immersiveButton.portalEl.style.display = 'none'
-		this._immersiveButton.portalGraph.visible = false
-		this._immersiveButton.immersiveGraph.visible = false
+		this._immersiveButton = new ButtonComponent(null, {
+			text: lt('Immersive'),
+			usesPortalOverlay: false,
+			usesPortalOverlay: false,
+			usesImmersive: false
+		})
 		this._immersiveButton.addListener((eventName, value) => {
 			if (!value) return
 			this._attemptingMode = App.IMMERSIVE
@@ -63,7 +69,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._immersiveButton)
 
 		this._switchModal = el.div({ class: 'switch-modal modal' })
-		el.button('go')
+		el.button('enter')
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()

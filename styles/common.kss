@@ -4,6 +4,7 @@
 	/* layout */
 	--page-app-content-padding: 20px;
 	--inner-element-padding: calc(var(--page-app-content-padding) / 2);
+	--inner-section-margin: calc(var(--page-app-content-padding) * 1.2);
 
 	/* text */
 	--base-font: sans-serif;
@@ -120,13 +121,36 @@ h5 { font-size: var(--page-font-size-1); }
 
 h1, h2 { font-weight: var(--font-weight-2); }
 
-.flat-root .modal,
-.portal-root .modal {
+div.modal {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 1000;
+	padding: 20px;
+	background-color: var(--background-color);
+	border: solid 2px var(--dark-primary-color);
+}
+
+div.modal > button {
+	cursor: pointer;
+	background-color: #FFFFFF;
+	padding: 3px 15px;
+	border: solid 2px var(--dark-primary-color);
+	border-radius: 15px;
+	margin: 5px;
+}
+
+div.modal > button:hover {
+	background-color: var(--secondary-color);
+}
+
+div.modal > button:active {
+	background-color: var(--light-secondary-color);
+}
+
+div.modal > button.selected {
+	background-color: var(--light-secondary-color);
 }
 
 /*** Component ***/

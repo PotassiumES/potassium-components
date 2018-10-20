@@ -54,8 +54,7 @@ const TextInputComponent = class extends Component {
 		this._portalCursor.position.set(0.04, 0.04, 0)
 		this.portalGraph.add(this._portalCursor)
 		this._portalText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
-			size: 0.12,
-			height: 0.01
+			size: 0.12
 		})
 		this._portalText.position.set(0.05, 0.05, 0)
 		this.portalGraph.add(this._portalText)
@@ -67,8 +66,7 @@ const TextInputComponent = class extends Component {
 		this._immersiveCursor.position.set(0.04, 0.04, 0)
 		this.immersiveGraph.add(this._immersiveCursor)
 		this._immersiveText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
-			size: 0.12,
-			height: 0.01
+			size: 0.12
 		})
 		this._immersiveText.position.set(0.05, 0.05, 0)
 		this.immersiveGraph.add(this._immersiveText)

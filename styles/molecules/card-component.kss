@@ -5,7 +5,7 @@
 	background-color: var(--background-color);
 }
 
-.dom.card-component .main,
+.dom.card-component .main-component,
 .dom.card-component .heading-component,
 .dom.card-component .label-component {
 	padding-top: var(--inner-element-padding);
@@ -13,7 +13,7 @@
 	padding-right: var(--inner-element-padding);
 }
 
-.dom.card-component .main {
+.dom.card-component .main-component {
 	text-align: center;
 	width: calc(100% - (var(--inner-element-padding) * 2));
 	padding-bottom: var(--inner-element-padding);

@@ -77,8 +77,8 @@ const VideoComponent = class extends CubeComponent {
 	}
 
 	setCubeSize(width, height, depth){
-		this.portalCube.scale.set(width, height, depth)
-		this.immersiveCube.scale.set(width, height, depth)
+		if(this.portalCube) this.portalCube.scale.set(width, height, depth)
+		if(this.immersiveCube) this.immersiveCube.scale.set(width, height, depth)
 	}
 
 	static GenerateVideoMaterial(videoEl){

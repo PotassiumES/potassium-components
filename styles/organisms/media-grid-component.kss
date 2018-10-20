@@ -42,3 +42,9 @@
 		width: calc(25% - var(--inner-element-padding));
 	}
 }
+
+.som.media-grid-component > .som.collection-component {
+	display: grid;
+	grid-template: 0.5m / 0.5m;
+	grid-auto-rows: 0.5m;
+}

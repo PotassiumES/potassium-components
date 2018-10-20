@@ -18,7 +18,6 @@ const TextComponent = class extends Component {
 			Object.assign(
 				{
 					textSize: 0.08,
-					textHeight: 0.01,
 					textColor: 0x444444
 				},
 				options
@@ -34,14 +33,12 @@ const TextComponent = class extends Component {
 		})
 
 		this._portalText = graph.text(this._text, this._textMaterial, null, {
-			size: this.options.textSize,
-			height: this.options.textHeight
+			size: this.options.textSize
 		})
 		this.portalGraph.add(this._portalText)
 
 		this._immersiveText = graph.text(this._text, this._textMaterial, null, {
-			size: this.options.textSize,
-			height: this.options.textHeight
+			size: this.options.textSize
 		})
 		this.immersiveGraph.add(this._immersiveText)
 

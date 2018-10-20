@@ -11,7 +11,6 @@ const ButtonComponent = class extends Component {
 	@param {DataObject} [dataObject]
 	@param {Object} [options]
 	@param {number} [options.textSize]
-	@param {number} [options.textHeight]
 	@param {number} [options.textColor]
 	*/
 	constructor(dataObject = null, options = {}) {
@@ -22,10 +21,8 @@ const ButtonComponent = class extends Component {
 					flatEl: el.button({ class: 'button' }),
 					portalEl: el.button({ class: 'button' }),
 					textSize: 0.08,
-					textHeight: 0.01,
 					textColor: 0x444444,
-					portalOverlay: true,
-					portalSpatial: false
+					usesPortalSpatial: false
 				},
 				options
 			)
@@ -39,28 +36,35 @@ const ButtonComponent = class extends Component {
 			color: this.options.textColor
 		})
 
-		this._portalText = graph.text('', textMaterial, null, {
-			size: this.options.textSize,
-			height: this.options.textHeight
-		})
 
-		this._immersiveText = graph.text('', textMaterial, null, {
-			size: this.options.textSize,
-			height: this.options.textHeight
-		})
+		this._portalText = this.options.usesPortalSpatial ? graph.text('', textMaterial, null, {
+			size: this.options.textSize
+		}) : null
 
-		if (!options.portalGraph) {
-			this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
-			this._portalButtonObj.name = 'Bracket'
-			this.portalGraph.add(this._portalButtonObj)
-			this.portalGraph.add(this._portalText)
+		this._immersiveText = this.options.usesImmersive ? graph.text('', textMaterial, null, {
+			size: this.options.textSize
+		}) : null
+
+		if (!this.options.portalGraph) {
+			if(this.options.usesPortalSpatial){
+				this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+				this._portalButtonObj.name = 'Bracket'
+				this.portalGraph.add(this._portalButtonObj)
+				this.portalGraph.add(this._portalText)
+			} else {
+				this._portalButtonObj = null
+			}
 		}
 
-		if (!options.immersiveGraph) {
-			this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
-			this._immersiveButtonObj.name = 'Bracket'
-			this.immersiveGraph.add(this._immersiveButtonObj)
-			this.immersiveGraph.add(this._immersiveText)
+		if (!this.options.immersiveGraph) {
+			if(this.options.usesImmersive){
+				this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+				this._immersiveButtonObj.name = 'Bracket'
+				this.immersiveGraph.add(this._immersiveButtonObj)
+				this.immersiveGraph.add(this._immersiveText)
+			} else {
+				this._immersiveButtonObj = null
+			}
 		}
 
 		this.addListener((eventName, actionName, value, actionParameters) => {
@@ -95,8 +99,8 @@ const ButtonComponent = class extends Component {
 		this._text = value
 		this.flatEl.innerHTML = this._text
 		this.portalEl.innerHTML = this._text
-		this._portalText.setText(this._text)
-		this._immersiveText.setText(this._text)
+		if(this._portalText) this._portalText.setText(this._text)
+		if(this._immersiveText) this._immersiveText.setText(this._text)
 	}
 }
 ButtonComponent.ChangedEvent = 'button-changed'

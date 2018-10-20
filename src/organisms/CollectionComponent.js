@@ -12,6 +12,8 @@ const DefaultItemComponent = class extends Component {
 		super(dataObject, Object.assign({ flatEl: el.li() }, options))
 		if (dataObject instanceof DataObject === false) throw 'DefaultItemComponent requires a dataObject'
 		this.addClass('default-item-component')
+		this.setName('DefaultItemComponent')
+
 		this.flatEl.appendChild(el.span('Item: ' + dataObject))
 		this.portalEl.appendChild(el.span('Item: ' + dataObject))
 		this.portalGraph.add(graph.text('Item: ' + dataObject))

@@ -16,30 +16,49 @@ const CubeComponent = class extends Component {
 	@param {DataObject} [dataObject]
 	@param {Object} [options]
 	@param {THREE.Material} [options.material]
-	@param {number[]} [options.size=[1, 1, 1]] the initial size in meters of the cube (leave this alone if you are styling it via KSS `scale` declarations)
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(
 			dataObject,
 			Object.assign({
 				size: [1, 1, 1], // in meters
-				material: new THREE.MeshLambertMaterial({ color: 0xAAAAAA })
+				material: null
 			}, options)
 		)
 		this.addClass('cube-component')
-		this.immersiveGraph.name = this.portalGraph.name = 'CubeComponent'
+		this.setName('CubeComponent')
+		if(
+			(this.options.usesPortalSpatial || this.options.usesImmersive)
+			&& !this.options.material
+		) {
+			this.options.material = new THREE.MeshLambertMaterial({ color: 0xAAAAAA })
+		}
 
-		this._portalCube = graph.cube(this.options.size, {
-			material: this.options.material
-		}).appendTo(this.portalGraph)
-		this._immersiveCube = graph.cube(this.options.size, {
-			material: this.options.material
-		}).appendTo(this.immersiveGraph)
+		if(this.options.usesPortalSpatial){
+			this._portalCube =  new THREE.Mesh(_sharedGeometry, this.options.material)
+			this._portalCube.addClass('cube')
+			this._portalCube.name = 'Cube'
+			this._portalCube.appendTo(this.portalGraph)
+		} else {
+			this._portalCube = null
+		}
+
+		if(this.options.usesImmersive){
+			this._immersiveCube =  new THREE.Mesh(_sharedGeometry, this.options.material)
+			this._immersiveCube.addClass('cube')
+			this._immersiveCube.name = 'Cube'
+			this._immersiveCube.appendTo(this.immersiveGraph)
+		} else {
+			this._immersiveCube = null
+		}
 	}
 
-	/** @type {} */
+	/** @type {BoxBufferedGeometry?} */
 	get portalCube(){ return this._portalCube }
 	get immersiveCube(){ return this._immersiveCube }
 }
+
+// All CubeComponents share a BoxBufferGeometry and are scaled using KSS
+const _sharedGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
 
 export default CubeComponent

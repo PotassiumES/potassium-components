@@ -25,6 +25,7 @@ const MediaGridComponent = class extends Component {
 			)
 		)
 		this.addClass('media-grid-component')
+		this.setName('MediaGridComponent')
 
 		this._collectionComponent = new CollectionComponent(dataObject, {
 			itemComponent: this.options.itemComponent

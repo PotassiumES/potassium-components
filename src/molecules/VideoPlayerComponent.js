@@ -39,7 +39,7 @@ const VideoPlayerComponent = class extends Component {
 		this._handleVideoPause = this._handleVideoPause.bind(this)
 		this._handleVideoEnded = this._handleVideoEnded.bind(this)
 
-		this._backdropComponent = new CubeComponent().appendTo(this)
+		this._backdropComponent = new Component().appendTo(this)
 		this._backdropComponent.addClass('backdrop-component')
 		this._backdropComponent.setName('BackdropComponent')
 

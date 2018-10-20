@@ -18,10 +18,12 @@ const CardComponent = class extends Component {
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('card-component')
+		this.setName('CardComponent')
 
 		/** the main content, like an image or video */
 		this._mainComponent = new Component().appendTo(this)
-		this._mainComponent.addClass('main')
+		this._mainComponent.addClass('main-component')
+		this._mainComponent.setName('MainComponent')
 
 		this._titleComponent = new HeadingComponent(dataObject, {
 			textField: this.options.titleField
