@@ -1,7 +1,7 @@
 
 /*** ImageCardComponent ***/
 
-.dom.image-card-component > .image-component > img {
+.dom.image-card-component > .main-component > .image-component > img {
 	max-width: 100%;
 	background-color: var(--background-color);
 }
