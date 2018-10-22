@@ -23,6 +23,7 @@ const LabelComponent = class extends TextComponent {
 			)
 		)
 		this.addClass('label-component')
+		this.setName('LabelComponent')
 	}
 }
 

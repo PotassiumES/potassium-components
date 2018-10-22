@@ -1,12 +1,12 @@
 
 /*** ImageCardComponent ***/
 
-.dom.image-card-component img {
+.dom.image-card-component > .image-component > img {
 	max-width: 100%;
 	background-color: var(--background-color);
 }
 
 .som.image-card-component > node > .som.image-component {
 	centroid: -0.35m 0m 0m;
-	scale: 0.5 0.5 0.01;
+	scale: 0.5 0.5 0.05;
 }

@@ -12,14 +12,17 @@ const MediaGridComponent = class extends Component {
 	/**
 	@param {DataCollection} dataObject
 	@param {Object} [options={}]
-	@param {Component} [itemComponent=CardComponent] the Component **class** used for each item in the DataCollection
+	@param {Component} [itemComponent=CardComponent] the options object to pass to the item class constructor
+	@param {Object} [itemOptions={}] the Component **class** used for each item in the DataCollection
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(
 			dataObject,
 			Object.assign(
 				{
-					itemComponent: CardComponent
+					itemOptions: {},
+					itemComponent: CardComponent,
+					usesPortalOverlay: false
 				},
 				options
 			)
@@ -28,7 +31,8 @@ const MediaGridComponent = class extends Component {
 		this.setName('MediaGridComponent')
 
 		this._collectionComponent = new CollectionComponent(dataObject, {
-			itemComponent: this.options.itemComponent
+			itemComponent: this.options.itemComponent,
+			itemOptions: this.options.itemOptions
 		}).appendTo(this)
 
 		/** @todo add pagination */

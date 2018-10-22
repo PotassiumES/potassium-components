@@ -36,7 +36,8 @@ const MastheadComponent = class extends Component {
 				{
 					brand: null,
 					brandAnchor: null,
-					menuItems: []
+					menuItems: [],
+					usesPortalSpatial: false
 				},
 				options
 			)

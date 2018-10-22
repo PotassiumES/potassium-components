@@ -1,0 +1,6 @@
+
+/** ImageComponent */
+
+.som.image-component > .cube {
+	scale: 1m 1m 0.01m;
+}

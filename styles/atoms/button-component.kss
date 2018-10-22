@@ -32,6 +32,6 @@ node.button-component > text {
 }
 
 node.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
-	material-emissive: var(--light-kelp);
+	material-emissive: var(--light-base-color);
 }
 

@@ -23,17 +23,11 @@
 	padding-bottom: 5px;
 }
 
-.dom.masthead-component .menu-component > .component.selected {
-	border-bottom: solid 5px var(--light-secondary-color);
-}
-
 .dom.masthead-component .mode-switcher-component {
-	display: none;
 	text-align: right;
 	position: absolute;
 	top: 80px;
 	right: var(--page-app-content-padding);
-	/* margin: 3px var(--page-app-content-padding) var(--page-app-content-padding) 0; */
 }
 
 @media (min-width: 576px){
@@ -44,10 +38,6 @@
 		top: 45px;
 		right: var(--page-app-content-padding);
 		transform: translate(0, -50%);
-	}
-
-	.dom.masthead-component .mode-switcher-component {
-		display: inherit;
 	}
 }
 
