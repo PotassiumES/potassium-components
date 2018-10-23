@@ -63,7 +63,7 @@ const CubeComponent = class extends Component {
 	}
 
 	/** @type {THREE.Material?} */
-	get material(){
+	get material() {
 		return this.options.material
 	}
 }

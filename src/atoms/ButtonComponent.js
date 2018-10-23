@@ -32,9 +32,11 @@ const ButtonComponent = class extends Component {
 
 		this._text = ''
 
-		const textMaterial = this.usesSpatial ? graph.meshLambertMaterial({
-			color: this.options.textColor
-		}) : null
+		const textMaterial = this.usesSpatial
+			? graph.meshLambertMaterial({
+					color: this.options.textColor
+			  })
+			: null
 
 		this._portalText = this.options.usesPortalSpatial
 			? graph.text('', textMaterial, null, {
