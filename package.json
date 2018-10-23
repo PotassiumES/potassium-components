@@ -1,11 +1,10 @@
 {
   "name": "potassium-components",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha1",
   "description": "UI elements for use in PotassiumES",
   "main": "index.js",
   "scripts": {
     "docs": "./node_modules/.bin/esdoc",
-    "precommit": "pretty-quick --staged",
     "lint": "eslint src",
     "prettier": "prettier --write src/*.js src/**/*.js"
   },
