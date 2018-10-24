@@ -1,6 +1,6 @@
 # PotassiumES Components
 
-*NOTE* We're still laying the foundation, so don't use this quite yet
+*NOTE* We're still laying the foundation, so don't use this quite yet. Go look at the [Issues](https://github.com/PotassiumES/potassium-es/issues) to see what we're working on and how you can help!
 
 This repository contains core UI elements used by [PotassiumES](https://github.com/PotassiumES/potassium-es).
 
