@@ -29,5 +29,6 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 
 /* Organisms */
 
+@import './organisms/collection-component.kss';
 @import './organisms/masthead-component.kss';
 @import './organisms/media-grid-component.kss';

@@ -1,6 +1,7 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
+import { lt, ld } from 'potassium-es/src/Localizer'
 import DataObject from 'potassium-es/src/DataObject'
 import DataCollection from 'potassium-es/src/DataCollection'
 
@@ -14,10 +15,9 @@ const DefaultItemComponent = class extends Component {
 		this.addClass('default-item-component')
 		this.setName('DefaultItemComponent')
 
-		this.flatDOM.appendChild(dom.span('Item: ' + dataObject))
-		this.portalDOM.appendChild(dom.span('Item: ' + dataObject))
-		this.portalSOM.add(som.text('Item: ' + dataObject))
-		this.immersiveSOM.add(som.text('Item: ' + dataObject))
+		this._labelComponent = new LabelComponent(null, {
+			text: lt('Item: ') + new String(dataObject)
+		}).appendTo(this)
 	}
 }
 
@@ -37,8 +37,7 @@ const CollectionComponent = class extends Component {
 			Object.assign(
 				{
 					flatDOM: dom.ul(),
-					portalDOM: dom.ul(),
-					itemSOMHeight: 0.3
+					portalDOM: dom.ul()
 				},
 				options
 			)
@@ -78,20 +77,11 @@ const CollectionComponent = class extends Component {
 			} else {
 				display = true
 			}
-			itemComponent.flatDOM.style.display = display ? '' : 'none'
-			itemComponent.portalDOM.style.display = display ? '' : 'none'
-			itemComponent.portalSOM.visible = display
-			itemComponent.immersiveSOM.visible = display
-		}
-		this._layoutSOM()
-	}
-	_layoutSOM() {
-		let y = 0
-		for (const [id, component] of this._dataObjectComponents) {
-			if (component.visible === false) continue
-			component.portalSOM.position.set(component.portalSOM.position.x, y, component.portalSOM.position.z)
-			component.immersiveSOM.position.set(component.immersiveSOM.position.x, y, component.immersiveSOM.position.z)
-			y -= this.options.itemSOMHeight
+			if(display){
+				itemComponent.show()
+			} else {
+				itemComponent.hide()
+			}
 		}
 	}
 	_handleCollectionAdded(eventName, collection, dataObject) {
@@ -115,7 +105,6 @@ const CollectionComponent = class extends Component {
 			this._add(this._createItemComponent(dataObject))
 		}
 		this._inGroupChange = false
-		this._layoutSOM()
 		this.trigger(CollectionComponent.Reset, this)
 	}
 	_handleItemClick(ev, itemComponent) {
@@ -125,6 +114,7 @@ const CollectionComponent = class extends Component {
 		}
 	}
 	_add(itemComponent) {
+		/** @todo this assumes the PK is called 'id' and  it shouldn't */
 		if (this._dataObjectComponents.get(itemComponent.dataObject.get('id'))) {
 			// Already have it, ignore the add
 			return
@@ -132,14 +122,12 @@ const CollectionComponent = class extends Component {
 		this._dataObjectComponents.set(itemComponent.dataObject.get('id'), itemComponent)
 
 		this.appendComponent(itemComponent)
-		// TODO switch to action-input
+		/** @todo switch to action-input */
 		if (this.options.onClick) {
 			itemComponent.flatDOM.addEventListener('click', ev => {
 				this._handleItemClick(ev, itemComponent)
 			})
 		}
-
-		if (this._inGroupChange === false) this._layoutSOM()
 
 		itemComponent.dataObject.addListener(this._handleDeleted.bind(this), 'deleted', true)
 	}
@@ -149,8 +137,6 @@ const CollectionComponent = class extends Component {
 		itemComponent.flatDOM.removeEventListener('click', null)
 		itemComponent.portalDOM.removeEventListener('click', null)
 		itemComponent.cleanup()
-
-		if (this._inGroupChange === false) this._layoutSOM()
 	}
 	_handleDeleted(eventName, dataObject, error) {
 		if (error) return
@@ -172,7 +158,6 @@ const CollectionComponent = class extends Component {
 		} else {
 			itemComponent = new DefaultItemComponent(itemDataObject, options)
 		}
-		itemComponent.addClass('collection-item')
 		itemComponent.addClass('collection-item')
 		return itemComponent
 	}
