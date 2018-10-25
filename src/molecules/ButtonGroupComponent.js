@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -14,8 +14,7 @@ const ButtonGroupComponent = class extends Component {
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
 		this.addClass('button-group-component')
-		this._portalGraph.name = 'ButtonGroupComponent'
-		this._immersiveGraph.name = 'ButtonGroupComponent'
+		this.setName('ButtonGroupComponent')
 	}
 }
 

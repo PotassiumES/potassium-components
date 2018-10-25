@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -17,8 +17,8 @@ const SelectionComponent = class extends Component {
 			Object.assign(
 				{
 					items: [],
-					flatEl: el.select(),
-					portalEl: el.select()
+					flatDOM: dom.select(),
+					portalDOM: dom.select()
 				},
 				options
 			)
@@ -32,23 +32,23 @@ const SelectionComponent = class extends Component {
 		})
 
 		this.options.items.forEach(item => {
-			this.flatEl.appendChild(el.option({ value: item[1] }, item[0]))
-			this.portalEl.appendChild(el.option({ value: item[1] }, item[0]))
+			this.flatDOM.appendChild(dom.option({ value: item[1] }, item[0]))
+			this.portalDOM.appendChild(dom.option({ value: item[1] }, item[0]))
 			/** @todo add portal and immersive spatial controls */
 		})
 	}
 
 	get selectedIndex() {
-		return this.flatEl.selectedIndex
+		return this.flatDOM.selectedIndex
 	}
 
 	set selectedIndex(index) {
-		if (index >= this.flatEl.children.length) {
+		if (index >= this.flatDOM.children.length) {
 			console.error('No such index', index)
 			return
 		}
-		this.flatEl.selectedIndex = index
-		this.portalEl.selectedIndex = index
+		this.flatDOM.selectedIndex = index
+		this.portalDOM.selectedIndex = index
 	}
 }
 

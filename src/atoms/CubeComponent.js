@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -37,7 +37,7 @@ const CubeComponent = class extends Component {
 			this._portalCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._portalCube.addClass('cube')
 			this._portalCube.name = 'Cube'
-			this._portalCube.appendTo(this.portalGraph)
+			this._portalCube.appendTo(this.portalSOM)
 		} else {
 			this._portalCube = null
 		}
@@ -46,7 +46,7 @@ const CubeComponent = class extends Component {
 			this._immersiveCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._immersiveCube.addClass('cube')
 			this._immersiveCube.name = 'Cube'
-			this._immersiveCube.appendTo(this.immersiveGraph)
+			this._immersiveCube.appendTo(this.immersiveSOM)
 		} else {
 			this._immersiveCube = null
 		}

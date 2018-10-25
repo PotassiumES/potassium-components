@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import CubeComponent from './CubeComponent.js'
 
@@ -13,14 +13,14 @@ const VideoComponent = class extends CubeComponent {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options={}]
 	@param {number} [options.height=1] the initial height of the video cube
-	@param {HTMLElemen} [options.videoEl] - an HTML `video` element to use as a source
+	@param {HTMLElement} [options.videoDOM] - an HTML `video` element to use as a source
 	*/
 	constructor(dataObject = null, options = {}) {
 		if (typeof options.material === 'undefined') {
-			if (typeof options.videoEl === 'undefined') {
-				options.videoEl = el.video(el.source())
+			if (typeof options.videoDOM === 'undefined') {
+				options.videoDOM = dom.video(dom.source())
 			}
-			options.material = VideoComponent.GenerateVideoMaterial(options.videoEl)
+			options.material = VideoComponent.GenerateVideoMaterial(options.videoDOM)
 		}
 		super(
 			dataObject,
@@ -37,7 +37,7 @@ const VideoComponent = class extends CubeComponent {
 
 		this.video.addEventListener('canplay', this._handleVideoCanPlay, false)
 
-		this.flatEl.appendChild(this.video)
+		this.flatDOM.appendChild(this.video)
 
 		this._height = this.options.height
 		this._width = null
@@ -89,8 +89,8 @@ const VideoComponent = class extends CubeComponent {
 		if (this.immersiveCube) this.immersiveCube.scale.set(width, height, depth)
 	}
 
-	static GenerateVideoMaterial(videoEl) {
-		const videoTexture = new THREE.VideoTexture(videoEl)
+	static GenerateVideoMaterial(videoSOM) {
+		const videoTexture = new THREE.VideoTexture(videoSOM)
 		videoTexture.minFilter = THREE.NearestFilter
 		videoTexture.magFilter = THREE.LinearFilter
 		videoTexture.format = THREE.RGBFormat

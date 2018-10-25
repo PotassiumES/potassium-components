@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -18,8 +18,8 @@ const ButtonComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.button({ class: 'button' }),
-					portalEl: el.button({ class: 'button' }),
+					flatDOM: dom.button({ class: 'button' }),
+					portalDOM: dom.button({ class: 'button' }),
 					textSize: 0.08,
 					textColor: 0x444444,
 					usesPortalSpatial: false
@@ -33,40 +33,40 @@ const ButtonComponent = class extends Component {
 		this._text = ''
 
 		const textMaterial = this.usesSpatial
-			? graph.meshLambertMaterial({
+			? som.meshLambertMaterial({
 					color: this.options.textColor
 			  })
 			: null
 
 		this._portalText = this.options.usesPortalSpatial
-			? graph.text('', textMaterial, null, {
+			? som.text('', textMaterial, null, {
 					size: this.options.textSize
 			  })
 			: null
 
 		this._immersiveText = this.options.usesImmersive
-			? graph.text('', textMaterial, null, {
+			? som.text('', textMaterial, null, {
 					size: this.options.textSize
 			  })
 			: null
 
-		if (!this.options.portalGraph) {
+		if (!this.options.portalSOM) {
 			if (this.options.usesPortalSpatial) {
-				this._portalButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+				this._portalButtonObj = som.obj('/static/potassium-components/models/Button.obj')
 				this._portalButtonObj.name = 'Bracket'
-				this.portalGraph.add(this._portalButtonObj)
-				this.portalGraph.add(this._portalText)
+				this.portalSOM.add(this._portalButtonObj)
+				this.portalSOM.add(this._portalText)
 			} else {
 				this._portalButtonObj = null
 			}
 		}
 
-		if (!this.options.immersiveGraph) {
+		if (!this.options.immersiveSOM) {
 			if (this.options.usesImmersive) {
-				this._immersiveButtonObj = graph.obj('/static/potassium-components/models/Button.obj')
+				this._immersiveButtonObj = som.obj('/static/potassium-components/models/Button.obj')
 				this._immersiveButtonObj.name = 'Bracket'
-				this.immersiveGraph.add(this._immersiveButtonObj)
-				this.immersiveGraph.add(this._immersiveText)
+				this.immersiveSOM.add(this._immersiveButtonObj)
+				this.immersiveSOM.add(this._immersiveText)
 			} else {
 				this._immersiveButtonObj = null
 			}
@@ -102,8 +102,8 @@ const ButtonComponent = class extends Component {
 	/** @param {string} value */
 	set text(value) {
 		this._text = value
-		this.flatEl.innerHTML = this._text
-		this.portalEl.innerHTML = this._text
+		this.flatDOM.innerHTML = this._text
+		this.portalDOM.innerHTML = this._text
 		if (this._portalText) this._portalText.setText(this._text)
 		if (this._immersiveText) this._immersiveText.setText(this._text)
 	}

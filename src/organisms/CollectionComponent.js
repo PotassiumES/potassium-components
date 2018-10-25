@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 import DataObject from 'potassium-es/src/DataObject'
 import DataCollection from 'potassium-es/src/DataCollection'
@@ -9,15 +9,15 @@ DefaultItemComponent is used by CollectionComponent if no itemComponent option i
 */
 const DefaultItemComponent = class extends Component {
 	constructor(dataObject = null, options = {}) {
-		super(dataObject, Object.assign({ flatEl: el.li() }, options))
+		super(dataObject, Object.assign({ flatDOM: dom.li() }, options))
 		if (dataObject instanceof DataObject === false) throw 'DefaultItemComponent requires a dataObject'
 		this.addClass('default-item-component')
 		this.setName('DefaultItemComponent')
 
-		this.flatEl.appendChild(el.span('Item: ' + dataObject))
-		this.portalEl.appendChild(el.span('Item: ' + dataObject))
-		this.portalGraph.add(graph.text('Item: ' + dataObject))
-		this.immersiveGraph.add(graph.text('Item: ' + dataObject))
+		this.flatDOM.appendChild(dom.span('Item: ' + dataObject))
+		this.portalDOM.appendChild(dom.span('Item: ' + dataObject))
+		this.portalSOM.add(som.text('Item: ' + dataObject))
+		this.immersiveSOM.add(som.text('Item: ' + dataObject))
 	}
 }
 
@@ -36,9 +36,9 @@ const CollectionComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.ul(),
-					portalEl: el.ul(),
-					itemGraphHeight: 0.3
+					flatDOM: dom.ul(),
+					portalDOM: dom.ul(),
+					itemSOMHeight: 0.3
 				},
 				options
 			)
@@ -63,14 +63,14 @@ const CollectionComponent = class extends Component {
 	at(index) {
 		// Returns the Component at index, or null if index is out of bounds
 		if (index < 0) return null
-		if (index >= this.flatEl.children.length) return null
-		return this.flatEl.children.item(index).component
+		if (index >= this.flatDOM.children.length) return null
+		return this.flatDOM.children.item(index).component
 	}
 	componentForDataObject(dataObject) {
 		return this._dataObjectComponents.get(dataObject.get('id'))
 	}
 	filter(filterFn = null) {
-		// filterFn must accept a DataModel and return a boolean indicating whether its Component.flatEl.style.display should be set to '' or 'none'
+		// filterFn must accept a DataModel and return a boolean indicating whether its Component.flatDOM.style.display should be set to '' or 'none'
 		for (const [i, itemComponent] of this._dataObjectComponents) {
 			let display
 			if (typeof filterFn === 'function') {
@@ -78,20 +78,20 @@ const CollectionComponent = class extends Component {
 			} else {
 				display = true
 			}
-			itemComponent.flatEl.style.display = display ? '' : 'none'
-			itemComponent.portalEl.style.display = display ? '' : 'none'
-			itemComponent.portalGraph.visible = display
-			itemComponent.immersiveGraph.visible = display
+			itemComponent.flatDOM.style.display = display ? '' : 'none'
+			itemComponent.portalDOM.style.display = display ? '' : 'none'
+			itemComponent.portalSOM.visible = display
+			itemComponent.immersiveSOM.visible = display
 		}
-		this._layoutGraph()
+		this._layoutSOM()
 	}
-	_layoutGraph() {
+	_layoutSOM() {
 		let y = 0
 		for (const [id, component] of this._dataObjectComponents) {
 			if (component.visible === false) continue
-			component.portalGraph.position.set(component.portalGraph.position.x, y, component.portalGraph.position.z)
-			component.immersiveGraph.position.set(component.immersiveGraph.position.x, y, component.immersiveGraph.position.z)
-			y -= this.options.itemGraphHeight
+			component.portalSOM.position.set(component.portalSOM.position.x, y, component.portalSOM.position.z)
+			component.immersiveSOM.position.set(component.immersiveSOM.position.x, y, component.immersiveSOM.position.z)
+			y -= this.options.itemSOMHeight
 		}
 	}
 	_handleCollectionAdded(eventName, collection, dataObject) {
@@ -115,7 +115,7 @@ const CollectionComponent = class extends Component {
 			this._add(this._createItemComponent(dataObject))
 		}
 		this._inGroupChange = false
-		this._layoutGraph()
+		this._layoutSOM()
 		this.trigger(CollectionComponent.Reset, this)
 	}
 	_handleItemClick(ev, itemComponent) {
@@ -134,23 +134,23 @@ const CollectionComponent = class extends Component {
 		this.appendComponent(itemComponent)
 		// TODO switch to action-input
 		if (this.options.onClick) {
-			itemComponent.flatEl.addEventListener('click', ev => {
+			itemComponent.flatDOM.addEventListener('click', ev => {
 				this._handleItemClick(ev, itemComponent)
 			})
 		}
 
-		if (this._inGroupChange === false) this._layoutGraph()
+		if (this._inGroupChange === false) this._layoutSOM()
 
 		itemComponent.dataObject.addListener(this._handleDeleted.bind(this), 'deleted', true)
 	}
 	_remove(itemComponent) {
 		this._dataObjectComponents.delete(itemComponent.dataObject.get('id'))
 		this.removeComponent(itemComponent)
-		itemComponent.flatEl.removeEventListener('click', null)
-		itemComponent.portalEl.removeEventListener('click', null)
+		itemComponent.flatDOM.removeEventListener('click', null)
+		itemComponent.portalDOM.removeEventListener('click', null)
 		itemComponent.cleanup()
 
-		if (this._inGroupChange === false) this._layoutGraph()
+		if (this._inGroupChange === false) this._layoutSOM()
 	}
 	_handleDeleted(eventName, dataObject, error) {
 		if (error) return

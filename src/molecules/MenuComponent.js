@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -50,8 +50,8 @@ const MenuComponent = class extends Component {
 	layout() {
 		const itemHeight = 0.12
 		for (let i = 0; i < this._menuItems.length; i++) {
-			this._menuItems[i].portalGraph.position.set(0, i * itemHeight * -1, 0)
-			this._menuItems[i].immersiveGraph.position.set(0, i * itemHeight * -1, 0)
+			this._menuItems[i].portalSOM.position.set(0, i * itemHeight * -1, 0)
+			this._menuItems[i].immersiveSOM.position.set(0, i * itemHeight * -1, 0)
 		}
 	}
 

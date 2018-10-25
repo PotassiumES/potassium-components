@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 
 import LabelComponent from 'potassium-components/src/atoms/LabelComponent'
@@ -31,13 +31,13 @@ const ToolTipComponent = class extends Component {
 	show(target = null) {
 		super.show()
 		if (target === null) return
-		this.flatEl.style.position = 'relative'
-		this.flatEl.style.left = 0
-		this.flatEl.style.top = 0
-		const targetPosition = target.flatEl.documentPosition()
-		const position = this.flatEl.documentPosition()
-		this.flatEl.style.left = targetPosition[0] - position[0]
-		this.flatEl.style.top = targetPosition[1] - position[1]
+		this.flatDOM.style.position = 'relative'
+		this.flatDOM.style.left = 0
+		this.flatDOM.style.top = 0
+		const targetPosition = target.flatDOM.documentPosition()
+		const position = this.flatDOM.documentPosition()
+		this.flatDOM.style.left = targetPosition[0] - position[0]
+		this.flatDOM.style.top = targetPosition[1] - position[1]
 	}
 }
 
