@@ -1,6 +1,6 @@
-import el from 'potassium-es/src/El'
+import dom from 'potassium-es/src/DOM'
 import App from 'potassium-es/src/App'
-import graph from 'potassium-es/src/Graph'
+import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 import { lt, ld, ldt } from 'potassium-es/src/Localizer'
 import DisplayModeTracker from 'potassium-es/src/DisplayModeTracker'
@@ -28,7 +28,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 
 		this._attemptingMode = null
 
-		// Exit button appears in portalEl and immersiveGraph
+		// Exit button appears in portalDOM and immersiveSOM
 		this._exitButton = new ButtonComponent(null, {
 			text: lt('Exit'),
 			usesFlat: false,
@@ -40,7 +40,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._exitButton)
 
-		// Portal button appears only in flatEl
+		// Portal button appears only in flatDOM
 		this._portalButton = new ButtonComponent(null, {
 			text: lt('Portal'),
 			usesPortalOverlay: false,
@@ -54,7 +54,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._portalButton)
 
-		// Immersive button appears only in flatEl
+		// Immersive button appears only in flatDOM
 		this._immersiveButton = new ButtonComponent(null, {
 			text: lt('Immersive'),
 			usesPortalOverlay: false,
@@ -68,15 +68,15 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		}, ButtonComponent.ChangedEvent)
 		this.appendComponent(this._immersiveButton)
 
-		this._switchModal = el.div({ class: 'switch-modal modal' })
-		el.button('enter')
+		this._switchModal = dom.div({ class: 'switch-modal modal' })
+		dom.button('enter')
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()
 				this.trigger(ModeSwitcherComponent.ModeChangedEvent, this._attemptingMode)
 				this._attemptingMode = null
 			})
-		el.button('cancel')
+		dom.button('cancel')
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()
@@ -102,8 +102,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	}
 
 	_updateDisplayedModes(portalCapable, immersiveCapable) {
-		this._portalButton.flatEl.style.display = portalCapable ? '' : 'none'
-		this._immersiveButton.flatEl.style.display = immersiveCapable ? '' : 'none'
+		this._portalButton.flatDOM.style.display = portalCapable ? '' : 'none'
+		this._immersiveButton.flatDOM.style.display = immersiveCapable ? '' : 'none'
 	}
 
 	handleSwitchFailed(mode) {

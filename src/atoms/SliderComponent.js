@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -80,28 +80,28 @@ const SliderComponent = class extends Component {
 		this._handleXEnd = this._handleXStart * -1
 	}
 
-	_updateFlatHandlePosition(barEl, handleEl) {
-		const barWidth = barEl.clientWidth
-		const handleWidth = handleEl.clientWidth
+	_updateFlatHandlePosition(barSOM, handleSOM) {
+		const barWidth = barSOM.clientWidth
+		const handleWidth = handleSOM.clientWidth
 		if (barWidth === 0 || handleWidth === 0) return // Not on the page yet
 		const startX = 0
 		const endX = barWidth - handleWidth
 		const x = startX + (endX - startX) * this.valueFraction
-		handleEl.style['left'] = `${x}px`
+		handleSOM.style['left'] = `${x}px`
 	}
 
 	_updateHandlePosition() {
-		this._updateFlatHandlePosition(this._barComponent.flatEl, this._handleComponent.flatEl)
-		this._updateFlatHandlePosition(this._barComponent.portalEl, this._handleComponent.portalEl)
+		this._updateFlatHandlePosition(this._barComponent.flatDOM, this._handleComponent.flatDOM)
+		this._updateFlatHandlePosition(this._barComponent.portalDOM, this._handleComponent.portalDOM)
 
-		// set graph positions
+		// set som positions
 		const newPosition = [
 			this._handleXStart + (this._handleXEnd - this._handleXStart) * this.valueFraction,
 			this._handleY,
 			0
 		]
-		this._handleComponent.portalGraph.position.set(...newPosition)
-		this._handleComponent.immersiveGraph.position.set(...newPosition)
+		this._handleComponent.portalSOM.position.set(...newPosition)
+		this._handleComponent.immersiveSOM.position.set(...newPosition)
 	}
 }
 

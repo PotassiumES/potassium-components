@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import TextComponent from 'potassium-components/src/atoms/TextComponent'
 
@@ -16,8 +16,8 @@ const LabelComponent = class extends TextComponent {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.label(),
-					portalEl: el.label()
+					flatDOM: dom.label(),
+					portalDOM: dom.label()
 				},
 				options
 			)

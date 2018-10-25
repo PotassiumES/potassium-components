@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -16,8 +16,8 @@ const TextInputComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.input({ type: 'text' }),
-					portalEl: el.input({ type: 'text' })
+					flatDOM: dom.input({ type: 'text' }),
+					portalDOM: dom.input({ type: 'text' })
 				},
 				options
 			)
@@ -29,48 +29,48 @@ const TextInputComponent = class extends Component {
 		this._handleModelChange = this._handleModelChange.bind(this)
 
 		this._placeholderText = options.placeholder || ''
-		this.flatEl.setAttribute('placeholder', this._placeholderText)
-		this.portalEl.setAttribute('placeholder', this._placeholderText)
+		this.flatDOM.setAttribute('placeholder', this._placeholderText)
+		this.portalDOM.setAttribute('placeholder', this._placeholderText)
 
 		this._text = null
 		this._shifted = false
 
-		this.flatEl.addEventListener('change', ev => {
-			this.text = this.flatEl.value
+		this.flatDOM.addEventListener('change', ev => {
+			this.text = this.flatDOM.value
 		})
-		this.portalEl.addEventListener('change', ev => {
-			this.text = this.portalEl.value
+		this.portalDOM.addEventListener('change', ev => {
+			this.text = this.portalDOM.value
 		})
 
 		// Make changes to this.text based on Component.TextInputEvents
 		this.addListener(this._handleTextInput, Component.TextInputEvent)
 
-		const placeholderMaterial = graph.meshLambertMaterial({ color: 0xdddddd })
-		const textMaterial = graph.meshLambertMaterial({ color: 0x999999 })
+		const placeholderMaterial = som.meshLambertMaterial({ color: 0xdddddd })
+		const textMaterial = som.meshLambertMaterial({ color: 0x999999 })
 
-		this._portalBracket = graph.obj('/static/potassium-components/models/TextInputBracket.obj')
-		this.portalGraph.add(this._portalBracket)
-		this._portalCursor = graph.obj('/static/potassium-components/models/TextInputCursor.obj')
+		this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj')
+		this.portalSOM.add(this._portalBracket)
+		this._portalCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj')
 		this._portalCursor.position.set(0.04, 0.04, 0)
-		this.portalGraph.add(this._portalCursor)
-		this._portalText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
+		this.portalSOM.add(this._portalCursor)
+		this._portalText = som.text(this._text || this._placeholderText, placeholderMaterial, null, {
 			size: 0.12
 		})
 		this._portalText.position.set(0.05, 0.05, 0)
-		this.portalGraph.add(this._portalText)
-		this.portalGraph.name = 'text-input'
+		this.portalSOM.add(this._portalText)
+		this.portalSOM.name = 'text-input'
 
-		this._immersiveBracket = graph.obj('/static/potassium-components/models/TextInputBracket.obj')
-		this.immersiveGraph.add(this._immersiveBracket)
-		this._immersiveCursor = graph.obj('/static/potassium-components/models/TextInputCursor.obj')
+		this._immersiveBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj')
+		this.immersiveSOM.add(this._immersiveBracket)
+		this._immersiveCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj')
 		this._immersiveCursor.position.set(0.04, 0.04, 0)
-		this.immersiveGraph.add(this._immersiveCursor)
-		this._immersiveText = graph.text(this._text || this._placeholderText, placeholderMaterial, null, {
+		this.immersiveSOM.add(this._immersiveCursor)
+		this._immersiveText = som.text(this._text || this._placeholderText, placeholderMaterial, null, {
 			size: 0.12
 		})
 		this._immersiveText.position.set(0.05, 0.05, 0)
-		this.immersiveGraph.add(this._immersiveText)
-		this.immersiveGraph.name = 'text-input'
+		this.immersiveSOM.add(this._immersiveText)
+		this.immersiveSOM.name = 'text-input'
 
 		if (this.dataObject && this.options.dataField) {
 			this.text = this.dataObject.get(this.options.dataField) || this.options.text || ''
@@ -131,8 +131,8 @@ const TextInputComponent = class extends Component {
 			this._immersiveText.setText(value || this._placeholderText)
 		}
 		this._text = value
-		this.flatEl.value = value
-		this.portalEl.value = value
+		this.flatDOM.value = value
+		this.portalDOM.value = value
 		if (this.dataObject && this.options.dataField) {
 			if (this.dataObject.get(this.options.dataField) !== this._text) {
 				this.dataObject.set(this.options.dataField, this._text)

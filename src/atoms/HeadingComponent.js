@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import TextComponent from 'potassium-components/src/atoms/TextComponent'
 
@@ -16,8 +16,8 @@ const HeadingComponent = class extends TextComponent {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.h1(),
-					portalEl: el.h1(),
+					flatDOM: dom.h1(),
+					portalDOM: dom.h1(),
 					textSize: 0.12,
 					textHeight: 0.01,
 					textColor: 0x444444
@@ -26,7 +26,7 @@ const HeadingComponent = class extends TextComponent {
 			)
 		)
 		this.addClass('heading-component')
-		this.portalGraph.name = this.immersiveGraph.name = 'HeadingComponent'
+		this.portalSOM.name = this.immersiveSOM.name = 'HeadingComponent'
 	}
 }
 

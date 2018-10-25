@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import CubeComponent from './CubeComponent.js'
 
@@ -37,8 +37,8 @@ const ImageComponent = class extends CubeComponent {
 
 		this._imageURL = ''
 
-		this._flatImg = el.img().appendTo(this.flatEl)
-		this._portalImg = el.img().appendTo(this.portalEl)
+		this._flatImg = dom.img().appendTo(this.flatDOM)
+		this._portalImg = dom.img().appendTo(this.portalDOM)
 
 		if (this.options.image) {
 			this.imageURL = this.options.image
@@ -79,7 +79,7 @@ const ImageComponent = class extends CubeComponent {
 	}
 
 	static GenerateCubeMaterial(url) {
-		return new graph.meshLambertMaterial({
+		return new som.meshLambertMaterial({
 			map: url ? _textureLoader.load(url) : _blankTexture
 		})
 	}

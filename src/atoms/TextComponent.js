@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -28,19 +28,19 @@ const TextComponent = class extends Component {
 
 		this._text = ''
 
-		this._textMaterial = graph.meshLambertMaterial({
+		this._textMaterial = som.meshLambertMaterial({
 			color: this.options.textColor
 		})
 
-		this._portalText = graph.text(this._text, this._textMaterial, null, {
+		this._portalText = som.text(this._text, this._textMaterial, null, {
 			size: this.options.textSize
 		})
-		this.portalGraph.add(this._portalText)
+		this.portalSOM.add(this._portalText)
 
-		this._immersiveText = graph.text(this._text, this._textMaterial, null, {
+		this._immersiveText = som.text(this._text, this._textMaterial, null, {
 			size: this.options.textSize
 		})
-		this.immersiveGraph.add(this._immersiveText)
+		this.immersiveSOM.add(this._immersiveText)
 
 		if (typeof this.options.text === 'string') {
 			this.text = this.options.text
@@ -73,8 +73,8 @@ const TextComponent = class extends Component {
 	}
 
 	_updateDisplayFromText() {
-		this.flatEl.innerText = this._text
-		this.portalEl.innerText = this._text
+		this.flatDOM.innerText = this._text
+		this.portalDOM.innerText = this._text
 		this._portalText.setText(this._text)
 		this._immersiveText.setText(this._text)
 	}

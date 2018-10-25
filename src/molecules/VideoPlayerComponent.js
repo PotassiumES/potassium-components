@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -49,14 +49,14 @@ const VideoPlayerComponent = class extends Component {
 		this._backdropComponent.addClass('backdrop-component')
 		this._backdropComponent.setName('BackdropComponent')
 
-		this._sourceEl = el.source({
+		this._sourceDOM = dom.source({
 			src: this.options.url,
 			type: this.options.mimeType
 		})
-		this._videoEl = el.video(this._sourceEl)
+		this._videoDOM = dom.video(this._sourceDOM)
 
 		this._videoComponent = new VideoComponent(null, {
-			videoEl: this._videoEl
+			videoDOM: this._videoDOM
 		}).appendTo(this._backdropComponent)
 
 		this._controlsComponent = new Component().appendTo(this)
@@ -91,7 +91,7 @@ const VideoPlayerComponent = class extends Component {
 	}
 
 	get video() {
-		return this._videoEl
+		return this._videoDOM
 	}
 
 	/**

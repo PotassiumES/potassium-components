@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 import { lt, ld } from 'potassium-es/src/Localizer'
 import Component from 'potassium-es/src/Component'
 
@@ -31,8 +31,8 @@ const FormComponent = class extends Component {
 		this.addClass('form-component')
 
 		this._headingComponent = new HeadingComponent(null, {
-			flatEl: el.h2(),
-			portalEl: el.h2(),
+			flatDOM: dom.h2(),
+			portalDOM: dom.h2(),
 			text: options.heading || ''
 		}).appendTo(this)
 		if (!options.heading) {

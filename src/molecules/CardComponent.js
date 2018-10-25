@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -34,8 +34,8 @@ const CardComponent = class extends Component {
 			textColor: 0x999999
 		}).appendTo(this)
 		const captionVerticalOffset = -0.1
-		this._captionComponent.immersiveGraph.position.set(0, captionVerticalOffset, 0)
-		this._captionComponent.portalGraph.position.set(0, captionVerticalOffset, 0)
+		this._captionComponent.immersiveSOM.position.set(0, captionVerticalOffset, 0)
+		this._captionComponent.portalSOM.position.set(0, captionVerticalOffset, 0)
 	}
 
 	/** the {@link Component} in which we display the main content, like an image or video */

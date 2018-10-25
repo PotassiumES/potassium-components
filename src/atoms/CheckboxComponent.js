@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
@@ -16,36 +16,36 @@ const CheckboxComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					flatEl: el.input({ type: 'checkbox' }),
-					portalEl: el.input({ type: 'checkbox' })
+					flatDOM: dom.input({ type: 'checkbox' }),
+					portalDOM: dom.input({ type: 'checkbox' })
 				},
 				options
 			)
 		)
 		this.addClass('checkbox-component')
 		this._checked = options.checked === true
-		this._portalCheckGraph = null
-		this._immersiveCheckGraph = null
+		this._portalCheckSOM = null
+		this._immersiveCheckSOM = null
 
-		this._portalObj = graph.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
-			this._portalCheckGraph = obj.children[0]
+		this._portalObj = som.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
+			this._portalCheckSOM = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})
-		this.portalGraph.add(this._portalObj)
-		this.portalGraph.name = 'checkbox'
+		this.portalSOM.add(this._portalObj)
+		this.portalSOM.name = 'checkbox'
 
-		this._immersiveObj = graph.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
-			this._immersiveCheckGraph = obj.children[0]
+		this._immersiveObj = som.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
+			this._immersiveCheckSOM = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})
-		this.immersiveGraph.add(this._immersiveObj)
-		this.immersiveGraph.name = 'checkbox'
+		this.immersiveSOM.add(this._immersiveObj)
+		this.immersiveSOM.name = 'checkbox'
 
 		// We handle the clicks through Action-input, so turn off the default browser action
-		this.flatEl.addEventListener('click', ev => {
+		this.flatDOM.addEventListener('click', ev => {
 			ev.preventDefault()
 		})
-		this.portalEl.addEventListener('click', ev => {
+		this.portalDOM.addEventListener('click', ev => {
 			ev.preventDefault()
 		})
 
@@ -74,13 +74,13 @@ const CheckboxComponent = class extends Component {
 	}
 
 	_updateCheckedDisplay(checked) {
-		this.flatEl.checked = checked
-		this.portalEl.checked = checked
-		if (this._portalCheckGraph) {
-			this._portalCheckGraph.visible = checked
+		this.flatDOM.checked = checked
+		this.portalDOM.checked = checked
+		if (this._portalCheckSOM) {
+			this._portalCheckSOM.visible = checked
 		}
-		if (this._immersiveCheckGraph) {
-			this._immersiveCheckGraph.visible = checked
+		if (this._immersiveCheckSOM) {
+			this._immersiveCheckSOM.visible = checked
 		}
 	}
 }

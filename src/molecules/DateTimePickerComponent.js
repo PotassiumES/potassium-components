@@ -1,5 +1,5 @@
-import el from 'potassium-es/src/El'
-import graph from 'potassium-es/src/Graph'
+import dom from 'potassium-es/src/DOM'
+import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 import { Localizer, lt, ld, ldt, ldo } from 'potassium-es/src/Localizer'
 
