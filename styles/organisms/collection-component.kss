@@ -1,14 +1,8 @@
 
 /* CollectionComponent */
 
-:root {
-	--default-collection-cell-width: 0.25m;
-	--default-collection-cell-height: 0.25m;
-}
-
 .som.collection-component {
 	display: grid;
-	grid-template: var(--default-collection-cell-height) / var(--default-collection-cell-width);
-	grid-auto-rows: var(--default-collection-cell-height);
-	grid-auto-columns: var(--default-collection-cell-width);
+	grid-template: 0.25m / 0.25m;
+	grid-auto-rows: 0.25m;
 }
