@@ -59,7 +59,9 @@ const VideoPlayerComponent = class extends Component {
 			videoDOM: this._videoDOM
 		}).appendTo(this._backdropComponent)
 
-		this._controlsComponent = new Component().appendTo(this)
+		this._controlsComponent = new Component(null, {
+			usesPortalOverlay: false
+		}).appendTo(this)
 		this._controlsComponent.addClass('video-player-controls')
 		this._controlsComponent.setName('VideoPlayerControls')
 

@@ -45,13 +45,3 @@
 	display: grid;
 	grid-template: 0.5m / 0.4m 1.6m 1m;
 }
-
-
-.som.masthead-component > .mode-switcher-component {
-}
-
-.som.masthead-component > .brand-component {
-}
-
-.som.masthead-component > .menu-component {
-}

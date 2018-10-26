@@ -28,19 +28,27 @@ const TextComponent = class extends Component {
 
 		this._text = ''
 
-		this._textMaterial = som.meshLambertMaterial({
+		this._textMaterial = this.usesSpatial ? som.meshLambertMaterial({
 			color: this.options.textColor
-		})
+		}) : null
 
-		this._portalText = som.text(this._text, this._textMaterial, null, {
-			size: this.options.textSize
-		})
-		this.portalSOM.add(this._portalText)
+		if(this.usesPortalSpatial){
+			this._portalText = som.text(this._text, this._textMaterial, null, {
+				size: this.options.textSize
+			})
+			this.portalSOM.add(this._portalText)
+		} else {
+			this._portalText = null
+		}
 
-		this._immersiveText = som.text(this._text, this._textMaterial, null, {
-			size: this.options.textSize
-		})
-		this.immersiveSOM.add(this._immersiveText)
+		if(this.usesImmersive){
+			this._immersiveText = som.text(this._text, this._textMaterial, null, {
+				size: this.options.textSize
+			})
+			this.immersiveSOM.add(this._immersiveText)
+		} else {
+			this._immersiveText = null
+		}
 
 		if (typeof this.options.text === 'string') {
 			this.text = this.options.text
@@ -73,10 +81,10 @@ const TextComponent = class extends Component {
 	}
 
 	_updateDisplayFromText() {
-		this.flatDOM.innerText = this._text
-		this.portalDOM.innerText = this._text
-		this._portalText.setText(this._text)
-		this._immersiveText.setText(this._text)
+		if(this.usesFlat) this.flatDOM.innerText = this._text
+		if(this.usesPortalOverlay) this.portalDOM.innerText = this._text
+		if(this.usesPortalSpatial) this._portalText.setText(this._text)
+		if(this.usesImmersive) this._immersiveText.setText(this._text)
 	}
 }
 
