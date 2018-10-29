@@ -69,14 +69,16 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this.appendComponent(this._immersiveButton)
 
 		this._switchModal = dom.div({ class: 'switch-modal modal' })
-		dom.button('enter')
+		dom
+			.button('enter')
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()
 				this.trigger(ModeSwitcherComponent.ModeChangedEvent, this._attemptingMode)
 				this._attemptingMode = null
 			})
-		dom.button('cancel')
+		dom
+			.button('cancel')
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()

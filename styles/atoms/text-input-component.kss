@@ -1,6 +1,14 @@
 /* TextInputComponent */
 
-.text-input-component {
+.dom.text-input-component {
 	padding: 4px;
 	font-size: 1em;
+}
+
+.som.text-input-component > .bracket {
+	centroid: 0 -0.05m 0;
+}
+
+.som.text-input-component > text {
+	centroid: 0.05m 0 0;
 }
