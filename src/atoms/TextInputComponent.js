@@ -10,12 +10,19 @@ const TextInputComponent = class extends Component {
 	/**
 	@param {string} [options.text=''] initial text
 	@param {string} [options.placeholder=''] text to show when the input is empty
+	@param {number} [options.textSize=0.8] the size (in meters) of the text
+	@param {number} [options.textColor=0x444444] = the color of the text
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(
 			dataObject,
 			Object.assign(
 				{
+					text: '',
+					placeholder: '',
+					placeholderColor: 0x999999,
+					textSize: 0.08,
+					textColor: 0x444444,
 					flatDOM: dom.input({ type: 'text' }),
 					portalDOM: dom.input({ type: 'text' })
 				},
@@ -23,62 +30,80 @@ const TextInputComponent = class extends Component {
 			)
 		)
 		this.addClass('text-input-component')
-		this.acceptsTextInputFocus = true
-
+		this.setName('TextInputComponent')
 		this._handleTextInput = this._handleTextInput.bind(this)
 		this._handleModelChange = this._handleModelChange.bind(this)
 
-		this._placeholderText = options.placeholder || ''
-		this.flatDOM.setAttribute('placeholder', this._placeholderText)
-		this.portalDOM.setAttribute('placeholder', this._placeholderText)
+		this.acceptsTextInputFocus = true
+
+		this._placeholderText = this.options.placeholder
+		if (this._placeholderText) {
+			this.flatDOM.setAttribute('placeholder', this._placeholderText)
+			this.portalDOM.setAttribute('placeholder', this._placeholderText)
+		}
 
 		this._text = null
 		this._shifted = false
 
-		this.flatDOM.addEventListener('change', ev => {
+		this.listenTo('change', this.flatDOM, ev => {
 			this.text = this.flatDOM.value
 		})
-		this.portalDOM.addEventListener('change', ev => {
+		this.listenTo('change', this.portalDOM, ev => {
 			this.text = this.portalDOM.value
 		})
 
-		// Make changes to this.text based on Component.TextInputEvents
-		this.addListener(this._handleTextInput, Component.TextInputEvent)
+		// Listen for changes to this.text based on Component.TextInputEvents
+		this.listenTo(Component.TextInputEvent, this, this._handleTextInput)
 
-		const placeholderMaterial = som.meshLambertMaterial({ color: 0xdddddd })
-		const textMaterial = som.meshLambertMaterial({ color: 0x999999 })
+		this._placeholderMaterial = this.usesSpatial ? som.meshLambertMaterial({ color: this.options.placeholderColor }) : null
 
-		this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj')
-		this.portalSOM.add(this._portalBracket)
-		this._portalCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj')
-		this._portalCursor.position.set(0.04, 0.04, 0)
-		this.portalSOM.add(this._portalCursor)
-		this._portalText = som.text(this._text || this._placeholderText, placeholderMaterial, null, {
-			size: 0.12
-		})
-		this._portalText.position.set(0.05, 0.05, 0)
-		this.portalSOM.add(this._portalText)
-		this.portalSOM.name = 'text-input'
+		if (this.usesPortalSpatial) {
+			this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj').appendTo(this.portalSOM)
+			this._portalBracket.addClass('bracket')
+			this._portalBracket.name = 'Bracket'
+			this._portalCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj').appendTo(this.portalSOM)
+			this._portalCursor.addClass('cursor')
+			this._portalCursor.name = 'Cursor'
+			this._portalText = som
+				.text('', {
+					material: this._placeholderMaterial,
+					size: this.options.textSize
+				})
+				.appendTo(this.portalSOM)
+		} else {
+			this._portalBracket = null
+			this._portalCursor = null
+			this._portalText = null
+		}
 
-		this._immersiveBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj')
-		this.immersiveSOM.add(this._immersiveBracket)
-		this._immersiveCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj')
-		this._immersiveCursor.position.set(0.04, 0.04, 0)
-		this.immersiveSOM.add(this._immersiveCursor)
-		this._immersiveText = som.text(this._text || this._placeholderText, placeholderMaterial, null, {
-			size: 0.12
-		})
-		this._immersiveText.position.set(0.05, 0.05, 0)
-		this.immersiveSOM.add(this._immersiveText)
-		this.immersiveSOM.name = 'text-input'
+		if (this.usesImmersive) {
+			this._immersiveBracket = som
+				.obj('/static/potassium-components/models/TextInputBracket.obj')
+				.appendTo(this.immersiveSOM)
+			this._immersiveBracket.addClass('bracket')
+			this._immersiveBracket.name = 'Bracket'
+			this._immersiveCursor = som
+				.obj('/static/potassium-components/models/TextInputCursor.obj')
+				.appendTo(this.immersiveSOM)
+			this._immersiveCursor.addClass('cursor')
+			this._immersiveCursor.name = 'Cursor'
+			this._immersiveText = som
+				.text('', {
+					material: this._placeholderMaterial,
+					size: this.options.textSize
+				})
+				.appendTo(this.immersiveSOM)
+		} else {
+			this._immersiveBracket = null
+			this._immersiveCursor = null
+			this._immersiveText = null
+		}
 
 		if (this.dataObject && this.options.dataField) {
-			this.text = this.dataObject.get(this.options.dataField) || this.options.text || ''
-			this.dataObject.addListener((eventName, model, field, value) => {
-				this._handleModelChange()
-			}, `changed:${this.options.dataField}`)
+			this.text = this.dataObject.get(this.options.dataField, '')
+			this.listenTo(`changed:${this.options.dataField}`, this.dataObject, this._handleModelChange)
 		} else {
-			this.text = options.text || ''
+			this.text = this.options.text
 		}
 	}
 	_handleModelChange() {
@@ -126,17 +151,14 @@ const TextInputComponent = class extends Component {
 		return this._text
 	}
 	set text(value) {
-		if (this._text !== value) {
-			this._portalText.setText(value || this._placeholderText)
-			this._immersiveText.setText(value || this._placeholderText)
-		}
+		if (this._text === value) return
 		this._text = value
-		this.flatDOM.value = value
-		this.portalDOM.value = value
-		if (this.dataObject && this.options.dataField) {
-			if (this.dataObject.get(this.options.dataField) !== this._text) {
-				this.dataObject.set(this.options.dataField, this._text)
-			}
+		if (this.usesPortalSpatial) this._portalText.setText(value || this._placeholderText)
+		if (this.usesImmersive) this._immersiveText.setText(value || this._placeholderText)
+		if (this.usesFlat) this.flatDOM.value = value
+		if (this.usesPortalOverlay) this.portalDOM.value = value
+		if (this.dataObject && this.options.dataField && this.dataObject.get(this.options.dataField) !== this._text) {
+			this.dataObject.set(this.options.dataField, this._text)
 		}
 		this.trigger(TextInputComponent.TextChangeEvent, this._text)
 	}

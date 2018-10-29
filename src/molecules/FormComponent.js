@@ -28,6 +28,7 @@ const FormComponent = class extends Component {
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
+		this.setName('FormComponent')
 		this.addClass('form-component')
 
 		this._headingComponent = new HeadingComponent(null, {
@@ -40,6 +41,8 @@ const FormComponent = class extends Component {
 		}
 
 		this._fieldsComponent = new Component().appendTo(this)
+		this._fieldsComponent.setName('fieldsComponent')
+		this._fieldsComponent.addClass('fields-component')
 
 		this._waitComponent = new WaitComponent().appendTo(this)
 	}
@@ -69,6 +72,7 @@ const FormFieldComponent = class extends Component {
 				options
 			)
 		)
+		this.setName('FormFieldComponent')
 		this.addClass('form-field-component')
 
 		this._label = new LabelComponent(null, {
@@ -88,6 +92,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 	*/
 	constructor(dataObject = null, options = {}) {
 		super(dataObject, options)
+		this.setName('DateFieldComponent')
 		this.addClass('date-field-component')
 
 		this._labelComponent = new LabelComponent().appendTo(this)
@@ -186,6 +191,7 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 				options
 			)
 		)
+		this.setName('TextInputFieldComponent')
 		this.addClass('text-input-field-component')
 
 		this._textInputComponent = new TextInputComponent(dataObject, {

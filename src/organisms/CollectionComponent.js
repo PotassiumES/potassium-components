@@ -77,7 +77,7 @@ const CollectionComponent = class extends Component {
 			} else {
 				display = true
 			}
-			if(display){
+			if (display) {
 				itemComponent.show()
 			} else {
 				itemComponent.hide()

@@ -39,13 +39,15 @@ const ButtonComponent = class extends Component {
 			: null
 
 		this._portalText = this.options.usesPortalSpatial
-			? som.text('', textMaterial, null, {
+			? som.text('', {
+					material: textMaterial,
 					size: this.options.textSize
 			  })
 			: null
 
 		this._immersiveText = this.options.usesImmersive
-			? som.text('', textMaterial, null, {
+			? som.text('', {
+					material: textMaterial,
 					size: this.options.textSize
 			  })
 			: null

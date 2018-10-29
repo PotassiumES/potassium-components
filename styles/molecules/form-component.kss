@@ -45,3 +45,30 @@
 	font-size: 1.2em;
 	color: var(--dark-alert-color);
 }
+
+.som.form-component > .heading-component > text {
+	font-size: 0.1em;
+	color: var(--light-secondary-color);
+}
+
+.som.form-component > .fields-component {
+	centroid: 0 -0.2m 0;
+	display: grid;
+	grid-template: 0.3m / 0.5;
+	grid-auto-rows: 0.3m;
+	gap: 0.2m;
+}
+
+.som.form-field-component.text-input-field-component {
+	display: grid;
+	grid-template: 0.1m / 0.5m;
+	grid-auto-rows: 0.1m;
+	gap: 0.03m;
+}
+
+.som.form-field-component.date-field-component {
+	display: grid;
+	grid-template: 0.1m / 0.5m;
+	grid-auto-rows: 0.1m;
+	gap: 0.03m;
+}
