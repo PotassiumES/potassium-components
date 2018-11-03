@@ -14,7 +14,7 @@ const TextComponent = class extends Component {
 	@param {number} [options.textColor=0x444444] = the color of the text
 	@param {string} [options.textField=null] a field in the dataObject to bind to as the text
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -23,14 +23,16 @@ const TextComponent = class extends Component {
 					textColor: 0x444444
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('text-component')
+		this.setName('TextComponent')
 		this._updateTextFromData = this._updateTextFromData.bind(this)
 
 		this._text = ''
 
-		this._textMaterial = this.usesSpatial
+		this._textMaterial = this.usesSOM
 			? som.meshLambertMaterial({
 					color: this.options.textColor
 			  })

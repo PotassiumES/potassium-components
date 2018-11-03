@@ -5,6 +5,8 @@
 	--page-app-content-padding: 20px;
 	--inner-element-padding: calc(var(--page-app-content-padding) / 2);
 	--inner-section-margin: calc(var(--page-app-content-padding) * 1.2);
+	--container-border-radius: 4px;
+	--container-border-width: 1px;
 
 	/* text */
 	--base-font: sans-serif;
@@ -27,26 +29,17 @@
 	--spatial-font-size-0: 6cm;
 
 	/* named colors */
-	--dark-yellow:	rgb(252, 228, 101);
-	--yellow:		rgb(255, 236, 148);
-	--light-yellow:	rgb(255, 240, 170);
+	--light-pink: rgb(255, 152, 203);
+	--pink: rgb(255, 102, 153);
+	--dark-pink: rgb(205, 52, 103);
 
-	--dark-pink:	rgb(205, 124, 124);
-	--pink:			rgb(255, 174, 174);
-	--light-pink:	rgb(255, 220, 220);
+	--light-orange: rgb(255, 173, 107);
+	--orange: rgb(255, 123, 57);
+	--dark-orange: rgb(205, 73, 07);
 
-	--dark-blue:	rgb(36, 136, 186);
-	--blue:			rgb(86, 186, 236);
-	--light-blue:	rgb(180, 216, 231);
-
-	--dark-red:		rgb(200, 0, 0);
-	--red:			rgb(255, 0, 0);
-	--light-red:	rgb(255, 200, 200);
-
-	--green:		rgb(176, 229, 124);
-
-	--light-kelp:	#005F00;
-	--kelp:			#04322e;
+	--light-blue: rgb(173, 107, 255);
+	--blue: rgb(123, 57, 255);
+	--dark-blue: rgb(73, 7, 205);
 
 	/* color scheme */
 	--background-color: #FFFFFF;
@@ -55,16 +48,23 @@
 	--primary-color:		var(--pink);
 	--dark-primary-color:	var(--dark-pink);
 
-	--light-secondary-color:	var(--light-yellow);
-	--secondary-color:			var(--yellow);
-	--dark-secondary-color:		var(--dark-yellow);
+	--light-secondary-color:	var(--light-orange);
+	--secondary-color:			var(--orange);
+	--dark-secondary-color:		var(--dark-orange);
 
-	--light-alert-color:	var(--light-red);
-	--alert-color:			var(--red);
-	--dark-alert-color:		var(--dark-red);
+	--light-tertiary-color:	var(--light-blue);
+	--tertiary-color:			var(--blue);
+	--dark-tertiary-color:		var(--dark-blue);
 
-	--light-base-color:	var(--light-kelp);
-	--base-color:		var(--kelp);
+	--light-base-color:	rgb(155, 155, 155);
+	--base-color:		rgb(105, 105, 105);
+	--dark-base-color:		rgb(55, 55, 55);
+
+
+	/* buttons */
+	--button-border-color: var(--pink);
+	--button-border-radius: 15px;
+	--button-border-width: 2px;
 
 	/* break points (sadly, not usable in media queries) */
 	--xs-breakpoint: 0px;		/*  xs is 000  -  575  */
@@ -76,7 +76,7 @@
 
 @keyframes primary-alert-keyframes {
   0% { background: var(--primary-color); }
-  50% { background: var(--alert-color); }
+  50% { background: var(--tertiary-color); }
   100% { background: var(--primary-color); }
 }
 
@@ -117,9 +117,13 @@ h1 { font-size: var(--page-font-size-5); }
 h2 { font-size: var(--page-font-size-4); }
 h3 { font-size: var(--page-font-size-3); }
 h4 { font-size: var(--page-font-size-2); }
-h5 { font-size: var(--page-font-size-1); }
+h5 { font-size: var(--base-page-font-size); }
 
 h1, h2 { font-weight: var(--font-weight-2); }
+
+input::placeholder {
+	color: var(--light-base-color);
+}
 
 div.modal {
 	position: absolute;

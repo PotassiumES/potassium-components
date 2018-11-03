@@ -16,7 +16,7 @@ const ImageComponent = class extends CubeComponent {
 	@param {string} [options.image=null] the URL of an image
 	@param {string} [options.imageField=null] the name of the field in dataObject that holds the URL to the image
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		const needsMaterial = options.usesPortalSpatial !== false || options.usesImmersive !== false
 		const mat = needsMaterial ? ImageComponent.GenerateCubeMaterial(options.image) : null
 		super(
@@ -24,11 +24,14 @@ const ImageComponent = class extends CubeComponent {
 			Object.assign(
 				{
 					image: null,
+					material: mat,
 					imageField: null,
-					material: mat
+					flatDOM: dom.img(),
+					portalDOM: dom.img()
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('image-component')
 		this.setName('ImageComponent')
@@ -36,9 +39,6 @@ const ImageComponent = class extends CubeComponent {
 		this._updateFromData = this._updateFromData.bind(this)
 
 		this._imageURL = ''
-
-		this._flatImg = dom.img().appendTo(this.flatDOM)
-		this._portalImg = dom.img().appendTo(this.portalDOM)
 
 		if (this.options.image) {
 			this.imageURL = this.options.image
@@ -65,9 +65,9 @@ const ImageComponent = class extends CubeComponent {
 	set imageURL(value) {
 		if (value === this._imageURL) return
 		this._imageURL = value
-		this._flatImg.src = this._imageURL
-		this._portalImg.src = this._imageURL
-		if (this.usesSpatial) {
+		this.flatDOM.src = this._imageURL
+		this.portalDOM.src = this._imageURL
+		if (this.usesSOM) {
 			this.material.map = _textureLoader.load(this._imageURL)
 			this.material.needsUpdate = true
 		}

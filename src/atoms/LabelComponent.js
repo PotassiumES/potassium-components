@@ -11,7 +11,7 @@ const LabelComponent = class extends TextComponent {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -20,7 +20,8 @@ const LabelComponent = class extends TextComponent {
 					portalDOM: dom.label()
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('label-component')
 		this.setName('LabelComponent')

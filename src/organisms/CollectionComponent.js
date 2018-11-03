@@ -5,19 +5,25 @@ import { lt, ld } from 'potassium-es/src/Localizer'
 import DataObject from 'potassium-es/src/DataObject'
 import DataCollection from 'potassium-es/src/DataCollection'
 
+import LabelComponent from '../atoms/LabelComponent.js'
+
 /**
 DefaultItemComponent is used by CollectionComponent if no itemComponent option is passed
 */
 const DefaultItemComponent = class extends Component {
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, Object.assign({ flatDOM: dom.li() }, options))
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, Object.assign({ flatDOM: dom.li() }, options), inheritedOptions)
 		if (dataObject instanceof DataObject === false) throw 'DefaultItemComponent requires a dataObject'
 		this.addClass('default-item-component')
 		this.setName('DefaultItemComponent')
 
-		this._labelComponent = new LabelComponent(null, {
-			text: lt('Item: ') + new String(dataObject)
-		}).appendTo(this)
+		this._labelComponent = new LabelComponent(
+			null,
+			{
+				text: lt('Item: ') + new String(dataObject)
+			},
+			this.inheritedOptions
+		).appendTo(this)
 	}
 }
 
@@ -31,7 +37,7 @@ CollectionComponent provides a generic list UI for DataCollections.
 @param {function} [options.onClick] a function to call with the dataObject whose item Component is clicked
 */
 const CollectionComponent = class extends Component {
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -40,7 +46,8 @@ const CollectionComponent = class extends Component {
 					portalDOM: dom.ul()
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('collection-component')
 		this.setName('CollectionComponent')
@@ -57,6 +64,13 @@ const CollectionComponent = class extends Component {
 		}, 'added')
 		if (this.dataObject.isNew === false) {
 			this._handleCollectionReset()
+		} else if (this.dataObject.length > 0) {
+			this._inGroupChange = true
+			for (const dataObject of this.dataObject) {
+				this._add(this._createItemComponent(dataObject), false)
+			}
+			this._inGroupChange = false
+			this.trigger(CollectionComponent.Reset, this)
 		}
 	}
 	at(index) {
@@ -113,9 +127,9 @@ const CollectionComponent = class extends Component {
 			this.options.onClick(itemComponent.dataObject)
 		}
 	}
-	_add(itemComponent) {
+	_add(itemComponent, checkForDoubles = true) {
 		/** @todo this assumes the PK is called 'id' and  it shouldn't */
-		if (this._dataObjectComponents.get(itemComponent.dataObject.get('id'))) {
+		if (checkForDoubles && this._dataObjectComponents.get(itemComponent.dataObject.get('id'))) {
 			// Already have it, ignore the add
 			return
 		}
@@ -154,9 +168,9 @@ const CollectionComponent = class extends Component {
 		}
 		let itemComponent
 		if (this.options.itemComponent) {
-			itemComponent = new this.options.itemComponent(itemDataObject, options)
+			itemComponent = new this.options.itemComponent(itemDataObject, options, this.inheritedOptions)
 		} else {
-			itemComponent = new DefaultItemComponent(itemDataObject, options)
+			itemComponent = new DefaultItemComponent(itemDataObject, options, this.inheritedOptions)
 		}
 		itemComponent.addClass('collection-item')
 		return itemComponent

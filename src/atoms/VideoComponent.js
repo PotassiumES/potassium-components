@@ -15,7 +15,7 @@ const VideoComponent = class extends CubeComponent {
 	@param {number} [options.height=1] the initial height of the video cube
 	@param {HTMLElement} [options.videoDOM] - an HTML `video` element to use as a source
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		if (typeof options.material === 'undefined') {
 			if (typeof options.videoDOM === 'undefined') {
 				options.videoDOM = dom.video(dom.source())
@@ -29,7 +29,8 @@ const VideoComponent = class extends CubeComponent {
 					height: 1 // meter
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('video-component')
 		this.setName('VideoComponent')

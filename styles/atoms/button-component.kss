@@ -4,20 +4,20 @@ button.button-component {
 	cursor: pointer;
 	background-color: #FFFFFF;
 	padding: 3px 15px;
-	border: solid 2px var(--dark-primary-color);
-	border-radius: 15px;
+	border: solid var(--button-border-width) var(--button-border-color);
+	border-radius: var(--button-border-radius);
 }
 
 button.button-component:hover {
-	background-color: var(--secondary-color);
+	border-color: var(--light-secondary-color);
 }
 
 button.button-component:active {
-	background-color: var(--light-secondary-color);
+	border-color: var(--dark-secondary-color);
 }
 
 button.button-component.selected {
-	background-color: var(--light-secondary-color);
+	background-color: var(--dark-primary-color);
 }
 
 button.button-component.small {
@@ -32,6 +32,6 @@ node.button-component > text {
 }
 
 node.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
-	material-emissive: var(--light-base-color);
+	material-emissive: var(--primary-color);
 }
 

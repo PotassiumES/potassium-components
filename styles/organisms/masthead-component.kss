@@ -9,8 +9,9 @@
 	display: block;
 	margin-top: 0;
 	padding: var(--page-app-content-padding);
-	color: var(--dark-primary-color);
-	background-color: var(--light-secondary-color);
+	color: var(--primary-color);
+	background-color: var(--background-color);
+	border-bottom: dashed 1px var(--secondary-color);
 }
 
 .dom.masthead-component .menu-component {
@@ -46,7 +47,7 @@
 	grid-template: 0.5m / 0.4m 1.6m 1m;
 }
 
-.portal-el.heading-component.brand-component {
+.portal-dom.heading-component.brand-component {
 	background-color: inherit;
 	border-bottom: dashed 1px;
 }

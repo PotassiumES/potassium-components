@@ -1,10 +1,18 @@
 
 /*** ImageCardComponent ***/
 
-.dom.image-card-component > .main-component > .image-component > img {
+.dom.image-card-component > .dom.main-component > .dom.image-component {
 	max-width: 100%;
 	background-color: var(--background-color);
 }
+
+.dom.image-card-component > .main-component > :first-child {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+
 
 .som.image-card-component > node > .som.image-component {
 	centroid: -0.35m 0m 0m;

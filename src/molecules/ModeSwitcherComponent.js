@@ -17,8 +17,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.addClass('mode-switcher-component')
 		this.setName('ModeSwitcherComponent')
 		this._handleDisplayUpdate = this._handleDisplayUpdate.bind(this)
@@ -29,44 +29,53 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		this._attemptingMode = null
 
 		// Exit button appears in portalDOM and immersiveSOM
-		this._exitButton = new ButtonComponent(null, {
-			text: lt('Exit'),
-			usesFlat: false,
-			usesPortalSpatial: false
-		})
+		this._exitButton = new ButtonComponent(
+			null,
+			{
+				text: lt('Exit'),
+				usesFlat: false,
+				usesPortalSpatial: false
+			},
+			this.inheritedOptions
+		).appendTo(this)
 		this._exitButton.addListener((eventName, value) => {
 			if (!value) return
 			this.trigger(ModeSwitcherComponent.ModeChangedEvent, App.FLAT)
 		}, ButtonComponent.ChangedEvent)
-		this.appendComponent(this._exitButton)
 
 		// Portal button appears only in flatDOM
-		this._portalButton = new ButtonComponent(null, {
-			text: lt('Portal'),
-			usesPortalOverlay: false,
-			usesPortalSpatial: false,
-			usesImmersive: false
-		})
+		this._portalButton = new ButtonComponent(
+			null,
+			{
+				text: lt('Portal'),
+				usesPortalOverlay: false,
+				usesPortalSpatial: false,
+				usesImmersive: false
+			},
+			this.inheritedOptions
+		).appendTo(this)
 		this._portalButton.addListener((eventName, value) => {
 			if (!value) return
 			this._attemptingMode = App.PORTAL
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
-		this.appendComponent(this._portalButton)
 
 		// Immersive button appears only in flatDOM
-		this._immersiveButton = new ButtonComponent(null, {
-			text: lt('Immersive'),
-			usesPortalOverlay: false,
-			usesPortalOverlay: false,
-			usesImmersive: false
-		})
+		this._immersiveButton = new ButtonComponent(
+			null,
+			{
+				text: lt('Immersive'),
+				usesPortalOverlay: false,
+				usesPortalOverlay: false,
+				usesImmersive: false
+			},
+			this.inheritedOptions
+		).appendTo(this)
 		this._immersiveButton.addListener((eventName, value) => {
 			if (!value) return
 			this._attemptingMode = App.IMMERSIVE
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
-		this.appendComponent(this._immersiveButton)
 
 		this._switchModal = dom.div({ class: 'switch-modal modal' })
 		dom

@@ -11,11 +11,10 @@ const SearchComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.addClass('search-component')
-
-		console.error('Unimplemented')
+		this.setName('SearchComponent')
 	}
 }
 

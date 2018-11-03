@@ -1,0 +1,14 @@
+/* AudioComponent */
+
+.dom.audio-component {
+	width: 35px;
+	display: inline;
+}
+
+.dom.audio-component > .dom.audio-image {
+	max-width: 100%;
+}
+
+.som.audio-component {
+	scale: 0.1m 0.1m 0.1m;
+}

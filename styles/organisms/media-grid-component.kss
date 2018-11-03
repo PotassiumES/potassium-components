@@ -1,15 +1,14 @@
 /*** MediaGridComponent ***/
 
-.dom.media-grid-component > .collection-component {
-	margin-top: 0;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+.dom.media-grid-component {
+	width: 100%;
 }
 
-.dom.media-grid-component > .collection-component > .collection-item {
-	width: 100%;
-	margin: 0 0 var(--page-app-content-padding) 0;
+.dom.media-grid-component > .collection-component {
+	margin-top: 0;
+	display: grid;
+	grid-template: auto / 1fr;
+	gap: var(--inner-section-margin);
 }
 
 .dom.media-grid-component > .collection-component > .collection-item .main {
@@ -21,30 +20,26 @@
 }
 
 @media (min-width: 576px){
-	.dom.media-grid-component {
-		margin-left: calc(-0.5 * var(--page-app-content-padding));
-		width: calc(100% + var(--page-app-content-padding)); /** account for item margin */
-	}
-	.dom.media-grid-component > .collection-component > .collection-item {
-		width: calc(50% - var(--inner-element-padding));
-		margin: calc(var(--inner-element-padding) / 2);
+	.dom.media-grid-component > .collection-component {
+		grid-template: auto / 1fr 1fr;
 	}
 }
 
 @media (min-width: 768px){
-	.dom.media-grid-component > .collection-component > .collection-item {
-		width: calc(33% - var(--inner-element-padding));
+	.dom.media-grid-component > .collection-component {
+		grid-template: auto / 1fr 1fr 1fr;
 	}
 }
 
 @media (min-width: 992px){
-	.dom.media-grid-component > .collection-component > .collection-item {
-		width: calc(25% - var(--inner-element-padding));
+	.dom.media-grid-component > .collection-component {
+		grid-template: auto / auto auto auto auto;
 	}
 }
 
 .som.media-grid-component > .som.collection-component {
 	display: grid;
-	grid-template: 0.5m / 0.5m;
-	grid-auto-rows: 0.5m;
+	grid-template: 1.2m / 1.2m 1.2m 1.2m 1.2m;
+	grid-auto-rows: 1.2m;
+	gap: 0.1m;
 }

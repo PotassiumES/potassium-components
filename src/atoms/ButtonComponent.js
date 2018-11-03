@@ -10,10 +10,11 @@ const ButtonComponent = class extends Component {
 	/**
 	@param {DataObject} [dataObject]
 	@param {Object} [options]
+	@param {string} [options.text='']
 	@param {number} [options.textSize]
 	@param {number} [options.textColor]
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -25,14 +26,15 @@ const ButtonComponent = class extends Component {
 					usesPortalSpatial: false
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('button-component')
 		this.setName('ButtonComponent')
 
 		this._text = ''
 
-		const textMaterial = this.usesSpatial
+		const textMaterial = this.usesSOM
 			? som.meshLambertMaterial({
 					color: this.options.textColor
 			  })
@@ -74,13 +76,13 @@ const ButtonComponent = class extends Component {
 			}
 		}
 
-		this.addListener((eventName, actionName, value, actionParameters) => {
+		this.listenTo(Component.ActionEvent, this, (eventName, actionName, value, actionParameters) => {
 			switch (actionName) {
 				case '/action/activate':
 					this.trigger(ButtonComponent.ChangedEvent, value)
 					break
 			}
-		}, Component.ActionEvent)
+		})
 
 		this.text = this.options.text || ''
 	}

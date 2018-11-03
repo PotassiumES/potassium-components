@@ -1,8 +1,22 @@
 /*** DateTimePickerComponent ***/
 
-.dom.date-time-picker-component .dom.text-input-component {
-	max-width: 4em;
+
+
+.dom.date-time-picker-component > .dom.form-group {
+	display: block;
+}
+
+.dom.date-time-picker-component > .dom.form-group > .dom.text-input-component {
+	display: inline;
 	margin-left: 0.6em;
 	text-align: center;
 }
 
+.dom.date-time-picker-component > .dom.form-group > .dom.date-component {
+	max-width: 2em;
+}
+
+.dom.date-time-picker-component > .dom.form-group > .dom.time-component,
+.dom.date-time-picker-component > .dom.form-group > .dom.year-component {
+	max-width: 4em;
+}

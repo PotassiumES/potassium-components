@@ -3,8 +3,9 @@ import som from 'potassium-es/src/SOM'
 import { lt, ld } from 'potassium-es/src/Localizer'
 import Component from 'potassium-es/src/Component'
 
-import ButtonComponent from 'potassium-components/src/atoms/ButtonComponent'
 import LabelComponent from 'potassium-components/src/atoms/LabelComponent'
+import SwitchComponent from 'potassium-components/src/atoms/SwitchComponent'
+import ButtonComponent from 'potassium-components/src/atoms/ButtonComponent'
 import HeadingComponent from 'potassium-components/src/atoms/HeadingComponent'
 import TextInputComponent from 'potassium-components/src/atoms/TextInputComponent'
 
@@ -26,16 +27,20 @@ const FormComponent = class extends Component {
 	@param {Object} [options] see the {@Component} for inherited options
 	@param {string} [options.heading] the heading text for this form
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.setName('FormComponent')
 		this.addClass('form-component')
 
-		this._headingComponent = new HeadingComponent(null, {
-			flatDOM: dom.h2(),
-			portalDOM: dom.h2(),
-			text: options.heading || ''
-		}).appendTo(this)
+		this._headingComponent = new HeadingComponent(
+			null,
+			{
+				flatDOM: dom.h2(),
+				portalDOM: dom.h2(),
+				text: options.heading || ''
+			},
+			this.inheritedOptions
+		).appendTo(this)
 		if (!options.heading) {
 			this._headingComponent.hide()
 		}
@@ -82,6 +87,22 @@ const FormFieldComponent = class extends Component {
 	}
 }
 
+const SwitchFieldComponent = class extends FormFieldComponent {
+	/**
+	@param {DataModel} [dataObject]
+	@param {Object}    [options] see {@link FormFieldComponent} for more options
+	*/
+	constructor(dataObject = null, options = {}, inheritedOptions={}) {
+		super(dataObject, options, inheritedOptions)
+		this.setName('SwitchFieldComponent')
+		this.addClass('switch-field-component')
+
+		this._switchComponent = new SwitchComponent(this.dataObject, {
+			dataField: this.options.dataField
+		}, this.inheritedOptions).appendTo(this)
+	}	
+}
+
 /**
 DateFieldComponent
 */
@@ -90,14 +111,14 @@ const DateFieldComponent = class extends FormFieldComponent {
 	@param {DataModel} [dataObject]
 	@param {Object}    [options] see {@link FormFieldComponent} for more options
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions={}) {
+		super(dataObject, options, inheritedOptions)
 		this.setName('DateFieldComponent')
 		this.addClass('date-field-component')
 
-		this._labelComponent = new LabelComponent().appendTo(this)
+		this._labelComponent = new LabelComponent(null, {}, this.inheritedOptions).appendTo(this)
 		if (this.dataObject && this.options.dataField) {
-			this.dataObject.addListener((eventName, model, fieldName, value) => {
+			this.dataObject.addListener((eventName, model, dataField, value) => {
 				if (!value) {
 					this._labelComponent.text = ''
 					return
@@ -110,7 +131,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 			}
 		}
 
-		this._startEditComponent = new LabelComponent(null, { text: EditIcon }).appendTo(this)
+		this._startEditComponent = new LabelComponent(null, { text: EditIcon }, this.inheritedOptions).appendTo(this)
 		this._startEditComponent.addClass('start-edit-component')
 		this._startEditComponent.addListener((eventName, action, active, options) => {
 			if (action === '/action/activate' && active) {
@@ -121,9 +142,9 @@ const DateFieldComponent = class extends FormFieldComponent {
 		this._datePickerComponent = new DateTimePickerComponent(this.dataObject, {
 			dataField: this.options.dataField,
 			pickTime: false
-		}).appendTo(this)
+		}, this.inheritedOptions).appendTo(this)
 
-		this._saveEditComponent = new LabelComponent(null, { text: SaveIcon }).appendTo(this)
+		this._saveEditComponent = new LabelComponent(null, { text: SaveIcon }, this.inheritedOptions).appendTo(this)
 		this._saveEditComponent.addClass('save-edit-component')
 		this._saveEditComponent.addListener((eventName, action, active, options) => {
 			if (action === '/action/activate' && active) {
@@ -131,7 +152,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 			}
 		}, Component.ActionEvent)
 
-		this._cancelEditComponent = new LabelComponent(null, { text: CancelIcon }).appendTo(this)
+		this._cancelEditComponent = new LabelComponent(null, { text: CancelIcon }, this.inheritedOptions).appendTo(this)
 		this._cancelEditComponent.addClass('cancel-edit-component')
 		this._cancelEditComponent.addListener((eventName, action, active, options) => {
 			if (action === '/action/activate' && active) {
@@ -181,7 +202,7 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 	@param {Object}    [options] see {@link FormFieldComponent} for more options
 	@param {string}    [options.placeholder] the text displayed in the field when there is no value text
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions={}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -189,7 +210,8 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 					placeholder: null
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.setName('TextInputFieldComponent')
 		this.addClass('text-input-field-component')
@@ -203,7 +225,7 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 		}, TextInputComponent.TextChangeEvent)
 
 		if (this.dataObject && this.options.dataField) {
-			this.dataObject.addListener((eventName, model, fieldName, value) => {
+			this.dataObject.addListener((eventName, model, dataField, value) => {
 				this._handleModelChange(value)
 			}, `changed:${this.options.dataField}`)
 		}
@@ -222,4 +244,9 @@ const TextInputFieldComponent = class extends FormFieldComponent {
 }
 
 export default FormComponent
-export { DateFieldComponent, FormComponent, TextInputFieldComponent }
+export {
+	FormComponent,
+	DateFieldComponent,
+	SwitchFieldComponent,
+	TextInputFieldComponent
+}

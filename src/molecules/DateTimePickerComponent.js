@@ -3,6 +3,7 @@ import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 import { Localizer, lt, ld, ldt, ldo } from 'potassium-es/src/Localizer'
 
+import LabelComponent from 'potassium-components/src/atoms/LabelComponent'
 import SelectionComponent from 'potassium-components/src/atoms/SelectionComponent'
 import TextInputComponent from 'potassium-components/src/atoms/TextInputComponent'
 
@@ -16,7 +17,7 @@ const DateTimePickerComponent = class extends Component {
 	@param {boolean} [options.pickDate] if false, hide the date picking UI
 	@param {boolean} [options.pickTime] if false, hide the time picking UI
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -24,9 +25,11 @@ const DateTimePickerComponent = class extends Component {
 					pickTime: true
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('date-time-picker-component')
+		this.setName('DateTimePickerComponent')
 
 		if (this.dataObject && this.options.dataField) {
 			this._date = null
@@ -34,33 +37,78 @@ const DateTimePickerComponent = class extends Component {
 			this._date = new Date()
 		}
 
+		this._monthFormGroup = new Component().appendTo(this).addClass('form-group')
+		if (this.options.pickDate === false) this._monthFormGroup.hide()
+
 		// Month picker
-		this._monthSelectionComponent = new SelectionComponent(null, {
-			items: Localizer.Singleton.monthNames.map((name, index) => [name, index])
-		}).appendTo(this)
+		this._monthSelectionComponent = new SelectionComponent(
+			null,
+			{
+				items: Localizer.Singleton.monthNames.map((name, index) => [name, index])
+			},
+			this.inheritedOptions
+		).appendTo(this._monthFormGroup)
 		this._monthSelectionComponent.addClass('month-component')
-		if (this.options.pickDate === false) this._monthSelectionComponent.hide()
+
+		this._dateFormGroup = new Component().appendTo(this).addClass('form-group')
+		if (this.options.pickDate === false) this._dateFormGroup.hide()
 
 		// Date input
-		this._dateInputComponent = new TextInputComponent(null, {
-			placeholder: 'date'
-		}).appendTo(this)
+		this._dateLabelComponent = new LabelComponent(
+			null,
+			{
+				text: lt('Date')
+			},
+			this.inheritedOptions
+		).appendTo(this._dateFormGroup)
+		this._dateInputComponent = new TextInputComponent(
+			null,
+			{
+				placeholder: '31'
+			},
+			this.inheritedOptions
+		).appendTo(this._dateFormGroup)
 		this._dateInputComponent.addClass('date-component')
-		if (this.options.pickDate === false) this._dateSelectionComponent.hide()
+
+		this._yearFormGroup = new Component().appendTo(this).addClass('form-group')
+		if (this.options.pickDate === false) this._yearFormGroup.hide()
 
 		// Year input
-		this._yearInputComponent = new TextInputComponent(null, {
-			placeholder: 'year'
-		}).appendTo(this)
+		this._yearLabelComponent = new LabelComponent(
+			null,
+			{
+				text: lt('Year')
+			},
+			this.inheritedOptions
+		).appendTo(this._yearFormGroup)
+		this._yearInputComponent = new TextInputComponent(
+			null,
+			{
+				placeholder: '1999'
+			},
+			this.inheritedOptions
+		).appendTo(this._yearFormGroup)
 		this._yearInputComponent.addClass('year-component')
-		if (this.options.pickDate === false) this._yearInputComponent.hide()
+
+		this._timeFormGroup = new Component().appendTo(this).addClass('form-group')
+		if (this.options.pickTime === false) this._timeFormGroup.hide()
 
 		// Time input
-		this._timeInputComponent = new TextInputComponent(null, {
-			placeholder: 'time'
-		}).appendTo(this)
+		this._timeLabelComponent = new LabelComponent(
+			null,
+			{
+				text: lt('Time')
+			},
+			this.inheritedOptions
+		).appendTo(this._timeFormGroup)
+		this._timeInputComponent = new TextInputComponent(
+			null,
+			{
+				placeholder: '20:10'
+			},
+			this.inheritedOptions
+		).appendTo(this._timeFormGroup)
 		this._timeInputComponent.addClass('time-component')
-		if (this.options.pickTime === false) this._timeInputComponent.hide()
 
 		if (this.dataObject && this.options.dataField) {
 			this.dataObject.addListener((eventName, model, field, value) => {
