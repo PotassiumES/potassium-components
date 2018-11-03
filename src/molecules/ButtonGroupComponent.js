@@ -11,8 +11,8 @@ const ButtonGroupComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.addClass('button-group-component')
 		this.setName('ButtonGroupComponent')
 	}

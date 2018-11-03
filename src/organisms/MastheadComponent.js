@@ -29,7 +29,7 @@ const MastheadComponent = class extends Component {
 	@param {string} options.menuItems.name
 	@param {string} options.menuItems.anchor
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -40,15 +40,19 @@ const MastheadComponent = class extends Component {
 					usesPortalSpatial: false
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('masthead-component')
 		this.setName('MastheadComponent')
 
-		this._modeSwitcherComponent = new ModeSwitcherComponent().appendTo(this)
-		this._modeSwitcherComponent.addListener((eventName, mode) => {
-			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
-		}, ModeSwitcherComponent.ModeChangedEvent)
+		this._modeSwitcherComponent = new ModeSwitcherComponent(null, {}, this.inheritedOptions).appendTo(this)
+		this._modeSwitcherComponent.addListener(
+			(eventName, mode) => {
+				this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
+			},
+			ModeSwitcherComponent.ModeChangedEvent
+		)
 
 		if (this.options.brand instanceof Component) {
 			this._brand = this.options.brand
@@ -66,14 +70,18 @@ const MastheadComponent = class extends Component {
 		this._brand.setName('BrandComponent')
 		this.appendComponent(this._brand)
 
-		this._navigationMenu = new MenuComponent().appendTo(this)
+		this._navigationMenu = new MenuComponent(null, {}, this.inheritedOptions).appendTo(this)
 		if (this.options.menuItems) {
 			for (const item of this.options.menuItems) {
 				this._navigationMenu.appendMenuItem(
-					new LabelComponent(null, {
-						text: item.name,
-						activationAnchor: item.anchor
-					})
+					new LabelComponent(
+						null,
+						{
+							text: item.name,
+							activationAnchor: item.anchor
+						},
+						this.inheritedOptions
+					)
 				)
 			}
 		}

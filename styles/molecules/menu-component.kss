@@ -1,0 +1,17 @@
+/* MenuComponent */
+
+.dom.menu-component > .selected {
+	color: var(--primary-color);
+}
+
+.dom.menu-component > .component {
+	margin: 0 8px;
+}
+
+.dom.menu-component > .component:hover {
+	color: var(--secondary-color);
+}
+
+.dom.menu-component > .component:active {
+	color: var(--dark-secondary-color);
+}

@@ -16,7 +16,7 @@ const CubeComponent = class extends Component {
 	@param {Object} [options]
 	@param {THREE.Material} [options.material]
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -25,11 +25,12 @@ const CubeComponent = class extends Component {
 					material: null
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('cube-component')
 		this.setName('CubeComponent')
-		if (this.usesSpatial && this.options.material === null) {
+		if (this.usesSOM && this.options.material === null) {
 			this.options.material = new THREE.MeshLambertMaterial({ color: 0xaaaaaa })
 		}
 

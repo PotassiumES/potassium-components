@@ -13,10 +13,12 @@ const SliderComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.addClass('slider-component')
 		this.setName('SliderComponent')
+		this._handleMouseMove = this._handleMouseMove.bind(this)
+		this._handleMouseUp = this._handleMouseUp.bind(this)
 
 		this._minValue = 0
 		this._maxValue = 1
@@ -38,6 +40,26 @@ const SliderComponent = class extends Component {
 
 		this._calculatePositions()
 		this.value = this._value
+
+		this._pointerDown = false
+		this._pointerStart = 0 // page x, y
+		this._handleStart = 0 // left value
+
+		if(this.usesFlat){
+			// set up listeners for dragging of the handle
+			this.listenTo('mousedown', this._handleComponent.flatDOM, ev => {
+				ev.preventDefault()
+				this._pointerDown = true
+				this._pointerStart = ev.pageX
+				this._handleStart = Number.parseFloat(this._handleComponent.flatDOM.style['left'] || '0')
+				// We listen to both the handle and the base component because the browser often can't keep up
+				this._handleComponent.flatDOM.addEventListener('mousemove', this._handleMouseMove)
+				this.flatDOM.addEventListener('mousemove', this._handleMouseMove)
+			})
+			this.listenTo('mouseup', this._handleComponent.flatDOM, this._handleMouseUp)
+			this.listenTo('mouseup', this.flatDOM, this._handleMouseUp)
+			this.listenTo('mouseleave', this.flatDOM, this._handleMouseUp)
+		}
 	}
 
 	/** @type {number} the current value */
@@ -75,19 +97,47 @@ const SliderComponent = class extends Component {
 		return this._maxValue
 	}
 
+	/** @type {boolean} - true if the user is moving the handle */
+	get userIsChanging(){
+		return this._pointerDown
+	}
+
+	_handleMouseMove(ev){
+		const xChange = ev.pageX - this._pointerStart
+		this._handleComponent.flatDOM.style['left'] = (this._handleStart + xChange) + 'px'
+	}
+
+	_handleMouseUp(ev){
+		ev.preventDefault()
+		if(this._pointerDown === false) return
+		this._pointerDown = false
+		this._handleComponent.flatDOM.removeEventListener('mousemove', this._handleMouseMove)
+		this.flatDOM.removeEventListener('mousemove', this._handleMouseMove)
+		this.valueFraction = this._getValueFractionFromHandlePosition(this._handleComponent.flatDOM, this._barComponent.flatDOM)
+		this.trigger(SliderComponent.VALUE_CHANGE_VIA_INPUT, this.valueFraction)
+	}
+
+	_getValueFractionFromHandlePosition(handleDOM, barDOM){
+		const handleLeft = Number.parseFloat(handleDOM.style['left'] || '0')
+		if(barDOM.clientWidth === 0 || handleDOM.clientWidth === 0) return 0
+		if(handleLeft < 0) return 0
+		if(handleLeft >= barDOM.clientWidth) return 1
+		return handleLeft / (barDOM.clientWidth - handleDOM.clientWidth)
+	}
+
 	_calculatePositions() {
 		this._handleXStart = this._barWidth / -2 + this._handleWidth / 2
 		this._handleXEnd = this._handleXStart * -1
 	}
 
-	_updateFlatHandlePosition(barSOM, handleSOM) {
-		const barWidth = barSOM.clientWidth
-		const handleWidth = handleSOM.clientWidth
+	_updateFlatHandlePosition(barDOM, handleDOM) {
+		const barWidth = barDOM.clientWidth
+		const handleWidth = handleDOM.clientWidth
 		if (barWidth === 0 || handleWidth === 0) return // Not on the page yet
 		const startX = 0
 		const endX = barWidth - handleWidth
 		const x = startX + (endX - startX) * this.valueFraction
-		handleSOM.style['left'] = `${x}px`
+		handleDOM.style['left'] = `${x}px`
 	}
 
 	_updateHandlePosition() {
@@ -104,5 +154,7 @@ const SliderComponent = class extends Component {
 		this._handleComponent.immersiveSOM.position.set(...newPosition)
 	}
 }
+
+SliderComponent.VALUE_CHANGE_VIA_INPUT = 'value-changed-via-input'
 
 export default SliderComponent

@@ -7,21 +7,28 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 
 /* Atoms */
 
+@import './atoms/audio-component.kss';
 @import './atoms/button-component.kss';
 @import './atoms/cube-component.kss';
 @import './atoms/heading-component.kss';
 @import './atoms/image-component.kss';
+@import './atoms/multi-component.kss';
+@import './atoms/progress-component.kss';
 @import './atoms/selection-component.kss';
 @import './atoms/slider-component.kss';
+@import './atoms/switch-component.kss';
+@import './atoms/table-component.kss';
 @import './atoms/text-input-component.kss';
 @import './atoms/video-component.kss';
 
 /* Molecules */
 
+@import './molecules/audio-player-component.kss';
 @import './molecules/button-group-component.kss';
 @import './molecules/card-component.kss';
 @import './molecules/date-time-picker-component.kss';
 @import './molecules/form-component.kss';
+@import './molecules/menu-component.kss';
 @import './molecules/image-card-component.kss';
 @import './molecules/mode-switcher-component.kss';
 @import './molecules/tool-tip-component.kss';

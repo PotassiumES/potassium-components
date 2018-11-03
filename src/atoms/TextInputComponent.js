@@ -13,7 +13,7 @@ const TextInputComponent = class extends Component {
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
 	@param {number} [options.textColor=0x444444] = the color of the text
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -27,7 +27,8 @@ const TextInputComponent = class extends Component {
 					portalDOM: dom.input({ type: 'text' })
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('text-input-component')
 		this.setName('TextInputComponent')
@@ -55,7 +56,7 @@ const TextInputComponent = class extends Component {
 		// Listen for changes to this.text based on Component.TextInputEvents
 		this.listenTo(Component.TextInputEvent, this, this._handleTextInput)
 
-		this._placeholderMaterial = this.usesSpatial ? som.meshLambertMaterial({ color: this.options.placeholderColor }) : null
+		this._placeholderMaterial = this.usesSOM ? som.meshLambertMaterial({ color: this.options.placeholderColor }) : null
 
 		if (this.usesPortalSpatial) {
 			this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj').appendTo(this.portalSOM)

@@ -12,8 +12,8 @@ const MenuComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
-		super(dataObject, options)
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		super(dataObject, options, inheritedOptions)
 		this.addClass('menu-component')
 		this.setName('MenuComponent')
 
@@ -48,6 +48,7 @@ const MenuComponent = class extends Component {
 	}
 
 	layout() {
+		/** @todo convert to grid */
 		const itemHeight = 0.12
 		for (let i = 0; i < this._menuItems.length; i++) {
 			this._menuItems[i].portalSOM.position.set(0, i * itemHeight * -1, 0)

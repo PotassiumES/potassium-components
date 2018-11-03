@@ -1,0 +1,30 @@
+/* ProgressComponent */
+
+.dom.progress-component {
+	display: inline;
+} 
+
+.dom.progress-component > .dom.track-component {
+	display: block;
+	width: 100%;
+	height: 1em;
+	border: solid var(--container-border-width) var(--secondary-color);
+	border-radius: var(--container-border-radius);
+}
+
+.dom.progress-component > .dom.track-component > .dom.fill-component {
+	display: block;
+	height: 1em;
+	background-color: var(--primary-color);	
+}
+
+.som.progress-component > .som.track-component > mesh {
+	material-emissive: var(--secondary-color);
+	scale: 1 0.08 0.01;
+}
+
+.som.progress-component > .som.track-component > .som.fill-component > mesh {
+	material-emissive: var(--primary-color);
+	scale: 0.95 0.06 0.01;
+	centroid: 0 0 0.03m;
+}

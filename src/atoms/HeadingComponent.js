@@ -11,7 +11,7 @@ const HeadingComponent = class extends TextComponent {
 	@param {DataObject} dataObject
 	@param {Object} options see the {@link TextComponent} options
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -23,9 +23,11 @@ const HeadingComponent = class extends TextComponent {
 					textColor: 0x444444
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('heading-component')
+		this.setName('HeadingComponent')
 		this.portalSOM.name = this.immersiveSOM.name = 'HeadingComponent'
 	}
 }

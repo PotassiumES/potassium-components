@@ -1,27 +1,36 @@
 
 /* SliderComponent */
 
+.dom.slider-component {
+	width: 100%;
+}
+
 .dom.slider-component > .slider-handle {
 	display: block;
+	position: relative;
 	width: 30px;
-	height: 45px;
-	background-color: #444;
-	position: relative; /* will change as the video position changes */
+	height: 32px;
+	background-color: var(--primary-color);
+	border-radius: var(--container-border-radius);
 }
 
 .dom.slider-component > .slider-bar {
 	margin-top: 5px;
 	display: block;
 	width: 100%;
-	height: 10px;
-	background-color: #444;
+	height: 2px;
+	background-color: var(--secondary-color);
 }
 
-node.slider-component > .slider-handle {
+.som.slider-component > .slider-handle {
 	scale: 0.05 0.05 0.01;
 }
 
-node.slider-component > .slider-bar {
+.som.slider-component > .slider-bar {
 	centroid: 0 -0.03 0;
 	scale: 1 0.02 0.01;
+}
+
+.som.slider-component > .slider-bar > mesh {
+	material-emissive: var(--primary-color);
 }

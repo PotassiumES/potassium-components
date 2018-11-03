@@ -3,36 +3,51 @@
 
 .dom.card-component {
 	background-color: var(--background-color);
+	border: solid var(--container-border-width) var(--light-secondary-color);
+	border-radius: var(--container-border-radius);
 }
 
-.dom.card-component .main-component,
-.dom.card-component .heading-component,
-.dom.card-component .label-component {
+.dom.card-component > .main-component,
+.dom.card-component > .card-title-component,
+.dom.card-component > .card-caption-component {
 	padding-top: var(--inner-element-padding);
 	padding-left: var(--inner-element-padding);
 	padding-right: var(--inner-element-padding);
 }
 
-.dom.card-component .main-component {
-	text-align: center;
+.dom.card-component > .main-component {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 	width: calc(100% - (var(--inner-element-padding) * 2));
 	padding-bottom: var(--inner-element-padding);
-	background-color: var(--light-secondary-color);
 	max-height: 75vw;
 }
 
-.dom.card-component .heading-component,
-.dom.card-component .label-component {
+.dom.card-component > .main-component img {
+	max-width: 100%;
+}
+
+.dom.card-component > .card-title-component,
+.dom.card-component > .card-caption-component {
 	display: block;
-	background-color: var(--dark-secondary-color);
 }
 
-.dom.card-component .heading-component {
-	font-weight: var(--page-font-size-2);
+.dom.card-component > .card-title-component {
+	border-top: dashed 1px var(--primary-color);
+	font-size: var(--base-page-font-size);
 }
 
-.dom.card-component .label-component {
+.dom.card-component > .card-caption-component {
 	font-weight: var(--base-page-font-size);
 	padding-bottom: var(--inner-element-padding);
 	min-height: 2em;
+}
+
+.som.card-component > .main-component {
+	centroid: 0.5 0.5 0;
+}
+
+.som.card-component > .card-title-component {
+	font-size: 0.08m;
 }

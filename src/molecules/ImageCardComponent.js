@@ -13,7 +13,7 @@ const ImageCardComponent = class extends CardComponent {
 	@param {string} [options.titleField] the field name in the DataObject that holds the title of the image
 	@param {string} [options.captionField] the field name in the dataObject that holds the caption
 	*/
-	constructor(dataObject, options = {}) {
+	constructor(dataObject, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -23,13 +23,19 @@ const ImageCardComponent = class extends CardComponent {
 					captionField: 'caption'
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('image-card-component')
+		this.setName('ImageCardComponent')
 
-		this._imageComponent = new ImageComponent(dataObject, {
-			imageField: this.options.imageField
-		}).appendTo(this.mainComponent)
+		this._imageComponent = new ImageComponent(
+			dataObject,
+			{
+				imageField: this.options.imageField
+			},
+			this.inheritedOptions
+		).appendTo(this.mainComponent)
 	}
 }
 

@@ -11,7 +11,7 @@ const SelectionComponent = class extends Component {
 	@param {Object} [options]
 	@param {string[] | Array<{name {string}, value {string}}>} [options.items]
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -21,9 +21,11 @@ const SelectionComponent = class extends Component {
 					portalDOM: dom.select()
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('selection-component')
+		this.setName('SelectionComponent')
 
 		// Normalize the items to all be [name, value]
 		this.options.items = this.options.items.map(item => {

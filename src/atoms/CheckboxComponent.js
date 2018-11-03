@@ -11,7 +11,7 @@ const CheckboxComponent = class extends Component {
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
 	*/
-	constructor(dataObject = null, options = {}) {
+	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
 			dataObject,
 			Object.assign(
@@ -20,10 +20,13 @@ const CheckboxComponent = class extends Component {
 					portalDOM: dom.input({ type: 'checkbox' })
 				},
 				options
-			)
+			),
+			inheritedOptions
 		)
 		this.addClass('checkbox-component')
-		this._checked = options.checked === true
+		this.setName('CheckboxComponent')
+
+		this._checked = this.options.checked === true
 		this._portalCheckSOM = null
 		this._immersiveCheckSOM = null
 
