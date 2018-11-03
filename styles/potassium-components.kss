@@ -31,6 +31,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './molecules/menu-component.kss';
 @import './molecules/image-card-component.kss';
 @import './molecules/mode-switcher-component.kss';
+@import './molecules/pagination-component.kss';
 @import './molecules/tool-tip-component.kss';
 @import './molecules/video-player-component.kss';
 
