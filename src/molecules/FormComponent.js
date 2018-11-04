@@ -12,11 +12,6 @@ import TextInputComponent from 'potassium-components/src/atoms/TextInputComponen
 import SelectionComponent from 'potassium-components/src/atoms/SelectionComponent'
 
 import WaitComponent from './WaitComponent.js'
-import DateTimePickerComponent from './DateTimePickerComponent.js'
-
-const EditIcon = '✏️'
-const SaveIcon = '✓'
-const CancelIcon = '✕'
 
 /**
 FormComponent holds a set of sub-Components related to filling out information in a form.
