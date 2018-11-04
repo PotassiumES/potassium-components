@@ -26,7 +26,6 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './molecules/audio-player-component.kss';
 @import './molecules/button-group-component.kss';
 @import './molecules/card-component.kss';
-@import './molecules/date-time-picker-component.kss';
 @import './molecules/form-component.kss';
 @import './molecules/menu-component.kss';
 @import './molecules/image-card-component.kss';
@@ -34,6 +33,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './molecules/pagination-component.kss';
 @import './molecules/tool-tip-component.kss';
 @import './molecules/video-player-component.kss';
+@import './molecules/wait-component.kss';
 
 /* Organisms */
 

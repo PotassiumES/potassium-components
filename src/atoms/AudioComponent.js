@@ -36,7 +36,7 @@ const AudioComponent = class extends Component {
 			this._audioDOM = this.options.audioDOM
 		} else {
 			this._audioDOM = dom.audio(dom.source({
-				src: this.options.audio || '/static/potassium-components/audio/primary-alert.wav'
+				src: this.options.audio || '/static/potassium-components/audio/primary-alert.m4a'
 			}))
 		}
 

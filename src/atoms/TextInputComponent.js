@@ -46,10 +46,10 @@ const TextInputComponent = class extends Component {
 		this._text = null
 		this._shifted = false
 
-		this.listenTo('change', this.flatDOM, ev => {
+		this.listenTo('input', this.flatDOM, ev => {
 			this.text = this.flatDOM.value
 		})
-		this.listenTo('change', this.portalDOM, ev => {
+		this.listenTo('input', this.portalDOM, ev => {
 			this.text = this.portalDOM.value
 		})
 
