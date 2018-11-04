@@ -20,7 +20,6 @@
 }
 
 .dom.masthead-component .menu-component > .component {
-	margin-left: var(--page-app-content-padding);
 	padding-bottom: 5px;
 }
 

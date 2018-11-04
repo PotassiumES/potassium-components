@@ -115,6 +115,6 @@ const ButtonComponent = class extends Component {
 ButtonComponent.ChangedEvent = 'button-changed'
 
 /** @todo Give component librarys a nice way to load a set of sounds instead of loading them in Component modules */
-Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.wav')
+Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.m4a')
 
 export default ButtonComponent

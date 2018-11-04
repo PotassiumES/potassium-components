@@ -1,13 +1,19 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
-import { lt, ld } from 'potassium-es/src/Localizer'
 import Component from 'potassium-es/src/Component'
+import { throttle } from 'potassium-es/src/throttle'
+import {
+	lt,
+	ld,
+	Localizer
+} from 'potassium-es/src/Localizer'
 
 import LabelComponent from 'potassium-components/src/atoms/LabelComponent'
 import SwitchComponent from 'potassium-components/src/atoms/SwitchComponent'
 import ButtonComponent from 'potassium-components/src/atoms/ButtonComponent'
 import HeadingComponent from 'potassium-components/src/atoms/HeadingComponent'
 import TextInputComponent from 'potassium-components/src/atoms/TextInputComponent'
+import SelectionComponent from 'potassium-components/src/atoms/SelectionComponent'
 
 import WaitComponent from './WaitComponent.js'
 import DateTimePickerComponent from './DateTimePickerComponent.js'
@@ -87,6 +93,48 @@ const FormFieldComponent = class extends Component {
 	}
 }
 
+
+const SelectionFieldComponent = class extends FormFieldComponent {
+	/**
+	@param {DataModel} dataObject
+	@param {Object} options see {@link FormFieldComponent} for more options
+	@param {string} options.dataField
+	@param {Object[]} options.items an array of [display name, value] to be used as choices in the selector
+	*/
+	constructor(dataObject, options, inheritedOptions={}) {
+		super(dataObject, options, inheritedOptions)
+		this.setName('SelectionFieldComponent')
+		this.addClass('selection-field-component')
+
+		this._selectionComponent = new SelectionComponent(this.dataObject, {
+			items: options.items
+		}, this.inheritedOptions).appendTo(this)
+		this._selectionComponent.selectedIndex = 0
+
+		if(this.dataObject && this.options.dataField){
+			this._updateInputFromModel()
+			this.listenTo(SelectionComponent.SELECTION_INDEX_CHANGED, this._selectionComponent, () => {
+				this._updateModelFromInput()
+			})
+		}
+	}
+
+	_updateInputFromModel(){
+		if(!this.dataObject || !this.options.dataField) return
+		const data = Number.parseInt(this.dataObject.get(this.options.dataField, 0))
+		if(Number.isNaN(data)) {
+			this._selectionComponent.selectedIndex = 0
+			return
+		}
+		this._selectionComponent.selectedIndex = Number.parseInt(data)
+	}
+
+	_updateModelFromInput(){
+		if(!this.dataObject || !this.options.dataField) return
+		this.dataObject.set(this.options.dataField, this._selectionComponent.selectedIndex)
+	}
+}
+
 const SwitchFieldComponent = class extends FormFieldComponent {
 	/**
 	@param {DataModel} [dataObject]
@@ -115,81 +163,141 @@ const DateFieldComponent = class extends FormFieldComponent {
 		super(dataObject, options, inheritedOptions)
 		this.setName('DateFieldComponent')
 		this.addClass('date-field-component')
+		this._throttledUpdateModelFromInput = throttle(this._updateModelFromInput.bind(this), 1000, false, true)
 
-		this._labelComponent = new LabelComponent(null, {}, this.inheritedOptions).appendTo(this)
-		if (this.dataObject && this.options.dataField) {
-			this.dataObject.addListener((eventName, model, dataField, value) => {
-				if (!value) {
-					this._labelComponent.text = ''
-					return
-				}
-				this._labelComponent.text = ld(value)
-			}, `changed:${this.options.dataField}`)
-			const date = this.dataObject.get(this.options.dataField)
-			if (date) {
-				this._labelComponent.text = ld(date)
+		this._dayInputComponent = new TextInputComponent(this.dataObject, {
+			placeholder: lt('dd')
+		}, this.inheritedOptions)
+			.addClass('day-input-component')
+			.setName('DayInputComponent')
+
+		this._monthInputComponent = new TextInputComponent(this.dataObject, {
+			placeholder: lt('mm')
+		}, this.inheritedOptions)
+			.addClass('month-input-component')
+			.setName('MonthInputComponent')
+
+		this._yearInputComponent = new TextInputComponent(this.dataObject, {
+			placeholder: lt('yyyy')
+		}, this.inheritedOptions)
+			.addClass('year-input-component')
+			.setName('YearInputComponent')
+
+		// Different places have different orders for their date fields, so handle that here
+		Localizer.Singleton.dateFieldOrder.forEach(fieldName => {
+			switch(fieldName){
+				case 'month':
+					this.appendComponent(this._monthInputComponent)
+					break
+				case 'day':
+					this.appendComponent(this._dayInputComponent)
+					break
+				case 'year':
+					this.appendComponent(this._yearInputComponent)
+					break
 			}
+		})
+
+		this._dateLabelComponent = new LabelComponent(this.dataObject, {}, this.inheritedOptions)
+			.appendTo(this)
+			.addClass('date-label-component')
+			.setName('DateLabelComponent')
+
+		if(this.dataObject && this.options.dataField){
+			this._updateInputFromModel()
+			this.listenTo(`changed:${this.options.dataField}`, this.dataObject, () => {
+				this._updateLabelFromModel()
+			})
+			this._updateLabelFromModel()
+			this.listenTo(TextInputComponent.TextChangeEvent, this._dayInputComponent, this._throttledUpdateModelFromInput)
+			this.listenTo(TextInputComponent.TextChangeEvent, this._monthInputComponent, this._throttledUpdateModelFromInput)
+			this.listenTo(TextInputComponent.TextChangeEvent, this._yearInputComponent, this._throttledUpdateModelFromInput)
 		}
-
-		this._startEditComponent = new LabelComponent(null, { text: EditIcon }, this.inheritedOptions).appendTo(this)
-		this._startEditComponent.addClass('start-edit-component')
-		this._startEditComponent.addListener((eventName, action, active, options) => {
-			if (action === '/action/activate' && active) {
-				this.startEdit()
-			}
-		}, Component.ActionEvent)
-
-		this._datePickerComponent = new DateTimePickerComponent(this.dataObject, {
-			dataField: this.options.dataField,
-			pickTime: false
-		}, this.inheritedOptions).appendTo(this)
-
-		this._saveEditComponent = new LabelComponent(null, { text: SaveIcon }, this.inheritedOptions).appendTo(this)
-		this._saveEditComponent.addClass('save-edit-component')
-		this._saveEditComponent.addListener((eventName, action, active, options) => {
-			if (action === '/action/activate' && active) {
-				this.saveEdit()
-			}
-		}, Component.ActionEvent)
-
-		this._cancelEditComponent = new LabelComponent(null, { text: CancelIcon }, this.inheritedOptions).appendTo(this)
-		this._cancelEditComponent.addClass('cancel-edit-component')
-		this._cancelEditComponent.addListener((eventName, action, active, options) => {
-			if (action === '/action/activate' && active) {
-				this.cancelEdit()
-			}
-		}, Component.ActionEvent)
-
-		this.stopEdit()
 	}
 
-	startEdit() {
-		this._labelComponent.hide()
-		this._startEditComponent.hide()
-		this._datePickerComponent.show()
-		this._saveEditComponent.show()
-		this._cancelEditComponent.show()
+	/** @return {Date?} the date specified in the input fields or null if it is not parsed */
+	get inputDate(){
+		const day = Number.parseInt(this._dayInputComponent.text)
+		if(Number.isNaN(day)) return null
+		let month = Number.parseInt(this._monthInputComponent.text)
+		if(Number.isNaN(month)) return null
+		month = month - 1 // Date uses zero indexed months
+		let year = Number.parseInt(this._yearInputComponent.text)
+		if(Number.isNaN(year)) return null
+		if(year < 100) year = year + 1900 // Fix up two digit years
+
+		// Dates should always be serialized into UTC
+		const result = new Date(Date.UTC(year, month, day, 0, 0, 0))
+		if(Number.isNaN(result.getTime())) return null
+		return result
 	}
 
-	stopEdit() {
-		this._labelComponent.show()
-		this._startEditComponent.show()
-		this._datePickerComponent.hide()
-		this._saveEditComponent.hide()
-		this._cancelEditComponent.hide()
-	}
-
-	cancelEdit() {
-		this.stopEdit()
-		this._datePickerComponent.updateFromModel()
-	}
-
-	saveEdit() {
-		if (this._datePickerComponent.saveInputToModel() === null) {
-			console.error('Could not save date')
+	_updateLabelFromModel(){
+		const modelData = this.dataObject.get(this.options.dataField, null)
+		if(modelData === null){
+			this._dateLabelComponent.text = '---------'
 			return
 		}
-		this.stopEdit()
+		const modelDate = new Date(modelData)
+		if(Number.isNaN(modelDate.getTime())){
+			this._dateLabelComponent.text = '---------'
+			return
+		}
+		this._dateLabelComponent.text = ld(new Date(modelDate.getUTCFullYear(), modelDate.getUTCMonth(), modelDate.getUTCDate(), 0, 0, 0))
+	}
+
+	_updateModelFromInput(){
+		if(!this.dataObject || !this.options.dataField) return
+		const inputDate  = this.inputDate
+		// Set the data field to an ISO string date or remove it if the input is invalid
+		this.dataObject.set(this.options.dataField, inputDate ? inputDate.toISOString() : undefined)
+	}
+
+	_clearInput(){
+		this._dateLabelComponent.text = ''
+		this._dayInputComponent.text = ''
+		this._monthInputComponent.text = ''
+		this._yearInputComponent.text = ''
+	}
+
+	_updateInputFromModel(){
+		if(!this.dataObject || !this.options.dataField) return
+		const modelData = this.dataObject.get(this.options.dataField, null)
+		if(modelData === null){
+			this._clearInput()
+			return
+		}
+		const modelDate = new Date(modelData)
+		if(Number.isNaN(modelDate.getTime())){
+			this._clearInput()
+			console.error('invalid date data', modelData)
+			return
+		}
+		this._updateInputFromDate(new Date(modelData))
+	}
+
+	/**
+	@param {string or Date} date
+	*/
+	_updateInputFromDate(date){
+		if(!date){
+			this._clearInput()
+			return
+		}
+		if(typeof date === 'string'){
+			date = new Date(date)
+		}
+		if((date instanceof Date) === false){
+			this._clearInput()
+			return
+		}
+		if(Number.isNaN(date.getTime())){
+			this._clearInput()
+			return
+		}
+		this._dayInputComponent.text = date.getUTCDate()
+		this._monthInputComponent.text = date.getUTCMonth() + 1
+		this._yearInputComponent.text = date.getUTCFullYear()
 	}
 }
 
@@ -248,5 +356,6 @@ export {
 	FormComponent,
 	DateFieldComponent,
 	SwitchFieldComponent,
+	SelectionFieldComponent,
 	TextInputFieldComponent
 }
