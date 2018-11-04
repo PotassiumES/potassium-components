@@ -66,19 +66,23 @@ const VideoPlayerComponent = class extends Component {
 			.appendTo(this._controlsComponent)
 			.addClass('toggle-button-component')
 			.setName('ToggleButtonComponent')
-		this.listenTo(Component.ActionEvent, this._toggleButtonComponent, (eventName, actionName, value, actionParameters) => {
-			if (actionName === '/action/activate') {
-				if(this.video.paused){
-					this.video.play()
-				} else {
-					this.video.pause()
+		this.listenTo(
+			Component.ActionEvent,
+			this._toggleButtonComponent,
+			(eventName, actionName, value, actionParameters) => {
+				if (actionName === '/action/activate') {
+					if (this.video.paused) {
+						this.video.play()
+					} else {
+						this.video.pause()
+					}
 				}
 			}
-		})
+		)
 
 		this._sliderComponent = new SliderComponent().appendTo(this._controlsComponent)
 		this.listenTo(SliderComponent.VALUE_CHANGE_VIA_INPUT, this._sliderComponent, (eventName, newFraction) => {
-			this.video.currentTime  = newFraction * Math.max(1, this.video.duration)
+			this.video.currentTime = newFraction * Math.max(1, this.video.duration)
 		})
 		this._addEventListeners()
 		this._updateDisplay()
@@ -97,7 +101,7 @@ const VideoPlayerComponent = class extends Component {
 	}
 
 	_updateDisplay() {
-		if(this._sliderComponent.userIsChanging === false){
+		if (this._sliderComponent.userIsChanging === false) {
 			if (this.video.currentTime === 0) {
 				this._sliderComponent.valueFraction = 0
 			} else {
@@ -105,7 +109,7 @@ const VideoPlayerComponent = class extends Component {
 					Math.max(0, this.video.currentTime) / Math.max(1, this.video.duration, this.video.currentTime)
 			}
 		}
-		if(this.video.paused){
+		if (this.video.paused) {
 			this._toggleButtonComponent.text = lt('Play')
 		} else {
 			this._toggleButtonComponent.text = lt('Pause')

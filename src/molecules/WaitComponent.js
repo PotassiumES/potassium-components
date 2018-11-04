@@ -24,11 +24,13 @@ const WaitComponent = class extends LabelComponent {
 		this._updateDisplay()
 	}
 
-	get state(){ return this._state }
+	get state() {
+		return this._state
+	}
 
-	set state(val){
-		if(this._state === val) return
-		if(_states.includes(val) === false){
+	set state(val) {
+		if (this._state === val) return
+		if (_states.includes(val) === false) {
 			console.error('unknown state', val)
 			return
 		}
@@ -36,8 +38,8 @@ const WaitComponent = class extends LabelComponent {
 		this._updateDisplay()
 	}
 
-	_startAnimation(){
-		if(this._animationInterval !== null) return
+	_startAnimation() {
+		if (this._animationInterval !== null) return
 		this._animationIndex = 0
 		this._animationInterval = setInterval(() => {
 			this.removeClass(..._animationClassNames)
@@ -46,8 +48,8 @@ const WaitComponent = class extends LabelComponent {
 		}, _animationTicks)
 	}
 
-	_stopAnimation(){
-		if(this._animationInterval !== null){
+	_stopAnimation() {
+		if (this._animationInterval !== null) {
 			clearInterval(this._animationInterval)
 			this._animationInterval = null
 		}
@@ -55,8 +57,8 @@ const WaitComponent = class extends LabelComponent {
 		this.removeClass(..._animationClassNames)
 	}
 
-	_updateDisplay(){
-		switch(this._state){
+	_updateDisplay() {
+		switch (this._state) {
 			case WaitComponent.NOTHING_HAPPENING:
 				this._stopAnimation()
 				this.removeClass('processing', 'failed', 'succeeded')
@@ -92,12 +94,7 @@ WaitComponent.SUCCEEDED = 'succeeded'
 
 const _animationTicks = 1000
 
-const _animationClassNames = [
-	'wait-top',
-	'wait-right',
-	'wait-bottom',
-	'wait-left'
-]
+const _animationClassNames = ['wait-top', 'wait-right', 'wait-bottom', 'wait-left']
 
 const _states = [
 	WaitComponent.NOTHING_HAPPENING,

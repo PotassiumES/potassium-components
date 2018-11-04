@@ -18,36 +18,57 @@ const PaginationComponent = class extends Component {
 	@param {number} [options.currentIndex=1]
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
-		super(dataObject, Object.assign({
-			totalCount: 1,
-			currentIndex: 1
-		}, options), inheritedOptions)
+		super(
+			dataObject,
+			Object.assign(
+				{
+					totalCount: 1,
+					currentIndex: 1
+				},
+				options
+			),
+			inheritedOptions
+		)
 		this.addClass('pagination-component')
 		this.setName('PaginationComponent')
 
 		this._totalCount = this.options.totalCount
 		this._currentIndex = this.options.currentIndex
 
-		this._leftArrow = new ImageComponent(undefined, {
-			image: '/static/potassium-components/images/left-arrow.png',
-			usesPortalSpatial: false,
-			usesImmersive: false
-		}, this.inheritedOptions).appendTo(this).addClass('left-arrow').setName('LeftArrow')
+		this._leftArrow = new ImageComponent(
+			undefined,
+			{
+				image: '/static/potassium-components/images/left-arrow.png',
+				usesPortalSpatial: false,
+				usesImmersive: false
+			},
+			this.inheritedOptions
+		)
+			.appendTo(this)
+			.addClass('left-arrow')
+			.setName('LeftArrow')
 		this.listenTo(Component.ActionEvent, this._leftArrow, (eventName, actionName, value, actionParameters) => {
-			if(actionName === '/action/activate'){
+			if (actionName === '/action/activate') {
 				this.currentIndex = this.currentIndex - 1
 			}
 		})
 
 		this._statusLabel = new LabelComponent(undefined, undefined, this.inheritedOptions).appendTo(this)
 
-		this._rightArrow = new ImageComponent(undefined, {
-			image: '/static/potassium-components/images/right-arrow.png',
-			usesPortalSpatial: false,
-			usesImmersive: false
-		}, this.inheritedOptions).appendTo(this).addClass('right-arrow').setName('RightArrow')
+		this._rightArrow = new ImageComponent(
+			undefined,
+			{
+				image: '/static/potassium-components/images/right-arrow.png',
+				usesPortalSpatial: false,
+				usesImmersive: false
+			},
+			this.inheritedOptions
+		)
+			.appendTo(this)
+			.addClass('right-arrow')
+			.setName('RightArrow')
 		this.listenTo(Component.ActionEvent, this._rightArrow, (eventName, actionName, value, actionParameters) => {
-			if(actionName === '/action/activate'){
+			if (actionName === '/action/activate') {
 				this.currentIndex = this.currentIndex + 1
 			}
 		})
@@ -55,30 +76,34 @@ const PaginationComponent = class extends Component {
 		this._updateDisplay()
 	}
 
-	get totalCount(){ return this._totalCount }
-	set totalCount(val){
-		if(val === this._totalCount) return
+	get totalCount() {
+		return this._totalCount
+	}
+	set totalCount(val) {
+		if (val === this._totalCount) return
 		this._totalCount = val
 		this._updateDisplay()
 	}
 
-	get currentIndex(){ return this._currentIndex }
-	set currentIndex(val){
-		if(val === this._currentIndex) return
-		if(val < 1 || val > this._totalCount) return
+	get currentIndex() {
+		return this._currentIndex
+	}
+	set currentIndex(val) {
+		if (val === this._currentIndex) return
+		if (val < 1 || val > this._totalCount) return
 		this._currentIndex = val
 		this._updateDisplay()
 		this.trigger(PaginationComponent.CurrentIndexChanged, this._currentIndex, this._totalCount, this)
 	}
 
-	_updateDisplay(){
+	_updateDisplay() {
 		this._statusLabel.text = this._currentIndex + '\n' + lt('of') + '\n' + this._totalCount
-		if(this._currentIndex === 1){
+		if (this._currentIndex === 1) {
 			this._leftArrow.addClass('disabled')
 		} else {
 			this._leftArrow.removeClass('disabled')
 		}
-		if(this._currentIndex === this._totalCount){
+		if (this._currentIndex === this._totalCount) {
 			this._rightArrow.addClass('disabled')
 		} else {
 			this._rightArrow.removeClass('disabled')

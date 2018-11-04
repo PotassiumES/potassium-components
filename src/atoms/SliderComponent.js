@@ -45,7 +45,7 @@ const SliderComponent = class extends Component {
 		this._pointerStart = 0 // page x, y
 		this._handleStart = 0 // left value
 
-		if(this.usesFlat){
+		if (this.usesFlat) {
 			// set up listeners for dragging of the handle
 			this.listenTo('mousedown', this._handleComponent.flatDOM, ev => {
 				ev.preventDefault()
@@ -98,30 +98,33 @@ const SliderComponent = class extends Component {
 	}
 
 	/** @type {boolean} - true if the user is moving the handle */
-	get userIsChanging(){
+	get userIsChanging() {
 		return this._pointerDown
 	}
 
-	_handleMouseMove(ev){
+	_handleMouseMove(ev) {
 		const xChange = ev.pageX - this._pointerStart
-		this._handleComponent.flatDOM.style['left'] = (this._handleStart + xChange) + 'px'
+		this._handleComponent.flatDOM.style['left'] = this._handleStart + xChange + 'px'
 	}
 
-	_handleMouseUp(ev){
+	_handleMouseUp(ev) {
 		ev.preventDefault()
-		if(this._pointerDown === false) return
+		if (this._pointerDown === false) return
 		this._pointerDown = false
 		this._handleComponent.flatDOM.removeEventListener('mousemove', this._handleMouseMove)
 		this.flatDOM.removeEventListener('mousemove', this._handleMouseMove)
-		this.valueFraction = this._getValueFractionFromHandlePosition(this._handleComponent.flatDOM, this._barComponent.flatDOM)
+		this.valueFraction = this._getValueFractionFromHandlePosition(
+			this._handleComponent.flatDOM,
+			this._barComponent.flatDOM
+		)
 		this.trigger(SliderComponent.VALUE_CHANGE_VIA_INPUT, this.valueFraction)
 	}
 
-	_getValueFractionFromHandlePosition(handleDOM, barDOM){
+	_getValueFractionFromHandlePosition(handleDOM, barDOM) {
 		const handleLeft = Number.parseFloat(handleDOM.style['left'] || '0')
-		if(barDOM.clientWidth === 0 || handleDOM.clientWidth === 0) return 0
-		if(handleLeft < 0) return 0
-		if(handleLeft >= barDOM.clientWidth) return 1
+		if (barDOM.clientWidth === 0 || handleDOM.clientWidth === 0) return 0
+		if (handleLeft < 0) return 0
+		if (handleLeft >= barDOM.clientWidth) return 1
 		return handleLeft / (barDOM.clientWidth - handleDOM.clientWidth)
 	}
 
