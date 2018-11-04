@@ -47,12 +47,9 @@ const MastheadComponent = class extends Component {
 		this.setName('MastheadComponent')
 
 		this._modeSwitcherComponent = new ModeSwitcherComponent(null, {}, this.inheritedOptions).appendTo(this)
-		this._modeSwitcherComponent.addListener(
-			(eventName, mode) => {
-				this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
-			},
-			ModeSwitcherComponent.ModeChangedEvent
-		)
+		this._modeSwitcherComponent.addListener((eventName, mode) => {
+			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
+		}, ModeSwitcherComponent.ModeChangedEvent)
 
 		if (this.options.brand instanceof Component) {
 			this._brand = this.options.brand
