@@ -12,7 +12,7 @@
 	--base-font: sans-serif;
 
 	--base-page-font-size: 20px;
-	--page-font-size-5: calc(var(--base-page-font-size) + 1.6em);
+	--page-font-size-5: calc(var(--base-page-font-size) + 1.4em);
 	--page-font-size-4: calc(var(--base-page-font-size) + 1.2em);
 	--page-font-size-3: calc(var(--base-page-font-size) + 0.8em);
 	--page-font-size-2: calc(var(--base-page-font-size) + 0.4em);
@@ -159,18 +159,15 @@ div.modal > button.selected {
 
 /*** Component ***/
 
-.flat-root .component,
-.portal-root .component {
+.dom-root .component {
 	display: inline-block;
 	vertical-align: top;
 }
 
-.flat-root .component.anchored,
-.portal-root .component.anchored {
+.dom-root .component.anchored {
 	cursor: pointer;
 }
 
-.flat-root .component.hidden,
-.portal-root .component.hidden {
+.flat-root .component.hidden {
 	display: none !important;
 }

@@ -82,7 +82,6 @@ const MastheadComponent = class extends Component {
 				)
 			}
 		}
-		this._navigationMenu.layout()
 		this._navigationMenu.addListener((eventName, anchor) => {}, MenuComponent.NAVIGATED_EVENT)
 	}
 

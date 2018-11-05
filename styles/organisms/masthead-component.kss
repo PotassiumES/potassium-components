@@ -3,42 +3,32 @@
 .dom.masthead-component {
 	display: block;
 	position: relative;
+	border-bottom: dashed 1px var(--secondary-color);
+	z-index: 6;
 }
 
-.dom.masthead-component .heading-component {
-	display: block;
+.dom.masthead-component > .heading-component {
+	display: inline-block;
 	margin-top: 0;
 	padding: var(--page-app-content-padding);
+	padding-bottom: calc(var(--page-app-content-padding) - 8px);
 	color: var(--primary-color);
 	background-color: var(--background-color);
-	border-bottom: dashed 1px var(--secondary-color);
 }
 
-.dom.masthead-component .menu-component {
-	display: block;
-	padding: var(--page-app-content-padding) 0;
+.dom.masthead-component > .menu-component {
+	display: inline-block;
+	vertical-align: top;
+	position: absolute;
+	top: 18px;
+	right: var(--page-app-content-padding);
 }
 
-.dom.masthead-component .menu-component > .component {
-	padding-bottom: 5px;
-}
-
-.dom.masthead-component .mode-switcher-component {
+.dom.masthead-component > .mode-switcher-component {
 	text-align: right;
 	position: absolute;
 	top: 80px;
 	right: var(--page-app-content-padding);
-}
-
-@media (min-width: 576px){
-	.dom.masthead-component .menu-component {
-		display: inline-block;
-		vertical-align: top;
-		position: absolute;
-		top: 45px;
-		right: var(--page-app-content-padding);
-		transform: translate(0, -50%);
-	}
 }
 
 .som.masthead-component {
