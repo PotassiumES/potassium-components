@@ -168,6 +168,6 @@ div.modal > button.selected {
 	cursor: pointer;
 }
 
-.flat-root .component.hidden {
+.dom-root .component.hidden {
 	display: none !important;
 }

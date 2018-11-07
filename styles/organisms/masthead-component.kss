@@ -27,8 +27,9 @@
 .dom.masthead-component > .mode-switcher-component {
 	text-align: right;
 	position: absolute;
-	top: 80px;
-	right: var(--page-app-content-padding);
+	top: 70px;
+	left: 50%;
+	transform: translate(0, -3px);
 }
 
 .som.masthead-component {

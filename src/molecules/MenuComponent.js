@@ -37,8 +37,8 @@ const MenuComponent = class extends Component {
 			}
 		})
 		/* terrible hack to prevent selection of the toggle, but the user-select CSS is non-standard and needs browser prefixes 😢 */
-		this.flatDOM.setAttribute(onselectstart, 'return false;')
-		this.portalDOM.setAttribute(onselectstart, 'return false;')
+		this.flatDOM.setAttribute('onselectstart', 'return false;')
+		this.portalDOM.setAttribute('onselectstart', 'return false;')
 
 		this._menuItemsComponent = new Component(undefined, {
 		}, this.inheritedOptions)

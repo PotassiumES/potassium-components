@@ -84,7 +84,7 @@ const CollectionComponent = class extends Component {
 	}
 	filter(filterFn = null) {
 		// filterFn must accept a DataModel and return a boolean indicating whether its Component.flatDOM.style.display should be set to '' or 'none'
-		for (const [i, itemComponent] of this._dataObjectComponents) {
+		for (const itemComponent of this._dataObjectComponents.values()) {
 			let display
 			if (typeof filterFn === 'function') {
 				display = filterFn(itemComponent.dataObject)
@@ -111,7 +111,7 @@ const CollectionComponent = class extends Component {
 		if (target !== this.dataObject) return // It was a reset for an item in the collection, not the collection itself
 		this._inGroupChange = true
 		this.trigger(CollectionComponent.Resetting, this)
-		for (const [_, itemComponent] of this._dataObjectComponents) {
+		for (const itemComponent of this._dataObjectComponents.values()) {
 			this._remove(itemComponent)
 		}
 		this._dataObjectComponents.clear()

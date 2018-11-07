@@ -58,3 +58,7 @@
 .dom.menu-component > .menu-items-component > .component:active {
 	color: var(--dark-secondary-color);
 }
+
+.som.menu-component > .toggle-component {
+	scale: 0.1 0.1 0.1;
+}

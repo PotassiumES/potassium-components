@@ -92,7 +92,7 @@ WaitComponent.PROCESSING = 'processing'
 WaitComponent.FAILED = 'failed'
 WaitComponent.SUCCEEDED = 'succeeded'
 
-const _animationTicks = 1000
+const _animationTicks = 1500
 
 const _animationClassNames = ['wait-top', 'wait-right', 'wait-bottom', 'wait-left']
 
