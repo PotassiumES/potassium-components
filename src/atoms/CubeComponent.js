@@ -67,6 +67,12 @@ const CubeComponent = class extends Component {
 	get material() {
 		return this.options.material
 	}
+
+	/** @param {THREE.Material} mat */
+	set material(mat){
+		if (this._portalCube) this._portalCube.material = mat
+		if (this._immersiveCube) this._immersiveCube.material = mat
+	}
 }
 
 // All CubeComponents share a BoxBufferGeometry and are scaled using KSS

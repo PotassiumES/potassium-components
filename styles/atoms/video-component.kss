@@ -5,6 +5,10 @@
 	max-width: 100%;
 }
 
+.dom.video-component > .preview-image {
+	width: 100%;
+}
+
 node.video-component > node[name=Cube] {
 	material-emissive: #000;
 }

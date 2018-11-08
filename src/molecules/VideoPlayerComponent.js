@@ -15,7 +15,7 @@ const VideoPlayerComponent = class extends Component {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options=null]
-	@param {string} [options.url=''] - a URL to a video
+	@param {string} [options.video=''] - a URL to a video
 	@param {string} [options.mimeType=''] - the MIME type for the video, like 'video/mp4'
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
@@ -23,7 +23,7 @@ const VideoPlayerComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					url: '',
+					video: '',
 					mimeType: ''
 				},
 				options
@@ -38,31 +38,29 @@ const VideoPlayerComponent = class extends Component {
 		this._backdropComponent.addClass('backdrop-component')
 		this._backdropComponent.setName('BackdropComponent')
 
-		this._sourceDOM = dom.source({
-			src: this.options.url,
-			type: this.options.mimeType
-		})
-		this._videoDOM = dom.video(this._sourceDOM)
-
 		this._videoComponent = new VideoComponent(
-			null,
+			undefined,
 			{
-				videoDOM: this._videoDOM
+				video: this.options.video,
+				mimeType: this.options.mimeType
 			},
 			this.inheritedOptions
 		).appendTo(this._backdropComponent)
+		this.listenTo(VideoComponent.VIDEO_INITIALIZED, this._videoComponent, (eventName, component) => {
+			this._addEventListeners()
+		})
+
 
 		this._controlsComponent = new Component(
 			null,
 			{
-				usesPortalOverlay: false
 			},
 			this.inheritedOptions
 		).appendTo(this)
 		this._controlsComponent.addClass('video-player-controls')
 		this._controlsComponent.setName('VideoPlayerControls')
 
-		this._toggleButtonComponent = new ButtonComponent(null, {}, this.inheritedOptions)
+		this._toggleButtonComponent = new ButtonComponent(undefined, {}, this.inheritedOptions)
 			.appendTo(this._controlsComponent)
 			.addClass('toggle-button-component')
 			.setName('ToggleButtonComponent')
@@ -71,25 +69,20 @@ const VideoPlayerComponent = class extends Component {
 			this._toggleButtonComponent,
 			(eventName, actionName, value, actionParameters) => {
 				if (actionName === '/action/activate') {
-					if (this.video.paused) {
-						this.video.play()
-					} else {
-						this.video.pause()
-					}
+					this._videoComponent.toggle()
 				}
 			}
 		)
 
-		this._sliderComponent = new SliderComponent().appendTo(this._controlsComponent)
+		this._sliderComponent = new SliderComponent(undefined, {}, this.inheritedOptions).appendTo(this._controlsComponent)
 		this.listenTo(SliderComponent.VALUE_CHANGE_VIA_INPUT, this._sliderComponent, (eventName, newFraction) => {
-			this.video.currentTime = newFraction * Math.max(1, this.video.duration)
+			this._videoComponent.currentTime = newFraction * Math.max(1, this._videoComponent.duration)
 		})
-		this._addEventListeners()
 		this._updateDisplay()
 	}
 
-	get video() {
-		return this._videoDOM
+	get video(){
+		return this._videoComponent.video
 	}
 
 	/**
@@ -102,14 +95,14 @@ const VideoPlayerComponent = class extends Component {
 
 	_updateDisplay() {
 		if (this._sliderComponent.userIsChanging === false) {
-			if (this.video.currentTime === 0) {
+			if (this._videoComponent.currentTime === 0) {
 				this._sliderComponent.valueFraction = 0
 			} else {
 				this._sliderComponent.valueFraction =
-					Math.max(0, this.video.currentTime) / Math.max(1, this.video.duration, this.video.currentTime)
+					Math.max(0, this._videoComponent.currentTime) / Math.max(1, this._videoComponent.duration, this._videoComponent.currentTime)
 			}
 		}
-		if (this.video.paused) {
+		if (this._videoComponent.paused) {
 			this._toggleButtonComponent.text = lt('Play')
 		} else {
 			this._toggleButtonComponent.text = lt('Pause')
@@ -118,7 +111,6 @@ const VideoPlayerComponent = class extends Component {
 
 	_addEventListeners() {
 		const video = this.video
-		video.crossOrigin = 'anonymous'
 		video.addEventListener('playing', this._updateDisplay, false)
 		video.addEventListener('play', this._updateDisplay, false)
 		video.addEventListener('timeupdate', this._updateDisplay, false)

@@ -48,6 +48,3 @@
 	scale: 1.35 0.65 1;
 }
 
-.som.video-player-component > .video-player-controls > .slider-component > .slider-handle {
-	
-}

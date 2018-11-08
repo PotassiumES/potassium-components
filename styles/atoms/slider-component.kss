@@ -26,6 +26,10 @@
 	scale: 0.05 0.05 0.01;
 }
 
+.som.slider-component > .slider-handle > mesh {
+	material-emissive: var(--secondary-color);
+}
+
 .som.slider-component > .slider-bar {
 	centroid: 0 -0.03 0;
 	scale: 1 0.02 0.01;

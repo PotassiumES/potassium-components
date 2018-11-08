@@ -22,8 +22,7 @@ const ButtonComponent = class extends Component {
 					flatDOM: dom.button({ class: 'button' }),
 					portalDOM: dom.button({ class: 'button' }),
 					textSize: 0.08,
-					textColor: 0x444444,
-					usesPortalSpatial: false
+					textColor: 0x444444
 				},
 				options
 			),
