@@ -13,5 +13,9 @@
 	border-color: var(--secondary-color);
 }
 
-.flat-dom.button-group-component button:first-child {
+.som.button-group-component {
+	display: grid;
+	grid-template: 20cm / 20cm;
+	grid-auto-rows: 20cm;
+	gap: 3cm;
 }

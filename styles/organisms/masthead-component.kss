@@ -37,6 +37,15 @@
 	grid-template: 0.5m / 0.4m 1.6m 1m;
 }
 
+.som.masthead-component > .heading-component {
+	font-size: var(--spatial-font-size-3);
+}
+
+.som.masthead-component > .heading-component > text {
+	material-color: var(--primary-color);
+	centroid: -0.25m -0.07m 0;
+}
+
 .portal-dom.heading-component.brand-component {
 	background-color: inherit;
 	border-bottom: dashed 1px;

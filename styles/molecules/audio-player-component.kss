@@ -6,6 +6,14 @@ div.dom.audio-player-component {
 	gap: var(--inner-element-padding);
 }
 
-.dom.audio-player-component > .dom.audio-component {
+.dom.audio-player-component > .audio-component {
 	width: 60px;
+}
+
+.som.audio-player-component > .audio-component {
+	centroid-y: 10cm;
+}
+
+.som.audio-player-component > .toggle-component {
+	centroid: -11cm -10cm 0;
 }
