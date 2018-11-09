@@ -6,9 +6,9 @@
 }
 
 .som.text-input-component > .bracket {
-	centroid: 0 -0.05m 0;
+	centroid: 0 -4cm 0;
 }
 
 .som.text-input-component > text {
-	centroid: 0.05m 0 0;
+	centroid: 3cm 0 0;
 }

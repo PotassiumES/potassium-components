@@ -43,7 +43,7 @@ const FormComponent = class extends Component {
 		}
 
 		this._fieldsComponent = new Component().appendTo(this)
-		this._fieldsComponent.setName('fieldsComponent')
+		this._fieldsComponent.setName('FieldsComponent')
 		this._fieldsComponent.addClass('fields-component')
 
 		this._waitComponent = new WaitComponent().appendTo(this)
