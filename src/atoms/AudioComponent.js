@@ -44,7 +44,7 @@ const AudioComponent = class extends Component {
 
 		if (this.usesDOM) {
 			this._domImage = new ImageComponent(
-				null,
+				undefined,
 				{
 					image: '/static/potassium-components/images/audio.png',
 					usesPortalSpatial: false,
@@ -61,7 +61,7 @@ const AudioComponent = class extends Component {
 		if (this.usesPortalSpatial) {
 			this._portalObj = som.obj('/static/potassium-components/models/Audio.obj').appendTo(this.portalSOM)
 			this._portalObj.addClass('icon')
-			this._portalObj.name = 'icon'
+			this._portalObj.name = 'Icon'
 		} else {
 			this._portalObj = null
 		}
@@ -69,7 +69,7 @@ const AudioComponent = class extends Component {
 		if (this.usesImmersive) {
 			this._immersiveObj = som.obj('/static/potassium-components/models/Audio.obj').appendTo(this.immersiveSOM)
 			this._immersiveObj.addClass('icon')
-			this._immersiveObj.name = 'icon'
+			this._immersiveObj.name = 'Icon'
 		} else {
 			this._immersiveObj = null
 		}

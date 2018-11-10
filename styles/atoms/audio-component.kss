@@ -5,10 +5,11 @@
 	display: inline;
 }
 
-.dom.audio-component > .dom.audio-image {
+.dom.audio-component > .audio-image {
 	max-width: 100%;
 }
 
-.som.audio-component {
-	scale: 0.1m 0.1m 0.1m;
+.som.audio-component > .icon {
+	scale: 0.1 0.1 0.1;
+	centroid: 11cm -5cm 0;
 }

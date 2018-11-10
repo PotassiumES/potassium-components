@@ -12,8 +12,8 @@ CardComponent contains a list of Audio-, Video-, or Image- Components and a capt
 const CardComponent = class extends Component {
 	/**
 	@param {Object} [options]
-	@param {string} [options.titleField]
-	@param {string} [options.captionField]
+	@param {string} [options.titleField=title]
+	@param {string} [options.captionField=caption]
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
@@ -41,8 +41,10 @@ const CardComponent = class extends Component {
 				textField: this.options.titleField
 			},
 			this.inheritedOptions
-		).appendTo(this)
-		this._titleComponent.addClass('card-title-component')
+		)
+			.appendTo(this)
+			.addClass('card-title-component')
+			.setName('CardTitleComponent')
 
 		this._captionComponent = new LabelComponent(
 			dataObject,
@@ -51,11 +53,10 @@ const CardComponent = class extends Component {
 				textColor: 0x999999
 			},
 			this.inheritedOptions
-		).appendTo(this)
-		this._captionComponent.addClass('card-caption-component')
-		const captionVerticalOffset = -0.1
-		this._captionComponent.immersiveSOM.position.set(0, captionVerticalOffset, 0)
-		this._captionComponent.portalSOM.position.set(0, captionVerticalOffset, 0)
+		)
+			.appendTo(this)
+			.addClass('card-caption-component')
+			.setName('CardCaptionComponent')
 	}
 
 	/** the {@link Component} in which we display the main content, like an image or video */

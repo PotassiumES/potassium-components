@@ -1,5 +1,24 @@
 /* MenuComponent */
 
+.som.menu-component > .toggle-component {
+	scale: 0.1 0.1 0.1;
+	centroid: 0 11cm 0;
+	rotation: quaternion(0, 0, 0, 1);
+}
+
+.som.menu-component > .toggle-component.open {
+	centroid: 0 0 0;
+	rotation: quaternion(0, 0, 0.7070904020014415, 0.7071231599922605);
+}
+
+.som.menu-component > .menu-items-component {
+	display: grid;
+	grid-auto-rows: 14cm;
+	grid-template: 14cm / 1cm;
+	gap: 0;
+	centroid-y: -14cm;
+}
+
 .dom.menu-component {
 	z-index: 7;
 	position: relative;
@@ -57,8 +76,4 @@
 
 .dom.menu-component > .menu-items-component > .component:active {
 	color: var(--dark-secondary-color);
-}
-
-.som.menu-component > .toggle-component {
-	scale: 0.1 0.1 0.1;
 }

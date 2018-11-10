@@ -25,10 +25,10 @@ const SliderComponent = class extends Component {
 		this._value = null
 
 		this._barWidth = 1 // Set in slider-component.kss
-		this._handleWidth = 0.05 // Set in slider-component.kss
-		this._handleY = 0.015
+		this._handleWidth = 0.1 // Set in slider-component.kss
+		this._handleY = 0.05
 		this._handleXStart = 0
-		this._handleXEnd = 0
+		this._handleXEnd = this._barWidth - this._handleWidth
 
 		this._handleComponent = new CubeComponent().appendTo(this)
 		this._handleComponent.addClass('slider-handle')
@@ -38,7 +38,6 @@ const SliderComponent = class extends Component {
 		this._barComponent.addClass('slider-bar')
 		this._barComponent.setName('SliderBar')
 
-		this._calculatePositions()
 		this.value = this._value
 
 		this._pointerDown = false
@@ -126,11 +125,6 @@ const SliderComponent = class extends Component {
 		if (handleLeft < 0) return 0
 		if (handleLeft >= barDOM.clientWidth) return 1
 		return handleLeft / (barDOM.clientWidth - handleDOM.clientWidth)
-	}
-
-	_calculatePositions() {
-		this._handleXStart = this._barWidth / -2 + this._handleWidth / 2
-		this._handleXEnd = this._handleXStart * -1
 	}
 
 	_updateFlatHandlePosition(barDOM, handleDOM) {

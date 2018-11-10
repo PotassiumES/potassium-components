@@ -26,7 +26,10 @@ const ToolTipComponent = class extends Component {
 			}
 		}, Component.ActionEvent)
 
-		this.appendComponent(options.component)
+		if(this.options.component){
+			options.component.addClass('info-component')
+			this.appendComponent(this.options.component)
+		}
 	}
 
 	show(target = null) {

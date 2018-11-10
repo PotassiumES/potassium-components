@@ -34,7 +34,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			{
 				text: lt('Exit'),
 				usesFlat: false,
-				usesPortalSpatial: false
+				usesPortalSpatial: false,
+				usesImmersive: false
 			},
 			this.inheritedOptions
 		).appendTo(this)
@@ -66,7 +67,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			{
 				text: lt('Immersive'),
 				usesPortalOverlay: false,
-				usesPortalOverlay: false,
+				usesPortalSpatial: false,
 				usesImmersive: false
 			},
 			this.inheritedOptions

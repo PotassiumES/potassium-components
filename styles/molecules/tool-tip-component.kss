@@ -1,5 +1,13 @@
 /*** ToolTipComponent ***/
 
+.som.tool-tip-component > .close-component {
+	color: var(--primary-color);
+}
+
+.som.tool-tip-component > .info-component {
+	centroid-x: 15cm;
+}
+
 .dom.tool-tip-component {
 	position: relative;
 	min-width: 8em;

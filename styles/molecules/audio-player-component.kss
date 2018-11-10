@@ -10,10 +10,6 @@ div.dom.audio-player-component {
 	width: 60px;
 }
 
-.som.audio-player-component > .audio-component {
-	centroid-y: 10cm;
-}
-
 .som.audio-player-component > .toggle-component {
-	centroid: -11cm -10cm 0;
+	centroid-y: -25cm;
 }

@@ -1,5 +1,8 @@
-
 /* VideoComponent */
+
+.som.video-component > mesh[name=Cube] {
+	material-color: var(--base-color);
+}
 
 .dom.video-component > video {
 	max-width: 100%;
@@ -7,8 +10,4 @@
 
 .dom.video-component > .preview-image {
 	width: 100%;
-}
-
-node.video-component > node[name=Cube] {
-	material-emissive: #000;
 }

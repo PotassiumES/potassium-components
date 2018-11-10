@@ -72,6 +72,8 @@ const MenuComponent = class extends Component {
 		if(this._opened) return
 		this._opened = true
 		this._toggleComponent.addClass('open')
+		this._toggleComponent.immersiveSOM.setLayoutDirty()
+		this._toggleComponent.portalSOM.setLayoutDirty()
 		this._menuItemsComponent.show()
 	}
 
@@ -79,6 +81,8 @@ const MenuComponent = class extends Component {
 		if(this._opened === false) return
 		this._opened = false
 		this._toggleComponent.removeClass('open')
+		this._toggleComponent.immersiveSOM.setLayoutDirty()
+		this._toggleComponent.portalSOM.setLayoutDirty()
 		this._menuItemsComponent.hide()
 	}
 

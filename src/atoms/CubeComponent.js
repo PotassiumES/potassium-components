@@ -38,6 +38,8 @@ const CubeComponent = class extends Component {
 			this._portalCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._portalCube.addClass('cube')
 			this._portalCube.name = 'Cube'
+			// Set the top-left-middle corner of the cube at the origin
+			this._portalCube.position.set(this.options.size[0] / 2, this.options.size[1] / -2, 0)
 			this._portalCube.appendTo(this.portalSOM)
 		} else {
 			this._portalCube = null
@@ -47,6 +49,8 @@ const CubeComponent = class extends Component {
 			this._immersiveCube = new THREE.Mesh(_sharedGeometry, this.options.material)
 			this._immersiveCube.addClass('cube')
 			this._immersiveCube.name = 'Cube'
+			// Set the top-left-middle of the cube at the origin
+			this._immersiveCube.position.set(this.options.size[0] / 2, this.options.size[1] / -2, 0)
 			this._immersiveCube.appendTo(this.immersiveSOM)
 		} else {
 			this._immersiveCube = null

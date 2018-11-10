@@ -12,9 +12,7 @@
 	display: block;
 }
 
-
-
-.som.image-card-component > node > .som.image-component {
-	centroid: -0.35m 0m 0m;
+.som.image-card-component > .main-component > .som.image-component {
+	centroid-y: 10cm;
 	scale: 0.5 0.5 0.05;
 }
