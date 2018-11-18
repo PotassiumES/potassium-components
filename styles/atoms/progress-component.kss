@@ -5,17 +5,17 @@
 }
 
 .som.progress-component > .som.track-component > mesh {
-	material-emissive: var(--secondary-color);
 	scale: 1 0.08 0.01;
+	material-color: var(--secondary-color);
 }
 
 .som.progress-component > .track-component > .fill-component {
-	scale: 0.95 0.06 0.01;
-	centroid: 2.5cm -46.9cm 3cm;
+	centroid: 0.25cm -0.5cm 3cm;
 }
 
 .som.progress-component > .track-component > .fill-component > mesh {
-	material-emissive: var(--primary-color);
+	scale: 0.95 0.06 0.01;
+	material-color: var(--primary-color);
 }
 
 .dom.progress-component {

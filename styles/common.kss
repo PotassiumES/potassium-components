@@ -56,8 +56,8 @@
 	--tertiary-color:			var(--blue);
 	--dark-tertiary-color:		var(--dark-blue);
 
-	--light-base-color:	rgb(155, 155, 155);
-	--base-color:		rgb(105, 105, 105);
+	--light-base-color:	rgb(120, 120, 120);
+	--base-color:		rgb(95, 95, 95);
 	--dark-base-color:		rgb(55, 55, 55);
 
 

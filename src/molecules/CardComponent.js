@@ -50,7 +50,6 @@ const CardComponent = class extends Component {
 			dataObject,
 			{
 				textField: this.options.captionField,
-				textColor: 0x999999
 			},
 			this.inheritedOptions
 		)

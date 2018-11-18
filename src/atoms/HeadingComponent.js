@@ -18,9 +18,7 @@ const HeadingComponent = class extends TextComponent {
 				{
 					flatDOM: dom.h1(),
 					portalDOM: dom.h1(),
-					textSize: 0.12,
-					textHeight: 0.01,
-					textColor: 0x444444
+					textSize: 0.12
 				},
 				options
 			),

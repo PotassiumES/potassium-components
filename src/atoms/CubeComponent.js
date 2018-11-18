@@ -31,7 +31,9 @@ const CubeComponent = class extends Component {
 		this.addClass('cube-component')
 		this.setName('CubeComponent')
 		if (this.usesSOM && this.options.material === null) {
-			this.options.material = new THREE.MeshLambertMaterial({ color: 0xaaaaaa })
+			this.options.material = new THREE.MeshStandardMaterial({
+				transparent: true
+			})
 		}
 
 		if (this.options.usesPortalSpatial) {

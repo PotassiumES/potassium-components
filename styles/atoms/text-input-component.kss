@@ -1,14 +1,23 @@
 /* TextInputComponent */
 
-.dom.text-input-component {
-	padding: 4px;
-	font-size: 1em;
-}
-
 .som.text-input-component > .bracket {
 	centroid: 0 -4cm 0;
 }
 
+.som.text-input-component > .bracket > node > mesh[name=Cube.001_Cube.003] {
+	material-color: var(--primary-color);
+}
+
 .som.text-input-component > text {
 	centroid: 3cm 0 0;
+	font-color: var(--base-color);
+}
+
+.som.text-input-component.placeholder > text {
+	material-color: var(--light-base-color);
+}
+
+.dom.text-input-component {
+	padding: 4px;
+	font-size: 1em;
 }

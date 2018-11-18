@@ -195,7 +195,7 @@ const VideoComponent = class extends CubeComponent {
 		videoTexture.minFilter = THREE.NearestFilter
 		videoTexture.magFilter = THREE.LinearFilter
 		videoTexture.format = THREE.RGBFormat
-		return new THREE.MeshLambertMaterial({
+		return new THREE.MeshStandardMaterial({
 			color: 0xFFFFFF,
 			map: videoTexture
 		})

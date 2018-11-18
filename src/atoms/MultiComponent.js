@@ -52,6 +52,8 @@ const MultiComponent = class extends Component {
 		if (this._currentComponent) this.removeComponent(this._currentComponent)
 		this._currentComponent = this._components[index]
 		this.appendComponent(this._currentComponent)
+		if(this.usesPortalSpatial) this.portalSOM.setGraphLayoutDirty()
+		if(this.usesImmersive) this.immersiveSOM.setGraphLayoutDirty()
 		return true
 	}
 

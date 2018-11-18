@@ -11,8 +11,6 @@ const ButtonComponent = class extends Component {
 	@param {DataObject} [dataObject]
 	@param {Object} [options]
 	@param {string} [options.text='']
-	@param {number} [options.textSize]
-	@param {number} [options.textColor]
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
@@ -20,9 +18,7 @@ const ButtonComponent = class extends Component {
 			Object.assign(
 				{
 					flatDOM: dom.button({ class: 'button' }),
-					portalDOM: dom.button({ class: 'button' }),
-					textSize: 0.08,
-					textColor: 0x444444
+					portalDOM: dom.button({ class: 'button' })
 				},
 				options
 			),
@@ -34,22 +30,21 @@ const ButtonComponent = class extends Component {
 		this._text = ''
 
 		const textMaterial = this.usesSOM
-			? som.meshLambertMaterial({
-					color: this.options.textColor
-			  })
+			? som.meshStandardMaterial({
+				color: 0x000000,
+				side: THREE.DoubleSide
+			})
 			: null
 
 		this._portalText = this.options.usesPortalSpatial
 			? som.text('', {
-					material: textMaterial,
-					size: this.options.textSize
+					material: textMaterial
 			  })
 			: null
 
 		this._immersiveText = this.options.usesImmersive
 			? som.text('', {
-					material: textMaterial,
-					size: this.options.textSize
+					material: textMaterial
 			  })
 			: null
 

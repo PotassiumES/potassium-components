@@ -10,6 +10,7 @@
 
 .som.card-component > .card-caption-component {
 	centroid-y: -80cm;
+	color: var(--light-base-color);
 	font-size: var(--base-font-size-1);
 }
 

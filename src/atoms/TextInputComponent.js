@@ -11,7 +11,6 @@ const TextInputComponent = class extends Component {
 	@param {string} [options.text=''] initial text
 	@param {string} [options.placeholder=''] text to show when the input is empty
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
-	@param {number} [options.textColor=0x444444] = the color of the text
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
@@ -20,9 +19,6 @@ const TextInputComponent = class extends Component {
 				{
 					text: '',
 					placeholder: '',
-					placeholderColor: 0x999999,
-					textSize: 0.08,
-					textColor: 0x444444,
 					flatDOM: dom.input({ type: 'text' }),
 					portalDOM: dom.input({ type: 'text' })
 				},
@@ -56,7 +52,9 @@ const TextInputComponent = class extends Component {
 		// Listen for changes to this.text based on Component.TextInputEvents
 		this.listenTo(Component.TextInputEvent, this, this._handleTextInput)
 
-		this._placeholderMaterial = this.usesSOM ? som.meshLambertMaterial({ color: this.options.placeholderColor }) : null
+		this._placeholderMaterial = this.usesSOM ? som.meshLambertMaterial({
+			side: THREE.DoubleSide
+		}) : null
 
 		if (this.usesPortalSpatial) {
 			this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj').appendTo(this.portalSOM)
@@ -153,7 +151,14 @@ const TextInputComponent = class extends Component {
 	}
 	set text(value) {
 		if (this._text === value) return
+		if(!value) value = ''
 		this._text = value
+		const usingPlaceholder = !value
+		if(usingPlaceholder){
+			this.addClass('placeholder')
+		} else {
+			this.removeClass('placeholder')
+		}
 		if (this.usesPortalSpatial) this._portalText.setText(value || this._placeholderText)
 		if (this.usesImmersive) this._immersiveText.setText(value || this._placeholderText)
 		if (this.usesFlat) this.flatDOM.value = value

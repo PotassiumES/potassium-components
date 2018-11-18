@@ -11,7 +11,7 @@ const TextComponent = class extends Component {
 	@param {Object} [options={}] see the {@link Component} options
 	@param {string} [options.text=''] the initial text shown in the heading
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
-	@param {number} [options.textColor=0x444444] = the color of the text
+	@param {number} [options.textColor=0x000000] = the color of the text
 	@param {string} [options.textField=null] a field in the dataObject to bind to as the text
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
@@ -19,8 +19,8 @@ const TextComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					textSize: 0.08,
-					textColor: 0x444444
+					textSize: 0.08, //meters
+					textColor: 0x000000
 				},
 				options
 			),
@@ -34,6 +34,7 @@ const TextComponent = class extends Component {
 
 		this._textMaterial = this.usesSOM
 			? som.meshLambertMaterial({
+					side: THREE.DoubleSide,
 					color: this.options.textColor
 			  })
 			: null

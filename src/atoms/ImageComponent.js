@@ -79,8 +79,9 @@ const ImageComponent = class extends CubeComponent {
 	}
 
 	static GenerateCubeMaterial(url) {
-		return new som.meshLambertMaterial({
-			map: url ? _textureLoader.load(url) : _blankTexture
+		return new som.meshStandardMaterial({
+			map: url ? _textureLoader.load(url) : _blankTexture,
+			transparent: true
 		})
 	}
 }

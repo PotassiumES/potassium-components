@@ -6,7 +6,7 @@
 }
 
 .som.slider-component > .slider-handle > mesh {
-	material-emissive: var(--secondary-color);
+	material-color: var(--secondary-color);
 }
 
 .som.slider-component > .slider-bar {
@@ -15,7 +15,7 @@
 }
 
 .som.slider-component > .slider-bar > mesh {
-	material-emissive: var(--primary-color);
+	material-color: var(--primary-color);
 }
 
 .dom.slider-component {

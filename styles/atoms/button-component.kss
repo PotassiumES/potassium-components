@@ -1,11 +1,21 @@
 /* ButtonComponent styles */
 
+.som.button-component > text {
+	centroid: 4cm -4.2cm 0;
+	color: var(--base-color);
+	font-size: var(--base-spatial-font-size);
+}
+
+.som.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
+	material-color: var(--primary-color);
+}
+
 button.button-component {
 	cursor: pointer;
-	background-color: #FFFFFF;
 	padding: 3px 15px;
-	border: solid var(--button-border-width) var(--button-border-color);
+	background-color: var(--background-color);
 	border-radius: var(--button-border-radius);
+	border: solid var(--button-border-width) var(--button-border-color);
 }
 
 button.button-component:hover {
@@ -26,12 +36,3 @@ button.button-component.small {
 	line-height: 1em;
 	text-transform: uppercase;
 }
-
-node.button-component > text {
-	centroid: 4cm -4.2cm 0;
-}
-
-node.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
-	material-emissive: var(--primary-color);
-}
-
