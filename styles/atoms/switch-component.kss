@@ -1,20 +1,19 @@
-
 /* SwitchComponent */
 
 .dom.switch-component {
 	position: relative;
-	background-color: var(--background-color);
-	border: solid 1px var(--secondary-color);
+	background-color: var(--dom-background-color);
+	border: solid 1px var(--dom-secondary-color);
 	height: 30px;
 	width: 42px;
 	cursor:  pointer;
 }
 
 .dom.switch-component .handle {
-	color: var(--background-color);
+	color: var(--dom-background-color);
 	text-align: center;
 	line-height: 34px;
-	background-color: var(--primary-color);
+	background-color: var(--dom-primary-color);
 	width: 50%;
 	height: 100%;
 	position: absolute;

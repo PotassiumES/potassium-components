@@ -1,0 +1,52 @@
+:root {
+	--dom-container-border-radius:					10px;
+	--dom-container-border-width:					1px;
+
+	/* DOM distances */
+	--dom-outer-container-margin:					0px;
+	--dom-outer-container-outline:					none;
+	--dom-outer-container-border:					solid var(--dom-container-border-width) var(--dom-primary-color);
+	--dom-outer-container-padding:					20px;
+
+	--dom-major-direction-gap:						35px;
+	--dom-major-direction-container-margin:			0px;
+	--dom-major-direction-container-outline:		none;
+	--dom-major-direction-container-border:			solid var(--dom-container-border-width) var(--dom-secondary-color);
+	--dom-major-direction-container-padding:		10px;
+
+	--dom-minor-direction-gap:						25px;
+	--dom-minor-direction-container-margin:			0px;
+	--dom-minor-direction-container-outline:		none;
+	--dom-minor-direction-container-border:			solid var(--dom-container-border-width) var(--dom-primary-color);
+	--dom-minor-direction-container-padding:		12px;
+
+	--dom-inner-element-gap:						20px;
+	--dom-inner-element-margin:						0px;
+	--dom-inner-element-outline:					none;
+	--dom-inner-element-border:						solid var(--dom-container-border-width) var(--dom-primary-color);
+	--dom-inner-element-padding:					12px;
+
+	/* SOM distances */
+	--som-outer-container-margin:					0cm;
+	--som-outer-container-outline:					none;
+	--som-outer-container-border-color:				var(--som-primary-color);
+	--som-outer-container-padding:					20cm;
+
+	--som-major-direction-gap:						35cm;
+	--som-major-direction-container-margin:			0cm;
+	--som-major-direction-container-outline:		none;
+	--som-major-direction-container-border-color:	var(--dom-secondary-color);
+	--som-major-direction-container-padding:		10cm;
+
+	--som-minor-direction-gap:						25cm;
+	--som-minor-direction-container-margin:			0cm;
+	--som-minor-direction-container-outline:		none;
+	--som-minor-direction-container-border-color:	var(--dom-primary-color);
+	--som-minor-direction-container-padding:		12cm;
+
+	--som-inner-element-gap:						20cm;
+	--som-inner-element-margin:						0cm;
+	--som-inner-element-outline:					none;
+	--som-inner-element-border-color:				var(--dom-primary-color);
+	--som-inner-element-padding:					12cm;
+}

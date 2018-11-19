@@ -1,9 +1,18 @@
 /*
-This is the 'root' file for all of the components in potassium-components.
+This is the 'root' file for all of the styles for potassium-components.
 This is what the postcss-potassium plugin for PostCSS reads and uses to generate CSS for DOM and ES data structures for overlay and spatial controls.
 */
 
-@import 'common.kss';
+/* Foundation */
+
+@import 'text.kss';
+@import 'colors.kss';
+@import 'layout.kss';
+@import 'materials.kss';
+@import 'breakpoints.kss';
+@import 'normalization.kss';
+@import 'alerts.kss';
+@import 'component.kss';
 
 /* Atoms */
 
@@ -12,6 +21,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './atoms/cube-component.kss';
 @import './atoms/heading-component.kss';
 @import './atoms/image-component.kss';
+@import './atoms/modal-component.kss';
 @import './atoms/multi-component.kss';
 @import './atoms/progress-component.kss';
 @import './atoms/selection-component.kss';

@@ -1,0 +1,53 @@
+:root {
+	/* Named colors */
+	--light-pink: rgb(255, 152, 203);
+	--pink: rgb(255, 102, 153);
+	--dark-pink: rgb(205, 52, 103);
+
+	--light-orange: rgb(255, 173, 107);
+	--orange: rgb(255, 123, 57);
+	--dark-orange: rgb(205, 73, 07);
+
+	--light-blue: rgb(173, 107, 255);
+	--blue: rgb(123, 57, 255);
+	--dark-blue: rgb(73, 7, 205);
+
+	/* DOM color scheme */
+	--dom-background-color: 		#FFFFFF;
+
+	--dom-light-primary-color:		var(--light-pink);
+	--dom-primary-color:			var(--pink);
+	--dom-dark-primary-color:		var(--dark-pink);
+
+	--dom-light-secondary-color:	var(--light-orange);
+	--dom-secondary-color:			var(--orange);
+	--dom-dark-secondary-color:		var(--dark-orange);
+
+	--dom-light-tertiary-color:		var(--light-blue);
+	--dom-tertiary-color:			var(--blue);
+	--dom-dark-tertiary-color:		var(--dark-blue);
+
+
+	--dom-light-base-color:			rgb(120, 120, 120);
+	--dom-base-color:				rgb(95, 95, 95);
+	--dom-dark-base-color:			rgb(55, 55, 55);
+
+	/* SOM color scheme */
+	--som-background-color: 		#FFFFFF;
+
+	--som-light-primary-color:		var(--light-pink);
+	--som-primary-color:			var(--pink);
+	--som-dark-primary-color:		var(--dark-pink);
+
+	--som-light-secondary-color:	var(--light-orange);
+	--som-secondary-color:			var(--orange);
+	--som-dark-secondary-color:		var(--dark-orange);
+
+	--som-light-tertiary-color:		var(--light-blue);
+	--som-tertiary-color:			var(--blue);
+	--som-dark-tertiary-color:		var(--dark-blue);
+
+	--som-light-base-color:			rgb(120, 120, 120);
+	--som-base-color:				rgb(95, 95, 95);
+	--som-dark-base-color:			rgb(55, 55, 55);
+}

@@ -1,0 +1,20 @@
+:root {
+	/*
+	These variables are the lower bounds of each size range.
+	For example, the DOM `small` range is 576px to 767px and the SOM small range is 24cm to 60.99cm.
+	*/
+
+	/* DOM breakpoints (sadly, not usable in DOM media queries) */
+	--dom-extra-small-breakpoint:	0px;
+	--dom-small-breakpoint:			576px;
+	--dom-medium-breakpoint:		768px;
+	--dom-large-breakpoint:			992px;
+	--dom-extra-large-breakpoint:	1200px;
+
+	/* SOM breakpoints */
+	--som-extra-small-breakpoint:	0cm;
+	--som-small-breakpoint:			24cm;
+	--som-medium-breakpoint:		60cm;
+	--som-large-breakpoint:			240cm;
+	--som-extra-large-breakpoint:	600cm;
+}

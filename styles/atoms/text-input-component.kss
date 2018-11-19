@@ -5,16 +5,16 @@
 }
 
 .som.text-input-component > .bracket > node > mesh[name=Cube.001_Cube.003] {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .som.text-input-component > text {
 	centroid: 3cm 0 0;
-	font-color: var(--base-color);
+	font-color: var(--som-base-color);
 }
 
 .som.text-input-component.placeholder > text {
-	material-color: var(--light-base-color);
+	material-color: var(--som-light-base-color);
 }
 
 .dom.text-input-component {

@@ -1,39 +1,36 @@
 /*** CardComponent ***/
 
-.som.card-component > .main-component {
-}
-
 .som.card-component > .card-title-component {
 	centroid-y: -68cm;
-	font-size: var(--spatial-font-size-1);
+	font-size: var(--som-font-size-base);
 }
 
 .som.card-component > .card-caption-component {
 	centroid-y: -80cm;
-	color: var(--light-base-color);
-	font-size: var(--base-font-size-1);
+	color: var(--som-light-base-color);
+	font-size: var(--som-font-size-0);
 }
 
 .dom.card-component {
-	background-color: var(--background-color);
-	border: solid var(--container-border-width) var(--light-secondary-color);
-	border-radius: var(--container-border-radius);
+	background-color: var(--dom-background-color);
+	border: solid var(--dom-container-border-width) var(--dom-light-secondary-color);
+	border-radius: var(--dom-container-border-radius);
 }
 
 .dom.card-component > .main-component,
 .dom.card-component > .card-title-component,
 .dom.card-component > .card-caption-component {
-	padding-top: var(--inner-element-padding);
-	padding-left: var(--inner-element-padding);
-	padding-right: var(--inner-element-padding);
+	padding-top: var(--dom-inner-element-padding);
+	padding-left: var(--dom-inner-element-padding);
+	padding-right: var(--dom-inner-element-padding);
 }
 
 .dom.card-component > .main-component {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	width: calc(100% - (var(--inner-element-padding) * 2));
-	padding-bottom: var(--inner-element-padding);
+	width: calc(100% - (var(--dom-inner-element-padding) * 2));
+	padding-bottom: var(--dom-inner-element-padding);
 	max-height: 75vw;
 }
 
@@ -47,12 +44,12 @@
 }
 
 .dom.card-component > .card-title-component {
-	border-top: dashed 1px var(--primary-color);
-	font-size: var(--base-page-font-size);
+	border-top: dashed 1px var(--dom-primary-color);
+	font-size: var(--dom-font-size-base);
 }
 
 .dom.card-component > .card-caption-component {
-	font-weight: var(--base-page-font-size);
-	padding-bottom: var(--inner-element-padding);
+	font-weight: var(--dom-font-size-base);
+	padding-bottom: var(--dom-inner-element-padding);
 	min-height: 2em;
 }

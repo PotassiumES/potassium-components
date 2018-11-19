@@ -2,37 +2,37 @@
 
 .som.button-component > text {
 	centroid: 4cm -4.2cm 0;
-	color: var(--base-color);
-	font-size: var(--base-spatial-font-size);
+	color: var(--som-base-color);
+	font-size: var(--som-font-size-base);
 }
 
 .som.button-component > node[name=Bracket] > node[name=OBJ] > node[name=Cube.002_Cube] {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 button.button-component {
 	cursor: pointer;
 	padding: 3px 15px;
-	background-color: var(--background-color);
-	border-radius: var(--button-border-radius);
-	border: solid var(--button-border-width) var(--button-border-color);
+	background-color: var(--dom-background-color);
+	border-radius: var(--dom-container-border-radius);
+	border: solid var(--dom-container-border-width) var(--dom-primary-color);
 }
 
 button.button-component:hover {
-	border-color: var(--light-secondary-color);
+	border-color: var(--dom-light-secondary-color);
 }
 
 button.button-component:active {
-	border-color: var(--dark-secondary-color);
+	border-color: var(--dom-dark-secondary-color);
 }
 
 button.button-component.selected {
-	background-color: var(--dark-primary-color);
+	background-color: var(--dom-dark-primary-color);
 }
 
 button.button-component.small {
-	padding: 2px;
-	font-size: var(--page-font-size-0);
+	padding: 2px 8px;
+	font-size: var(--dom-font-size-0);
 	line-height: 1em;
 	text-transform: uppercase;
 }

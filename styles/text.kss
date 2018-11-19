@@ -1,0 +1,107 @@
+:root {
+	/* DOM text */
+	--dom-font-family: sans-serif;
+
+	--dom-font-weight-base: 300;
+	--dom-line-height-base: 1.1em;
+	--dom-letter-spacing-base: normal;
+	--dom-font-size-base: 20px;
+
+	--dom-font-weight-5: 300;
+	--dom-line-height-5: 1em;
+	--dom-letter-spacing-5: normal;
+	--dom-font-size-5: calc(var(--dom-font-size-base) + 1.6em);
+
+	--dom-font-weight-4: 300;
+	--dom-line-height-4: 1em;
+	--dom-letter-spacing-4: normal;
+	--dom-font-size-4: calc(var(--dom-font-size-base) + 1.2em);
+
+	--dom-font-weight-3: 300;
+	--dom-line-height-3: 1em;
+	--dom-letter-spacing-3: normal;
+	--dom-font-size-3: calc(var(--dom-font-size-base) + 0.8em);
+
+	--dom-font-weight-2: 300;
+	--dom-line-height-2: 1em;
+	--dom-letter-spacing-2: normal;
+	--dom-font-size-2: calc(var(--dom-font-size-base) + 0.4em);
+
+	--dom-font-weight-0: 200;
+	--dom-line-height-0: 1em;
+	--dom-letter-spacing-0: normal;
+	--dom-font-size-0: calc(var(--dom-font-size-base) - 0.4em);
+
+	/* SOM text */
+	--som-font-weight-base: 300;
+	--som-line-height-base: 10cm;
+	--som-letter-spacing-base: normal;
+	--som-font-size-base: 8cm;
+
+	--som-font-weight-5: 300;
+	--som-line-height-5: 16cm;
+	--som-letter-spacing-5: normal;
+	--som-font-size-5: 16cm;
+
+	--som-font-weight-4: 300;
+	--som-line-height-4: 14cm;
+	--som-letter-spacing-4: normal;
+	--som-font-size-4: 14cm;
+
+	--som-font-weight-3: 300;
+	--som-line-height-3: 12cm;
+	--som-letter-spacing-3: normal;
+	--som-font-size-3: 12cm;
+
+	--som-font-weight-2: 300;
+	--som-line-height-2: 10cm;
+	--som-letter-spacing-2: normal;
+	--som-font-size-2: 10cm;
+
+	--som-font-weight-0: 200;
+	--som-line-height-0: 6cm;
+	--som-letter-spacing-0: normal;
+	--som-font-size-0: 6cm;
+}
+
+.dom-font-5 {
+	font-size: var(--dom-font-size-5);
+	font-weight: var(--dom-font-weight-5);
+	line-height: var(--dom-line-height-5);
+	letter-spacing: var(--dom-letter-spacing-5);
+}
+
+.dom-font-4 {
+	font-size: var(--dom-font-size-4);
+	font-weight: var(--dom-font-weight-4);
+	line-height: var(--dom-line-height-4);
+	letter-spacing: var(--dom-letter-spacing-4);
+}
+
+.dom-font-3 {
+	font-size: var(--dom-font-size-3);
+	font-weight: var(--dom-font-weight-3);
+	line-height: var(--dom-line-height-3);
+	letter-spacing: var(--dom-letter-spacing-3);
+}
+
+.dom-font-2 {
+	font-size: var(--dom-font-size-2);
+	font-weight: var(--dom-font-weight-2);
+	line-height: var(--dom-line-height-2);
+	letter-spacing: var(--dom-letter-spacing-2);
+}
+
+.dom-font-base {
+	font-size: var(--dom-font-size-base);
+	font-weight: var(--dom-font-weight-base);
+	line-height: var(--dom-line-height-base);
+	letter-spacing: var(--dom-letter-spacing-base);
+}
+
+.dom-font-0 {
+	font-size: var(--dom-font-size-0);
+	font-weight: var(--dom-font-weight-0);
+	line-height: var(--dom-line-height-0);
+	letter-spacing: var(--dom-letter-spacing-0);
+}

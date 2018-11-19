@@ -7,7 +7,7 @@
 
 
 .som.video-player-component > .backdrop-component > .video-component > mesh[name=Cube] {
-	material-color: var(--base-color);
+	material-color: var(--som-base-color);
 }
 
 .som.video-player-component > .video-player-controls {
@@ -21,8 +21,8 @@
 .dom.video-player-component > .backdrop-component {
 	width: 100%;
 	display: block;
-	border: solid var(--container-border-width) #DDD;
-	border-radius: var(--container-border-radius);
+	border: solid var(--dom-container-border-width) #DDD;
+	border-radius: var(--dom-container-border-radius);
 	text-align: center;
 }
 

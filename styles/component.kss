@@ -1,0 +1,14 @@
+/*** Component ***/
+
+.dom-root .component {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.dom-root .component.anchored {
+	cursor: pointer;
+}
+
+.dom-root .component.hidden {
+	display: none !important;
+}

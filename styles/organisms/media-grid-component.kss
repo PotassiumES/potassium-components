@@ -8,7 +8,7 @@
 	margin-top: 0;
 	display: grid;
 	grid-template: auto / 1fr;
-	gap: var(--inner-section-margin);
+	gap: var(--dom-inner-element-gap);
 }
 
 .dom.media-grid-component > .collection-component > .collection-item .main {

@@ -10,7 +10,7 @@
 }
 
 .dom.button-group-component .dom.button.selected {
-	border-color: var(--secondary-color);
+	border-color: var(--dom-secondary-color);
 }
 
 .som.button-group-component {

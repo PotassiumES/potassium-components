@@ -6,8 +6,8 @@
 .dom.table-component > tr > th,
 .dom.table-component > tr > td {
 	padding: 10px 10px;
-	border-bottom: solid 1px var(--primary-color);
-	border-left: solid 1px var(--primary-color);
+	border-bottom: solid 1px var(--dom-primary-color);
+	border-left: solid 1px var(--dom-primary-color);
 }
 
 .dom.table-component > tr > th:first-child,

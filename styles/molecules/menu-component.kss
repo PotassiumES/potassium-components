@@ -51,19 +51,19 @@
 	min-width: 6em;
 	text-align: center;
 	position: absolute;
-	background-color: var(--background-color);
-	border-radius: var(--container-border-radius);
-	border: solid var(--container-border-width) var(--primary-color);
+	background-color: var(--dom-background-color);
+	border-radius: var(--dom-container-border-radius);
+	border: solid var(--dom-container-border-width) var(--dom-primary-color);
 }
 
 .dom.menu-component > .menu-items-component > .selected {
-	color: var(--primary-color);
+	color: var(--dom-primary-color);
 	z-index: 7;
 }
 
 .dom.menu-component > .menu-items-component > .component {
-	border-top: solid var(--container-border-width) var(--secondary-color);
-	padding: var(--inner-element-padding);
+	border-top: solid var(--dom-container-border-width) var(--dom-secondary-color);
+	padding: var(--dom-inner-element-padding);
 }
 
 .dom.menu-component > .menu-items-component > .component:first-child {
@@ -71,9 +71,9 @@
 }
 
 .dom.menu-component > .menu-items-component > .component:hover {
-	color: var(--secondary-color);
+	color: var(--dom-secondary-color);
 }
 
 .dom.menu-component > .menu-items-component > .component:active {
-	color: var(--dark-secondary-color);
+	color: var(--dom-dark-secondary-color);
 }

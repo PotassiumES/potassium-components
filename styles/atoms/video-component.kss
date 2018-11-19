@@ -1,7 +1,7 @@
 /* VideoComponent */
 
 .som.video-component > mesh[name=Cube] {
-	material-color: var(--base-color);
+	material-color: var(--som-base-color);
 }
 
 .dom.video-component > video {

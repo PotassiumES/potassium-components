@@ -6,7 +6,7 @@
 }
 
 .som.slider-component > .slider-handle > mesh {
-	material-color: var(--secondary-color);
+	material-color: var(--som-secondary-color);
 }
 
 .som.slider-component > .slider-bar {
@@ -15,7 +15,7 @@
 }
 
 .som.slider-component > .slider-bar > mesh {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .dom.slider-component {
@@ -27,8 +27,8 @@
 	position: relative;
 	width: 30px;
 	height: 32px;
-	background-color: var(--primary-color);
-	border-radius: var(--container-border-radius);
+	background-color: var(--dom-primary-color);
+	border-radius: var(--dom-container-border-radius);
 }
 
 .dom.slider-component > .slider-bar {
@@ -36,5 +36,5 @@
 	display: block;
 	width: 100%;
 	height: 2px;
-	background-color: var(--secondary-color);
+	background-color: var(--dom-secondary-color);
 }

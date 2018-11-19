@@ -6,7 +6,7 @@
 
 .som.progress-component > .som.track-component > mesh {
 	scale: 1 0.08 0.01;
-	material-color: var(--secondary-color);
+	material-color: var(--som-secondary-color);
 }
 
 .som.progress-component > .track-component > .fill-component {
@@ -15,7 +15,7 @@
 
 .som.progress-component > .track-component > .fill-component > mesh {
 	scale: 0.95 0.06 0.01;
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .dom.progress-component {
@@ -26,12 +26,13 @@
 	display: block;
 	width: 100%;
 	height: 1em;
-	border: solid var(--container-border-width) var(--secondary-color);
-	border-radius: var(--container-border-radius);
+	border: solid var(--dom-container-border-width) var(--dom-secondary-color);
+	border-radius: var(--dom-container-border-radius);
 }
 
 .dom.progress-component > .track-component > .fill-component {
 	display: block;
 	height: 1em;
-	background-color: var(--primary-color);	
+	background-color: var(--dom-primary-color);	
+	border-radius: var(--dom-container-border-radius);
 }

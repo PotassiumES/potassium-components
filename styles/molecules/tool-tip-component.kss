@@ -1,7 +1,7 @@
 /*** ToolTipComponent ***/
 
 .som.tool-tip-component > .close-component {
-	color: var(--primary-color);
+	color: var(--som-primary-color);
 }
 
 .som.tool-tip-component > .info-component {
@@ -14,9 +14,9 @@
 	max-width: 100%;
 	min-height: 2em;
 	padding: 30px 1em 1em 1em;
-	border: solid var(--container-border-width) var(--primary-color);
-	border-radius: var(--container-border-radius);
-	background-color: var(--background-color);
+	border: solid var(--dom-container-border-width) var(--dom-primary-color);
+	border-radius: var(--dom-container-border-radius);
+	background-color: var(--dom-background-color);
 }
 
 .dom.tool-tip-component .dom.label-component.close-component {

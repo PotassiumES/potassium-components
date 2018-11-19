@@ -4,11 +4,11 @@
 }
 
 .som.masthead-component > .heading-component {
-	font-size: var(--spatial-font-size-3);
+	font-size: var(--som-font-size-3);
 }
 
 .som.masthead-component > .heading-component > text {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .som.masthead-component > .menu-component {
@@ -18,17 +18,17 @@
 .dom.masthead-component {
 	display: block;
 	position: relative;
-	border-bottom: dashed 1px var(--secondary-color);
+	border-bottom: dashed 1px var(--dom-secondary-color);
 	z-index: 6;
 }
 
 .dom.masthead-component > .heading-component {
 	display: inline-block;
 	margin-top: 0;
-	padding: var(--page-app-content-padding);
-	padding-bottom: calc(var(--page-app-content-padding) - 8px);
-	color: var(--primary-color);
-	background-color: var(--background-color);
+	padding: var(--dom-outer-container-padding);
+	padding-bottom: calc(var(--dom-outer-container-padding) - 8px);
+	color: var(--dom-primary-color);
+	background-color: var(--dom-background-color);
 }
 
 .dom.masthead-component > .menu-component {
@@ -36,7 +36,7 @@
 	vertical-align: top;
 	position: absolute;
 	top: 18px;
-	right: var(--page-app-content-padding);
+	right: var(--dom-outer-container-padding);
 }
 
 .dom.masthead-component > .mode-switcher-component {
@@ -49,5 +49,5 @@
 
 .portal-dom.heading-component.brand-component {
 	background-color: inherit;
-	border-bottom: dashed 1px;
+	border-bottom: dashed var(--dom-container-border-width);
 }

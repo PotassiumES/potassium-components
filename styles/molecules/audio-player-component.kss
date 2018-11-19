@@ -3,7 +3,7 @@
 div.dom.audio-player-component {
 	display: grid;
 	grid-template: 44px 30px / 60px;
-	gap: var(--inner-element-padding);
+	gap: var(--dom-inner-element-padding);
 }
 
 .dom.audio-player-component > .audio-component {

@@ -10,18 +10,18 @@
 }
 
 .som.audio-component > .icon > group > mesh[name=Frame] {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .som.audio-component > .icon > group > mesh[name=Speaker] {
-	material-color: var(--primary-color);
+	material-color: var(--som-primary-color);
 }
 
 .som.audio-component > .icon > group > mesh[name=Wave1],
 .som.audio-component > .icon > group > mesh[name=Wave2],
 .som.audio-component > .icon > group > mesh[name=Wave3],
 .som.audio-component > .icon > group > mesh[name=Wave4] {
-	material-color: var(--secondary-color);
+	material-color: var(--som-secondary-color);
 }
 
 .dom.audio-component {

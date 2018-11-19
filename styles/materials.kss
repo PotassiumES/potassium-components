@@ -1,0 +1,21 @@
+/* Materials */
+
+.som.primary-material {
+	material-color: var(--som-primary-color);
+	material-emissive: #000;
+}
+
+.som.secondary-material {
+	material-color: var(--som-secondary-color);
+	material-emissive: #000;
+}
+
+.som.tertiary-material {
+	material-color: var(--som-teritary-color);
+	material-emissive: #000;
+}
+
+.som.base-material {
+	material-color: var(--som-base-color);
+	material-emissive: #000;
+}

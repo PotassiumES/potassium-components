@@ -3,7 +3,7 @@
 
 .dom.image-card-component > .dom.main-component > .dom.image-component {
 	max-width: 100%;
-	background-color: var(--background-color);
+	background-color: var(--dom-background-color);
 }
 
 .dom.image-card-component > .main-component > :first-child {

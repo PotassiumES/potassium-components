@@ -1,0 +1,49 @@
+/* Normalization */
+
+scene {
+	color: var(--som-base-color);
+	font-size: var(--som-font-size-base);
+	background-color: var(--som-background-color);
+}
+
+html, body,
+div, section,
+h1, h2, h3, h4, h5,
+ul, li {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: var(--dom-font-family);
+	font-weight: var(--base-page-font-weight);
+	color: var(--dom-base-color);
+	font-size: var(--dom-font-size-base);
+	background-color: var(--dom-background-color);
+}
+
+li {
+	list-style: none;
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	font-size: var(--dom-font-size-4);
+	font-weight: var(--dom-font-weight-4);
+	line-height: var(--dom-line-height-4);
+	letter-spacing: var(--dom-letter-spacing-4);
+}
+
+h2 {
+	font-size: var(--dom-font-size-3);
+	font-weight: var(--dom-font-weight-3);
+	line-height: var(--dom-line-height-3);
+	letter-spacing: var(--dom-letter-spacing-3);
+}
+
+h3 {
+	font-size: var(--dom-font-size-2);
+	font-weight: var(--dom-font-weight-2);
+	line-height: var(--dom-line-height-2);
+	letter-spacing: var(--dom-letter-spacing-2);
+}

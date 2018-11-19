@@ -1,8 +1,8 @@
 /*** FormComponent ***/
 
 .som.form-component > .heading-component {
-	font-size: var(--spatial-font-size-2);
-	color: var(--light-secondary-color);
+	font-size: var(--som-font-size-2);
+	color: var(--som-light-secondary-color);
 }
 
 .som.form-component > .fields-component {
@@ -36,19 +36,19 @@
 }
 
 .dom.form-component {
-	padding: var(--inner-element-padding);
-	border-radius: var(--container-border-radius);
-	border: solid var(--container-border-width) var(--primary-color);
+	padding: var(--dom-inner-element-padding);
+	border-radius: var(--dom-container-border-radius);
+	border: solid var(--dom-container-border-width) var(--dom-primary-color);
 }
 
 .dom.form-field-component {
 	display: block;
-	margin-bottom: var(--page-app-content-padding);
+	margin-bottom: var(--dom-outer-container-padding);
 }
 
 .dom.form-group {
 	display: block;
-	margin-bottom: calc(var(--inner-section-margin) / 2);
+	margin-bottom: calc(var(--dom-inner-element-gap) / 2);
 }
 
 .dom.form-group .label-component {
@@ -80,7 +80,7 @@
 .dom.date-field-component > .month-input-component,
 .dom.date-field-component > .day-input-component {
 	width: 2.4em;
-	margin-right: var(--inner-element-padding);
+	margin-right: var(--dom-inner-element-padding);
 }
 
 .dom.date-field-component > .year-input-component {
@@ -89,7 +89,7 @@
 
 .dom.date-field-component > .date-label-component {
 	display: block;
-	font-size: var(--page-font-size-0);
+	font-size: var(--dom-font-size-0);
 	min-height: 1em;
 }
 

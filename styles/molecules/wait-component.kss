@@ -9,8 +9,8 @@
 .dom.wait-component {
 	text-align: center;
 	padding: var(--static-padding);
-	border: solid 1px var(--primary-color);
-	border-radius: var(--container-border-radius);
+	border: solid 1px var(--dom-primary-color);
+	border-radius: var(--dom-container-border-radius);
 }
 
 .dom.wait-component.nothing-happening {
@@ -22,24 +22,24 @@
 .dom.wait-component.wait-right,
 .dom.wait-component.wait-bottom,
 .dom.wait-component.wait-left {
-	border-color: var(--background-color);
+	border-color: var(--dom-background-color);
 	padding: var(--animating-padding);
 	border-width: var(--animating-border-width);
 }
 
 
 .dom.wait-component.wait-top {
-	border-top-color: var(--secondary-color);
+	border-top-color: var(--dom-secondary-color);
 }
 
 .dom.wait-component.wait-right {
-	border-right-color: var(--secondary-color);
+	border-right-color: var(--dom-secondary-color);
 }
 
 .dom.wait-component.wait-bottom {
-	border-bottom-color: var(--secondary-color);
+	border-bottom-color: var(--dom-secondary-color);
 }
 
 .dom.wait-component.wait-left {
-	border-left-color: var(--secondary-color);
+	border-left-color: var(--dom-secondary-color);
 }
