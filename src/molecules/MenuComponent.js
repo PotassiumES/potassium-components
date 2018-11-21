@@ -4,7 +4,6 @@ import Component from 'potassium-es/src/Component'
 
 import ImageComponent from 'potassium-components/src/atoms/ImageComponent'
 
-
 /**
 MenuComponent holds a set of menu item Components.
 Users are given the opportunity to choose items from the menu.
@@ -24,9 +23,14 @@ const MenuComponent = class extends Component {
 		this._selectedIndex = -1
 		this._menuItems = []
 
-		this._toggleComponent = new ImageComponent(undefined, {
-			image: '/static/potassium-components/images/left-arrow.png'
-		}, this.inheritedOptions).appendTo(this)
+		this._toggleComponent = new ImageComponent(
+			undefined,
+			{
+				image: '/static/potassium-components/images/left-arrow.png'
+			},
+			this.inheritedOptions
+		)
+			.appendTo(this)
 			.addClass('toggle-component')
 			.setName('ToggleComponent')
 		this.listenTo(Component.ActionEvent, this._toggleComponent, (eventName, actionName, value, actionParameters) => {
@@ -40,8 +44,7 @@ const MenuComponent = class extends Component {
 		this.flatDOM.setAttribute('onselectstart', 'return false;')
 		this.portalDOM.setAttribute('onselectstart', 'return false;')
 
-		this._menuItemsComponent = new Component(undefined, {
-		}, this.inheritedOptions)
+		this._menuItemsComponent = new Component(undefined, {}, this.inheritedOptions)
 			.appendTo(this)
 			.addClass('menu-items-component')
 			.setName('MenuItemsComponent')
@@ -66,36 +69,34 @@ const MenuComponent = class extends Component {
 		this._updateSelectionDisplay()
 	}
 
-	get opened(){ return this._opened }
+	get opened() {
+		return this._opened
+	}
 
-	open(){
-		if(this._opened) return
+	open() {
+		if (this._opened) return
 		this._opened = true
 		this._toggleComponent.addClass('open')
-		this._toggleComponent.immersiveSOM.setLayoutDirty()
-		this._toggleComponent.portalSOM.setLayoutDirty()
 		this._menuItemsComponent.show()
 	}
 
-	close(){
-		if(this._opened === false) return
+	close() {
+		if (this._opened === false) return
 		this._opened = false
 		this._toggleComponent.removeClass('open')
-		this._toggleComponent.immersiveSOM.setLayoutDirty()
-		this._toggleComponent.portalSOM.setLayoutDirty()
 		this._menuItemsComponent.hide()
 	}
 
-	toggle(open=null){
-		if(typeof open === 'boolean'){
-			if(open){
+	toggle(open = null) {
+		if (typeof open === 'boolean') {
+			if (open) {
 				this.close()
 			} else {
 				this.open()
 			}
 			return
 		}
-		if(this._opened) {
+		if (this._opened) {
 			this.close()
 		} else {
 			this.open()

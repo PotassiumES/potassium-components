@@ -75,7 +75,7 @@ const CubeComponent = class extends Component {
 	}
 
 	/** @param {THREE.Material} mat */
-	set material(mat){
+	set material(mat) {
 		if (this._portalCube) this._portalCube.material = mat
 		if (this._immersiveCube) this._immersiveCube.material = mat
 	}

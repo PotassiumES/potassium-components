@@ -2,32 +2,36 @@
 	/* DOM text */
 	--dom-font-family: sans-serif;
 
-	--dom-font-weight-base: 300;
+	--dom-light-font-weight: 300;
+	--dom-medium-font-weight: 400;
+	--dom-heavy-font-weight: 600;
+
+	--dom-font-weight-base: var(--dom-light-font-weight);
 	--dom-line-height-base: 1.1em;
 	--dom-letter-spacing-base: normal;
 	--dom-font-size-base: 20px;
 
-	--dom-font-weight-5: 300;
+	--dom-font-weight-5: var(--dom-light-font-weight);
 	--dom-line-height-5: 1em;
 	--dom-letter-spacing-5: normal;
 	--dom-font-size-5: calc(var(--dom-font-size-base) + 1.6em);
 
-	--dom-font-weight-4: 300;
+	--dom-font-weight-4: var(--dom-light-font-weight);
 	--dom-line-height-4: 1em;
 	--dom-letter-spacing-4: normal;
 	--dom-font-size-4: calc(var(--dom-font-size-base) + 1.2em);
 
-	--dom-font-weight-3: 300;
+	--dom-font-weight-3: var(--dom-light-font-weight);
 	--dom-line-height-3: 1em;
 	--dom-letter-spacing-3: normal;
 	--dom-font-size-3: calc(var(--dom-font-size-base) + 0.8em);
 
-	--dom-font-weight-2: 300;
+	--dom-font-weight-2: var(--dom-light-font-weight);
 	--dom-line-height-2: 1em;
 	--dom-letter-spacing-2: normal;
 	--dom-font-size-2: calc(var(--dom-font-size-base) + 0.4em);
 
-	--dom-font-weight-0: 200;
+	--dom-font-weight-0: var(--dom-light-font-weight);
 	--dom-line-height-0: 1em;
 	--dom-letter-spacing-0: normal;
 	--dom-font-size-0: calc(var(--dom-font-size-base) - 0.4em);

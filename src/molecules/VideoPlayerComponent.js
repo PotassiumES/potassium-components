@@ -50,13 +50,7 @@ const VideoPlayerComponent = class extends Component {
 			this._addEventListeners()
 		})
 
-
-		this._controlsComponent = new Component(
-			null,
-			{
-			},
-			this.inheritedOptions
-		).appendTo(this)
+		this._controlsComponent = new Component(null, {}, this.inheritedOptions).appendTo(this)
 		this._controlsComponent.addClass('video-player-controls')
 		this._controlsComponent.setName('VideoPlayerControls')
 
@@ -81,7 +75,7 @@ const VideoPlayerComponent = class extends Component {
 		this._updateDisplay()
 	}
 
-	get video(){
+	get video() {
 		return this._videoComponent.video
 	}
 
@@ -99,7 +93,8 @@ const VideoPlayerComponent = class extends Component {
 				this._sliderComponent.valueFraction = 0
 			} else {
 				this._sliderComponent.valueFraction =
-					Math.max(0, this._videoComponent.currentTime) / Math.max(1, this._videoComponent.duration, this._videoComponent.currentTime)
+					Math.max(0, this._videoComponent.currentTime) /
+					Math.max(1, this._videoComponent.duration, this._videoComponent.currentTime)
 			}
 		}
 		if (this._videoComponent.paused) {

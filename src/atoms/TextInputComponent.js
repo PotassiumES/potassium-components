@@ -20,14 +20,14 @@ const TextInputComponent = class extends Component {
 					text: '',
 					placeholder: '',
 					flatDOM: dom.input({ type: 'text' }),
-					portalDOM: dom.input({ type: 'text' })
+					portalDOM: dom.input({ type: 'text' }),
+					classes: 'text-input-component',
+					name: 'TextInputComponent'
 				},
 				options
 			),
 			inheritedOptions
 		)
-		this.addClass('text-input-component')
-		this.setName('TextInputComponent')
 		this._handleTextInput = this._handleTextInput.bind(this)
 		this._handleModelChange = this._handleModelChange.bind(this)
 
@@ -52,9 +52,11 @@ const TextInputComponent = class extends Component {
 		// Listen for changes to this.text based on Component.TextInputEvents
 		this.listenTo(Component.TextInputEvent, this, this._handleTextInput)
 
-		this._placeholderMaterial = this.usesSOM ? som.meshLambertMaterial({
-			side: THREE.DoubleSide
-		}) : null
+		this._placeholderMaterial = this.usesSOM
+			? som.meshLambertMaterial({
+					side: THREE.DoubleSide
+			  })
+			: null
 
 		if (this.usesPortalSpatial) {
 			this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj').appendTo(this.portalSOM)
@@ -151,10 +153,10 @@ const TextInputComponent = class extends Component {
 	}
 	set text(value) {
 		if (this._text === value) return
-		if(!value) value = ''
+		if (!value) value = ''
 		this._text = value
 		const usingPlaceholder = !value
-		if(usingPlaceholder){
+		if (usingPlaceholder) {
 			this.addClass('placeholder')
 		} else {
 			this.removeClass('placeholder')

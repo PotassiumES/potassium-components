@@ -49,7 +49,7 @@ const CardComponent = class extends Component {
 		this._captionComponent = new LabelComponent(
 			dataObject,
 			{
-				textField: this.options.captionField,
+				textField: this.options.captionField
 			},
 			this.inheritedOptions
 		)

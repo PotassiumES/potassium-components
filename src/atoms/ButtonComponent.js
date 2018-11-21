@@ -31,9 +31,9 @@ const ButtonComponent = class extends Component {
 
 		const textMaterial = this.usesSOM
 			? som.meshStandardMaterial({
-				color: 0x000000,
-				side: THREE.DoubleSide
-			})
+					color: 0x000000,
+					side: THREE.DoubleSide
+			  })
 			: null
 
 		this._portalText = this.options.usesPortalSpatial
@@ -50,7 +50,9 @@ const ButtonComponent = class extends Component {
 
 		if (!this.options.portalSOM) {
 			if (this.options.usesPortalSpatial) {
-				this._portalButtonObj = som.obj('/static/potassium-components/models/Button.obj')
+				this._portalButtonObj = som.obj('/static/potassium-components/models/Button.obj', () => {
+					this.portalSOM.styles.geometryIsDirty = true
+				})
 				this._portalButtonObj.name = 'Bracket'
 				this.portalSOM.add(this._portalButtonObj)
 				this.portalSOM.add(this._portalText)
@@ -61,7 +63,9 @@ const ButtonComponent = class extends Component {
 
 		if (!this.options.immersiveSOM) {
 			if (this.options.usesImmersive) {
-				this._immersiveButtonObj = som.obj('/static/potassium-components/models/Button.obj')
+				this._immersiveButtonObj = som.obj('/static/potassium-components/models/Button.obj', () => {
+					this.immersiveSOM.styles.geometryIsDirty = true
+				})
 				this._immersiveButtonObj.name = 'Bracket'
 				this.immersiveSOM.add(this._immersiveButtonObj)
 				this.immersiveSOM.add(this._immersiveText)

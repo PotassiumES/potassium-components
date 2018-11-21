@@ -1,14 +1,8 @@
 /*** MastheadComponent ***/
 
-.som.masthead-component {
-}
-
-.som.masthead-component > .heading-component {
+.som.masthead-component > .brand-component {
 	font-size: var(--som-font-size-3);
-}
-
-.som.masthead-component > .heading-component > text {
-	material-color: var(--som-primary-color);
+	color: var(--som-primary-color);
 }
 
 .som.masthead-component > .menu-component {

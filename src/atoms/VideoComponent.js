@@ -46,15 +46,21 @@ const VideoComponent = class extends CubeComponent {
 		this._ratio = null
 		this.resize(this.options.height, VideoComponent.RATIO_16x9)
 
-		this._flatPreview = dom.img({ src: this.options.preview }).appendTo(this.flatDOM).addClass('preview-image')
-		this._portalPreview = dom.img({ src: this.options.preview }).appendTo(this.portalDOM).addClass('preview-image')
+		this._flatPreview = dom
+			.img({ src: this.options.preview })
+			.appendTo(this.flatDOM)
+			.addClass('preview-image')
+		this._portalPreview = dom
+			.img({ src: this.options.preview })
+			.appendTo(this.portalDOM)
+			.addClass('preview-image')
 	}
 
 	cleanup() {
-		if(this._video) this._video.removeEventListener('canplay', this._handleVideoCanPlay, false)
+		if (this._video) this._video.removeEventListener('canplay', this._handleVideoCanPlay, false)
 	}
 
-	get source(){
+	get source() {
 		return this._source
 	}
 
@@ -62,37 +68,37 @@ const VideoComponent = class extends CubeComponent {
 		return this._video
 	}
 
-	get paused(){
-		if(this._videoRequested === false) return true
+	get paused() {
+		if (this._videoRequested === false) return true
 		return this._video.paused
 	}
 
-	get currentTime(){
-		if(this._videoRequested === false) return 0
+	get currentTime() {
+		if (this._videoRequested === false) return 0
 		return this._video.currentTime
 	}
 
-	set currentTime(val){
-		if(this._videoRequested === false) return
+	set currentTime(val) {
+		if (this._videoRequested === false) return
 		this._video.currentTime = val
 	}
 
-	get duration(){
-		if(this._videoRequested === false) return 0
+	get duration() {
+		if (this._videoRequested === false) return 0
 		return this._video.duration
 	}
 
-	play(){
-		if(this._videoRequested === false) this.loadVideo()
+	play() {
+		if (this._videoRequested === false) this.loadVideo()
 		// We share the video among flat and portal mode, so do the switcheroo
-		switch (this.currentDisplayMode){
+		switch (this.currentDisplayMode) {
 			case 'flat':
-				if(this._video.parentNode !== this.flatDOM){
+				if (this._video.parentNode !== this.flatDOM) {
 					this.flatDOM.appendChild(this._video)
 				}
 				break
 			case 'portal':
-				if(this._video.parentNode !== this.portalDOM){
+				if (this._video.parentNode !== this.portalDOM) {
 					this.portalDOM.appendChild(this._video)
 				}
 				break
@@ -106,22 +112,22 @@ const VideoComponent = class extends CubeComponent {
 		this._video.play()
 	}
 
-	pause(){
-		if(this._videoRequested === false) this.loadVideo()
+	pause() {
+		if (this._videoRequested === false) this.loadVideo()
 		this._video.pause()
 	}
 
-	toggle(){
-		if(this._videoRequested === false) this.loadVideo()
-		if(this.paused){
+	toggle() {
+		if (this._videoRequested === false) this.loadVideo()
+		if (this.paused) {
 			this.play()
 		} else {
 			this.pause()
 		}
 	}
 
-	loadVideo(){
-		if(this._videoRequested) return false
+	loadVideo() {
+		if (this._videoRequested) return false
 		this._videoRequested = true
 
 		this.flatDOM.removeChild(this._flatPreview)
@@ -138,7 +144,7 @@ const VideoComponent = class extends CubeComponent {
 		this._video.addEventListener('canplay', this._handleVideoCanPlay, false)
 		this._video.load()
 
-		if(this.usesSOM){
+		if (this.usesSOM) {
 			this.material = this.generateVideoMaterial()
 		}
 
@@ -153,7 +159,7 @@ const VideoComponent = class extends CubeComponent {
 	setSourceAttributes(url, mimeType) {
 		this.options.video = url
 		this.options.mimeType = mimeType
-		if(this._videoRequested) {
+		if (this._videoRequested) {
 			// the video elements are already created so reset video
 			this._source.setAttribute('src', url)
 			this._source.setAttribute('type', mimeType)
@@ -184,7 +190,7 @@ const VideoComponent = class extends CubeComponent {
 			this.portalCube.scale.set(width, height, depth)
 			this.portalCube.position.set(width / 2, height / -2, 0)
 		}
-		if (this.immersiveCube){
+		if (this.immersiveCube) {
 			this.immersiveCube.scale.set(width, height, depth)
 			this.immersiveCube.position.set(width / 2, height / -2, 0)
 		}
@@ -196,7 +202,7 @@ const VideoComponent = class extends CubeComponent {
 		videoTexture.magFilter = THREE.LinearFilter
 		videoTexture.format = THREE.RGBFormat
 		return new THREE.MeshStandardMaterial({
-			color: 0xFFFFFF,
+			color: 0xffffff,
 			map: videoTexture
 		})
 	}
