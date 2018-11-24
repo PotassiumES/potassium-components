@@ -44,12 +44,25 @@
       "prettier/prettier": "warn"
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.js": ["prettier --write", "eslint --fix", "git add"]
+    },
+    "relative": true
+  },
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.13.7"
   }
 }
