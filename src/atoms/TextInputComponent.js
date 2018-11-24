@@ -21,13 +21,13 @@ const TextInputComponent = class extends Component {
 					placeholder: '',
 					flatDOM: dom.input({ type: 'text' }),
 					portalDOM: dom.input({ type: 'text' }),
-					classes: 'text-input-component',
 					name: 'TextInputComponent'
 				},
 				options
 			),
 			inheritedOptions
 		)
+		this.addClass('text-input-component')
 		this._handleTextInput = this._handleTextInput.bind(this)
 		this._handleModelChange = this._handleModelChange.bind(this)
 

@@ -17,13 +17,13 @@ const ModalComponent = class extends Component {
 			Object.assign(
 				{
 					columns: ['key', 'value'],
-					classes: 'modal-component',
 					name: 'ModalComponent'
 				},
 				options
 			),
 			inheritedOptions
 		)
+		this.addClass('modal-component')
 	}
 }
 

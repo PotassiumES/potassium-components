@@ -19,13 +19,13 @@ const HeadingComponent = class extends TextComponent {
 					flatDOM: dom.h1(),
 					portalDOM: dom.h1(),
 					textSize: 0.12,
-					name: 'HeadingComponent',
-					classes: 'heading-component'
+					name: 'HeadingComponent'
 				},
 				options
 			),
 			inheritedOptions
 		)
+		this.addClass('heading-component')
 	}
 }
 

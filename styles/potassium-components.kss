@@ -28,6 +28,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './atoms/slider-component.kss';
 @import './atoms/switch-component.kss';
 @import './atoms/table-component.kss';
+@import './atoms/text-component.kss';
 @import './atoms/text-input-component.kss';
 @import './atoms/video-component.kss';
 

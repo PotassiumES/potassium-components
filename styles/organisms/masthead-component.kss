@@ -1,12 +1,17 @@
 /*** MastheadComponent ***/
 
+.som.masthead-component {
+	display: box;
+	layout-direction: horizontal;
+}
+
 .som.masthead-component > .brand-component {
 	font-size: var(--som-font-size-3);
 	color: var(--som-primary-color);
 }
 
 .som.masthead-component > .menu-component {
-	centroid-x: 120cm;
+	margin: 0 0 0 10cm;
 }
 
 .dom.masthead-component {

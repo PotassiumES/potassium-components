@@ -1,0 +1,5 @@
+/* TextComponent */
+
+.text-component {
+	display: box;
+}

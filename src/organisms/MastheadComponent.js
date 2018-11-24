@@ -46,7 +46,14 @@ const MastheadComponent = class extends Component {
 		this.addClass('masthead-component')
 		this.setName('MastheadComponent')
 
-		this._modeSwitcherComponent = new ModeSwitcherComponent(null, {}, this.inheritedOptions).appendTo(this)
+		this._modeSwitcherComponent = new ModeSwitcherComponent(
+			null,
+			{
+				usesPortalSpatial: false,
+				usesImmersive: false
+			},
+			this.inheritedOptions
+		).appendTo(this)
 		this._modeSwitcherComponent.addListener((eventName, mode) => {
 			this.trigger(MastheadComponent.MODE_REQUEST_EVENT, mode)
 		}, ModeSwitcherComponent.ModeChangedEvent)
