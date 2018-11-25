@@ -78,9 +78,9 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
 
-		this._switchModal = dom.div({ class: 'switch-modal modal' })
+		this._switchModal = dom.div({ class: 'switch-modal dom-modal' })
 		dom
-			.button('enter')
+			.button(lt('Enter'))
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()
@@ -88,7 +88,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 				this._attemptingMode = null
 			})
 		dom
-			.button('cancel')
+			.button(lt('Cancel'))
 			.appendTo(this._switchModal)
 			.addEventListener('click', ev => {
 				this._hideModal()
@@ -102,7 +102,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 	}
 
 	_showModal() {
-		document.body.appendChild(this._switchModal)
+		document.body.prepend(this._switchModal)
 	}
 
 	_hideModal() {

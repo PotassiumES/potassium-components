@@ -45,6 +45,28 @@ const SwitchComponent = class extends Component {
 			this.on = true
 		}
 
+		if (this.options.usesPortalSpatial) {
+			this._portalObj = som.obj('/static/potassium-components/models/switch-component.obj', () => {
+				this.portalSOM.styles.geometryIsDirty = true
+				this._updateDisplay()
+			})
+			this._portalObj.name = 'SwitchOBJ'
+			this.portalSOM.add(this._portalObj)
+		} else {
+			this._portalObj = null
+		}
+
+		if (this.options.usesImmersive) {
+			this._immersiveObj = som.obj('/static/potassium-components/models/switch-component.obj', () => {
+				this.immersiveSOM.styles.geometryIsDirty = true
+				this._updateDisplay()
+			})
+			this._immersiveObj.name = 'SwitchOBJ'
+			this.immersiveSOM.add(this._immersiveObj)
+		} else {
+			this._immersiveObj = null
+		}
+
 		this.listenTo(Component.ActionEvent, this, (eventName, actionName, value, actionParameters) => {
 			switch (actionName) {
 				case '/action/activate':
@@ -78,10 +100,34 @@ const SwitchComponent = class extends Component {
 			this._flatHandle.innerText = this._portalHandle.innerText = 1
 			this.removeClass('off')
 			this.addClass('on')
+			if (this._portalObj) {
+				this._portalObj.querySelector('node[name=OnFrame]').visible = true
+				this._portalObj.querySelector('node[name=One]').visible = true
+				this._portalObj.querySelector('node[name=OffFrame]').visible = false
+				this._portalObj.querySelector('node[name=Zero]').visible = false
+			}
+			if (this._immersiveObj) {
+				this._immersiveObj.querySelector('node[name=OnFrame]').visible = true
+				this._immersiveObj.querySelector('node[name=One]').visible = true
+				this._immersiveObj.querySelector('node[name=OffFrame]').visible = false
+				this._immersiveObj.querySelector('node[name=Zero]').visible = false
+			}
 		} else {
 			this._flatHandle.innerText = this._portalHandle.innerText = 0
 			this.addClass('off')
 			this.removeClass('on')
+			if (this._portalObj) {
+				this._portalObj.querySelector('node[name=OnFrame]').visible = false
+				this._portalObj.querySelector('node[name=One]').visible = false
+				this._portalObj.querySelector('node[name=OffFrame]').visible = true
+				this._portalObj.querySelector('node[name=Zero]').visible = true
+			}
+			if (this._immersiveObj) {
+				this._immersiveObj.querySelector('node[name=OnFrame]').visible = false
+				this._immersiveObj.querySelector('node[name=One]').visible = false
+				this._immersiveObj.querySelector('node[name=OffFrame]').visible = true
+				this._immersiveObj.querySelector('node[name=Zero]').visible = true
+			}
 		}
 	}
 }
