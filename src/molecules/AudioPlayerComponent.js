@@ -34,8 +34,8 @@ const AudioPlayerComponent = class extends Component {
 
 		this._toggleButton = new ButtonComponent(null, {}, this.inheritedOptions)
 			.appendTo(this)
-			.addClass('toggle-component')
-			.setName('ToggleComponent')
+			.addClass('toggle-button-component')
+			.setName('ToggleButtonComponent')
 		this._toggleButton.addListener((eventName, actionName, value, actionParameters) => {
 			if (actionName === '/action/activate') {
 				if (this.audio.paused) {
