@@ -2,7 +2,7 @@ import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
 
-import ImageComponent from 'potassium-components/src/atoms/ImageComponent'
+import ToggleComponent from 'potassium-components/src/atoms/ToggleComponent'
 
 /**
 MenuComponent holds a set of menu item Components.
@@ -18,28 +18,21 @@ const MenuComponent = class extends Component {
 		this.addClass('menu-component')
 		this.setName('MenuComponent')
 
-		this._opened = false // True when the toggle is open and the menu is showing
-
 		this._selectedIndex = -1
 		this._menuItems = []
 
-		this._toggleComponent = new ImageComponent(
-			undefined,
-			{
-				image: '/static/potassium-components/images/left-arrow.png'
-			},
-			this.inheritedOptions
-		)
-			.appendTo(this)
-			.addClass('toggle-component')
-			.setName('ToggleComponent')
-		this.listenTo(Component.ActionEvent, this._toggleComponent, (eventName, actionName, value, actionParameters) => {
-			switch (actionName) {
-				case '/action/activate':
-					this.toggle()
-					break
+		this._toggleComponent = new ToggleComponent(undefined, {}, this.inheritedOptions).appendTo(this)
+		this.listenTo(ToggleComponent.ToggleEvent, this._toggleComponent, (eventName, opened) => {
+			if (opened) {
+				this._menuItemsComponent.show()
+				this.addClass('open')
+			} else {
+				this._menuItemsComponent.hide()
+				this.removeClass('open')
 			}
+			this.trigger(MenuComponent.ToggleEvent, this._toggleComponent._opened, this)
 		})
+
 		/* terrible hack to prevent selection of the toggle, but the user-select CSS is non-standard and needs browser prefixes 😢 */
 		this.flatDOM.setAttribute('onselectstart', 'return false;')
 		this.portalDOM.setAttribute('onselectstart', 'return false;')
@@ -70,38 +63,19 @@ const MenuComponent = class extends Component {
 	}
 
 	get opened() {
-		return this._opened
+		return this._toggleComponent.opened
 	}
 
 	open() {
-		if (this._opened) return
-		this._opened = true
-		this._toggleComponent.addClass('open')
-		this._menuItemsComponent.show()
+		this._toggleComponent.open()
 	}
 
 	close() {
-		if (this._opened === false) return
-		this._opened = false
-		this._toggleComponent.removeClass('open')
-		this._menuItemsComponent.hide()
+		this._toggleComponent.close()
 	}
 
-	toggle(open = null) {
-		if (typeof open === 'boolean') {
-			if (open) {
-				this.close()
-			} else {
-				this.open()
-			}
-			return
-		}
-		if (this._opened) {
-			this.close()
-		} else {
-			this.open()
-		}
-		this.trigger(MenuComponent.ToggleEvent, this._opened, this)
+	toggle(open) {
+		this._toggleComponent.toggle(open)
 	}
 
 	appendMenuItem(component) {

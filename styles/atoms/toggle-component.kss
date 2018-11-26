@@ -1,0 +1,22 @@
+/* ToggleComponent */
+
+.som.toggle-component {
+	rotation: quaternion(0, 0, 0, 1);
+	centroid-y: 0cm;
+}
+
+.som.toggle-component.open {
+	rotation: quaternion(0, 0, 0.7070904020014415, 0.7071231599922605);
+	centroid-y: -8cm;
+}
+
+.dom.toggle-component {
+	width: 25px;
+	height: 44.1333px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.dom.toggle-component.open {
+	transform: rotate(-90deg);
+}

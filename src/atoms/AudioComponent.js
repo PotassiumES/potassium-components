@@ -59,7 +59,11 @@ const AudioComponent = class extends Component {
 		}
 
 		if (this.usesPortalSpatial) {
-			this._portalObj = som.obj('/static/potassium-components/models/Audio.obj').appendTo(this.portalSOM)
+			this._portalObj = som
+				.obj('/static/potassium-components/models/Audio.obj', () => {
+					this.portalSOM.styles.geometryIsDirty = true
+				})
+				.appendTo(this.portalSOM)
 			this._portalObj.addClass('icon')
 			this._portalObj.name = 'Icon'
 		} else {
@@ -67,7 +71,11 @@ const AudioComponent = class extends Component {
 		}
 
 		if (this.usesImmersive) {
-			this._immersiveObj = som.obj('/static/potassium-components/models/Audio.obj').appendTo(this.immersiveSOM)
+			this._immersiveObj = som
+				.obj('/static/potassium-components/models/Audio.obj', () => {
+					this.immersiveSOM.styles.geometryIsDirty = true
+				})
+				.appendTo(this.immersiveSOM)
 			this._immersiveObj.addClass('icon')
 			this._immersiveObj.name = 'Icon'
 		} else {

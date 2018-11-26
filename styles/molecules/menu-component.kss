@@ -1,14 +1,8 @@
 /* MenuComponent */
 
-.som.menu-component > .toggle-component {
-	scale: 0.1 0.1 0.1;
-	centroid: 0 11cm 0;
-	rotation: quaternion(0, 0, 0, 1);
-}
-
-.som.menu-component > .toggle-component.open {
-	centroid: 0 0 0;
-	rotation: quaternion(0, 0, 0.7070904020014415, 0.7071231599922605);
+.som.menu-component {
+	display: box;
+	layout-direction: vertical;
 }
 
 .som.menu-component > .menu-items-component {
@@ -32,17 +26,6 @@
 	grid-template: auto / auto;
 	gap: 0;
 	position: relative;
-}
-
-.dom.menu-component > .toggle-component {
-	width: 25px;
-	height: 44.1333px;
-	cursor: pointer;
-	user-select: none;
-}
-
-.dom.menu-component > .toggle-component.open {
-	transform: rotate(-90deg);
 }
 
 .dom.menu-component > .menu-items-component {
