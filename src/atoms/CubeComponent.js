@@ -37,7 +37,7 @@ const CubeComponent = class extends Component {
 		}
 
 		if (this.options.usesPortalSpatial) {
-			this._portalCube = new THREE.Mesh(_sharedGeometry, this.options.material)
+			this._portalCube = som.mesh([_sharedGeometry, this.options.material])
 			this._portalCube.addClass('cube')
 			this._portalCube.name = 'Cube'
 			// Set the top-left-middle corner of the cube at the origin
@@ -48,7 +48,7 @@ const CubeComponent = class extends Component {
 		}
 
 		if (this.options.usesImmersive) {
-			this._immersiveCube = new THREE.Mesh(_sharedGeometry, this.options.material)
+			this._immersiveCube = som.mesh([_sharedGeometry, this.options.material])
 			this._immersiveCube.addClass('cube')
 			this._immersiveCube.name = 'Cube'
 			// Set the top-left-middle of the cube at the origin

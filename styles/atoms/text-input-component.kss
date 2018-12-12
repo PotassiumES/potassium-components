@@ -3,7 +3,6 @@
 .som.text-input-component > .bracket {
 	centroid: 0 -4cm 0;
 	margin: 1cm;
-	border-width: 3cm;
 	padding: 2cm;
 }
 

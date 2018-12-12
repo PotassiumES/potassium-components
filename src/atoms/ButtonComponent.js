@@ -36,42 +36,22 @@ const ButtonComponent = class extends Component {
 			  })
 			: null
 
-		this._portalText = this.options.usesPortalSpatial
-			? som.text('', {
-					material: textMaterial
-			  })
-			: null
-
-		this._immersiveText = this.options.usesImmersive
-			? som.text('', {
-					material: textMaterial
-			  })
-			: null
-
-		if (!this.options.portalSOM) {
-			if (this.options.usesPortalSpatial) {
-				this._portalButtonObj = som.obj('/static/potassium-components/models/Button.obj', () => {
-					this.portalSOM.styles.geometryIsDirty = true
-				})
-				this._portalButtonObj.name = 'Bracket'
-				this.portalSOM.add(this._portalButtonObj)
-				this.portalSOM.add(this._portalText)
-			} else {
-				this._portalButtonObj = null
-			}
+		if (!this.options.portalSOM && this.options.usesPortalSpatial) {
+			this._portalText = som.text('', {
+				material: textMaterial
+			})
+			this.portalSOM.add(this._portalText)
+		} else {
+			this._portalText = null
 		}
 
-		if (!this.options.immersiveSOM) {
-			if (this.options.usesImmersive) {
-				this._immersiveButtonObj = som.obj('/static/potassium-components/models/Button.obj', () => {
-					this.immersiveSOM.styles.geometryIsDirty = true
-				})
-				this._immersiveButtonObj.name = 'Bracket'
-				this.immersiveSOM.add(this._immersiveButtonObj)
-				this.immersiveSOM.add(this._immersiveText)
-			} else {
-				this._immersiveButtonObj = null
-			}
+		if (!this.options.immersiveSOM && this.options.usesImmersive) {
+			this._immersiveText = som.text('', {
+				material: textMaterial
+			})
+			this.immersiveSOM.add(this._immersiveText)
+		} else {
+			this._immersiveText = null
 		}
 
 		this.listenTo(Component.ActionEvent, this, (eventName, actionName, value, actionParameters) => {
@@ -112,7 +92,7 @@ const ButtonComponent = class extends Component {
 }
 ButtonComponent.ChangedEvent = 'button-changed'
 
-/** @todo Give component librarys a nice way to load a set of sounds instead of loading them in Component modules */
+/** @todo Give component libraries a nice way to load a set of sounds instead of loading them in Component modules */
 Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.m4a')
 
 export default ButtonComponent

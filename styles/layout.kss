@@ -28,7 +28,9 @@
 
 	/* SOM distances */
 	--som-outer-container-margin:					0cm;
+	--som-container-border-radius:					4cm;
 	--som-outer-container-outline:					none;
+	--som-outer-container-border-width:				3cm;
 	--som-outer-container-border-color:				var(--som-primary-color);
 	--som-outer-container-padding:					20cm;
 
@@ -49,4 +51,8 @@
 	--som-inner-element-outline:					none;
 	--som-inner-element-border-color:				var(--dom-primary-color);
 	--som-inner-element-padding:					12cm;
+
+	--som-component-border-radius:					4cm;
+	--som-component-border-width:					3cm;
+	--som-component-border-color:					var(--dom-primary-color);
 }
