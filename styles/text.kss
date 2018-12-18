@@ -38,34 +38,34 @@
 
 	/* SOM text */
 	--som-font-weight-base: 300;
-	--som-line-height-base: 10cm;
+	--som-line-height-base: 1cm;
 	--som-letter-spacing-base: normal;
-	--som-font-size-base: 8cm;
+	--som-font-size-base: 0.8cm;
 
 	--som-font-weight-5: 300;
-	--som-line-height-5: 16cm;
+	--som-line-height-5: 1.6cm;
 	--som-letter-spacing-5: normal;
-	--som-font-size-5: 16cm;
+	--som-font-size-5: 1.6cm;
 
 	--som-font-weight-4: 300;
-	--som-line-height-4: 14cm;
+	--som-line-height-4: 1.4cm;
 	--som-letter-spacing-4: normal;
-	--som-font-size-4: 14cm;
+	--som-font-size-4: 1.4cm;
 
 	--som-font-weight-3: 300;
-	--som-line-height-3: 12cm;
+	--som-line-height-3: 1.2cm;
 	--som-letter-spacing-3: normal;
-	--som-font-size-3: 12cm;
+	--som-font-size-3: 1.2cm;
 
 	--som-font-weight-2: 300;
-	--som-line-height-2: 10cm;
+	--som-line-height-2: 1.0cm;
 	--som-letter-spacing-2: normal;
-	--som-font-size-2: 10cm;
+	--som-font-size-2: 1.0cm;
 
 	--som-font-weight-0: 200;
-	--som-line-height-0: 6cm;
+	--som-line-height-0: 0.6cm;
 	--som-letter-spacing-0: normal;
-	--som-font-size-0: 6cm;
+	--som-font-size-0: 0.6cm;
 }
 
 .dom-font-5 {

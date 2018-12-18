@@ -59,10 +59,12 @@ const TextInputComponent = class extends Component {
 			: null
 
 		if (this.usesPortalSpatial) {
-			this._portalBracket = som.obj('/static/potassium-components/models/TextInputBracket.obj').appendTo(this.portalSOM)
+			this._portalBracket = som
+				.obj('/static/potassium-components/models/text-input-bracket.obj')
+				.appendTo(this.portalSOM)
 			this._portalBracket.addClass('bracket')
 			this._portalBracket.name = 'Bracket'
-			this._portalCursor = som.obj('/static/potassium-components/models/TextInputCursor.obj').appendTo(this.portalSOM)
+			this._portalCursor = som.obj('/static/potassium-components/models/text-input-cursor.obj').appendTo(this.portalSOM)
 			this._portalCursor.addClass('cursor')
 			this._portalCursor.name = 'Cursor'
 			this._portalText = som
@@ -79,12 +81,12 @@ const TextInputComponent = class extends Component {
 
 		if (this.usesImmersive) {
 			this._immersiveBracket = som
-				.obj('/static/potassium-components/models/TextInputBracket.obj')
+				.obj('/static/potassium-components/models/text-input-bracket.obj')
 				.appendTo(this.immersiveSOM)
 			this._immersiveBracket.addClass('bracket')
 			this._immersiveBracket.name = 'Bracket'
 			this._immersiveCursor = som
-				.obj('/static/potassium-components/models/TextInputCursor.obj')
+				.obj('/static/potassium-components/models/text-input-cursor.obj')
 				.appendTo(this.immersiveSOM)
 			this._immersiveCursor.addClass('cursor')
 			this._immersiveCursor.name = 'Cursor'

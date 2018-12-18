@@ -3,6 +3,7 @@
 
 .som.collection-component {
 	display: grid;
-	grid-template: 0.25m / 0.25m;
-	grid-auto-rows: 0.25m;
+	grid-template: auto / auto;
+	grid-auto-rows: auto;
+	gap: 0.4cm;
 }

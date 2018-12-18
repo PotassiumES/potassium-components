@@ -7,7 +7,7 @@
 
 .som.toggle-component.open {
 	rotation: quaternion(0, 0, 0.7070904020014415, 0.7071231599922605);
-	centroid-y: -8cm;
+	centroid-y: -0.8cm;
 }
 
 .dom.toggle-component {

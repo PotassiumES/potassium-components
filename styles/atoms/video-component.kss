@@ -1,6 +1,6 @@
 /* VideoComponent */
 
-.som.video-component > mesh[name=Cube] {
+.som.video-component > .cube {
 	material-color: var(--som-base-color);
 }
 

@@ -28,31 +28,33 @@
 
 	/* SOM distances */
 	--som-outer-container-margin:					0cm;
-	--som-container-border-radius:					4cm;
+	--som-container-border-radius:					0.4cm;
 	--som-outer-container-outline:					none;
-	--som-outer-container-border-width:				3cm;
+	--som-outer-container-border-width:				0.1cm;
 	--som-outer-container-border-color:				var(--som-primary-color);
-	--som-outer-container-padding:					20cm;
+	--som-outer-container-padding:					2cm;
 
-	--som-major-direction-gap:						35cm;
+	--som-major-direction-gap:						3.5cm;
 	--som-major-direction-container-margin:			0cm;
 	--som-major-direction-container-outline:		none;
 	--som-major-direction-container-border-color:	var(--dom-secondary-color);
-	--som-major-direction-container-padding:		10cm;
+	--som-major-direction-container-padding:		1cm;
 
-	--som-minor-direction-gap:						25cm;
+	--som-minor-direction-gap:						2.5cm;
 	--som-minor-direction-container-margin:			0cm;
 	--som-minor-direction-container-outline:		none;
 	--som-minor-direction-container-border-color:	var(--dom-primary-color);
-	--som-minor-direction-container-padding:		12cm;
+	--som-minor-direction-container-padding:		1.2cm;
 
-	--som-inner-element-gap:						20cm;
+	--som-inner-element-gap:						2cm;
 	--som-inner-element-margin:						0cm;
 	--som-inner-element-outline:					none;
 	--som-inner-element-border-color:				var(--dom-primary-color);
-	--som-inner-element-padding:					12cm;
+	--som-inner-element-padding:					1.2cm;
 
-	--som-component-border-radius:					4cm;
-	--som-component-border-width:					3cm;
-	--som-component-border-color:					var(--dom-primary-color);
+	--som-border-radius:							0.6cm;
+	--som-border-width:								0.3cm;
+
+	--som-component-border-radius:					0.3cm;
+	--som-component-border-width:					0.1cm;
 }

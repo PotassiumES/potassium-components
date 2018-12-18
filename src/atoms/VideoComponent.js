@@ -12,7 +12,6 @@ const VideoComponent = class extends CubeComponent {
 	/**
 	@param {DataObject} [dataObject=null]
 	@param {Object} [options={}]
-	@param {number} [options.height=1] the initial height of the video cube
 	@param {string} [options.preview=a_default_preview_image] the URL to a still image to show until the user plays the video
 	@param {string} [options.video=null] - the URL to a video
 	@param {string} [options.mimeType=null] - the mimeType for the video
@@ -23,7 +22,6 @@ const VideoComponent = class extends CubeComponent {
 			dataObject,
 			Object.assign(
 				{
-					height: 1, // meter
 					preview: '/static/potassium-components/images/video-component-preview.png',
 					video: null,
 					mimeType: null
@@ -40,11 +38,11 @@ const VideoComponent = class extends CubeComponent {
 		this._source = null
 		this._video = null
 
-		this._height = this.options.height
-		this._width = null
-		this._depth = null
+		this._heightScale = 1
+		this._widthScale = null
+		this._depthScale = null
 		this._ratio = null
-		this.resize(this.options.height, VideoComponent.RATIO_16x9)
+		this.resize(VideoComponent.RATIO_16x9)
 
 		this._flatPreview = dom
 			.img({ src: this.options.preview })
@@ -174,25 +172,24 @@ const VideoComponent = class extends CubeComponent {
 			console.error('Could not read the video dimensions', ev)
 			return
 		}
-		this.resize(this._height, videoWidth / videoHeight)
+		this.resize(videoWidth / videoHeight)
 	}
 
-	resize(height, ratio) {
-		this._height = height
-		this._width = height * ratio
+	resize(ratio) {
 		this._ratio = ratio
-		this._depth = 0.001
-		this.setCubeSize(this._width, this._height, this._depth)
+		this._widthScale = this._heightScale * this._ratio
+		this._depthScale = 0.001
+		this.setCubeSize(this._widthScale, this._heightScale, this._depthScale)
 	}
 
-	setCubeSize(width, height, depth) {
+	setCubeSize(widthScale, heightScale, depthScale) {
 		if (this.portalCube) {
-			this.portalCube.scale.set(width, height, depth)
-			this.portalCube.position.set(width / 2, height / -2, 0)
+			this.portalCube.scale.set(widthScale, heightScale, depthScale)
+			this.portalCube.position.set(widthScale / 200, heightScale / -200, depthScale / 200)
 		}
 		if (this.immersiveCube) {
-			this.immersiveCube.scale.set(width, height, depth)
-			this.immersiveCube.position.set(width / 2, height / -2, 0)
+			this.immersiveCube.scale.set(widthScale, heightScale, depthScale)
+			this.immersiveCube.position.set(widthScale / 200, heightScale / -200, depthScale / 200)
 		}
 	}
 

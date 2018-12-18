@@ -10,11 +10,4 @@
 	--dom-medium-breakpoint:		768px;
 	--dom-large-breakpoint:			992px;
 	--dom-extra-large-breakpoint:	1200px;
-
-	/* SOM breakpoints */
-	--som-extra-small-breakpoint:	0cm;
-	--som-small-breakpoint:			24cm;
-	--som-medium-breakpoint:		60cm;
-	--som-large-breakpoint:			240cm;
-	--som-extra-large-breakpoint:	600cm;
 }

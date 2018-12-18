@@ -3,6 +3,8 @@ import som from 'potassium-es/src/SOM'
 
 import Component from 'potassium-es/src/Component'
 
+const CubeGeometrySideSize = 0.01 // 1cm
+
 /**
 CubeComponent is mostly used as a base class for Components that are some sort of cube.
 
@@ -21,7 +23,6 @@ const CubeComponent = class extends Component {
 			dataObject,
 			Object.assign(
 				{
-					size: [1, 1, 1], // in meters
 					material: null
 				},
 				options
@@ -40,8 +41,7 @@ const CubeComponent = class extends Component {
 			this._portalCube = som.mesh([_sharedGeometry, this.options.material])
 			this._portalCube.addClass('cube')
 			this._portalCube.name = 'Cube'
-			// Set the top-left-middle corner of the cube at the origin
-			this._portalCube.position.set(this.options.size[0] / 2, this.options.size[1] / -2, 0)
+			this._portalCube.position.set(CubeGeometrySideSize / 2, CubeGeometrySideSize / -2, CubeGeometrySideSize / 2)
 			this._portalCube.appendTo(this.portalSOM)
 		} else {
 			this._portalCube = null
@@ -51,8 +51,7 @@ const CubeComponent = class extends Component {
 			this._immersiveCube = som.mesh([_sharedGeometry, this.options.material])
 			this._immersiveCube.addClass('cube')
 			this._immersiveCube.name = 'Cube'
-			// Set the top-left-middle of the cube at the origin
-			this._immersiveCube.position.set(this.options.size[0] / 2, this.options.size[1] / -2, 0)
+			this._immersiveCube.position.set(CubeGeometrySideSize / 2, CubeGeometrySideSize / -2, CubeGeometrySideSize / 2)
 			this._immersiveCube.appendTo(this.immersiveSOM)
 		} else {
 			this._immersiveCube = null
@@ -82,6 +81,6 @@ const CubeComponent = class extends Component {
 }
 
 // All CubeComponents share a BoxBufferGeometry and are scaled using KSS
-const _sharedGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+const _sharedGeometry = new THREE.BoxBufferGeometry(CubeGeometrySideSize, CubeGeometrySideSize, CubeGeometrySideSize)
 
 export default CubeComponent

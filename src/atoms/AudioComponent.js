@@ -60,7 +60,7 @@ const AudioComponent = class extends Component {
 
 		if (this.usesPortalSpatial) {
 			this._portalObj = som
-				.obj('/static/potassium-components/models/Audio.obj', () => {
+				.obj('/static/potassium-components/models/audio-component.obj', () => {
 					this.portalSOM.styles.geometryIsDirty = true
 				})
 				.appendTo(this.portalSOM)
@@ -72,7 +72,7 @@ const AudioComponent = class extends Component {
 
 		if (this.usesImmersive) {
 			this._immersiveObj = som
-				.obj('/static/potassium-components/models/Audio.obj', () => {
+				.obj('/static/potassium-components/models/audio-component.obj', () => {
 					this.immersiveSOM.styles.geometryIsDirty = true
 				})
 				.appendTo(this.immersiveSOM)

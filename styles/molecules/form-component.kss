@@ -6,11 +6,11 @@
 }
 
 .som.form-component > .fields-component {
-	gap: 3cm;
+	gap: 0.5cm;
 	display: grid;
-	grid-auto-flow: column;
-	grid-auto-columns: 100cm;
-	grid-template: 12cm / 100cm;
+	grid-auto-flow: row;
+	grid-auto-columns: auto;
+	grid-template: auto / auto;
 }
 
 .som.form-group {
@@ -18,17 +18,23 @@
 }
 
 .som.form-group .form-field-component {
-	margin: 0 0 10cm 0;
+	margin: 0 0 1cm 0;
 }
 
 .som.form-field-component > .label-component {
-	margin: 0 0 3cm 0;
+	margin: 0 0 0.3cm 0;
 }
 
 .som.form-field-component.text-input-field-component,
-.som.form-field-component.date-field-component {
+.som.form-field-component.date-field-component,
+.som.form-field-component.switch-field-component {
 	display: box;
 }
+
+.som.form-field-component.date-field-component > .text-input-component {
+	margin: 0 0 0.5cm 0;
+}
+
 
 .dom.form-component {
 	padding: var(--dom-inner-element-padding);

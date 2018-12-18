@@ -1,9 +1,7 @@
 /* TextInputComponent */
 
 .som.text-input-component > .bracket {
-	centroid: 0 -4cm 0;
-	margin: 1cm;
-	padding: 2cm;
+	centroid: 0 0 0;
 }
 
 .som.text-input-component > .bracket > node > mesh[name=Cube.001_Cube.003] {
@@ -11,8 +9,8 @@
 }
 
 .som.text-input-component > text {
-	centroid: 3cm 0 0;
 	font-color: var(--som-base-color);
+	centroid: 0.25cm -0.9cm 0;
 }
 
 .som.text-input-component.placeholder > text {

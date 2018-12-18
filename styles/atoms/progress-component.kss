@@ -1,20 +1,19 @@
 /* ProgressComponent */
 
 .som.progress-component > .som.track-component {
-	centroid-y: 55cm;
+	scale: 8 1 0.001;
 }
 
-.som.progress-component > .som.track-component > mesh {
-	scale: 1 0.08 0.01;
+.som.progress-component > .som.track-component > .cube {
 	material-color: var(--som-secondary-color);
 }
 
 .som.progress-component > .track-component > .fill-component {
-	centroid: 0.25cm -0.5cm 3cm;
+	scale: 1 0.75 1;
+	centroid: 0 -0.125cm 0.002cm;
 }
 
-.som.progress-component > .track-component > .fill-component > mesh {
-	scale: 0.95 0.06 0.01;
+.som.progress-component > .track-component > .fill-component > .cube {
 	material-color: var(--som-primary-color);
 }
 

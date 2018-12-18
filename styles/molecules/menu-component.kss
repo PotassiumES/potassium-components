@@ -7,10 +7,10 @@
 
 .som.menu-component > .menu-items-component {
 	display: grid;
-	grid-auto-rows: 14cm;
-	grid-template: 14cm / 1cm;
+	grid-auto-rows: 1.4cm;
+	grid-template: 1.4cm / 0.1cm;
 	gap: 0;
-	centroid-y: -14cm;
+	centroid-y: -1.4cm;
 }
 
 .dom.menu-component {

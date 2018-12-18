@@ -1,5 +1,10 @@
 /* AudioPlayerComponent */
 
+.som.audio-player-component > .toggle-button-component {
+	centroid-y: -2.5cm;
+}
+
+
 div.dom.audio-player-component {
 	display: grid;
 	grid-template: 44px 30px / 60px;
@@ -8,8 +13,4 @@ div.dom.audio-player-component {
 
 .dom.audio-player-component > .audio-component {
 	width: 60px;
-}
-
-.som.audio-player-component > .toggle-button-component {
-	centroid-y: -25cm;
 }

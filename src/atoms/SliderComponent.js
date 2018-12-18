@@ -24,17 +24,17 @@ const SliderComponent = class extends Component {
 		this._maxValue = 1
 		this._value = null
 
-		this._barWidth = 1 // Set in slider-component.kss
-		this._handleWidth = 0.1 // Set in slider-component.kss
-		this._handleY = 0.05
+		this._barWidth = 0.08 // Set in slider-component.kss
+		this._handleWidth = 0.01 // Set in slider-component.kss
+		this._handleY = 0
 		this._handleXStart = 0
 		this._handleXEnd = this._barWidth - this._handleWidth
 
-		this._handleComponent = new CubeComponent().appendTo(this)
+		this._handleComponent = new CubeComponent(null, {}, this.inheritedOptions).appendTo(this)
 		this._handleComponent.addClass('slider-handle')
 		this._handleComponent.setName('SliderHandle')
 
-		this._barComponent = new CubeComponent().appendTo(this)
+		this._barComponent = new CubeComponent(null, {}, this.inheritedOptions).appendTo(this)
 		this._barComponent.addClass('slider-bar')
 		this._barComponent.setName('SliderBar')
 

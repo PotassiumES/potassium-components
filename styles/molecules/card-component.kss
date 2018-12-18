@@ -1,12 +1,16 @@
 /*** CardComponent ***/
 
+.som.card-component {
+	display: grid;
+	grid-template: 5cm 1.1cm 0.8cm / 8cm;
+	gap: 0.2cm;
+}
+
 .som.card-component > .card-title-component {
-	centroid-y: -68cm;
 	font-size: var(--som-font-size-base);
 }
 
 .som.card-component > .card-caption-component {
-	centroid-y: -80cm;
 	color: var(--som-light-base-color);
 	font-size: var(--som-font-size-0);
 }

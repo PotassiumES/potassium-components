@@ -13,8 +13,6 @@
 	--dark-blue: rgb(73, 7, 205);
 
 	/* DOM color scheme */
-	--dom-background-color: 		#FFFFFF;
-
 	--dom-light-primary-color:		var(--light-pink);
 	--dom-primary-color:			var(--pink);
 	--dom-dark-primary-color:		var(--dark-pink);
@@ -28,13 +26,13 @@
 	--dom-dark-tertiary-color:		var(--dark-blue);
 
 
-	--dom-light-base-color:			rgb(120, 120, 120); /* #787878 */
+	--dom-light-base-color:			rgb(110, 110, 110);
 	--dom-base-color:				rgb(95, 95, 95);
 	--dom-dark-base-color:			rgb(55, 55, 55);
 
-	/* SOM color scheme */
-	--som-background-color: 		#FFFFFF;
+	--dom-background-color: 		#FFFFFF;
 
+	/* SOM color scheme */
 	--som-light-primary-color:		var(--light-pink);
 	--som-primary-color:			var(--pink);
 	--som-dark-primary-color:		var(--dark-pink);
@@ -50,4 +48,11 @@
 	--som-light-base-color:			rgb(120, 120, 120);
 	--som-base-color:				rgb(95, 95, 95);
 	--som-dark-base-color:			rgb(55, 55, 55);
+
+	--som-background-color: 		rgb(220, 220, 220);
+	--som-border-color:				var(--som-secondary-color);
+
+	--som-component-background-color:	var(--som-background-color);
+	--som-component-border-color:		var(--som-primary-color);
+	--som-background-opacity:			0.8;
 }

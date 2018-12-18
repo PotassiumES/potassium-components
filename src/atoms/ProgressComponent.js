@@ -72,7 +72,8 @@ const ProgressComponent = class extends Component {
 	_updateDisplay() {
 		this._fillComponent.flatDOM.style['width'] = this.value * 100 + '%'
 		this._fillComponent.portalDOM.style['width'] = this.value * 100 + '%'
-		/** @todo update spatial controls */
+		this._fillComponent.portalSOM.styles.assignedStyles.set('scale', `${this.value} 1 1`)
+		this._fillComponent.immersiveSOM.styles.assignedStyles.set('scale', `${this.value} 1 1`)
 	}
 }
 

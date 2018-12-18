@@ -2,7 +2,7 @@
 /* SliderComponent */
 
 .som.slider-component > .slider-handle {
-	scale: 0.1 0.05 0.01;
+	scale: 1 2 0.001;
 }
 
 .som.slider-component > .slider-handle > mesh {
@@ -10,8 +10,8 @@
 }
 
 .som.slider-component > .slider-bar {
-	centroid: 0 -3cm 0;
-	scale: 1 0.02 0.01;
+	scale: 8 1 0.001;
+	centroid-y: -2cm;
 }
 
 .som.slider-component > .slider-bar > mesh {

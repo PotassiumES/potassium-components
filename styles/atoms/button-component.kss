@@ -1,14 +1,15 @@
 /* ButtonComponent styles */
 
 .som.button-component {
-	padding: 4cm;
+	padding: 0.4cm;
 	border-width: var(--som-component-border-width);
-	border-radius: var(--som-component-border-radius);
+	border-radius: 0.6cm;
 	border-emissive: var(--som-component-border-color);
+	background-emissive: var(--som-component-background-color);
 }
 
 .som.button-component > text {
-	centroid-y: -4.2cm;
+	centroid-y: -0.42cm;
 	color: var(--som-base-color);
 	font-size: var(--som-font-size-base);
 }

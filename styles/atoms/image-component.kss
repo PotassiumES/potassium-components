@@ -1,6 +1,6 @@
 
 /** ImageComponent */
 
-.som.image-component > .cube {
-	scale: 1 1 0.01;
+.som.image-component {
+	scale: 5 5 0.001; /* Default to 5cm x 5cm x 0.001cm */
 }

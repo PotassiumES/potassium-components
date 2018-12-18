@@ -11,7 +11,7 @@
 }
 
 .som.masthead-component > .menu-component {
-	margin: 0 0 0 10cm;
+	margin: 0 0 0 1cm;
 }
 
 .dom.masthead-component {

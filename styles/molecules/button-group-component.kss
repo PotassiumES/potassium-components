@@ -15,7 +15,6 @@
 
 .som.button-group-component {
 	display: grid;
-	grid-template: 20cm / 20cm;
-	grid-auto-rows: 20cm;
-	gap: 3cm;
+	grid-template: auto auto auto auto auto / auto;
+	gap: 0.3cm;
 }

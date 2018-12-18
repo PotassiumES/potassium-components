@@ -30,14 +30,14 @@ const CheckboxComponent = class extends Component {
 		this._portalCheckSOM = null
 		this._immersiveCheckSOM = null
 
-		this._portalObj = som.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
+		this._portalObj = som.obj('/static/potassium-components/models/checkbox-component.obj', (group, obj) => {
 			this._portalCheckSOM = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})
 		this.portalSOM.add(this._portalObj)
 		this.portalSOM.name = 'checkbox'
 
-		this._immersiveObj = som.obj('/static/potassium-components/models/Checkbox.obj', (group, obj) => {
+		this._immersiveObj = som.obj('/static/potassium-components/models/checkbox-component.obj', (group, obj) => {
 			this._immersiveCheckSOM = obj.children[0]
 			this._updateCheckedDisplay(this._checked)
 		})

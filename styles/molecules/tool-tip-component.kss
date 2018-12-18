@@ -1,11 +1,20 @@
 /*** ToolTipComponent ***/
 
-.som.tool-tip-component > .close-component {
+.som.tool-tip-component {
+	padding: var(--som-inner-element-padding);
 	color: var(--som-primary-color);
+	border-width: var(--som-component-border-width);
+	border-radius: var(--som-component-border-radius);
+	border-emissive: var(--som-component-border-color);
+	background-emissive: var(--som-component-background-color);
+}
+
+.som.tool-tip-component > .close-component {
+	color: var(--som-secondardy-color);
 }
 
 .som.tool-tip-component > .info-component {
-	centroid-x: 15cm;
+	centroid-x: 1.5cm;
 }
 
 .dom.tool-tip-component {

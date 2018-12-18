@@ -1,5 +1,12 @@
 /*** MediaGridComponent ***/
 
+.som.media-grid-component > .som.collection-component {
+	display: grid;
+	grid-template: 12cm / 12cm 12cm 12cm 12cm;
+	grid-auto-rows: 12cm;
+	gap: 1cm;
+}
+
 .dom.media-grid-component {
 	width: 100%;
 }
@@ -35,11 +42,4 @@
 	.dom.media-grid-component > .collection-component {
 		grid-template: auto / auto auto auto auto;
 	}
-}
-
-.som.media-grid-component > .som.collection-component {
-	display: grid;
-	grid-template: 1.2m / 1.2m 1.2m 1.2m 1.2m;
-	grid-auto-rows: 1.2m;
-	gap: 0.1m;
 }

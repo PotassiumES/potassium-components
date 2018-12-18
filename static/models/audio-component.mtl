@@ -1,17 +1,17 @@
-# Blender MTL File: 'toggle-component.blend'
+# Blender MTL File: 'audio-component.blend'
 # Material Count: 2
 
-newmtl Outer
-Ns 225.000000
+newmtl Sound_Waves
+Ns 900.000000
 Ka 1.000000 1.000000 1.000000
 Kd 1.000000 0.198069 0.040915
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
-illum 2
+illum 1
 
-newmtl Pink
+newmtl Speaker
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 1.000000 0.132868 0.318547

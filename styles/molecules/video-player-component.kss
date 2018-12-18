@@ -1,21 +1,33 @@
 .som.video-player-component {
+	display: grid;
+	grid-template: auto auto / auto;
+	gap: 0.2cm;
+}
+
+.som.video-player-component > .backdrop-component {
+	scale: 4.5;
+	margin: 0 0 0.1cm 0;
 }
 
 .som.video-player-component > .backdrop-component > .video-component {
-	centroid-z: -0.03;
+	centroid-z: 0.2cm;
 }
 
-
-.som.video-player-component > .backdrop-component > .video-component > mesh[name=Cube] {
+.som.video-player-component > .backdrop-component > .video-component > .cube {
 	material-color: var(--som-base-color);
 }
 
 .som.video-player-component > .video-player-controls {
-	centroid-y: -115cm;
+	display: box;
+	layout-direction: horizontal;
+}
+
+.som.video-player-component > .video-player-controls > .button-component {
+	margin: 0 0.5cm 0 0;
 }
 
 .som.video-player-component > .video-player-controls > .slider-component {
-	centroid-x: 50cm;
+	scale: 0.5;
 }
 
 .dom.video-player-component > .backdrop-component {
