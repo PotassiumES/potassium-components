@@ -10,7 +10,11 @@
 }
 
 .som.tool-tip-component > .close-component {
-	color: var(--som-secondardy-color);
+	color: var(--som-secondary-color);
+	padding: 0.12cm;
+	border-radius: 0.12cm;
+	background-emissive: var(--som-primary-color);
+	background-z: -0.02cm;
 }
 
 .som.tool-tip-component > .info-component {
