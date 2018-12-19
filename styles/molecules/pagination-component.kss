@@ -1,5 +1,32 @@
 /* PaginationComponent */
 
+:root {
+	--arrow-inner-margin: 0.4cm;
+	--arrow-top-margin: 0.2cm;
+}
+
+.som.pagination-component {
+	display: box;
+	layout-direction: horizontal;
+}
+
+.som.pagination-component > .left-arrow,
+.som.pagination-component > .right-arrow {
+	scale: 2;
+}
+
+.som.pagination-component > .left-arrow {
+	margin: 0.04cm 0.25cm 0 0;
+}
+
+.som.pagination-component > .right-arrow {
+	margin: 0.04cm 0 0 0.1cm;
+}
+.som.pagination-component > .right-arrow > node {
+	rotation: 0 1 0 0.0000001;
+	centroid-x: 1.35cm;
+}
+
 .dom.pagination-component > .left-arrow,
 .dom.pagination-component > .right-arrow {
 	width: 33px;

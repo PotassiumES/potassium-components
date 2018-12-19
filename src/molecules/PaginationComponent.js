@@ -5,7 +5,7 @@ import { lt, ld, ldt } from 'potassium-es/src/Localizer'
 import Component from 'potassium-es/src/Component'
 
 import LabelComponent from 'potassium-components/src/atoms/LabelComponent'
-import ImageComponent from 'potassium-components/src/atoms/ImageComponent'
+import IconComponent from 'potassium-components/src/atoms/IconComponent'
 
 /**
 PaginationComponent shows controls for moving forward and back in a {@link ListComponent} or a {@link CollectionComponent}
@@ -35,12 +35,11 @@ const PaginationComponent = class extends Component {
 		this._totalCount = this.options.totalCount
 		this._currentIndex = this.options.currentIndex
 
-		this._leftArrow = new ImageComponent(
+		this._leftArrow = new IconComponent(
 			undefined,
 			{
-				image: '/static/potassium-components/images/left-arrow.png',
-				usesPortalSpatial: false,
-				usesImmersive: false
+				imageURL: '/static/potassium-components/images/left-arrow.png',
+				modelURL: '/static/potassium-components/models/toggle-component.obj'
 			},
 			this.inheritedOptions
 		)
@@ -55,12 +54,11 @@ const PaginationComponent = class extends Component {
 
 		this._statusLabel = new LabelComponent(undefined, undefined, this.inheritedOptions).appendTo(this)
 
-		this._rightArrow = new ImageComponent(
+		this._rightArrow = new IconComponent(
 			undefined,
 			{
-				image: '/static/potassium-components/images/right-arrow.png',
-				usesPortalSpatial: false,
-				usesImmersive: false
+				imageURL: '/static/potassium-components/images/right-arrow.png',
+				modelURL: '/static/potassium-components/models/toggle-component.obj'
 			},
 			this.inheritedOptions
 		)
@@ -72,7 +70,6 @@ const PaginationComponent = class extends Component {
 				this.currentIndex = this.currentIndex + 1
 			}
 		})
-
 		this._updateDisplay()
 	}
 
