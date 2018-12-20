@@ -58,6 +58,43 @@ const CubeComponent = class extends Component {
 		}
 	}
 
+	setCubeSides(x, y, z) {
+		if (this._portalCube) {
+			if (x === CubeGeometrySideSize && y === CubeGeometrySideSize && z == CubeGeometrySideSize) {
+				if (this._portalCube.geometry !== _sharedGeometry) {
+					this._portalCube.geometry.dispose()
+					this._portalCube.geometry = _sharedGeometry
+					this._portalCube.styles.setAncestorsLayoutDirty
+					this._portalCube.styles.geometryIsDirty = true
+				}
+			} else {
+				if (this._portalCube.geometryIsDirty !== _sharedGeometry) {
+					this._portalCube.geometry.dispose()
+				}
+				this._portalCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
+				this._portalCube.styles.setAncestorsLayoutDirty
+				this._portalCube.styles.geometryIsDirty = true
+			}
+		}
+		if (this._immersiveCube) {
+			if (x === CubeGeometrySideSize && y === CubeGeometrySideSize && z == CubeGeometrySideSize) {
+				if (this._immersiveCube.geometry !== _sharedGeometry) {
+					this._immersiveCube.geometry.dispose()
+					this._immersiveCube.geometry = _sharedGeometry
+					this._immersiveCube.styles.geometryIsDirty = true
+					this._immersiveCube.styles.setAncestorsLayoutDirty
+				}
+			} else {
+				if (this._immersiveCube.geometry !== _sharedGeometry) {
+					this._immersiveCube.geometry.dispose()
+				}
+				this._immersiveCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
+				this._immersiveCube.styles.setAncestorsLayoutDirty
+				this._immersiveCube.styles.geometryIsDirty = true
+			}
+		}
+	}
+
 	/** @type {THREE.BoxBufferedGeometry?} */
 	get portalCube() {
 		return this._portalCube
@@ -82,5 +119,7 @@ const CubeComponent = class extends Component {
 
 // All CubeComponents share a BoxBufferGeometry and are scaled using KSS
 const _sharedGeometry = new THREE.BoxBufferGeometry(CubeGeometrySideSize, CubeGeometrySideSize, CubeGeometrySideSize)
+
+export { CubeComponent, CubeGeometrySideSize }
 
 export default CubeComponent

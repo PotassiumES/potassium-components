@@ -2,5 +2,6 @@
 /** ImageComponent */
 
 .som.image-component {
+	display: box;
 	scale: 5 5 0.001; /* Default to 5cm x 5cm x 0.001cm */
 }

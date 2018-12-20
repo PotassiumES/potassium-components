@@ -37,7 +37,6 @@ const IconComponent = class extends Component {
 	}
 
 	handleDisplayModeChange(eventName, mode, displayModeTracker) {
-		console.log('mode', mode)
 		switch (mode) {
 			case App.FLAT:
 				if (this.usesFlat) this.flatDOM.appendChild(this._image)

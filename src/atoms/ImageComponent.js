@@ -1,7 +1,7 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
 
-import CubeComponent from './CubeComponent.js'
+import { CubeComponent, CubeGeometrySideSize } from './CubeComponent.js'
 
 const _textureLoader = new THREE.TextureLoader()
 
@@ -17,7 +17,7 @@ const ImageComponent = class extends CubeComponent {
 	@param {string} [options.imageField=null] the name of the field in dataObject that holds the URL to the image
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
-		const needsMaterial = options.usesPortalSpatial !== false || options.usesImmersive !== false
+		const needsMaterial = !options.material && (options.usesPortalSpatial !== false || options.usesImmersive !== false)
 		const mat = needsMaterial ? ImageComponent.GenerateCubeMaterial(options.image) : null
 		super(
 			dataObject,
@@ -35,8 +35,9 @@ const ImageComponent = class extends CubeComponent {
 		)
 		this.addClass('image-component')
 		this.setName('ImageComponent')
-
 		this._updateFromData = this._updateFromData.bind(this)
+		this._handleTextureLoaded = this._handleTextureLoaded.bind(this)
+		this._handleTextureError = this._handleTextureError.bind(this)
 
 		this._imageURL = ''
 
@@ -68,9 +69,22 @@ const ImageComponent = class extends CubeComponent {
 		this.flatDOM.src = this._imageURL
 		this.portalDOM.src = this._imageURL
 		if (this.usesSOM) {
-			this.material.map = _textureLoader.load(this._imageURL)
+			this.material.map = _textureLoader.load(this._imageURL, this._handleTextureLoaded, this._handleTextureError)
 			this.material.needsUpdate = true
 		}
+	}
+
+	_handleTextureLoaded(info) {
+		if (!info.image || !info.image.width || !info.image.height) {
+			console.error('Loaded image but has no width and height', info)
+			return
+		}
+		const ratio = info.image.width / info.image.height
+		this.setCubeSides(CubeGeometrySideSize * ratio, CubeGeometrySideSize, CubeGeometrySideSize)
+	}
+
+	_handleTextureError(...params) {
+		console.error('Error loading texture', ...params)
 	}
 
 	_updateFromData() {
