@@ -39,8 +39,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			},
 			this.inheritedOptions
 		).appendTo(this)
-		this._exitButton.addListener((eventName, value) => {
-			if (!value) return
+		this._exitButton.addListener((eventName, active) => {
+			if (!active) return
 			this.trigger(ModeSwitcherComponent.ModeChangedEvent, App.FLAT)
 		}, ButtonComponent.ChangedEvent)
 
@@ -55,8 +55,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			},
 			this.inheritedOptions
 		).appendTo(this)
-		this._portalButton.addListener((eventName, value) => {
-			if (!value) return
+		this._portalButton.addListener((eventName, active) => {
+			if (!active) return
 			this._attemptingMode = App.PORTAL
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)
@@ -72,8 +72,8 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 			},
 			this.inheritedOptions
 		).appendTo(this)
-		this._immersiveButton.addListener((eventName, value) => {
-			if (!value) return
+		this._immersiveButton.addListener((eventName, active) => {
+			if (!active) return
 			this._attemptingMode = App.IMMERSIVE
 			this._showModal()
 		}, ButtonComponent.ChangedEvent)

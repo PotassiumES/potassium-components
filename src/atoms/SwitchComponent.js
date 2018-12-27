@@ -67,13 +67,19 @@ const SwitchComponent = class extends Component {
 			this._immersiveObj = null
 		}
 
-		this.listenTo(Component.ActionEvent, this, (eventName, actionName, value, actionParameters) => {
-			switch (actionName) {
-				case '/action/activate':
-					this.on = !this.on
-					break
+		this.listenTo(
+			Component.ActionEvent,
+			this,
+			(eventName, actionName, active, value, actionParameters, filterParameters) => {
+				switch (actionName) {
+					case '/action/activate':
+						if (active) {
+							this.on = !this.on
+						}
+						break
+				}
 			}
-		})
+		)
 	}
 
 	get on() {

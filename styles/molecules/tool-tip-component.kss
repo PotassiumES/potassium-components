@@ -2,7 +2,7 @@
 
 .som.tool-tip-component {
 	padding: var(--som-inner-element-padding);
-	color: var(--som-primary-color);
+	emissive: var(--som-primary-color);
 	border-width: var(--som-component-border-width);
 	border-radius: var(--som-component-border-radius);
 	border-emissive: var(--som-component-border-color);
@@ -10,7 +10,7 @@
 }
 
 .som.tool-tip-component > .close-component {
-	color: var(--som-secondary-color);
+	emissive: var(--som-secondary-color);
 	padding: 0.12cm;
 	border-radius: 0.12cm;
 	background-emissive: var(--som-primary-color);

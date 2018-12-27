@@ -2,7 +2,7 @@
 
 .som.form-component > .heading-component {
 	font-size: var(--som-font-size-2);
-	color: var(--som-light-secondary-color);
+	material-emissive: var(--som-light-secondary-color);
 }
 
 .som.form-component > .fields-component {

@@ -54,10 +54,10 @@ const ButtonComponent = class extends Component {
 			this._immersiveText = null
 		}
 
-		this.listenTo(Component.ActionEvent, this, (eventName, actionName, value, actionParameters) => {
+		this.listenTo(Component.ActionEvent, this, (eventName, actionName, active, value, actionParameters) => {
 			switch (actionName) {
 				case '/action/activate':
-					this.trigger(ButtonComponent.ChangedEvent, value)
+					this.trigger(ButtonComponent.ChangedEvent, active)
 					break
 			}
 		})

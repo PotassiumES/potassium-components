@@ -37,7 +37,8 @@ const ModalComponent = class extends Component {
 				},
 				this.inheritedOptions
 			).appendTo(this)
-			this.listenTo(ButtonComponent.ChangedEvent, button, (actionName, value) => {
+			this.listenTo(ButtonComponent.ChangedEvent, button, (actionName, active) => {
+				if (active === false) return
 				this.trigger(ModalComponent.ButtonActivatedEvent, buttonInfo.id, buttonInfo.name)
 			})
 		}

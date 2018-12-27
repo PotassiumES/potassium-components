@@ -4,13 +4,16 @@
 	padding: 0.4cm;
 	border-width: var(--som-component-border-width);
 	border-radius: 0.6cm;
+	background-z: -0.2cm;
 	border-emissive: var(--som-component-border-color);
 	background-emissive: var(--som-component-background-color);
 }
 
 .som.button-component > text {
 	centroid-y: -0.42cm;
-	color: var(--som-base-color);
+	centroid-z: 0.1cm;
+	material-color: rgb(0, 0, 0);
+	material-emissive: var(--som-base-color);
 	font-size: var(--som-font-size-base);
 }
 

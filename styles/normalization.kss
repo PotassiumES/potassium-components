@@ -1,7 +1,8 @@
 /* Normalization */
 
 scene {
-	color: var(--som-base-color);
+	color: rgb(0, 0, 0);
+	emissive: var(--som-base-color);
 	font-size: var(--som-font-size-base);
 	background-color: var(--som-background-color);
 }

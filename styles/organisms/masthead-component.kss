@@ -7,7 +7,7 @@
 
 .som.masthead-component > .brand-component {
 	font-size: var(--som-font-size-3);
-	color: var(--som-primary-color);
+	emissive: var(--som-primary-color);
 }
 
 .som.masthead-component > .menu-component {
@@ -26,7 +26,7 @@
 	margin-top: 0;
 	padding: var(--dom-outer-container-padding);
 	padding-bottom: calc(var(--dom-outer-container-padding) - 8px);
-	color: var(--dom-primary-color);
+	emissive: var(--dom-primary-color);
 	background-color: var(--dom-background-color);
 }
 

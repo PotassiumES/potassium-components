@@ -11,7 +11,7 @@
 }
 
 .som.card-component > .card-caption-component {
-	color: var(--som-light-base-color);
+	material-emissive: var(--som-light-base-color);
 	font-size: var(--som-font-size-0);
 }
 

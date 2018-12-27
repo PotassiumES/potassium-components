@@ -14,7 +14,7 @@
 }
 
 .som.video-player-component > .backdrop-component > .video-component > .cube {
-	material-color: var(--som-base-color);
+	material-emissive: var(--som-base-color);
 }
 
 .som.video-player-component > .video-player-controls {

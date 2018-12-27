@@ -52,8 +52,9 @@ const TextInputComponent = class extends Component {
 		// Listen for changes to this.text based on Component.TextInputEvents
 		this.listenTo(Component.TextInputEvent, this, this._handleTextInput)
 
-		this._placeholderMaterial = this.usesSOM
-			? som.meshLambertMaterial({
+		this._textMaterial = this.usesSOM
+			? som.meshStandardMaterial({
+					color: 0x000000,
 					side: THREE.DoubleSide
 			  })
 			: null
@@ -69,7 +70,7 @@ const TextInputComponent = class extends Component {
 			this._portalCursor.name = 'Cursor'
 			this._portalText = som
 				.text('', {
-					material: this._placeholderMaterial,
+					material: this._textMaterial,
 					size: this.options.textSize
 				})
 				.appendTo(this.portalSOM)
@@ -92,7 +93,7 @@ const TextInputComponent = class extends Component {
 			this._immersiveCursor.name = 'Cursor'
 			this._immersiveText = som
 				.text('', {
-					material: this._placeholderMaterial,
+					material: this._textMaterial,
 					size: this.options.textSize
 				})
 				.appendTo(this.immersiveSOM)
@@ -110,15 +111,15 @@ const TextInputComponent = class extends Component {
 		}
 	}
 	_handleModelChange() {
-		const value = this.dataObject.get(this.options.dataField, '')
-		if (this.text === value) return
-		this.text = value
+		this.text = this.dataObject.get(this.options.dataField, '')
 	}
-	_handleTextInput(eventName, actionParameters) {
-		if (!actionParameters || typeof actionParameters.value === 'undefined') return
-		let value = actionParameters.value
-		// Handle control input
-		switch (value) {
+	_handleTextInput(eventName, commands) {
+		for (const command of commands) {
+			this._handleTextCommand(command)
+		}
+	}
+	_handleTextCommand(command) {
+		switch (command) {
 			case 'delete':
 				if (!this._text || this._text.length == 0) return
 				this.text = this._text.substring(0, this._text.length - 1)
@@ -127,16 +128,15 @@ const TextInputComponent = class extends Component {
 				this._shifted = !this._shifted
 				return
 			case 'space':
-				value = ' '
+				command = ' '
 				break
 			case 'tab':
-				value = '\t'
+				command = '\t'
 				break
 			case 'return':
 				this.trigger(TextInputComponent.TextSubmitEvent, this._text)
 				this.text = ''
 				return
-			case 'tray':
 			case 'left':
 			case 'up':
 			case 'right':
@@ -147,26 +147,32 @@ const TextInputComponent = class extends Component {
 				return
 		}
 		// Ok, it's text
-		this.text = this._text + (this._shifted ? value.toUpperCase() : value)
+		this.text = this._text + (this._shifted ? command.toUpperCase() : command)
 		this._shifted = false
 	}
 	get text() {
 		return this._text
 	}
 	set text(value) {
+		value = value || ''
 		if (this._text === value) return
-		if (!value) value = ''
 		this._text = value
-		const usingPlaceholder = !value
+		const usingPlaceholder = !this._text
 		if (usingPlaceholder) {
 			this.addClass('placeholder')
 		} else {
 			this.removeClass('placeholder')
 		}
-		if (this.usesPortalSpatial) this._portalText.setText(value || this._placeholderText)
-		if (this.usesImmersive) this._immersiveText.setText(value || this._placeholderText)
-		if (this.usesFlat) this.flatDOM.value = value
-		if (this.usesPortalOverlay) this.portalDOM.value = value
+		if (this.usesPortalSpatial) {
+			this._portalText.setText(this._text || this._placeholderText)
+			this._portalText.toggleClass(usingPlaceholder, 'placeholder')
+		}
+		if (this.usesImmersive) {
+			this._immersiveText.setText(this._text || this._placeholderText)
+			this._immersiveText.toggleClass(usingPlaceholder, 'placeholder')
+		}
+		if (this.usesFlat) this.flatDOM.value = this._text
+		if (this.usesPortalOverlay) this.portalDOM.value = this._text
 		if (this.dataObject && this.options.dataField && this.dataObject.get(this.options.dataField) !== this._text) {
 			this.dataObject.set(this.options.dataField, this._text)
 		}

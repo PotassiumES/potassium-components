@@ -1,0 +1,31 @@
+/* VirtualKeyboardComponent */
+
+.som.virtual-keyboard-component {
+	padding: 3cm;
+
+	border-width: var(--som-border-width);
+	border-radius: var(--som-border-radius);
+	border-emissive: var(--som-border-color);
+	background-z: -4cm;
+
+	background-emissive: var(--som-component-background-color);
+}
+
+.som.virtual-keyboard-component > .keys-component {
+	display: grid;
+	grid-template: auto / auto;
+	grid-auto-rows: auto;
+	gap: 1cm;
+}
+
+.som.virtual-keyboard-component > .keys-component > .line-component {
+	display: grid;
+	grid-template: auto / auto;
+	grid-auto-flow: column;
+	grid-auto-columns: auto;
+	gap: 1cm;
+}
+
+.som.virtual-keyboard-component > .keys-component > .line-component > .key-component {
+	padding: 1cm;
+}
