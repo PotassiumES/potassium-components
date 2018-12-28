@@ -38,7 +38,7 @@ const VideoComponent = class extends CubeComponent {
 		this._source = null
 		this._video = null
 
-		this._heightScale = 1
+		this._heightScale = 0.01
 		this._widthScale = null
 		this._depthScale = null
 		this._ratio = null
@@ -178,19 +178,8 @@ const VideoComponent = class extends CubeComponent {
 	resize(ratio) {
 		this._ratio = ratio
 		this._widthScale = this._heightScale * this._ratio
-		this._depthScale = 0.001
-		this.setCubeSize(this._widthScale, this._heightScale, this._depthScale)
-	}
-
-	setCubeSize(widthScale, heightScale, depthScale) {
-		if (this.portalCube) {
-			this.portalCube.scale.set(widthScale, heightScale, depthScale)
-			this.portalCube.position.set(widthScale / 200, heightScale / -200, depthScale / 200)
-		}
-		if (this.immersiveCube) {
-			this.immersiveCube.scale.set(widthScale, heightScale, depthScale)
-			this.immersiveCube.position.set(widthScale / 200, heightScale / -200, depthScale / 200)
-		}
+		this._depthScale = 0.00001
+		this.setCubeSides(this._widthScale, this._heightScale, this._depthScale)
 	}
 
 	generateVideoMaterial() {

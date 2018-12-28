@@ -7,10 +7,11 @@
 .som.video-player-component > .backdrop-component {
 	scale: 4.5;
 	margin: 0 0 0.1cm 0;
+	display: box;
 }
 
 .som.video-player-component > .backdrop-component > .video-component {
-	centroid-z: 0.2cm;
+	display: box;	
 }
 
 .som.video-player-component > .backdrop-component > .video-component > .cube {

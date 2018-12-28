@@ -64,7 +64,8 @@ const CubeComponent = class extends Component {
 				if (this._portalCube.geometry !== _sharedGeometry) {
 					this._portalCube.geometry.dispose()
 					this._portalCube.geometry = _sharedGeometry
-					this._portalCube.styles.setAncestorsLayoutDirty
+					this._portalCube.position.set(CubeGeometrySideSize / 2, CubeGeometrySideSize / -2, CubeGeometrySideSize / 2)
+					this._portalCube.styles.setAncestorsLayoutDirty()
 					this._portalCube.styles.geometryIsDirty = true
 				}
 			} else {
@@ -72,7 +73,8 @@ const CubeComponent = class extends Component {
 					this._portalCube.geometry.dispose()
 				}
 				this._portalCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
-				this._portalCube.styles.setAncestorsLayoutDirty
+				this._portalCube.position.set(x / 2, y / -2, z / 2)
+				this._portalCube.styles.setAncestorsLayoutDirty()
 				this._portalCube.styles.geometryIsDirty = true
 			}
 		}
@@ -81,15 +83,21 @@ const CubeComponent = class extends Component {
 				if (this._immersiveCube.geometry !== _sharedGeometry) {
 					this._immersiveCube.geometry.dispose()
 					this._immersiveCube.geometry = _sharedGeometry
+					this._immersiveCube.position.set(
+						CubeGeometrySideSize / 2,
+						CubeGeometrySideSize / -2,
+						CubeGeometrySideSize / 2
+					)
 					this._immersiveCube.styles.geometryIsDirty = true
-					this._immersiveCube.styles.setAncestorsLayoutDirty
+					this._immersiveCube.styles.setAncestorsLayoutDirty()
 				}
 			} else {
 				if (this._immersiveCube.geometry !== _sharedGeometry) {
 					this._immersiveCube.geometry.dispose()
 				}
 				this._immersiveCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
-				this._immersiveCube.styles.setAncestorsLayoutDirty
+				this._immersiveCube.position.set(x / 2, y / -2, z / 2)
+				this._immersiveCube.styles.setAncestorsLayoutDirty()
 				this._immersiveCube.styles.geometryIsDirty = true
 			}
 		}
