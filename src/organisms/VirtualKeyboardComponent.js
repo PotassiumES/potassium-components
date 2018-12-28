@@ -84,7 +84,7 @@ class KeyboardLayout {
 		for (const line of this.characters) {
 			this._keyLines.push(line.map(char => new Key(char)))
 		}
-		this._keyLines.push([new Key('shift'), new Key('space'), new Key('left'), new Key('right'), new Key('enter')])
+		this._keyLines.push([new Key('delete'), new Key('shift'), new Key('space'), new Key('enter')])
 	}
 	get keyLines() {
 		return this._keyLines

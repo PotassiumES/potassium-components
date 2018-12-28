@@ -8,9 +8,9 @@
 	--orange: rgb(255, 123, 57); /* #FF7B39 */
 	--dark-orange: rgb(205, 73, 07);
 
-	--light-blue: rgb(173, 107, 255);
-	--blue: rgb(123, 57, 255);
-	--dark-blue: rgb(73, 7, 205);
+	--light-blue: rgb(150, 200, 255);
+	--blue: rgb(50, 100, 255);
+	--dark-blue: rgb(50, 50, 120);
 
 	/* DOM color scheme */
 	--dom-light-primary-color:		var(--light-pink);

@@ -1,17 +1,34 @@
 /* TextInputComponent */
 
-.som.text-input-component > .bracket {
-	centroid: 0 0 0;
+.som.text-input-component {
+	padding: 0.3cm 0.5cm;
+	border-emissive: var(--som-component-border-color);
+	border-radius: var(--som-component-border-radius);
+	border-width: var(--som-component-border-width);
+	background-emissive: var(--som-light-tertiary-color);
+	background-z: -0.02cm;
+	display: box;
+	layout-direction: horizontal;
 }
 
-.som.text-input-component > .bracket > node > mesh[name=Cube.001_Cube.003] {
+.som.text-input-component > .cursor {
+	scale: 3.8;
+	margin: 0 0 0 0.05cm;
+}
+
+.som.text-input-component > .cursor > group > mesh[name=Cursor] {
 	material-color: rgb(0, 0, 0);
 	material-emissive: var(--som-primary-color);
 }
 
+
+.som.text-input-component.focus {
+	border-emissive: var(--som-secondary-color);
+	background-emissive: var(--som-component-background-color);
+}
+
 .som.text-input-component > text {
 	emissive: var(--som-base-color);
-	centroid: 0.25cm -0.9cm 0;
 }
 
 .som.text-input-component > text.placeholder {

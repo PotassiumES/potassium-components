@@ -60,45 +60,35 @@ const TextInputComponent = class extends Component {
 			: null
 
 		if (this.usesPortalSpatial) {
-			this._portalBracket = som
-				.obj('/static/potassium-components/models/text-input-bracket.obj')
-				.appendTo(this.portalSOM)
-			this._portalBracket.addClass('bracket')
-			this._portalBracket.name = 'Bracket'
-			this._portalCursor = som.obj('/static/potassium-components/models/text-input-cursor.obj').appendTo(this.portalSOM)
-			this._portalCursor.addClass('cursor')
-			this._portalCursor.name = 'Cursor'
 			this._portalText = som
 				.text('', {
 					material: this._textMaterial,
 					size: this.options.textSize
 				})
 				.appendTo(this.portalSOM)
+			this._portalCursor = som.obj('/static/potassium-components/models/text-input-cursor.obj').appendTo(this.portalSOM)
+			this._portalCursor.addClass('cursor')
+			this._portalCursor.visible = false
+			this._portalCursor.name = 'Cursor'
 		} else {
-			this._portalBracket = null
 			this._portalCursor = null
 			this._portalText = null
 		}
 
 		if (this.usesImmersive) {
-			this._immersiveBracket = som
-				.obj('/static/potassium-components/models/text-input-bracket.obj')
-				.appendTo(this.immersiveSOM)
-			this._immersiveBracket.addClass('bracket')
-			this._immersiveBracket.name = 'Bracket'
-			this._immersiveCursor = som
-				.obj('/static/potassium-components/models/text-input-cursor.obj')
-				.appendTo(this.immersiveSOM)
-			this._immersiveCursor.addClass('cursor')
-			this._immersiveCursor.name = 'Cursor'
 			this._immersiveText = som
 				.text('', {
 					material: this._textMaterial,
 					size: this.options.textSize
 				})
 				.appendTo(this.immersiveSOM)
+			this._immersiveCursor = som
+				.obj('/static/potassium-components/models/text-input-cursor.obj')
+				.appendTo(this.immersiveSOM)
+			this._immersiveCursor.addClass('cursor')
+			this._immersiveCursor.visible = false
+			this._immersiveCursor.name = 'Cursor'
 		} else {
-			this._immersiveBracket = null
 			this._immersiveCursor = null
 			this._immersiveText = null
 		}
@@ -109,6 +99,15 @@ const TextInputComponent = class extends Component {
 		} else {
 			this.text = this.options.text
 		}
+
+		this.listenTo(Component.FocusEvent, this, () => {
+			if (this._portalCursor) this._portalCursor.visible = true
+			if (this._immersiveCursor) this._immersiveCursor.visible = true
+		})
+		this.listenTo(Component.BlurEvent, this, () => {
+			if (this._portalCursor) this._portalCursor.visible = false
+			if (this._immersiveCursor) this._immersiveCursor.visible = false
+		})
 	}
 	_handleModelChange() {
 		this.text = this.dataObject.get(this.options.dataField, '')
@@ -133,7 +132,7 @@ const TextInputComponent = class extends Component {
 			case 'tab':
 				command = '\t'
 				break
-			case 'return':
+			case 'enter':
 				this.trigger(TextInputComponent.TextSubmitEvent, this._text)
 				this.text = ''
 				return
