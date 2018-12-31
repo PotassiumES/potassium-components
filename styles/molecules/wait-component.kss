@@ -6,6 +6,26 @@
 	--static-padding: 12px;
 }
 
+.som.wait-component > .icon {
+	padding: 0.1cm 0 0 0;
+}
+
+.som.wait-component > .icon > group > mesh {
+	display: none;
+}
+
+.som.wait-component.processing > .icon > group > mesh[name=Processing] {
+	display: inherit;
+}
+
+.som.wait-component.succeeded > .icon > group > mesh[name=Succeeded] {
+	display: inherit;
+}
+
+.som.wait-component.failed > .icon > group > mesh[name=Failed] {
+	display: inherit;
+}
+
 .dom.wait-component {
 	text-align: center;
 	padding: var(--static-padding);

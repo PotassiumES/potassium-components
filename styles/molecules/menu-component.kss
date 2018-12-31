@@ -6,11 +6,15 @@
 }
 
 .som.menu-component > .menu-items-component {
-	display: grid;
+	display: none;
 	grid-auto-rows: 1.4cm;
 	grid-template: 1.4cm / 0.1cm;
 	gap: 0;
 	centroid-y: -1.4cm;
+}
+
+.som.menu-component.open > .menu-items-component {
+	display: grid;
 }
 
 .dom.menu-component {

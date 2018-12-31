@@ -24,10 +24,8 @@ const MenuComponent = class extends Component {
 		this._toggleComponent = new ToggleComponent(undefined, {}, this.inheritedOptions).appendTo(this)
 		this.listenTo(ToggleComponent.ToggleEvent, this._toggleComponent, (eventName, opened) => {
 			if (opened) {
-				this._menuItemsComponent.show()
 				this.addClass('open')
 			} else {
-				this._menuItemsComponent.hide()
 				this.removeClass('open')
 			}
 			this.trigger(MenuComponent.ToggleEvent, this._toggleComponent._opened, this)

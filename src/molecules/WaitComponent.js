@@ -21,6 +21,30 @@ const WaitComponent = class extends LabelComponent {
 		this._animationInterval = null
 		this._animationIndex = 0
 
+		if (this.usesPortalSpatial) {
+			this._portalObj = som
+				.obj('/static/potassium-components/models/wait-component.obj', () => {
+					this.portalSOM.styles.geometryIsDirty = true
+				})
+				.appendTo(this.portalSOM)
+			this._portalObj.addClass('icon')
+			this._portalObj.name = 'Icon'
+		} else {
+			this._portalObj = null
+		}
+
+		if (this.usesImmersive) {
+			this._immersiveObj = som
+				.obj('/static/potassium-components/models/wait-component.obj', () => {
+					this.immersiveSOM.styles.geometryIsDirty = true
+				})
+				.appendTo(this.immersiveSOM)
+			this._immersiveObj.addClass('icon')
+			this._immersiveObj.name = 'Icon'
+		} else {
+			this._immersiveObj = null
+		}
+
 		this._updateDisplay()
 	}
 

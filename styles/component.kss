@@ -1,14 +1,18 @@
 /*** Component ***/
 
-.dom-root .component {
+.som.component.hidden {
+	display: none;
+}
+
+.dom.component {
 	display: inline-block;
 	vertical-align: top;
 }
 
-.dom-root .component.anchored {
+.dom.component.anchored {
 	cursor: pointer;
 }
 
-.dom-root .component.hidden {
+.dom.component.hidden {
 	display: none !important;
 }
