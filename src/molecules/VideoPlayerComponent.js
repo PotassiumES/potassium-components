@@ -61,8 +61,8 @@ const VideoPlayerComponent = class extends Component {
 		this.listenTo(
 			Component.ActionEvent,
 			this._toggleButtonComponent,
-			(eventName, actionName, value, actionParameters) => {
-				if (actionName === '/action/activate') {
+			(eventName, actionName, active, value, actionParameters, filterParameters) => {
+				if (actionName === '/action/activate' && active) {
 					this._videoComponent.toggle()
 				}
 			}

@@ -46,11 +46,15 @@ const PaginationComponent = class extends Component {
 			.appendTo(this)
 			.addClass('left-arrow')
 			.setName('LeftArrow')
-		this.listenTo(Component.ActionEvent, this._leftArrow, (eventName, actionName, value, actionParameters) => {
-			if (actionName === '/action/activate') {
-				this.currentIndex = this.currentIndex - 1
+		this.listenTo(
+			Component.ActionEvent,
+			this._leftArrow,
+			(eventName, actionName, active, value, actionParameters, filterParameters) => {
+				if (actionName === '/action/activate' && active) {
+					this.currentIndex = this.currentIndex - 1
+				}
 			}
-		})
+		)
 
 		this._statusLabel = new LabelComponent(undefined, undefined, this.inheritedOptions).appendTo(this)
 
@@ -65,11 +69,15 @@ const PaginationComponent = class extends Component {
 			.appendTo(this)
 			.addClass('right-arrow')
 			.setName('RightArrow')
-		this.listenTo(Component.ActionEvent, this._rightArrow, (eventName, actionName, value, actionParameters) => {
-			if (actionName === '/action/activate') {
-				this.currentIndex = this.currentIndex + 1
+		this.listenTo(
+			Component.ActionEvent,
+			this._rightArrow,
+			(eventName, actionName, active, value, actionParameters, filterParameters) => {
+				if (actionName === '/action/activate' && active) {
+					this.currentIndex = this.currentIndex + 1
+				}
 			}
-		})
+		)
 		this._updateDisplay()
 	}
 
