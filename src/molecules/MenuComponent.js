@@ -39,7 +39,6 @@ const MenuComponent = class extends Component {
 			.appendTo(this)
 			.addClass('menu-items-component')
 			.setName('MenuItemsComponent')
-			.hide()
 	}
 
 	get menuItems() {

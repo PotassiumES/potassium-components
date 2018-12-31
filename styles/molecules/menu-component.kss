@@ -25,14 +25,12 @@
 }
 
 .dom.menu-component > .menu-items-component {
-	display: grid;
+	display: none;
 	grid-auto-rows: auto;
 	grid-template: auto / auto;
 	gap: 0;
 	position: relative;
-}
 
-.dom.menu-component > .menu-items-component {
 	top: 45px;
 	right: 13px;
 	min-width: 6em;
@@ -41,6 +39,10 @@
 	background-color: var(--dom-background-color);
 	border-radius: var(--dom-container-border-radius);
 	border: solid var(--dom-container-border-width) var(--dom-primary-color);
+}
+
+.dom.menu-component.open > .menu-items-component {
+	display: grid;
 }
 
 .dom.menu-component > .menu-items-component > .selected {
