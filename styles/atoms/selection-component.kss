@@ -1,5 +1,38 @@
 /* SelectionComponent */
 
+.som.selection-component > .selection-display {
+	display: box;
+	layout-direction: horizontal;
+	padding: var(--som-inner-element-padding);
+	border-width: var(--som-component-border-width);
+	border-radius: var(--som-component-border-radius);
+	background-z: -0.2cm;
+	border-emissive: var(--som-component-border-color);
+	background-emissive: var(--som-component-background-color);
+}
+
+.som.selection-component > .selection-display > .label-component {
+	margin: 0 0.8cm 0 0;
+}
+
+.som.selection-component > .selection-display > .toggle-component {
+	scale: 0.5;
+}
+
+.som.selection-component > .selection-list {
+	centroid-z: 0.8cm;
+	display: box;
+	layout-direction: vertical;
+}
+
+.som.selection-component > .selection-list > .selection-item {
+	padding: var(--som-inner-element-tight-padding);
+	margin: 0 0 0.2cm 0;
+	background-emissive: var(--dom-light-tertiary-color);
+	background-z: -0.2cm;
+	border-radius: var(--som-component-border-radius);
+}
+
 .dom.selection-component {
 	padding: 6px 20px 6px 6px;
 	font-size: 1em;

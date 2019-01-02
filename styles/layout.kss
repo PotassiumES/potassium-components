@@ -51,6 +51,7 @@
 	--som-inner-element-outline:					none;
 	--som-inner-element-border-color:				var(--dom-primary-color);
 	--som-inner-element-padding:					1.2cm;
+	--som-inner-element-tight-padding:				0.6cm;
 
 	--som-border-radius:							0.6cm;
 	--som-border-width:								0.3cm;

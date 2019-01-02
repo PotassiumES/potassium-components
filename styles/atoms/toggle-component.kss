@@ -1,11 +1,11 @@
 /* ToggleComponent */
 
-.som.toggle-component {
+.som.toggle-component > group[name=ToggleComponentOBJ] {
 	rotation: quaternion(0, 0, 0, 1);
 	centroid-y: 0cm;
 }
 
-.som.toggle-component.open {
+.som.toggle-component.open > group[name=ToggleComponentOBJ] {
 	rotation: quaternion(0, 0, 0.7070904020014415, 0.7071231599922605);
 	centroid-y: -0.8cm;
 }
