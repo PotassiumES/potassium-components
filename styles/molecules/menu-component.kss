@@ -7,14 +7,21 @@
 
 .som.menu-component > .menu-items-component {
 	display: none;
-	grid-auto-rows: 1.4cm;
-	grid-template: 1.4cm / 0.1cm;
-	gap: 0;
-	centroid-y: -1.4cm;
+	grid-auto-rows: auto;
+	grid-template: auto / auto;
+	gap: 0.4cm;
+	centroid-z: 0.8cm;
 }
 
 .som.menu-component.open > .menu-items-component {
 	display: grid;
+}
+
+.som.menu-component > .menu-items-component > .menu-item {
+	padding: var(--som-inner-element-tight-padding);
+	background-emissive: var(--dom-light-tertiary-color);
+	background-z: -0.2cm;
+	border-radius: var(--som-component-border-radius);
 }
 
 .dom.menu-component {

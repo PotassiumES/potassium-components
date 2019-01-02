@@ -24,7 +24,7 @@ const ToolTipComponent = class extends Component {
 			Component.ActionEvent,
 			this._closeComponent,
 			(eventName, actionName, active, actionParameters, filterParameters) => {
-				if (action === '/action/activate' && active) {
+				if (actionName === '/action/activate' && active) {
 					this.hide()
 				}
 			}

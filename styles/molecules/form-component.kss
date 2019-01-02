@@ -27,7 +27,8 @@
 
 .som.form-field-component.text-input-field-component,
 .som.form-field-component.date-field-component,
-.som.form-field-component.switch-field-component {
+.som.form-field-component.switch-field-component,
+.som.form-field-component.selection-field-component {
 	display: box;
 }
 

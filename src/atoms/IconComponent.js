@@ -32,7 +32,9 @@ const IconComponent = class extends Component {
 
 	_getModel() {
 		if (this._model !== null) return this._model
-		this._model = som.obj(this.options.modelURL)
+		this._model = som.obj(this.options.modelURL, undefined, (...params) => {
+			console.error('Could not load', ...params)
+		})
 		return this._model
 	}
 
