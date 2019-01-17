@@ -1,6 +1,6 @@
 {
   "name": "potassium-components",
-  "version": "0.1.0-alpha1",
+  "version": "1.0.0",
   "description": "UI elements for use in PotassiumES",
   "main": "index.js",
   "scripts": {
@@ -51,7 +51,11 @@
   },
   "lint-staged": {
     "linters": {
-      "src/**/*.js": ["prettier --write", "eslint --fix", "git add"]
+      "src/**/*.js": [
+        "prettier --write",
+        "eslint --fix",
+        "git add"
+      ]
     },
     "relative": true
   },
