@@ -1,6 +1,7 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
 import { lt, ld, ldt } from 'potassium-es/src/Localizer'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import Component from 'potassium-es/src/Component'
 
@@ -38,8 +39,8 @@ const PaginationComponent = class extends Component {
 		this._leftArrow = new IconComponent(
 			undefined,
 			{
-				imageURL: '/static/potassium-components/images/left-arrow.png',
-				modelURL: '/static/potassium-components/models/toggle-component.obj'
+				imageURL: paths.Static + '/potassium-components/images/left-arrow.png',
+				modelURL: paths.Static + '/potassium-components/models/toggle-component.obj'
 			},
 			this.inheritedOptions
 		)
@@ -61,8 +62,8 @@ const PaginationComponent = class extends Component {
 		this._rightArrow = new IconComponent(
 			undefined,
 			{
-				imageURL: '/static/potassium-components/images/right-arrow.png',
-				modelURL: '/static/potassium-components/models/toggle-component.obj'
+				imageURL: paths.Static + '/potassium-components/images/right-arrow.png',
+				modelURL: paths.Static + '/potassium-components/models/toggle-component.obj'
 			},
 			this.inheritedOptions
 		)

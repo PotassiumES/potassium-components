@@ -1,5 +1,6 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import CubeComponent from './CubeComponent.js'
 
@@ -22,7 +23,7 @@ const VideoComponent = class extends CubeComponent {
 			dataObject,
 			Object.assign(
 				{
-					preview: '/static/potassium-components/images/video-component-preview.png',
+					preview: paths.Static + '/potassium-components/images/video-component-preview.png',
 					video: null,
 					mimeType: null
 				},

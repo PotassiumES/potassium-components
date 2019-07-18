@@ -1,5 +1,6 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import Component from 'potassium-es/src/Component'
 
@@ -46,7 +47,7 @@ const SwitchComponent = class extends Component {
 		}
 
 		if (this.options.usesPortalSpatial) {
-			this._portalObj = som.obj('/static/potassium-components/models/switch-component.obj', () => {
+			this._portalObj = som.obj(paths.Static + '/potassium-components/models/switch-component.obj', () => {
 				this.portalSOM.styles.geometryIsDirty = true
 				this._updateDisplay()
 			})
@@ -57,7 +58,7 @@ const SwitchComponent = class extends Component {
 		}
 
 		if (this.options.usesImmersive) {
-			this._immersiveObj = som.obj('/static/potassium-components/models/switch-component.obj', () => {
+			this._immersiveObj = som.obj(paths.Static + '/potassium-components/models/switch-component.obj', () => {
 				this.immersiveSOM.styles.geometryIsDirty = true
 				this._updateDisplay()
 			})

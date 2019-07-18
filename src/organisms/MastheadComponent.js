@@ -68,7 +68,7 @@ const MastheadComponent = class extends Component {
 			if (typeof this.options.brandAnchor === 'string') {
 				brandOptions.activationAnchor = this.options.brandAnchor
 			}
-			this._brand = new HeadingComponent(null, brandOptions)
+			this._brand = new HeadingComponent(null, brandOptions, inheritedOptions)
 		}
 		this._brand.addClass('brand-component')
 		this._brand.setName('BrandComponent')

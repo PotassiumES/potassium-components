@@ -1,6 +1,7 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
 import Component from 'potassium-es/src/Component'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import ImageComponent from 'potassium-components/src/atoms/ImageComponent'
 
@@ -18,10 +19,10 @@ const ToggleComponent = class extends Component {
 			Object.assign(
 				{
 					flatDOM: dom.img({
-						src: '/static/potassium-components/images/left-arrow.png'
+						src: paths.Static + '/potassium-components/images/left-arrow.png'
 					}),
 					portalDOM: dom.img({
-						src: '/static/potassium-components/images/left-arrow.png'
+						src: paths.Static + '/potassium-components/images/left-arrow.png'
 					}),
 					name: 'ToggleComponent'
 				},
@@ -33,7 +34,7 @@ const ToggleComponent = class extends Component {
 		this._opened = false
 
 		if (this.usesPortalSpatial) {
-			this._portalOBJ = som.obj('/static/potassium-components/models/toggle-component.obj', () => {
+			this._portalOBJ = som.obj(paths.Static + '/potassium-components/models/toggle-component.obj', () => {
 				this.portalSOM.styles.geometryIsDirty = true
 			})
 			this._portalOBJ.name = 'ToggleComponentOBJ'
@@ -41,7 +42,7 @@ const ToggleComponent = class extends Component {
 		}
 
 		if (this.usesImmersive) {
-			this._immersiveOBJ = som.obj('/static/potassium-components/models/toggle-component.obj', () => {
+			this._immersiveOBJ = som.obj(paths.Static + '/potassium-components/models/toggle-component.obj', () => {
 				this.immersiveSOM.styles.geometryIsDirty = true
 			})
 			this._immersiveOBJ.name = 'ToggleComponentOBJ'

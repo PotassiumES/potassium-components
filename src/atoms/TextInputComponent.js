@@ -1,5 +1,6 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import Component from 'potassium-es/src/Component'
 
@@ -66,7 +67,9 @@ const TextInputComponent = class extends Component {
 					size: this.options.textSize
 				})
 				.appendTo(this.portalSOM)
-			this._portalCursor = som.obj('/static/potassium-components/models/text-input-cursor.obj').appendTo(this.portalSOM)
+			this._portalCursor = som
+				.obj(paths.Static + '/potassium-components/models/text-input-cursor.obj')
+				.appendTo(this.portalSOM)
 			this._portalCursor.addClass('cursor')
 			this._portalCursor.visible = false
 			this._portalCursor.name = 'Cursor'
@@ -83,7 +86,7 @@ const TextInputComponent = class extends Component {
 				})
 				.appendTo(this.immersiveSOM)
 			this._immersiveCursor = som
-				.obj('/static/potassium-components/models/text-input-cursor.obj')
+				.obj(paths.Static + '/potassium-components/models/text-input-cursor.obj')
 				.appendTo(this.immersiveSOM)
 			this._immersiveCursor.addClass('cursor')
 			this._immersiveCursor.visible = false

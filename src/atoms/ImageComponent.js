@@ -1,11 +1,12 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import { CubeComponent, CubeGeometrySideSize } from './CubeComponent.js'
 
-const _textureLoader = new THREE.TextureLoader()
-
-const _blankTexture = _textureLoader.load('/static/potassium-components/images/blank2x2.png')
+// Lazily loaded in ImageComponent.constructor
+const _textureLoader = null
+const _blankTexture = null
 
 /**
 ImageComponent handles the display of a single image.
@@ -17,6 +18,12 @@ const ImageComponent = class extends CubeComponent {
 	@param {string} [options.imageField=null] the name of the field in dataObject that holds the URL to the image
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
+		if (_textureLoader === null) {
+			_textureLoader = new THREE.TextureLoader()
+		}
+		if (_blankTexture === null) {
+			_blankTexture = _textureLoader.load(paths.Static + '/potassium-components/images/blank2x2.png')
+		}
 		const needsMaterial = !options.material && (options.usesPortalSpatial !== false || options.usesImmersive !== false)
 		const mat = needsMaterial ? ImageComponent.GenerateCubeMaterial(options.image) : null
 		super(

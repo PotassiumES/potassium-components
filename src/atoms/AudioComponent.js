@@ -1,5 +1,6 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import Component from 'potassium-es/src/Component'
 
@@ -37,7 +38,7 @@ const AudioComponent = class extends Component {
 		} else {
 			this._audioDOM = dom.audio(
 				dom.source({
-					src: this.options.audio || '/static/potassium-components/audio/primary-alert.m4a'
+					src: this.options.audio || ''
 				})
 			)
 		}
@@ -46,7 +47,7 @@ const AudioComponent = class extends Component {
 			this._domImage = new ImageComponent(
 				undefined,
 				{
-					image: '/static/potassium-components/images/audio.png',
+					image: paths.Static + '/potassium-components/images/audio.png',
 					usesPortalSpatial: false,
 					usesImmersive: false
 				},
@@ -60,7 +61,7 @@ const AudioComponent = class extends Component {
 
 		if (this.usesPortalSpatial) {
 			this._portalObj = som
-				.obj('/static/potassium-components/models/audio-component.obj', () => {
+				.obj(paths.Static + '/potassium-components/models/audio-component.obj', () => {
 					this.portalSOM.styles.geometryIsDirty = true
 				})
 				.appendTo(this.portalSOM)
@@ -72,7 +73,7 @@ const AudioComponent = class extends Component {
 
 		if (this.usesImmersive) {
 			this._immersiveObj = som
-				.obj('/static/potassium-components/models/audio-component.obj', () => {
+				.obj(paths.Static + '/potassium-components/models/audio-component.obj', () => {
 					this.immersiveSOM.styles.geometryIsDirty = true
 				})
 				.appendTo(this.immersiveSOM)
