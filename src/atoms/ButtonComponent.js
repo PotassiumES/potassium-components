@@ -1,7 +1,15 @@
 import dom from 'potassium-es/src/DOM'
 import som from 'potassium-es/src/SOM'
+import * as paths from 'potassium-es/src/Paths.js'
 
 import Component from 'potassium-es/src/Component'
+
+/** @todo Give component libraries a nice way to load a set of sounds instead of loading them in Component modules */
+let _hasSetSounds = false
+function _setSounds() {
+	Component.AudioManager.setSound('primary-alert', paths.Static + '/potassium-components/audio/primary-alert.m4a')
+	_hasSetSounds = true
+}
 
 /**
 ButtonComponent displays a button, natch.
@@ -26,6 +34,8 @@ const ButtonComponent = class extends Component {
 		)
 		this.addClass('button-component')
 		this.setName('ButtonComponent')
+
+		if (_hasSetSounds === false) _setSounds()
 
 		this._text = ''
 
@@ -91,8 +101,5 @@ const ButtonComponent = class extends Component {
 	}
 }
 ButtonComponent.ChangedEvent = 'button-changed'
-
-/** @todo Give component libraries a nice way to load a set of sounds instead of loading them in Component modules */
-Component.AudioManager.setSound('primary-alert', '/static/potassium-components/audio/primary-alert.m4a')
 
 export default ButtonComponent
