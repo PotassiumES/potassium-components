@@ -32,7 +32,7 @@ const CubeComponent = class extends Component {
 		this.addClass('cube-component')
 		this.setName('CubeComponent')
 		if (this.usesSOM && this.options.material === null) {
-			this.options.material = new THREE.MeshStandardMaterial({
+			this.options.material = new som.meshStandardMaterial({
 				transparent: true
 			})
 		}
@@ -72,7 +72,7 @@ const CubeComponent = class extends Component {
 				if (this._portalCube.geometryIsDirty !== _sharedGeometry) {
 					this._portalCube.geometry.dispose()
 				}
-				this._portalCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
+				this._portalCube.geometry = new som.boxBufferGeometry(x, y, z)
 				this._portalCube.position.set(x / 2, y / -2, z / 2)
 				this._portalCube.styles.setAncestorsLayoutDirty()
 				this._portalCube.styles.geometryIsDirty = true
@@ -95,7 +95,7 @@ const CubeComponent = class extends Component {
 				if (this._immersiveCube.geometry !== _sharedGeometry) {
 					this._immersiveCube.geometry.dispose()
 				}
-				this._immersiveCube.geometry = new THREE.BoxBufferGeometry(x, y, z)
+				this._immersiveCube.geometry = new som.boxBufferGeometry(x, y, z)
 				this._immersiveCube.position.set(x / 2, y / -2, z / 2)
 				this._immersiveCube.styles.setAncestorsLayoutDirty()
 				this._immersiveCube.styles.geometryIsDirty = true
@@ -126,7 +126,7 @@ const CubeComponent = class extends Component {
 }
 
 // All CubeComponents share a BoxBufferGeometry and are scaled using KSS
-const _sharedGeometry = new THREE.BoxBufferGeometry(CubeGeometrySideSize, CubeGeometrySideSize, CubeGeometrySideSize)
+const _sharedGeometry = new som.boxBufferGeometry(CubeGeometrySideSize, CubeGeometrySideSize, CubeGeometrySideSize)
 
 export { CubeComponent, CubeGeometrySideSize }
 

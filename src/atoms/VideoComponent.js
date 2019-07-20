@@ -184,11 +184,11 @@ const VideoComponent = class extends CubeComponent {
 	}
 
 	generateVideoMaterial() {
-		const videoTexture = new THREE.VideoTexture(this._video)
-		videoTexture.minFilter = THREE.NearestFilter
-		videoTexture.magFilter = THREE.LinearFilter
-		videoTexture.format = THREE.RGBFormat
-		return new THREE.MeshStandardMaterial({
+		const videoTexture = new som.videoTexture(this._video)
+		videoTexture.minFilter = som.NearestFilter
+		videoTexture.magFilter = som.LinearFilter
+		videoTexture.format = som.RGBFormat
+		return new som.meshStandardMaterial({
 			color: 0xffffff,
 			map: videoTexture
 		})
