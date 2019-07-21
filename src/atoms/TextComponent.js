@@ -34,7 +34,7 @@ const TextComponent = class extends Component {
 
 		this._textMaterial = this.usesSOM
 			? som.meshLambertMaterial({
-					side: THREE.DoubleSide,
+					side: som.DoubleSide,
 					color: this.options.textColor
 			  })
 			: null

@@ -42,7 +42,7 @@ const ButtonComponent = class extends Component {
 		const textMaterial = this.usesSOM
 			? som.meshStandardMaterial({
 					color: 0x000000,
-					side: THREE.DoubleSide
+					side: som.DoubleSide
 			  })
 			: null
 
