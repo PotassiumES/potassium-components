@@ -59,6 +59,9 @@
     },
     "relative": true
   },
+  "dependencies": {
+    "potassium-es": "1.0.0"
+  },
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
@@ -67,7 +70,6 @@
     "eslint-plugin-prettier": "^2.6.2",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "prettier": "^1.13.7",
-    "three": "^0.106.2"
+    "prettier": "^1.13.7"
   }
 }
