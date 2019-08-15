@@ -26,7 +26,6 @@
 	margin-top: 0;
 	padding: var(--dom-outer-container-padding);
 	padding-bottom: calc(var(--dom-outer-container-padding) - 8px);
-	emissive: var(--dom-primary-color);
 	background-color: var(--dom-background-color);
 }
 

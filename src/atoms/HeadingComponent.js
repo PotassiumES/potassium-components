@@ -26,6 +26,7 @@ const HeadingComponent = class extends TextComponent {
 			inheritedOptions
 		)
 		this.addClass('heading-component')
+		this.setName('HeadingComponent')
 	}
 }
 

@@ -17,17 +17,11 @@ const ImageComponent = class extends CubeComponent {
 	@param {string} [options.imageField=null] the name of the field in dataObject that holds the URL to the image
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
-		if (_blankTexture === null) {
-			_blankTexture = som.textureLoader().load(paths.Static + '/potassium-components/images/blank2x2.png')
-		}
-		const needsMaterial = !options.material && (options.usesPortalSpatial !== false || options.usesImmersive !== false)
-		const mat = needsMaterial ? ImageComponent.GenerateCubeMaterial(options.image) : null
 		super(
 			dataObject,
 			Object.assign(
 				{
 					image: null,
-					material: mat,
 					imageField: null,
 					flatDOM: dom.img(),
 					portalDOM: dom.img()
@@ -69,10 +63,19 @@ const ImageComponent = class extends CubeComponent {
 	set imageURL(value) {
 		if (value === this._imageURL) return
 		this._imageURL = value
-		this.flatDOM.src = this._imageURL
-		this.portalDOM.src = this._imageURL
+		if (this.usesFlat) {
+			this.flatDOM.src = this._imageURL
+		}
+		if (this.usesPortalOverlay) {
+			this.portalDOM.src = this._imageURL
+		}
 		if (this.usesSOM) {
-			this.material.map = som.textureLoader().load(this._imageURL, this._handleTextureLoaded, this._handleTextureError)
+			if (!this._imageURL && _blankTexture === null) {
+				_blankTexture = som.textureLoader().load(paths.Static + '/potassium-components/images/blank2x2.png')
+			}
+			this.material.map = this._imageURL
+				? som.textureLoader().load(this._imageURL, this._handleTextureLoaded, this._handleTextureError)
+				: _blankTexture
 			this.material.needsUpdate = true
 		}
 	}
@@ -93,13 +96,6 @@ const ImageComponent = class extends CubeComponent {
 	_updateFromData() {
 		if (!this.dataObject || !this.options.imageField) return
 		this.imageURL = this.dataObject.get(this.options.imageField) || ''
-	}
-
-	static GenerateCubeMaterial(url) {
-		return new som.meshStandardMaterial({
-			map: url ? som.textureLoader().load(url) : _blankTexture,
-			transparent: true
-		})
 	}
 }
 

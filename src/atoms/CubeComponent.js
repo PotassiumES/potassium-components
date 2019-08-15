@@ -122,6 +122,7 @@ const CubeComponent = class extends Component {
 	set material(mat) {
 		if (this._portalCube) this._portalCube.material = mat
 		if (this._immersiveCube) this._immersiveCube.material = mat
+		this.options.material = mat
 	}
 }
 
