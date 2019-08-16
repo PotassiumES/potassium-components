@@ -17,10 +17,15 @@ ul, li {
 
 body {
 	font-family: var(--dom-font-family);
-	font-weight: var(--base-page-font-weight);
+	font-weight: var(--dom-font-weight-base);
 	color: var(--dom-base-color);
 	font-size: var(--dom-font-size-base);
 	background-color: var(--dom-background-color);
+}
+
+button, input[type="reset"], input[type="button"], input[type="submit"] {
+	font-size: var(--dom-font-size-base);
+	line-height: var(--dom-line-height-base);
 }
 
 li {

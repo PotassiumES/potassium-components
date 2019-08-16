@@ -48,7 +48,7 @@
 }
 
 .dom.card-component > .card-title-component {
-	border-top: dashed 1px var(--dom-primary-color);
+	border-top: dashed 1px var(--dom-light-secondary-color);
 	font-size: var(--dom-font-size-base);
 }
 
