@@ -1,0 +1,5 @@
+/* HeadingComponent */
+
+.dom.icon-component img {
+	max-width: 100%;
+}

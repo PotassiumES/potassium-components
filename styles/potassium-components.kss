@@ -20,6 +20,7 @@ This is what the postcss-potassium plugin for PostCSS reads and uses to generate
 @import './atoms/button-component.kss';
 @import './atoms/cube-component.kss';
 @import './atoms/heading-component.kss';
+@import './atoms/icon-component.kss';
 @import './atoms/image-component.kss';
 @import './atoms/modal-component.kss';
 @import './atoms/multi-component.kss';

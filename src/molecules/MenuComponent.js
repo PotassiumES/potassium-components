@@ -41,6 +41,10 @@ const MenuComponent = class extends Component {
 			.setName('MenuItemsComponent')
 	}
 
+	get toggleComponent() {
+		return this._toggleComponent
+	}
+
 	get menuItems() {
 		return this._menuItems
 	}

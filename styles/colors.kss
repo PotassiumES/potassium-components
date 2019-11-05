@@ -25,7 +25,6 @@
 	--dom-tertiary-color:			var(--blue);
 	--dom-dark-tertiary-color:		var(--dark-blue);
 
-
 	--dom-light-base-color:			rgb(110, 110, 110);
 	--dom-base-color:				rgb(95, 95, 95);
 	--dom-dark-base-color:			rgb(55, 55, 55);

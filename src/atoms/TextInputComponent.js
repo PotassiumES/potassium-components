@@ -46,6 +46,12 @@ const TextInputComponent = class extends Component {
 		this.listenTo('input', this.flatDOM, ev => {
 			this.text = this.flatDOM.value
 		})
+		this.listenTo('keyup', this.flatDOM, ev => {
+			if (ev.keyCode === 13) {
+				this.trigger(TextInputComponent.TextSubmitEvent, this._text)
+				this.text = ''
+			}
+		})
 		this.listenTo('input', this.portalDOM, ev => {
 			this.text = this.portalDOM.value
 		})

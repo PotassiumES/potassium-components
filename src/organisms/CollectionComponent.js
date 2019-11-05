@@ -17,10 +17,11 @@ const DefaultItemComponent = class extends Component {
 		this.addClass('default-item-component')
 		this.setName('DefaultItemComponent')
 
+		const itemName = dataObject.getFirst('title', 'name', 'text') || new String(dataObject)
 		this._labelComponent = new LabelComponent(
-			null,
+			undefined,
 			{
-				text: lt('Item: ') + new String(dataObject)
+				text: lt('Item: ') + itemName
 			},
 			this.inheritedOptions
 		).appendTo(this)
@@ -128,7 +129,7 @@ const CollectionComponent = class extends Component {
 		}
 	}
 	_add(itemComponent, checkForDoubles = true) {
-		/** @todo this assumes the PK is called 'id' and  it shouldn't */
+		/** @todo this assumes the PK is called 'id' */
 		if (checkForDoubles && this._dataObjectComponents.get(itemComponent.dataObject.get('id'))) {
 			// Already have it, ignore the add
 			return
