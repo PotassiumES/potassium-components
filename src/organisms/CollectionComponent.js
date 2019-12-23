@@ -57,12 +57,15 @@ const CollectionComponent = class extends Component {
 		this._inGroupChange = false // True while resetting or other group change
 		this._dataObjectComponents = new Map() // dataObject.id -> Component
 
-		this.dataObject.addListener((...params) => {
+		this.listenTo('reset', this.dataObject, (...params) => {
 			this._handleCollectionReset(...params)
-		}, 'reset')
-		this.dataObject.addListener((...params) => {
+		})
+		this.listenTo('added', this.dataObject, (...params) => {
 			this._handleCollectionAdded(...params)
-		}, 'added')
+		})
+		this.listenTo('removed', this.dataObject, (...params) => {
+			this._handleCollectionRemoved(...params)
+		})
 		if (this.dataObject.isNew === false) {
 			this._handleCollectionReset()
 		} else if (this.dataObject.length > 0) {
