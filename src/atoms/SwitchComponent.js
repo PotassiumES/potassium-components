@@ -72,6 +72,7 @@ const SwitchComponent = class extends Component {
 			Component.ActionEvent,
 			this,
 			(eventName, actionName, active, value, actionParameters, filterParameters) => {
+				if (active == false) return
 				switch (actionName) {
 					case '/action/activate':
 						if (active) {
