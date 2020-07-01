@@ -1,4 +1,5 @@
 art/*.blend1
 node_modules/
 docs/
+.DS_Store
 

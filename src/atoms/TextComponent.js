@@ -13,6 +13,7 @@ const TextComponent = class extends Component {
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
 	@param {number} [options.textColor=0x000000] = the color of the text
 	@param {string} [options.textField=null] a field in the dataObject to bind to as the text
+	@param {function} [options.textFieldFormatter=null] a function that takes in a textField value and returns a string
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
@@ -86,7 +87,11 @@ const TextComponent = class extends Component {
 
 	_updateTextFromData() {
 		if (!this.dataObject || !this.options.textField) return
-		this.text = this.dataObject.get(this.options.textField) || ''
+		if (this.options.textFieldFormatter) {
+			this.text = this.options.textFieldFormatter(this.dataObject.get(this.options.textField) || '')
+		} else {
+			this.text = this.dataObject.get(this.options.textField) || ''
+		}
 	}
 
 	_updateDisplayFromText() {

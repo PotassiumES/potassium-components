@@ -87,7 +87,7 @@ const CollectionComponent = class extends Component {
 		return this._dataObjectComponents.get(dataObject.get('id'))
 	}
 	filter(filterFn = null) {
-		// filterFn must accept a DataModel and return a boolean indicating whether its Component.flatDOM.style.display should be set to '' or 'none'
+		// filterFn must accept a DataModel and return a boolean indicating whether it should be shown or hidden
 		for (const itemComponent of this._dataObjectComponents.values()) {
 			let display
 			if (typeof filterFn === 'function') {

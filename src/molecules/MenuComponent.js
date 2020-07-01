@@ -88,6 +88,15 @@ const MenuComponent = class extends Component {
 		}
 	}
 
+	toggleMenuItem(index, visible) {
+		if (index < 0 || index >= this._menuItems.length) return
+		if (visible) {
+			this._menuItems[index].show()
+		} else {
+			this._menuItems[index].hide()
+		}
+	}
+
 	_updateSelectionDisplay() {
 		for (let i = 0; i < this._menuItems.length; i++) {
 			if (i === this._selectedIndex) {

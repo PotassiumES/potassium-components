@@ -10,6 +10,7 @@ TextInputComponent shows the user a field or area in which to enter text.
 const TextInputComponent = class extends Component {
 	/**
 	@param {string} [options.text=''] initial text
+	@param {string} [options.dataField=''] a field on the dataObject on which to bind
 	@param {string} [options.placeholder=''] text to show when the input is empty
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
 	*/
