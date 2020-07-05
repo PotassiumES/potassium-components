@@ -13,6 +13,7 @@ const TextInputComponent = class extends Component {
 	@param {string} [options.dataField=''] a field on the dataObject on which to bind
 	@param {string} [options.placeholder=''] text to show when the input is empty
 	@param {number} [options.textSize=0.8] the size (in meters) of the text
+	@param {bool} [options.submitOnEnter=true] trigger a submit event on `enter` keyUp event
 	*/
 	constructor(dataObject = null, options = {}, inheritedOptions = {}) {
 		super(
@@ -23,7 +24,8 @@ const TextInputComponent = class extends Component {
 					placeholder: '',
 					flatDOM: dom.input({ type: 'text' }),
 					portalDOM: dom.input({ type: 'text' }),
-					name: 'TextInputComponent'
+					name: 'TextInputComponent',
+					submitOnEnter: true
 				},
 				options
 			),
@@ -48,7 +50,7 @@ const TextInputComponent = class extends Component {
 			this.text = this.flatDOM.value
 		})
 		this.listenTo('keyup', this.flatDOM, ev => {
-			if (ev.keyCode === 13) {
+			if (this.options.submitOnEnter && ev.keyCode === 13) {
 				this.trigger(TextInputComponent.TextSubmitEvent, this._text)
 				this.text = ''
 			}

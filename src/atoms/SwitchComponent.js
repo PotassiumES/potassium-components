@@ -40,8 +40,10 @@ const SwitchComponent = class extends Component {
 			})
 			.appendTo(this.portalDOM)
 
-		if (this.options.dataField) {
-			this._updateFromData()
+		if (this.options.dataField && this.dataObject) {
+			this.dataObject.onFirstReset(() => {
+				this._updateFromData()
+			})
 		} else {
 			this.on = true
 		}
