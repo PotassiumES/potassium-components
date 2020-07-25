@@ -50,10 +50,16 @@ const ProgressComponent = class extends Component {
 		}
 	}
 
+	/**
+	value - float from 0 to 1
+	*/
 	get value() {
 		return this._value
 	}
 
+	/**
+	value - float from 0 to 1
+	*/
 	set value(val) {
 		val = parseFloat(val)
 		if (Number.isNaN(val)) return

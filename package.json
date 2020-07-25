@@ -52,7 +52,10 @@
     }
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write"]
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "potassium-es": "PotassiumES/potassium-es#development"
