@@ -194,7 +194,7 @@ const DateFieldComponent = class extends FormFieldComponent {
 			.setName('YearInputComponent')
 
 		// Different places have different orders for their date fields, so handle that here
-		Localizer.Singleton.dateFieldOrder.forEach(fieldName => {
+		Localizer.Singleton.dateFieldOrder.forEach((fieldName) => {
 			switch (fieldName) {
 				case 'month':
 					this.appendComponent(this._monthInputComponent)

@@ -45,14 +45,8 @@ const VideoComponent = class extends CubeComponent {
 		this._ratio = null
 		this.resize(VideoComponent.RATIO_16x9)
 
-		this._flatPreview = dom
-			.img({ src: this.options.preview })
-			.appendTo(this.flatDOM)
-			.addClass('preview-image')
-		this._portalPreview = dom
-			.img({ src: this.options.preview })
-			.appendTo(this.portalDOM)
-			.addClass('preview-image')
+		this._flatPreview = dom.img({ src: this.options.preview }).appendTo(this.flatDOM).addClass('preview-image')
+		this._portalPreview = dom.img({ src: this.options.preview }).appendTo(this.portalDOM).addClass('preview-image')
 	}
 
 	cleanup() {

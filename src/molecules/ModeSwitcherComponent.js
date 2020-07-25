@@ -82,7 +82,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		dom
 			.button(lt('Enter'))
 			.appendTo(this._switchModal)
-			.addEventListener('click', ev => {
+			.addEventListener('click', (ev) => {
 				this._hideModal()
 				this.trigger(ModeSwitcherComponent.ModeChangedEvent, this._attemptingMode)
 				this._attemptingMode = null
@@ -90,7 +90,7 @@ const ModeSwitcherComponent = class extends ButtonGroupComponent {
 		dom
 			.button(lt('Cancel'))
 			.appendTo(this._switchModal)
-			.addEventListener('click', ev => {
+			.addEventListener('click', (ev) => {
 				this._hideModal()
 				this._attemptingMode = null
 			})

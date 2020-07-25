@@ -20,7 +20,10 @@ const ModalComponent = class extends Component {
 				{
 					columns: ['key', 'value'],
 					name: 'ModalComponent',
-					buttons: [{ name: lt('Go'), id: 'go' }, { name: lt('Cancel'), id: 'cancel' }]
+					buttons: [
+						{ name: lt('Go'), id: 'go' },
+						{ name: lt('Cancel'), id: 'cancel' }
+					]
 				},
 				options
 			),

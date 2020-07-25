@@ -46,7 +46,7 @@ const SliderComponent = class extends Component {
 
 		if (this.usesFlat) {
 			// set up listeners for dragging of the handle
-			this.listenTo('mousedown', this._handleComponent.flatDOM, ev => {
+			this.listenTo('mousedown', this._handleComponent.flatDOM, (ev) => {
 				ev.preventDefault()
 				this._pointerDown = true
 				this._pointerStart = ev.pageX

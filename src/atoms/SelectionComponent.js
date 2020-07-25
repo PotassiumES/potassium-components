@@ -31,7 +31,7 @@ const SelectionComponent = class extends Component {
 		this.setName('SelectionComponent')
 
 		// Normalize the items to all be [name, value]
-		this.options.items = this.options.items.map(item => {
+		this.options.items = this.options.items.map((item) => {
 			if (typeof item === 'string') return [item, item]
 			return item
 		})
@@ -125,10 +125,10 @@ const SelectionComponent = class extends Component {
 			this._updateSpatialSelection()
 		}
 
-		this.listenTo('input', this.flatDOM, ev => {
+		this.listenTo('input', this.flatDOM, (ev) => {
 			this.selectedIndex = this.flatDOM.selectedIndex
 		})
-		this.listenTo('input', this.portalDOM, ev => {
+		this.listenTo('input', this.portalDOM, (ev) => {
 			this.selectedIndex = this.portalDOM.selectedIndex
 		})
 	}

@@ -142,7 +142,7 @@ const CollectionComponent = class extends Component {
 		this.appendComponent(itemComponent)
 		/** @todo switch to action-input */
 		if (this.options.onClick) {
-			itemComponent.flatDOM.addEventListener('click', ev => {
+			itemComponent.flatDOM.addEventListener('click', (ev) => {
 				this._handleItemClick(ev, itemComponent)
 			})
 		}

@@ -6,7 +6,8 @@
   "scripts": {
     "docs": "./node_modules/.bin/esdoc",
     "lint": "eslint src",
-    "prettier": "prettier --write src/*.js src/**/*.js"
+    "lint-fix": "eslint src --fix",
+    "prettier": "prettier --write src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "semi": false,
     "useTabs": true,
     "printWidth": 120,
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "none"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -50,14 +52,7 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "src/**/*.js": [
-        "prettier --write",
-        "eslint --fix",
-        "git add"
-      ]
-    },
-    "relative": true
+    "*.js": ["eslint --fix", "prettier --write"]
   },
   "dependencies": {
     "potassium-es": "PotassiumES/potassium-es#development"
@@ -65,11 +60,11 @@
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^5.0.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.13.7"
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
   }
 }
